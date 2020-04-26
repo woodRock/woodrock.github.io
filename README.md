@@ -2,16 +2,16 @@
 A remake of my portfolio website using a different framework.
 
 ## React
-The website is written for the React framework.
+It uses the `react` framework from NPM.
 
 Pros:
 - reactive content
 - most popular JS framework.
 
 ## Firebase
-It displays content loaded from a remote nosql database.
+The website used the `firebase` package.
 
-The website also has authentication. This allows users with the adequate permissions to edit the content of the website.
+It displays content loaded from a remote nosql database. The website also has authentication. This allows users with the adequate permissions to edit the content of the website.
 
 Pros:
 - store the content remotely
