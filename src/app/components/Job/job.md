@@ -1,0 +1,13 @@
+# Job
+- Niwa (2020)
+  - GIS work experience
+- St. John's Bar and Eatery (2019)
+  - Waiter
+  - Bartender
+  - Barista
+- Mac's Brewery (2012 - 2019)
+  - Barista
+  - Bartender
+  - Waiter
+  - Kitchen Hand
+  - Glassy
