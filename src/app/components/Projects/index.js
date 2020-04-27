@@ -65,16 +65,23 @@ const ProjectItem = ({ project }) => (
       </a>
       <div className="title">
         <p>
-          <strong>{project.title}</strong>
+          <strong>{project.title}</strong> |
+          <i>
+            {TimeAgo( { date: project.time} )}
+          </i>
         </p>
       </div>
       <div className="description">
         {project.description}
       </div>
       <div className="time">
-        <i>
-          {TimeAgo( { date: project.time} )}
-        </i>
+
+      </div>
+      <div className="button">
+        <a href={project.link}>
+          View Source
+          <i className="material-icons">code</i>
+        </a>
       </div>
     </div>
   </div>

@@ -25,8 +25,8 @@ header {
   height: 100%;
   text-align: left;
   color: var(--header);
-  background: var(--primary);
-  /* background: linear-gradient(0deg, var(--primary) 0%, var(--primary) 66%, var(--header)100%);  */
+  /* background: var(--primary); */
+  background: linear-gradient(-45deg, var(--primary) 0%, var(--primary) 66%, var(--header)100%);
 
   border-width: thin;
   border-style: solid;
@@ -79,9 +79,6 @@ h1 {
 }
 
 .container {
-  top: 20px;
-  height: 90%;
-
   width: 60%;
   margin: 0 auto;
 
@@ -108,7 +105,6 @@ h1 {
 
   border-style: solid;
   border-color: var(--header);
-  border-radius: 5%;
   border-width: thin;
 
   /* Add shadows to create the "card" effect */
@@ -147,9 +143,27 @@ h1 {
 }
 
 .blog-post {
-  text-align: center;
+  text-align: left;
   border-style: solid;
   border-width: thin;
   border-color: var(--text);
   padding: 10px;
+}
+
+.description {
+  padding-bottom: 20px;
+}
+
+.button {
+}
+
+.button a {
+  color: var(--header);
+  text-decoration: none;
+  background-color: var(--background);
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10%;
+  border-style: solid;
 }
