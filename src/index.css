@@ -1,0 +1,155 @@
+:root {
+  --primary: #7289DA;
+  --header: #FFFFFF;
+  --text: #99AAB5;
+  --div-background: #2C2F33;
+  --background: #23272A;
+}
+
+body {
+  margin: auto;
+}
+
+html {
+  background: var(--div-background);
+}
+
+header {
+  position: relative;
+  width: 100%;
+}
+
+.navigation {
+  position: fixed;
+  width: 20%;
+  height: 100%;
+  text-align: left;
+  color: var(--header);
+  background: var(--primary);
+  /* background: linear-gradient(0deg, var(--primary) 0%, var(--primary) 66%, var(--header)100%);  */
+
+  border-width: thin;
+  border-style: solid;
+  border-color: var(--text);
+}
+
+.navigation ul {
+  list-style: none;
+}
+
+.navigation i {
+  color: var(--header);
+  font-size: 35px;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none ! important;
+  color: var(--header);
+  background: var(--primary);
+  font-size: 20px;
+}
+
+h1 {
+  color: var(--header);
+  background: var(--background);
+}
+
+.footer {
+  text-align: center;
+  color: var(--text);
+  background: var(--background);
+
+  /* Center the c**t */
+  position: relative;
+  bottom:0;
+  width:100%;
+
+  border-style: solid;
+  border-color: var(--text);
+  border-width: thin;
+}
+
+.social {
+  text-align: center;
+  color: var(--header);
+  padding: 10px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.container {
+  top: 20px;
+  height: 90%;
+
+  width: 60%;
+  margin: 0 auto;
+
+  border-width: thin;
+  border-style: solid;
+  border-color: var(--text);
+}
+
+.content {
+    font-family: Roboto;
+    text-align: left;
+    padding: 10px;
+    color: var(--text);
+    background: var(--div-background);
+}
+
+.project-container {
+  /* width: 50%; */
+  margin: 0 auto;
+}
+
+.project {
+  text-align: center;
+
+  border-style: solid;
+  border-color: var(--header);
+  border-radius: 5%;
+  border-width: thin;
+
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.project img {
+  width: 50%;
+  height: 50%;
+  background: white;
+
+  border-style: solid;
+  border-width: thin;
+  border-color: var(--text);
+}
+
+/* On mouse-over, add a deeper shadow */
+.project:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.project-container {
+  padding: 2px 16px;
+}
+
+.title {
+  color: var(--header);
+  background: var(--div-background);
+  width: 100%;
+}
+
+.error-message {
+  color: red;
+}
+
+.blog-post {
+  text-align: center;
+  border-style: solid;
+  border-width: thin;
+  border-color: var(--text);
+  padding: 10px;
+}

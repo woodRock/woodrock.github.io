@@ -5,21 +5,23 @@ import SocialPage from './components/Social';
 import Navigation from './components/Navigation';
 import CopyRight from './components/Copyright';
 import { withAuthentication } from './util/Session';
+import logo from '../assets/logo.png';
 
 const App = () => (
   <Router>
     <div>
-      <Navigation />
-      <hr />
-      {ROUTES.map(r => (
-        <Route path={r.path} component={r.component} />
-      ))}
-      <hr/>
-      <SocialPage/>
-      <p>
-        <i>This site was made using React + Firebase</i>
-      </p>
-      <CopyRight/>
+      <header>
+        <div className="navigation">
+          <Navigation />
+        </div>
+      </header>
+      <div className="container">
+        <div className="content">
+          {ROUTES.map(r => (
+            <Route path={r.path} component={r.component} />
+          ))}
+        </div>
+      </div>
     </div>
   </Router>
 );

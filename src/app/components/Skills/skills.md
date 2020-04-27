@@ -1,6 +1,6 @@
 # Skills
 
-Languages:
+## Languages
 - Bash
 - C / C++
 - Haskell
@@ -9,26 +9,26 @@ Languages:
 - Mapserver
 - Ruby
 
-Web Frameworks:
+## Web Frameworks
 - Angular
 - React
 - Vue
 
-Databases:
+## Databases
 - Firebase
 - Postgres
 
-VCS:
+## VCS
 - git
 - Github
 - Gitlab
 
-OS:
-- Windows
+## OS
+- Windows (7 / 8 / 10)
 - Linux (Debian / Ubuntu / Arch)
 - Microcontrollers (Arduino / Rasbian)
 
-Word Processing:
+## Word Processing
 - LaTeX
 - Markdown
 - Vim

@@ -50,26 +50,34 @@ class ProjectsPage extends Component {
 }
 
 const ProjectList = ({ projects }) => (
-  <ul>
+  <div>
     {projects.map(project => (
       <ProjectItem key={project.id} project={project} />
     ))}
-  </ul>
+  </div>
 );
 
 const ProjectItem = ({ project }) => (
-  <li>
-    <p>
-      <strong>{project.title}</strong>
-    </p>
-    <a href={project.link}>
-      <img height="30" width="30" src={project.image} alt={project.title}/>
-    </a>
-    <i>
-      {TimeAgo( { date: project.time} )}
-    </i>
-    {project.description}
-  </li>
+  <div className="project-container">
+    <div className="project">
+      <a href={project.link}>
+        <img width="100%" height="width" src={project.image} alt={project.title}/>
+      </a>
+      <div className="title">
+        <p>
+          <strong>{project.title}</strong>
+        </p>
+      </div>
+      <div className="description">
+        {project.description}
+      </div>
+      <div className="time">
+        <i>
+          {TimeAgo( { date: project.time} )}
+        </i>
+      </div>
+    </div>
+  </div>
 );
 
 export default withFirebase(ProjectsPage);

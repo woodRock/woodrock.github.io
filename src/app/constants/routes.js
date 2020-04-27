@@ -12,26 +12,31 @@ import CVPage from '../components/CV';
 
 const ROUTES = [
     {
+      name: 'Home',
       path: '/home',
       component: HomePage,
       icon: 'home', // material-icons class name
     },
     {
+      name: 'Projects',
       path: '/projects',
       component: ProjectsPage,
       icon: 'code',
     },
     {
+      name: 'Skills',
       path: '/skills',
       component: SkillsPage,
       icon: 'language',
     },
     {
+      name: 'Education',
       path: '/education',
       component: EducationPage,
       icon: 'school',
     },
     {
+      name: 'Jobs',
       path: '/job',
       component: JobPage,
       icon: 'work'
@@ -42,17 +47,20 @@ const ROUTES = [
       icon: '',
     },
     {
+      name: 'Blog',
       path: '/blog',
       component: BlogPage,
       icon: 'create',
     },
     {
+      name: 'Account',
       path: '/account',
       component: AccountPage,
       icon: 'settings',
       auth: true,
     },
     {
+      name: 'Register',
       path: '/signup',
       component: SignUpPage,
       icon: '',

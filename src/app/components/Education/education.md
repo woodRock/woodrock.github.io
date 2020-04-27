@@ -1,14 +1,24 @@
 # Education
 
-- VUW - Victoria University of Wellington (2016-2018, 2020+)
-  - Victoria Excellence Scholarship
+## University
+**Degree:** BE Engineering (studying)
 
-- RC - Rongotai College (2011 - 2015)
-  - Prefect
-  - Excellence NCEA Level 1,2 & 3
+**School:** [Victoria University of Wellington](https://www.wgtn.ac.nz/engineering)
 
-- SWIS - South Wellington Intermediate School (2009 - 2010)
-  - Class Representative
+**Awards:** Victoria Excellence Scholarship
 
-- IBS - Island Bay School
-(2002 - 2008)
+## College
+**Degree:** NCEA Level 1 - 3
+
+**School: ** [Rongotai College](https://www.rongotai.school.nz/)
+
+**Awards:** NCEA Level 1 - 3 Excellence, Scholarship English
+
+**Roles:** Prefect
+
+## Intermediate
+**School:** [South Wellington Intermediate School](http://www.swis.school.nz/)
+**Roles:** Class Representative
+
+## Primary
+**School:** [Island Bay Primary School](https://www.islandbay.school.nz/)

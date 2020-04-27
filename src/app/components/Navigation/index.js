@@ -3,36 +3,47 @@ import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOut';
 import ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../../util/Session';
+import logo from '../../../assets/logo.png';
+import me from '../../../assets/me.jpg';
+import SocialPage from '../Social';
 
 const Navigation = () => (
   <div>
-    <AuthUserContext.Consumer>
-      {authUser =>
-        authUser ? <NavigationAuth /> : <NavigationNonAuth />
-      }
-    </AuthUserContext.Consumer>
+    <ul>
+      <li>
+        <img width="80%" src={me} alt=""/>
+      </li>
+      <AuthUserContext.Consumer>
+        {authUser =>
+          authUser ? <NavigationAuth /> : <NavigationNonAuth />
+        }
+      </AuthUserContext.Consumer>
+    </ul>
+    <SocialPage></SocialPage>
   </div>
 );
 
 const NavigationAuth = () => (
-  <div>
-    <span>
-      {ROUTES.map(r => (
-        <Link to={r.path}><i className="material-icons">{r.icon}</i></Link>
-      ))}
-    </span>
-    <SignOutButton />
-  </div>
+  <ul>
+    {ROUTES.map(r => (
+      (r.icon === '')
+        ? null
+        : <li><Link to={r.path}><i className="material-icons">{r.icon}</i><a className="link">{r.name}</a></Link></li>
+    ))}
+    <li>
+      <SignOutButton />
+    </li>
+  </ul>
 );
 
 const NavigationNonAuth = () => (
   <ul>
     {ROUTES.map(r => (
-      r.auth ? null : <Link to={r.path}><i className="material-icons">{r.icon}</i></Link>
+      (r.auth || r.icon === '')? null : <li><Link to={r.path}><i className="material-icons">{r.icon}</i><a className="link">{r.name}</a></Link></li>
     ))}
-    <span>
+    <li>
       <Link to='/signin'><i className="material-icons">person</i></Link>
-    </span>
+    </li>
   </ul>
 );
 

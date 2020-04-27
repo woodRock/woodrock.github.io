@@ -35,7 +35,7 @@ class SocialPage extends Component {
     const { social, loading } = this.state;
     return (
       <div>
-        {loading && <div>Loading ...</div>}
+        {loading && <div>...</div>}
         {social ? (
           <SocialList social={social} />
         ) : (
@@ -56,9 +56,7 @@ const SocialList = ({ social }) => (
 
 const SocialItem = ({ social }) => (
   <span>
-    <a href={social.link}>
-      <img height="30" width="30" src={social.image} alt={social.title}/>
-    </a>
+    <a href={social.link} className={"social fa fa-" + social.title}></a>
   </span>
 );
 

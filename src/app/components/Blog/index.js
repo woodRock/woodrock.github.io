@@ -57,7 +57,7 @@ const BlogList = ({ blog }) => (
 );
 
 const BlogItem = ({ blog }) => (
-  <div>
+  <div className="blog-post">
     <h2>{blog.title}</h2>
     <ReactMarkdown
       source={
