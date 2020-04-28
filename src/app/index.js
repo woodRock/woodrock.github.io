@@ -11,17 +11,19 @@ const App = () => (
   <Router>
     <div>
       <header>
-        <div className="navigation">
+        <div className="navigation twitter-style-border">
           <Navigation />
         </div>
       </header>
-      <div className="container">
-        <div className="content">
+      <div className="container twitter-style-border">
+        <div className="">
           {ROUTES.map(r => (
             <Route path={r.path} component={r.component} />
           ))}
         </div>
       </div>
+      <SocialPage></SocialPage>
+      <CopyRight></CopyRight>
     </div>
   </Router>
 );

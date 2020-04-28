@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
+import logo from '../../../assets/logo.png';
 
 class ProjectsPage extends Component {
   constructor(props){
@@ -13,7 +14,7 @@ class ProjectsPage extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    this.props.firebase.projects().orderBy('title').get().then(
+    this.props.firebase.projects().orderBy('time').get().then(
       querySnapshot => {
           querySnapshot.forEach(doc => {
             const data = {
@@ -40,7 +41,7 @@ class ProjectsPage extends Component {
         <h1>Projects</h1>
         {loading && <div>Loading ...</div>}
         {projects ? (
-          <ProjectList projects={projects} />
+          <ProjectList projects={projects.sort((a,b) => new Date(b.time) - new Date(a.time))} />
         ) : (
           <div>There are no projects ...</div>
         )}
@@ -59,28 +60,24 @@ const ProjectList = ({ projects }) => (
 
 const ProjectItem = ({ project }) => (
   <div className="project-container">
+    <div className="title">
+      <img class="logo" src={logo} alt="woodRock github logo"/>
+      <span className="project-title-text">
+        <span className="secondary"> @woodRock</span> •
+        <i className="secondary"> {TimeAgo( { date: project.time} )}</i>
+      </span>
+      <div className="description">
+        <h2>{project.title}</h2>
+        {project.description}
+      </div>
+    </div>
     <div className="project">
       <a href={project.link}>
         <img width="100%" height="width" src={project.image} alt={project.title}/>
       </a>
-      <div className="title">
-        <p>
-          <strong>{project.title}</strong> |
-          <i>
-            {TimeAgo( { date: project.time} )}
-          </i>
-        </p>
-      </div>
-      <div className="description">
-        {project.description}
-      </div>
-      <div className="time">
-
-      </div>
-      <div className="button">
-        <a href={project.link}>
-          View Source
-          <i className="material-icons">code</i>
+      <div>
+        <a href={project.link} className="github-link">
+          <i className="fa fa-github"></i>
         </a>
       </div>
     </div>

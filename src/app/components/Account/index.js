@@ -6,7 +6,7 @@ import PasswordChangeForm from '../PasswordChange';
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
-      <div>
+      <div className="account twitter-style-border">
         <h1>Accounts</h1>
         <strong>email:</strong> {authUser.email}
         <PasswordForgetForm />

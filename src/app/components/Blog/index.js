@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withFirebase } from '../../util/Firebase';
 import ReactMarkdown from 'react-markdown';
 import TimeAgo from '../../util/TimeAgo';
+import logo from '../../../assets/logo.png';
 
 class BlogPage extends Component {
   constructor(props){
@@ -35,11 +36,11 @@ class BlogPage extends Component {
   render() {
     const { blog, loading } = this.state;
     return (
-      <div>
+      <div className="blog">
         <h1>Blog</h1>
         {loading && <div>Loading ...</div>}
         {blog ? (
-          <BlogList blog={blog} />
+          <BlogList blog={blog.sort((a,b) => new Date(b.time) - new Date(a.time))} />
         ) : (
           <div>There are no blog posts ...</div>
         )}
@@ -57,18 +58,24 @@ const BlogList = ({ blog }) => (
 );
 
 const BlogItem = ({ blog }) => (
-  <div className="blog-post">
-    <h2>{blog.title}</h2>
-    <ReactMarkdown
-      source={
-        (blog.markdown + "").replace(/\\n/g,"\n\n")
-      }
-    />
-    <small>
-      <i>
-        {TimeAgo({date: blog.time})}
-      </i>
-    </small>
+  <div className="blog-post twitter-style-border">
+    <div className="title">
+      <img class="logo" src={logo} alt="woodRock github logo"/>
+      <span class="blog-title-text">
+        woodRock •
+          <i>
+            <span className="secondary"> {TimeAgo({date: blog.time})}</span>
+          </i>
+      </span>
+    </div>
+    <div className="blog-content">
+      <h2>{blog.title}</h2>
+      <ReactMarkdown
+        source={
+          (blog.markdown + "").replace(/\\n/g,"\n\n")
+        }
+      />
+    </div>
   </div>
 );
 

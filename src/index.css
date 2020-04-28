@@ -1,17 +1,80 @@
 :root {
+  /* Discord color scheme */
   --primary: #7289DA;
   --header: #FFFFFF;
   --text: #99AAB5;
   --div-background: #2C2F33;
   --background: #23272A;
+
+  /* My own color palletes */
+  --error-color: #C81D25; /* fire engine color */
+  --link-color: #D6DDC5;
+  --link-hover-color: #FFFFFF; /* independence */
+  --secondary-text-color: #A8A8A8;
+  --discord-fade: linear-gradient(-45deg, var(--primary) 0%, var(--primary) 66%, var(--header)100%);
+
+  /* A nice readible font for content */
+  --text-font: Roboto;
+}
+
+.twitter-style-border {
+  /* Twitter style borders */
+  border-width: thin;
+  border-style: solid;
+  border-color: var(--text);
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  top: 15px;
+  left: 5px;
+  position: relative;
+}
+
+.secondary {
+  color: var(--secondary-text-color);
+}
+
+/* Make all the links the same color in one fowl swoop */
+.link, a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.github-link {
+  font-size: 30px;
+}
+
+.link:hover, button:hover, a:hover {
+  color: var(--link-hover-color);
+}
+
+.error-message {
+  /* This is for the authentication pages  */
+  color: var(--error-color);
+}
+
+h1 {
+  /* These headers are reserved for the page titles */
+  color: var(--header);
+
+  /* Projects are centered, so is the title */
+  text-align: left;
+  padding-left: 10px;
+  border-bottom: solid;
+  border-width: thin;
+  border-color: var(--text);
+}
+
+html {
+  /* Darker background for the whole page */
+  background: var(--background);
 }
 
 body {
   margin: auto;
-}
-
-html {
-  background: var(--div-background);
 }
 
 header {
@@ -20,106 +83,136 @@ header {
 }
 
 .navigation {
+  /* Anchor the navigation bar to the left */
   position: fixed;
+  text-align: left;
+
+  /* Take up the entire left block of the page */
   width: 20%;
   height: 100%;
-  text-align: left;
-  color: var(--header);
-  /* background: var(--primary); */
-  background: linear-gradient(-45deg, var(--primary) 0%, var(--primary) 66%, var(--header)100%);
 
-  border-width: thin;
-  border-style: solid;
-  border-color: var(--text);
+  background: var(--discord-fade);
 }
 
 .navigation ul {
+  /* Remove bullet points for navigation */
   list-style: none;
-}
-
-.navigation i {
-  color: var(--header);
-  font-size: 35px;
-  text-decoration: none;
-}
-
-.link {
-  text-decoration: none ! important;
-  color: var(--header);
-  background: var(--primary);
-  font-size: 20px;
-}
-
-h1 {
-  color: var(--header);
-  background: var(--background);
-}
-
-.footer {
-  text-align: center;
-  color: var(--text);
-  background: var(--background);
-
-  /* Center the c**t */
+  width: 100%;
+  /* overflow: auto; */
   position: relative;
-  bottom:0;
-  width:100%;
+}
 
+.navigation ul li {
+  float: left;
+  width: 100%;
+  /* TODO: make these relative sizes */
+  /* padding: 7px; */
+}
+
+.avatar {
+  border-radius: 10px;
   border-style: solid;
   border-color: var(--text);
-  border-width: thin;
+  border-width: medium;
+}
+
+.link-text {
+  /* This is for the text beside the icons, i.e., 'Home' */
+  /* TODO: make these relative sizes */
+  font-size: 20px;
 }
 
 .social {
+  left: 35%;
+  padding: 30px;
+  width: 50%;
+  overflow: auto;
+  position: relative;
+}
+
+.social a {
+  float: left;
+  width: 10%;
+}
+
+.copyright {
+  position: relative;
   text-align: center;
-  color: var(--header);
-  padding: 10px;
-  text-decoration: none;
-  font-size: 20px;
+  color: var(--text);
+  padding: 20px;
+  position: relative;
 }
 
 .container {
+  font-family: var(--text-font);
+
+  /* The wrapper for the content of each page */
   width: 60%;
   margin: 0 auto;
 
-  border-width: thin;
-  border-style: solid;
-  border-color: var(--text);
+  /* Slightly lighter background for content */
+  background: var(--div-background);
+
+  /* Light gray for text on pages */
+  color: var(--text);
+
+  overflow: auto;
 }
 
 .content {
-    font-family: Roboto;
     text-align: left;
+
+    /* Give the content space to breathe */
     padding: 10px;
-    color: var(--text);
-    background: var(--div-background);
+}
+
+.blog {
+  font-family: var(--text-font);
+  /* Slightly lighter background for content */
+  background: var(--div-background);
+
+  /* Light gray for text on pages */
+  color: var(--text);
 }
 
 .project-container {
+  /* Card style width */
   /* width: 50%; */
+  /* Center the card */
+  border-bottom: solid;
+  border-width: thin;
+  border-color: var(--text);
   margin: 0 auto;
 }
 
 .project {
+  /* Center the project cards */
   text-align: center;
-
-  border-style: solid;
-  border-color: var(--header);
-  border-width: thin;
 
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
 }
 
+.project-title-text {
+  padding-left: 20px;
+}
+
+
 .project img {
+  /* Dont touch the edge */
   width: 50%;
   height: 50%;
+
+  /* Important for transparent images */
   background: white;
 
   border-style: solid;
-  border-width: thin;
+  border-width: medium;
   border-color: var(--text);
+
+  /* Avatar like style to logo */
+  border-radius: 5%;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -127,43 +220,127 @@ h1 {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-/* Add some padding inside the card container */
-.project-container {
-  padding: 2px 16px;
-}
-
 .title {
+  padding-left: 10px;
+  /* For pages without markdown */
   color: var(--header);
-  background: var(--div-background);
-  width: 100%;
-}
-
-.error-message {
-  color: red;
-}
-
-.blog-post {
-  text-align: left;
-  border-style: solid;
-  border-width: thin;
-  border-color: var(--text);
-  padding: 10px;
 }
 
 .description {
+  /* The project description  */
   padding-bottom: 20px;
+  padding-left: 50px;
 }
 
-.button {
+.blog-post {
+  /* These blog posts are styled using markdown */
+  text-align: left;
+  padding: 10px;
+}
+
+.blog-title-text {
+  padding-left: 30px;
+}
+
+.blog-content {
+  padding-left: 70px;
+}
+
+button {
+  background: var(--primary);
+  color: var(--link-color);
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 .button a {
-  color: var(--header);
-  text-decoration: none;
-  background-color: var(--background);
+  background-color: var(--primary);
+  border-radius: 5%;
+  /* Seperate from the content above */
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 10%;
-  border-style: solid;
+
+  /* Remove the underline  */
+  text-decoration: none;
+}
+
+.account {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  background: var(--background);
+}
+
+@media (max-width: 70em) {
+
+  .navigation {
+    z-index: 2;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 10%;
+    bottom: 0;
+    background: var(--primary);
+  }
+  .navigation ul {
+    overflow: auto;
+    bottom: 2%;
+    position: fixed;
+  }
+  .navigation ul li {
+    float: left;
+    width: 10%;
+  }
+  .link-text {
+    display: none;
+  }
+  .account {
+    width: 80%;
+  }
+
+  .avatar {
+    height: 10%;
+    width: auto;
+
+    left: 1%;
+    top: 1%;
+
+    position: fixed;
+
+    color: var(--header);
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--text);
+    border-radius: 5px;
+  }
+  .container {
+    margin: 0 auto;
+    top: 0;
+    width: 70%;
+    /* position: relative; */
+  }
+  .content {
+    /* height: 90%; */
+  }
+  .project-container {
+    width: 100%;
+  }
+  .blog-title-text {
+    padding-left: 15px;
+  }
+  .project-title-text {
+    padding-left: 15px;
+  }
+  .description {
+    padding-left: 15px;
+  }
+  .blog-content {
+    padding: 10px;
+  }
+  .logo {
+    height: 40px;
+    width: 40px;
+  }
 }

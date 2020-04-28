@@ -6,8 +6,8 @@ import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../../util/Firebase';
 
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
+  <div className="account twitter-style-border">
+    <h1>Log in</h1>
     <SignInForm />
     <PasswordForgetLink />
     <SignUpLink />

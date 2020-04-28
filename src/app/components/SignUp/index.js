@@ -12,8 +12,8 @@ const INITIAL_STATE = {
 };
 
 const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
+  <div className="account twitter-style-border">
+    <h1>Create your account</h1>
     <SignUpForm />
   </div>
 );

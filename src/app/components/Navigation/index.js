@@ -5,13 +5,12 @@ import ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../../util/Session';
 import logo from '../../../assets/logo.png';
 import me from '../../../assets/me.jpg';
-import SocialPage from '../Social';
 
 const Navigation = () => (
   <div>
     <ul>
       <li>
-        <img width="80%" src={me} alt=""/>
+        <img className="avatar" width="80%" src={me} alt=""/>
       </li>
       <AuthUserContext.Consumer>
         {authUser =>
@@ -19,7 +18,6 @@ const Navigation = () => (
         }
       </AuthUserContext.Consumer>
     </ul>
-    <SocialPage></SocialPage>
   </div>
 );
 
@@ -28,7 +26,7 @@ const NavigationAuth = () => (
     {ROUTES.map(r => (
       (r.icon === '')
         ? null
-        : <li><Link to={r.path}><i className="material-icons">{r.icon}</i><a className="link">{r.name}</a></Link></li>
+        : <li><Link className="link" to={r.path}><i className="link material-icons">{r.icon}</i><a className="link link-text">{r.name}</a></Link></li>
     ))}
     <li>
       <SignOutButton />
@@ -39,10 +37,10 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <ul>
     {ROUTES.map(r => (
-      (r.auth || r.icon === '')? null : <li><Link to={r.path}><i className="material-icons">{r.icon}</i><a className="link">{r.name}</a></Link></li>
+      (r.auth || r.icon === '')? null : <li><Link to={r.path}><i className="link material-icons">{r.icon}</i><a className="link link-text">{r.name}</a></Link></li>
     ))}
     <li>
-      <Link to='/signin'><i className="material-icons">person</i></Link>
+      <Link className="link" to='/signin'><i className="link material-icons">person</i></Link>
     </li>
   </ul>
 );

@@ -47,7 +47,7 @@ class SocialPage extends Component {
 }
 
 const SocialList = ({ social }) => (
-  <div>
+  <div className="social">
     {social.map(s => (
       <SocialItem key={s.id} social={s} />
     ))}
@@ -56,7 +56,7 @@ const SocialList = ({ social }) => (
 
 const SocialItem = ({ social }) => (
   <span>
-    <a href={social.link} className={"social fa fa-" + social.title}></a>
+    <a href={social.link} className={"link fa fa-" + social.title}></a>
   </span>
 );
 

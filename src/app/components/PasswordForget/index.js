@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withFirebase } from '../../util/Firebase';
 const PasswordForgetPage = () => (
-  <div>
-    <h1>PasswordForget</h1>
+  <div className="account twitter-style-border">
+    <h1>Forgot your password</h1>
+    <p>Enter your email address.</p>
     <PasswordForgetForm />
   </div>
 );
@@ -47,7 +48,7 @@ class PasswordForgetFormBase extends Component {
         </p>
         <p>
           <button disabled={isInvalid} type="submit">
-            Reset My Password
+            Search
           </button>
         </p>
         <div className="error-message">

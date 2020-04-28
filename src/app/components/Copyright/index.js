@@ -1,7 +1,9 @@
 import React from 'react';
 
 const CopyRight = () => (
-  <small>&copy; Copyright {new Date().getFullYear()}, Jesse Wood</small>
+  <div className="copyright">
+    <small>&copy; Copyright {new Date().getFullYear()}, Jesse Wood</small>
+  </div>
 );
 
 export default CopyRight;
