@@ -5,7 +5,6 @@ import SocialPage from './components/Social';
 import Navigation from './components/Navigation';
 import CopyRight from './components/Copyright';
 import { withAuthentication } from './util/Session';
-import logo from '../assets/logo.png';
 
 const App = () => (
   <Router>

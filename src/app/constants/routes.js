@@ -9,8 +9,13 @@ import EducationPage from '../components/Education';
 import JobPage from '../components/Job';
 import SkillsPage from '../components/Skills';
 import CVPage from '../components/CV';
+import LandingPage from '../components/Landing';
 
 const ROUTES = [
+    {
+      path: '',
+      component: LandingPage,
+    },
     {
       name: 'Home',
       path: '/home',

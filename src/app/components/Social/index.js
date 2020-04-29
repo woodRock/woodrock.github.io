@@ -56,7 +56,7 @@ const SocialList = ({ social }) => (
 
 const SocialItem = ({ social }) => (
   <span>
-    <a href={social.link} className={"link fa fa-" + social.title}></a>
+    <a href={social.link}><i className={"link fa fa-" + social.title}></i></a>
   </span>
 );
 

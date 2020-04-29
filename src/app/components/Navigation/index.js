@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOut';
 import ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../../util/Session';
-import logo from '../../../assets/logo.png';
 import me from '../../../assets/me.jpg';
 
 const Navigation = () => (
@@ -26,7 +25,7 @@ const NavigationAuth = () => (
     {ROUTES.map(r => (
       (r.icon === '')
         ? null
-        : <li><Link className="link" to={r.path}><i className="link material-icons">{r.icon}</i><a className="link link-text">{r.name}</a></Link></li>
+        : <li><Link className="link" to={r.path}><i className="link material-icons">{r.icon}</i><span className="link link-text">{r.name}</span></Link></li>
     ))}
     <li>
       <SignOutButton />
@@ -37,7 +36,7 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <ul>
     {ROUTES.map(r => (
-      (r.auth || r.icon === '')? null : <li><Link to={r.path}><i className="link material-icons">{r.icon}</i><a className="link link-text">{r.name}</a></Link></li>
+      (r.auth || r.icon === '')? null : <li><Link to={r.path}><i className="link material-icons">{r.icon}</i><span className="link link-text">{r.name}</span></Link></li>
     ))}
     <li>
       <Link className="link" to='/signin'><i className="link material-icons">person</i></Link>
