@@ -17,6 +17,10 @@
   --text-font: Roboto;
 }
 
+.text {
+  color: var(--text);
+}
+
 .twitter-style-border {
   /* Twitter style borders */
   border-width: thin;
@@ -226,6 +230,10 @@ header {
   color: var(--header);
 }
 
+.header {
+  color: var(--header);
+}
+
 .description {
   /* The project description  */
   padding-bottom: 20px;
@@ -288,10 +296,11 @@ button {
     overflow: auto;
     bottom: 2%;
     position: fixed;
+    left: 0;
   }
   .navigation ul li {
     float: left;
-    width: 10%;
+    width: 9%;
   }
   .link-text {
     display: none;
@@ -299,7 +308,6 @@ button {
   .account {
     width: 80%;
   }
-
   .avatar {
     height: 10%;
     width: auto;

@@ -63,10 +63,10 @@ const ProjectItem = ({ project }) => (
     <div className="title">
       <img class="logo" src={logo} alt="woodRock github logo"/>
       <span className="project-title-text">
-        <span className="secondary"> @woodRock</span> •
+        <span className="header"> @woodRock</span> •
         <i className="secondary"> {TimeAgo( { date: project.time} )}</i>
       </span>
-      <div className="description">
+      <div className="description text">
         <h2>{project.title}</h2>
         {project.description}
       </div>
