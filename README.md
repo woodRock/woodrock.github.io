@@ -1,4 +1,8 @@
 # Cautious Adventure
+![Lint](https://github.com/woodRock/woodrock.github.io/workflows/Lint/badge.svg)
+![Build](https://github.com/woodRock/woodrock.github.io/workflows/Build/badge.svg)
+![Deploy](https://github.com/woodRock/woodrock.github.io/workflows/Deploy/badge.svg)
+
 A remake of my portfolio website using a different framework.
 
 ## React
