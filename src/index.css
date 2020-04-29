@@ -244,6 +244,7 @@ header {
   /* These blog posts are styled using markdown */
   text-align: left;
   padding: 10px;
+  border-top: none;
 }
 
 .blog-title-text {
