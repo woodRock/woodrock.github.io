@@ -12,9 +12,9 @@ Third-year engineering student majoring in Software.Finding an opportunity to ap
 
 I spend my time productively doing the following:
 
-- BE Engineering @[Wellington University](./education)
-- work experience @[NIWA](./job)
-- personal projects @[woodRock](./projects)
+- BE Engineering @[Wellington University](#/education)
+- work experience @[NIWA](#/job)
+- personal projects @[woodRock](#/projects)
 
 Some of my other interests include:
 
