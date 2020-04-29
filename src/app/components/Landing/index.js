@@ -24,21 +24,7 @@ main = do
 `;
 
 const LandingPage = () => (
-  <div>
-    <h1>WoodRock</h1>
-    <section>
-      <div class="static">
-        <span className="pink">user</span>
-        <span className="white">@</span>
-        <span className="blue">woodRock</span>
-        <span className="white">:</span>
-        <span className="green">~$</span>
-      </div>
-      <div class="input" contenteditable="true">
-        <ReactMarkdown source={md}></ReactMarkdown>
-      </div>
-    </section>
-  </div>
+  <span></span>
 );
 
 export default LandingPage;
