@@ -12,4 +12,4 @@ jobs:
       - name: Install & Build 🔧
         run: |
           npm ci
-          npm run build
+          npm run-script build
