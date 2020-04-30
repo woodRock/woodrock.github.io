@@ -315,24 +315,12 @@ button {
     width: 80%;
   }
   .avatar {
-    height: 10%;
-    width: auto;
-
-    left: 1%;
-    top: 1%;
-
-    position: fixed;
-
-    color: var(--header);
-    border-style: solid;
-    border-width: thin;
-    border-color: var(--text);
-    border-radius: 5px;
+    display: none;
   }
   .container {
     margin: 0 auto;
     top: 0;
-    width: 70%;
+    width: 90%;
     /* position: relative; */
   }
   .content {
