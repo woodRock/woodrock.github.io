@@ -21,8 +21,10 @@ const App = () => (
           ))}
         </div>
       </div>
-      <SocialPage></SocialPage>
-      <CopyRight></CopyRight>
+      <footer>
+        <SocialPage></SocialPage>
+        <CopyRight></CopyRight>
+      </footer>
     </div>
   </Router>
 );
