@@ -126,19 +126,6 @@ header {
   font-size: 20px;
 }
 
-.social {
-  left: 35%;
-  padding: 30px;
-  width: 50%;
-  overflow: auto;
-  position: relative;
-}
-
-.social a {
-  float: left;
-  width: 10%;
-}
-
 .copyright {
   position: relative;
   text-align: center;
@@ -179,6 +166,23 @@ header {
   color: var(--text);
 }
 
+.blog-post {
+  /* These blog posts are styled using markdown */
+  text-align: left;
+  padding: 10px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.blog-title-text {
+  padding-left: 30px;
+}
+
+.blog-content {
+  padding-left: 70px;
+}
+
 .project-container {
   /* Card style width */
   /* width: 50%; */
@@ -201,7 +205,6 @@ header {
 .project-title-text {
   padding-left: 20px;
 }
-
 
 .project img {
   /* Dont touch the edge */
@@ -240,21 +243,6 @@ header {
   padding-left: 50px;
 }
 
-.blog-post {
-  /* These blog posts are styled using markdown */
-  text-align: left;
-  padding: 10px;
-  border-top: none;
-}
-
-.blog-title-text {
-  padding-left: 30px;
-}
-
-.blog-content {
-  padding-left: 70px;
-}
-
 button {
   background: var(--primary);
   color: var(--link-color);
@@ -280,6 +268,19 @@ button {
   width: 50%;
   margin: 0 auto;
   background: var(--background);
+}
+
+.social {
+  left: 35%;
+  padding: 30px;
+  width: 50%;
+  overflow: auto;
+  position: relative;
+}
+
+.social a {
+  float: left;
+  width: 10%;
 }
 
 @media (max-width: 70em) {
