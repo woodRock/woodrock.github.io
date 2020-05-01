@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../../util/Firebase';
 import ReactMarkdown from 'react-markdown';
+import { withFirebase } from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
 import logo from '../../../assets/logo.png';
 

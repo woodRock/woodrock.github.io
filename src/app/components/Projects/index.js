@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { withFirebase } from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
 import logo from '../../../assets/logo.png';
@@ -68,7 +69,7 @@ const ProjectItem = ({ project }) => (
       </span>
       <div className="description text">
         <h2>{project.title}</h2>
-        {project.description}
+        <ReactMarkdown source={project.description}></ReactMarkdown>
       </div>
     </div>
     <div className="project">

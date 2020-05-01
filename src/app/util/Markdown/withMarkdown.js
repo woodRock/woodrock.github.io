@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import ReactMarkdown from 'react-markdown'
+import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 const withMarkdown = markdown => {
   class withMarkdown extends Component {
