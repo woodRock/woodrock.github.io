@@ -29,6 +29,12 @@ const ROUTES = [
       icon: 'code',
     },
     {
+      name: 'Blog',
+      path: '/blog',
+      component: BlogPage,
+      icon: 'create',
+    },
+    {
       name: 'Skills',
       path: '/skills',
       component: SkillsPage,
@@ -50,12 +56,6 @@ const ROUTES = [
       path: '/cv',
       component: CVPage,
       icon: '',
-    },
-    {
-      name: 'Blog',
-      path: '/blog',
-      component: BlogPage,
-      icon: 'create',
     },
     {
       name: 'Account',
