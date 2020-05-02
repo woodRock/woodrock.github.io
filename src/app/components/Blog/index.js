@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { withFirebase } from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
 import logo from '../../../assets/logo.png';
+import Loading from '../Loading';
 
 class BlogPage extends Component {
   constructor(props){
@@ -38,7 +39,7 @@ class BlogPage extends Component {
     return (
       <div className="blog">
         <h1>Blog</h1>
-        {loading && <div>Loading ...</div>}
+        {loading && <Loading/>}
         {blog ? (
           <BlogList blog={blog.sort((a,b) => new Date(b.time) - new Date(a.time))} />
         ) : (
