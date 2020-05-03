@@ -13,7 +13,7 @@ class Loading extends Component {
   render(){
     return (
       <div className="loading stage">
-        <img class="square loading-logo" style={{animation: `spin ${this.state.speed}s linear infinite`}} src={logo} alt="img"/>
+        <img className="square loading-logo" style={{animation: `spin ${this.state.speed}s linear infinite`}} src={logo} alt="img"/>
       </div>
     );
   }

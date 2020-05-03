@@ -44,6 +44,7 @@
 /* Make all the links the same color in one fowl swoop */
 .link, a {
   color: var(--link-color);
+  transition: color 0.1s ease-in-out;
   text-decoration: none;
 }
 

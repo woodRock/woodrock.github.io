@@ -79,7 +79,7 @@ const ROUTES = [
       path: '/pw-forget',
       component: PasswordForgetPage,
       icon: '',
-    },
+    }
 ];
 
 export default ROUTES;

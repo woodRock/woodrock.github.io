@@ -25,7 +25,7 @@ const NavigationAuth = () => (
     {ROUTES.map(r => (
       (r.icon === '')
         ? null
-        : <li><Link className="link" to={r.path}><i className="link material-icons">{r.icon}</i><span className="link link-text">{r.name}</span></Link></li>
+        : <li key={r.path}><Link className="link" to={r.path}><i className="link material-icons">{r.icon}</i><span className="link link-text">{r.name}</span></Link></li>
     ))}
     <li>
       <SignOutButton />
@@ -36,7 +36,7 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <ul>
     {ROUTES.map(r => (
-      (r.auth || r.icon === '')? null : <li><Link to={r.path}><i className="link material-icons">{r.icon}</i><span className="link link-text">{r.name}</span></Link></li>
+      (r.auth || r.icon === '')? null : <li key={r.path}><Link to={r.path}><i className="link material-icons">{r.icon}</i><span className="link link-text">{r.name}</span></Link></li>
     ))}
     <li>
       <Link className="link" to='/signin'><i className="link material-icons">person</i></Link>

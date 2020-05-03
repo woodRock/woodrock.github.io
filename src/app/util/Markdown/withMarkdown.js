@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown/with-html';
 
 const withMarkdown = markdown => {
   class withMarkdown extends Component {
@@ -8,7 +8,7 @@ const withMarkdown = markdown => {
       this.state = { terms: null }
     }
 
-    componentWillMount() {
+    componentDidMount() {
       fetch(markdown).then((response) => response.text()).then((text) => {
         this.setState({ terms: text })
       })
@@ -17,7 +17,7 @@ const withMarkdown = markdown => {
     render() {
       return (
         <div className="content">
-          <ReactMarkdown source={this.state.terms} />
+          <ReactMarkdown source={this.state.terms} escapeHtml={false}/>
         </div>
       )
     }
