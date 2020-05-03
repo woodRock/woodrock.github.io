@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMarkdown from 'react-markdown/with-html';
+import ReactMarkdown from 'react-markdown/';
 
 const withMarkdown = markdown => {
   class withMarkdown extends Component {
@@ -17,7 +17,7 @@ const withMarkdown = markdown => {
     render() {
       return (
         <div className="content">
-          <ReactMarkdown source={this.state.terms} escapeHtml={false}/>
+          <ReactMarkdown source={this.state.terms}/>
         </div>
       )
     }
