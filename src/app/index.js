@@ -5,6 +5,7 @@ import SocialPage from './components/Social';
 import Navigation from './components/Navigation';
 import CopyRight from './components/Copyright';
 import { withAuthentication } from './util/Session';
+import './index.css';
 
 const Header = () => (
   <div>

@@ -100,7 +100,7 @@
 }
 
 .timeline-content img:hover {
-  box-shadow: 0 8px 16px 0 var(--header);
+  box-shadow: 0 4px 8px 0 var(--header);
   transition: box-shadow 0.3s ease-in-out;
 }
 

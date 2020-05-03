@@ -4,6 +4,7 @@ import { withFirebase } from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
 import logo from '../../../assets/logo.png';
 import Loading from '../Loading';
+import './index.css';
 
 class BlogPage extends Component {
   constructor(props){

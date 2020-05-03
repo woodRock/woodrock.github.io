@@ -1,0 +1,52 @@
+.blog {
+  font-family: var(--text-font);
+  /* Slightly lighter background for content */
+  background: var(--div-background);
+
+  /* Light gray for text on pages */
+  color: var(--text);
+}
+
+.blog-post {
+  /* These blog posts are styled using markdown */
+  text-align: left;
+  padding: 10px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.description {
+  /* The project description  */
+  padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 20px;
+}
+
+.blog-title-text {
+  padding-left: 30px;
+}
+
+.blog-content {
+  padding-left: 70px;
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  top: 15px;
+  left: 5px;
+  position: relative;
+}
+
+@media (max-width: 70em) {
+  .blog-title-text {
+    padding-left: 15px;
+  }
+
+  .logo {
+    height: 40px;
+    width: 40px;
+  }
+}

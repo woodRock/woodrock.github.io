@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../../util/Firebase';
+import './index.css';
 
 class SocialPage extends Component {
   constructor(props){

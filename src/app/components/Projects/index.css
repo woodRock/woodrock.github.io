@@ -1,0 +1,87 @@
+.project-container {
+  /* Card style width */
+  /* width: 50%; */
+  /* Center the card */
+  border-bottom: solid;
+  border-width: thin;
+  border-color: var(--text);
+  margin: 0 auto;
+}
+
+.project {
+  /* Center the project cards */
+  text-align: center;
+
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.project:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.project-title-text {
+  padding-left: 20px;
+}
+
+.description {
+  /* The project description  */
+  padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 20px;
+}
+
+.project img {
+  /* Dont touch the edge */
+  width: 50%;
+  height: 50%;
+
+  /* Important for transparent images */
+  background: white;
+
+  border-style: solid;
+  border-width: medium;
+  border-color: var(--text);
+
+  /* Avatar like style to logo */
+  border-radius: 5%;
+}
+
+.project img:hover {
+  box-shadow: 0 4px 8px 0 var(--header);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.github-link {
+  font-size: 30px;
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  top: 15px;
+  left: 5px;
+  position: relative;
+}
+
+@media (max-width: 70em) {
+  .project-container {
+    width: 100%;
+  }
+
+  .project-title-text {
+    padding-left: 15px;
+  }
+
+  .description {
+    padding-left: 15px;
+  }
+
+  .logo {
+    height: 40px;
+    width: 40px;
+  }
+}
