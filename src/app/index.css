@@ -28,15 +28,6 @@
   border-color: var(--text);
 }
 
-.logo {
-  height: 30px;
-  width: 30px;
-  border-radius: 30px;
-  top: 15px;
-  left: 5px;
-  position: relative;
-}
-
 .secondary {
   color: var(--secondary-text-color);
 }
