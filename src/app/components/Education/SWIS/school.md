@@ -2,6 +2,8 @@
 
 # SWIS
 
-**Roles:** Class Representative
+_Nga mihi nui koutou._
 
-[![SWIS logo](http://www.swis.school.nz/wp-content/uploads/2019/04/SWIS-LogoOnWhite-291x100.jpg)](http://www.swis.school.nz/)
+To always challenge the status quo, engaging and inspiring our students to achieve to their highest potential at [SWIS](http://www.swis.school.nz/) and beyond.
+
+**Roles:** Class Representative
