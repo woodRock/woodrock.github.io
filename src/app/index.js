@@ -1,6 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Link, Route, Redirect } from "react-router-dom";
-import SwitchWithSlide from "./util/Animations";
+import { HashRouter, Route } from "react-router-dom";
 import ROUTES from './constants/routes';
 import SocialPage from './components/Social';
 import Navigation from './components/Navigation';
