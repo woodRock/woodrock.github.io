@@ -23,7 +23,7 @@ const Education = () => (
       <div className="timeline-container left">
         <div className="timeline-content twitter-style-border">
           <SWIS></SWIS>
-          <img src="http://www.swis.school.nz/wp-content/uploads/2019/04/SWIS-LogoOnWhite-291x100.jpg" alt="SWIS School logo"/>
+          <img src="https://www.swis.school.nz/wp-content/uploads/2019/04/SWIS-LogoOnWhite-291x100.jpg" alt="SWIS School logo"/>
         </div>
       </div>
       <div className="timeline-container right">
