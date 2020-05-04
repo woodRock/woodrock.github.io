@@ -17,3 +17,5 @@ University of [Wellington](https://www.wgtn.ac.nz/about) is one of New Zealandâ€
 - Software Development for Mobile Platforms
 
 **Awards:** Victoria Excellence Scholarship
+
+[![Victoria University Logo](https://i1.sndcdn.com/avatars-000751225282-2lnuu5-original.jpg)](https://www.wgtn.ac.nz/about)

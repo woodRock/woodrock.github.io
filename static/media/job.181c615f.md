@@ -7,3 +7,5 @@
 **Role:** Volunteer Work Experience
 
 My work experience involved developing a geographic information system (GIS). This used the [Mapserver](https://mapserver.org/) framework to create a web map service (WMS) to render data stored on a [postgis](https://postgis.net/) database. An example of this workflow can be found on my github [here](https://github.com/woodRock/solid-waffle).
+
+[![niwa logo](https://media.glassdoor.com/sqll/446203/niwa-squarelogo-1537142405945.png)](https://niwa.co.nz/about/our-company)

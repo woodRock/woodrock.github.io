@@ -10,3 +10,5 @@ Welcome to [Island Bay School](https://www.islandbay.school.nz/). We are a prima
 - Librarian
 
 **Awards:** 1st - Year 6 Speeches
+
+[![Island Bay School logo](https://pbs.twimg.com/profile_images/3241466964/c617b804550de86eae67350babc41f07_400x400.jpeg)](https://www.islandbay.school.nz/)
