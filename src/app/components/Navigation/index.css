@@ -46,7 +46,6 @@
     overflow: auto;
     bottom: 2%;
     position: fixed;
-    left: 0;
   }
   .navigation ul li {
     float: left;
