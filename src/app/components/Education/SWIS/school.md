@@ -8,4 +8,4 @@ To always challenge the status quo, engaging and inspiring our students to achie
 
 **Roles:** Class Representative
 
-[![SWIS School logo](https://lh3.googleusercontent.com/proxy/adM-2y6poz4gjmgGlB5ep2Ai9Ioy6LCnG9Vo4Zwq7FsHmPhsShj6aPfNWfjMP0TdctNktK81N_oRLQQ30SkMxAtdF7eDxDDEsaiMN454YMYCwaiHNHLN4-MiKM2beUTqvPRdvTK0e_je)](http://www.swis.school.nz/)
+[![SWIS School logo](https://lh3.googleusercontent.com/proxy/QEjUmMKCaV8sEF0EJ-in_Du7kb_NU98pXqZFWRcD_mrpinENST8Lcs_duccVl9y-x1-n-OBqXhC8huipjT7t1lztSgMFalhFkyj1m43FRsGEo5x8B0I2uCridK_nHTpJVBdW5v1g9cJt)](http://www.swis.school.nz/)
