@@ -6,7 +6,7 @@ import VUW from './VUW';
 
 const Education = () => (
   <div>
-    <h1>Jobs</h1>
+    <h1>Education</h1>
     <div class="timeline">
       <div class="timeline-container left">
         <div class="timeline-content twitter-style-border">

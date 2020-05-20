@@ -37,19 +37,23 @@
     z-index: 2;
     text-align: center;
     margin: 0 auto;
-    width: 100%;
     height: 10%;
     bottom: 0;
     background: var(--primary);
+    width: 100%;
+
   }
   .navigation ul {
     overflow: auto;
     bottom: 2%;
+    /* position: fixed; */
+    width: 100%;
+    left: 0;
     position: fixed;
   }
   .navigation ul li {
     float: left;
-    width: 9%;
+    width: 10%;
   }
 
   .link-text {
