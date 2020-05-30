@@ -20,6 +20,5 @@ The [Rongotai Way](https://www.rongotai.school.nz/values/) is a set of values th
 - Rockquest
 - Jazz Band
 - Production Band
-<img src="" alt=""/>
 
 [![Rongotai College logo](https://pbs.twimg.com/profile_images/653471147674107904/yrngGUVT_400x400.jpg)](https://www.rongotai.school.nz/values/)
