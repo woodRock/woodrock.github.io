@@ -2,7 +2,6 @@
   font-family: var(--text-font);
   /* Slightly lighter background for content */
   background: var(--div-background);
-
   /* Light gray for text on pages */
   color: var(--text);
 }

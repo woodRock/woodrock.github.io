@@ -9,16 +9,18 @@ The [Rongotai Way](https://www.rongotai.school.nz/values/) is a set of values th
 **Degree:** NCEA Level 1 - 3
 
 **Awards:**
-- NCEA Level 1 - 3 Excellence
-- Scholarship English
-- Wellington Schools Canoe Polo Champions
+
+-   NCEA Level 1 - 3 Excellence
+-   Scholarship English
+-   Wellington Schools Canoe Polo Champions
 
 **Roles:**
-- Prefect
-- UN Youth Ambassador
-- Debating
-- Rockquest
-- Jazz Band
-- Production Band
+
+-   Prefect
+-   UN Youth Ambassador
+-   Debating
+-   Rockquest
+-   Jazz Band
+-   Production Band
 
 [![Rongotai College logo](https://pbs.twimg.com/profile_images/653471147674107904/yrngGUVT_400x400.jpg)](https://www.rongotai.school.nz/values/)

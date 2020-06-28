@@ -1,9 +1,9 @@
-import { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
+import {Component} from 'react';
+import {withRouter} from 'react-router-dom';
+import {compose} from 'recompose';
 
 class LandingPageBase extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.props.history.push('/home');
   }
@@ -13,8 +13,6 @@ class LandingPageBase extends Component {
   }
 }
 
-const LandingPage = compose(
-  withRouter
-)(LandingPageBase);
+const LandingPage = compose(withRouter)(LandingPageBase);
 
 export default LandingPage;

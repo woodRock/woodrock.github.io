@@ -2,11 +2,9 @@
   /* Anchor the navigation bar to the left */
   position: fixed;
   text-align: left;
-
   /* Take up the entire left block of the page */
   width: 20%;
   height: 100%;
-
   background: var(--discord-fade);
 }
 
@@ -41,8 +39,8 @@
     bottom: 0;
     background: var(--primary);
     width: 100%;
-
   }
+
   .navigation ul {
     overflow: auto;
     bottom: 2%;
@@ -51,6 +49,7 @@
     left: 0;
     position: fixed;
   }
+
   .navigation ul li {
     float: left;
     width: 10%;

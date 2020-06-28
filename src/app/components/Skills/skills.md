@@ -1,47 +1,54 @@
 # Skills
 
 ## Languages
-- Bash
-- C
-- C++
-- Haskell
-- Java
-- Javascript
-- Typescript
-- Mapserver
-- Python
-- Ruby
+
+-   Bash
+-   C
+-   C++
+-   Haskell
+-   Java
+-   Javascript
+-   Typescript
+-   Mapserver
+-   Python
+-   Ruby
 
 ## Databases
-- Firebase
-- Postgres
-- Postgis
+
+-   Firebase
+-   Postgres
+-   Postgis
 
 ## Web Frameworks
-- Angular
-- React
-- Vue
+
+-   Angular
+-   React
+-   Vue
 
 ## VCS
-- Git
-- Github
-- Gitlab
+
+-   Git
+-   Github
+-   Gitlab
 
 ## OS
-- Linux (Debian / Ubuntu / Arch)
-- Windows (7 / 8 / 10)
-- Microcontrollers (Arduino / Rasbian)
+
+-   Linux (Debian / Ubuntu / Arch)
+-   Windows (7 / 8 / 10)
+-   Microcontrollers (Arduino / Rasbian)
 
 ## Word Processing
-- LaTeX
-- Markdown
-- Vim
+
+-   LaTeX
+-   Markdown
+-   Vim
 
 ## Tools
-- Adobe Photoshop
-- Adobe XD
-- Blender
-- Figma
-- PlantUML
-- Pyplot
-- QGIS
+
+-   Adobe Photoshop
+-   Adobe XD
+-   Blender
+-   Figma
+-   PlantUML
+-   Pyplot
+-   QGIS
