@@ -1,5 +1,0 @@
-package, description
-javax.servlet, core servlet interfaces / classes such as request and response
-javax.servlet.jsp, core servlet interfaces / classes such as request and response with additional methods to add HTTP support
-javax,servlet,jsp, Java Server Pages; a technology build on top of servlets
-javax.servlet.jsp.tagext, tag libraries; a component based technology build on top of servlets and JSPs
