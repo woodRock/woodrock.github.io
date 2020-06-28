@@ -1,6 +1,6 @@
 # Home
 
-**E**: [j.r.h.wood98@gmail.com](mailto:j.r.h.wood98@gmail.com)
+**E**: <mailto:j.r.h.wood98@gmail.com>
 **W**: [woodrock](https://woodrock.tk)
 **M**: [+64 2102648190](tel:+642102648190)
 
@@ -12,15 +12,15 @@ Third-year engineering student majoring in Software.Finding an opportunity to ap
 
 I spend my time productively doing the following:
 
-- BE Engineering @[Wellington University](#/education)
-- work experience @[NIWA](#/job)
-- personal projects @[woodRock](#/projects)
+-   BE Engineering @[Wellington University](#/education)
+-   work experience @[NIWA](#/job)
+-   personal projects @[woodRock](#/projects)
 
 Some of my other interests include:
 
-- Classical / Blues Guitar (10+ years)
-- Rockets / Astronomy
-- PC Gaming
-- Table tennis
-- Canoe Polo
-- Debating
+-   Classical / Blues Guitar (10+ years)
+-   Rockets / Astronomy
+-   PC Gaming
+-   Table tennis
+-   Canoe Polo
+-   Debating
