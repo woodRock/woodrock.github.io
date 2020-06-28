@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { withFirebase } from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
@@ -6,18 +6,11 @@ import logo from '../../../assets/logo.png';
 import Loading from '../Loading';
 import './index.css';
 
-class ProjectsPage extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      loading: false,
-      projects: [],
-    };
-  }
+const ProjectsPage = (props) => {
+  const [projects, setProjects] = useState([]);
 
-  componentDidMount() {
-    this.setState({ loading: true });
-    this.props.firebase.projects().orderBy('time').get().then(
+  useEffect( () => {
+    props.firebase.projects().orderBy('time').get().then(
       querySnapshot => {
           querySnapshot.forEach(doc => {
             const data = {
@@ -28,29 +21,23 @@ class ProjectsPage extends Component {
               'description': doc.data().description,
               'time': doc.data().time
             };
-            this.state.projects.push(data);
-            if (this.state.projects.length > 0){
-              this.setState({ loading: false })
-            }
-          })
-        }
-      )
-  }
+            setProjects(prevProjects => [...prevProjects, data]);
+        })
+      }
+    )} , []
+  );
 
-  render() {
-    const { projects, loading } = this.state;
-    return (
-      <div>
-        <h1>Projects</h1>
-        {loading && <Loading/>}
-        {projects ? (
-          <ProjectList projects={projects.sort((a,b) => new Date(b.time) - new Date(a.time))} />
-        ) : (
-          <div>There are no projects ...</div>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Projects</h1>
+      {!projects.length && <Loading/>}
+      {projects ? (
+        <ProjectList projects={projects.sort((a,b) => new Date(b.time) - new Date(a.time))} />
+      ) : (
+        <div>There are no projects ...</div>
+      )}
+    </div>
+  );
 }
 
 const ProjectList = ({ projects }) => (

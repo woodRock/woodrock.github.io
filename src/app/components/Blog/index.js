@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { withFirebase } from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
@@ -6,18 +6,11 @@ import logo from '../../../assets/logo.png';
 import Loading from '../Loading';
 import './index.css';
 
-class BlogPage extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      loading: false,
-      blog: [],
-    };
-  }
+const BlogPage = (props) => {
+  const [blog, setBlog] = useState([]);
 
-  componentDidMount() {
-    this.setState({ loading: true });
-    this.props.firebase.blog().orderBy('title').get().then(
+  useEffect(() => {
+    props.firebase.blog().orderBy('title').get().then(
       querySnapshot => {
           querySnapshot.forEach(doc => {
             const data = {
@@ -26,29 +19,24 @@ class BlogPage extends Component {
               'time': doc.data().time,
               'markdown': doc.data().markdown
             };
-            this.state.blog.push(data);
-            if (this.state.blog.length > 0){
-              this.setState({ loading: false })
-            }
+            setBlog(prevBlog => [...prevBlog, data]);
           })
         }
       )
-  }
+    }, []
+  );
 
-  render() {
-    const { blog, loading } = this.state;
-    return (
-      <div className="blog">
-        <h1>Blog</h1>
-        {loading && <Loading/>}
-        {blog ? (
-          <BlogList blog={blog.sort((a,b) => new Date(b.time) - new Date(a.time))} />
-        ) : (
-          <div>There are no blog posts ...</div>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className="blog">
+      <h1>Blog</h1>
+      {!blog.length && <Loading/>}
+      {blog ? (
+        <BlogList blog={blog.sort((a,b) => new Date(b.time) - new Date(a.time))} />
+      ) : (
+        <div>There are no blog posts ...</div>
+      )}
+    </div>
+  );
 }
 
 const BlogList = ({ blog }) => (

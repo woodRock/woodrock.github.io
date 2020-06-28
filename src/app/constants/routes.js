@@ -1,8 +1,4 @@
-import SignUpPage from '../components/SignUp';
-import SignInPage from '../components/SignIn';
-import PasswordForgetPage from '../components/PasswordForget';
 import HomePage from '../components/Home';
-import AccountPage from '../components/Account';
 import ProjectsPage from '../components/Projects';
 import BlogPage from '../components/Blog';
 import EducationPage from '../components/Education';
@@ -55,29 +51,6 @@ const ROUTES = [
     {
       path: '/cv',
       component: CVPage,
-      icon: '',
-    },
-    {
-      name: 'Account',
-      path: '/account',
-      component: AccountPage,
-      icon: 'settings',
-      auth: true,
-    },
-    {
-      name: 'Register',
-      path: '/signup',
-      component: SignUpPage,
-      icon: '',
-    },
-    {
-      path: '/signin',
-      component: SignInPage,
-      icon: '',
-    },
-    {
-      path: '/pw-forget',
-      component: PasswordForgetPage,
       icon: '',
     }
 ];
