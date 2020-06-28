@@ -10,20 +10,23 @@ const BlogPage = (props) => {
   const [blog, setBlog] = useState([]);
 
   useEffect(() => {
-    props.firebase.blog().orderBy('title').get().then(
-      querySnapshot => {
-          querySnapshot.forEach(doc => {
-            const data = {
-              'id': doc.id,
-              'title': doc.data().title,
-              'time': doc.data().time,
-              'markdown': doc.data().markdown
-            };
-            setBlog(prevBlog => [...prevBlog, data]);
-          })
-        }
-      )
-    }, []
+    const blogs = () => {
+      props.firebase.blog().orderBy('title').get().then(
+        querySnapshot => {
+            querySnapshot.forEach(doc => {
+              const data = {
+                'id': doc.id,
+                'title': doc.data().title,
+                'time': doc.data().time,
+                'markdown': doc.data().markdown
+              };
+              setBlog(prevBlog => [...prevBlog, data]);
+            })
+          }
+        )
+      };
+      blogs();
+    }
   );
 
   return (

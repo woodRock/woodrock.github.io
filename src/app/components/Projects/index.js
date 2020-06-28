@@ -10,8 +10,9 @@ const ProjectsPage = (props) => {
   const [projects, setProjects] = useState([]);
 
   useEffect( () => {
-    props.firebase.projects().orderBy('time').get().then(
-      querySnapshot => {
+    const projects = () => {
+      props.firebase.projects().orderBy('time').get().then(
+        querySnapshot => {
           querySnapshot.forEach(doc => {
             const data = {
               'id': doc.id,
@@ -22,9 +23,12 @@ const ProjectsPage = (props) => {
               'time': doc.data().time
             };
             setProjects(prevProjects => [...prevProjects, data]);
-        })
-      }
-    )} , []
+          })
+        }
+      )
+    };
+    projects();
+  }
   );
 
   return (
