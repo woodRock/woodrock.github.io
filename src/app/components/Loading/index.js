@@ -1,22 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './index.css';
 import logo from '../../../assets/logo.png';
 
-class Loading extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      speed: 3
-    }
-  }
+const speed = 3;
 
-  render() {
-    return (<div className="loading stage">
-      <img className="square loading-logo" style={{
-          animation: `spin ${this.state.speed}s linear infinite`
-        }} src={logo} alt="img"/>
-    </div>);
-  }
+const Loading = () => {
+  return (<div className="loading stage">
+    <img className="square loading-logo" style={{
+        animation: `spin ${speed}s linear infinite`
+      }} src={logo} alt="img"/>
+  </div>);
 }
 
 export default Loading;

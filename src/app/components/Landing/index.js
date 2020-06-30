@@ -1,16 +1,13 @@
-import {Component} from 'react';
+import {useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
 import {compose} from 'recompose';
 
-class LandingPageBase extends Component {
-  constructor(props) {
-    super(props);
-    this.props.history.push('/home');
-  }
+const LandingPageBase = (props) => {
+  useEffect(() => {
+    props.history.push('/home');
+  }, [props.history])
 
-  render() {
-    return null;
-  }
+  return null;
 }
 
 const LandingPage = compose(withRouter)(LandingPageBase);

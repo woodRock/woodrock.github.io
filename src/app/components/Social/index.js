@@ -1,19 +1,12 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {withFirebase} from '../../util/Firebase';
 import './index.css';
 
-class SocialPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false,
-      social: []
-    };
-  }
+const SocialPage = (props) => {
+  const [social, setSocial] = useState([]);
 
-  componentDidMount() {
-    this.setState({loading: true});
-    this.props.firebase.social().orderBy('title').get().then(querySnapshot => {
+  useEffect(() => {
+    props.firebase.social().orderBy('title').get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = {
           'id': doc.id,
@@ -22,25 +15,22 @@ class SocialPage extends Component {
           'image': doc.data().image,
           'description': doc.data().description
         };
-        this.state.social.push(data);
-        if (this.state.social.length > 0) {
-          this.setState({loading: false})
-        }
+        setSocial(prevSocial => [
+          ...prevSocial,
+          data
+        ]);
       })
     })
-  }
+  }, [props.firebase]);
 
-  render() {
-    const {social, loading} = this.state;
-    return (<div>
-      {loading && <div>...</div>}
-      {
-        social
-          ? (<SocialList social={social}/>)
-          : (<div>There are no social links ...</div>)
-      }
-    </div>);
-  }
+  return (<div>
+    {social.length && <div>...</div>}
+    {
+      social
+        ? (<SocialList social={social}/>)
+        : (<div>There are no social links ...</div>)
+    }
+  </div>);
 }
 
 const SocialList = ({social}) => (<div className="social">
