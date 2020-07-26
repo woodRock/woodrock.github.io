@@ -1,57 +1,67 @@
-import HomePage from '../components/Home';
-import ProjectsPage from '../components/Projects';
-import BlogPage from '../components/Blog';
-import EducationPage from '../components/Education';
-import JobPage from '../components/Job';
-import SkillsPage from '../components/Skills';
-import CVPage from '../components/CV';
+import HomePage from "../components/Home";
+import ProjectsPage from "../components/Projects";
+import BlogPage from "../components/Blog";
+import EducationPage from "../components/Education";
+import JobPage from "../components/Job";
+import SkillsPage from "../components/Skills";
+import CVPage from "../components/CV";
+import ViewBlog from "../components/Blog/View";
+import ViewProject from "../components/Projects/View";
 
 const ROUTES = [
   {
-    path: '/',
-    component: HomePage,
+    path: "/",
+    component: HomePage
   },
   {
-    name: 'Home',
-    path: '/home',
+    name: "Home",
+    path: "/home",
     component: HomePage,
-    icon: 'home', // material-icons class name
+    icon: "home" // material-icons class name
   },
   {
-    name: 'Projects',
-    path: '/projects',
+    name: "Projects",
+    path: "/projects",
     component: ProjectsPage,
-    icon: 'code',
+    icon: "code"
   },
   {
-    name: 'Blog',
-    path: '/blog',
+    name: "Blog",
+    path: "/blog",
     component: BlogPage,
-    icon: 'create',
+    icon: "create"
   },
   {
-    name: 'Skills',
-    path: '/skills',
+    name: "Skills",
+    path: "/skills",
     component: SkillsPage,
-    icon: 'language',
+    icon: "language"
   },
   {
-    name: 'Education',
-    path: '/education',
+    name: "Education",
+    path: "/education",
     component: EducationPage,
-    icon: 'school',
+    icon: "school"
   },
   {
-    name: 'Jobs',
-    path: '/job',
+    name: "Jobs",
+    path: "/job",
     component: JobPage,
-    icon: 'work'
+    icon: "work"
   },
   {
-    path: '/cv',
+    path: "/cv",
     component: CVPage,
-    icon: '',
+    icon: ""
   },
+  {
+    path: "/blog/:id",
+    component: ViewBlog
+  },
+  {
+    path: "/project/:id",
+    component: ViewProject
+  }
 ];
 
 export default ROUTES;

@@ -22,7 +22,7 @@ const SocialPage = (props) => {
       }
     });
     return unsubscribe;
-  }, [setSocial]);
+  }, []);
 
   return (<div>
     {social.length && <div>...</div>}

@@ -32,7 +32,7 @@
   padding-right: 20px;
 }
 
-.project img {
+.project-image {
   /* Dont touch the edge */
   width: 50%;
   height: 50%;
@@ -45,7 +45,7 @@
   border-radius: 5%;
 }
 
-.project img:hover {
+.project-image:hover {
   box-shadow: 0 4px 8px 0 var(--header);
   transition: box-shadow 0.3s ease-in-out;
 }

@@ -6,6 +6,7 @@ import logo from '../../../assets/logo.png';
 import Loading from '../Loading';
 import './index.css';
 import uuid from 'uuid';
+import {Link} from 'react-router-dom';
 
 const ProjectsPage = (props) => {
   const [projects, setProjects] = useState([]);
@@ -13,23 +14,20 @@ const ProjectsPage = (props) => {
   useEffect(() => {
     const unsubscribe = fetch('projects', 'time', {
       next: querySnapshot => {
-      querySnapshot.forEach(doc => {
-        const data = {
-          'id': doc.id,
-          'title': doc.data().title,
-          'link': doc.data().link,
-          'image': doc.data().image,
-          'description': doc.data().description,
-          'time': doc.data().time
-        };
-        setProjects(prevProjects => [
-          ...prevProjects,
-          data
-        ]);
-      })
-    }});
+        querySnapshot.forEach(doc => {
+          const data = {
+            'id': doc.id,
+            ...doc.data()
+          };
+          setProjects(prevProjects => [
+            ...prevProjects,
+            data
+          ]);
+        })
+      }
+    });
     return unsubscribe;
-  }, [setProjects]);
+  }, []);
 
   return (<div>
     <h1>Projects</h1>
@@ -57,13 +55,15 @@ const ProjectItem = ({project}) => (<div className="project-container">
         {TimeAgo({date: project.time})}</i>
     </span>
     <div className="description text">
-      <h2>{project.title}</h2>
+      <h2>
+        <Link to={'/project/' + project.id}>{project.title}</Link>
+      </h2>
       <ReactMarkdown source={project.description}></ReactMarkdown>
     </div>
   </div>
   <div className="project">
     <a href={project.link}>
-      <img width="100%" height="width" src={project.image} alt={project.title}/>
+      <img class="project-image" width="100%" height="width" src={project.image} alt={project.title}/>
     </a>
     <div>
       <a href={project.link} className="github-link">

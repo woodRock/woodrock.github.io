@@ -4,6 +4,7 @@ import {fetch} from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
 import logo from '../../../assets/logo.png';
 import Loading from '../Loading';
+import {Link} from 'react-router-dom';
 import './index.css';
 import uuid from 'uuid';
 
@@ -26,7 +27,7 @@ const BlogPage = (props) => {
       }
     });
     return unsubscribe;
-  }, [setBlog]);
+  }, []);
 
   return (<div className="blog">
     <h1>Blog</h1>
@@ -55,7 +56,7 @@ const BlogItem = ({blog}) => (<div className="blog-post twitter-style-border">
     </span>
   </div>
   <div className="blog-content">
-    <h2>{blog.title}</h2>
+    <h2><Link to={'/blog/' + blog.id}>{blog.title}</Link></h2>
     <ReactMarkdown source={(blog.markdown + "")}/>
   </div>
 </div>);
