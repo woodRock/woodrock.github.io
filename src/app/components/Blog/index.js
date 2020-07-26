@@ -1,30 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import ReactMarkdown from 'react-markdown';
-import {withFirebase} from '../../util/Firebase';
+import {fetch} from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
 import logo from '../../../assets/logo.png';
 import Loading from '../Loading';
 import './index.css';
+import uuid from 'uuid';
 
 const BlogPage = (props) => {
   const [blog, setBlog] = useState([]);
 
   useEffect(() => {
-    props.firebase.blog().orderBy('title').get().then(querySnapshot => {
+    fetch('blog', 'time', {
+      next: querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = {
           'id': doc.id,
-          'title': doc.data().title,
-          'time': doc.data().time,
-          'markdown': doc.data().markdown
+          ...doc.data()
         };
         setBlog(prevBlog => [
           ...prevBlog,
           data
         ]);
       })
-    })
-  }, [props.firebase]);
+    }})
+  }, [setBlog]);
 
   return (<div className="blog">
     <h1>Blog</h1>
@@ -58,4 +58,4 @@ const BlogItem = ({blog}) => (<div className="blog-post twitter-style-border">
   </div>
 </div>);
 
-export default withFirebase(BlogPage);
+export default BlogPage;

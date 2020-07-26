@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ReactMarkdown from 'react-markdown';
-import {withFirebase} from '../../util/Firebase';
+import {fetch} from '../../util/Firebase';
 import TimeAgo from '../../util/TimeAgo';
 import logo from '../../../assets/logo.png';
 import Loading from '../Loading';
@@ -10,7 +10,8 @@ const ProjectsPage = (props) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    props.firebase.projects().orderBy('time').get().then(querySnapshot => {
+    fetch('projects', 'time', {
+      next: querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = {
           'id': doc.id,
@@ -25,8 +26,8 @@ const ProjectsPage = (props) => {
           data
         ]);
       })
-    })
-  }, [props.firebase]);
+    }})
+  }, [setProjects]);
 
   return (<div>
     <h1>Projects</h1>
@@ -70,4 +71,4 @@ const ProjectItem = ({project}) => (<div className="project-container">
   </div>
 </div>);
 
-export default withFirebase(ProjectsPage);
+export default ProjectsPage;

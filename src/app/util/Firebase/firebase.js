@@ -6,24 +6,11 @@ firebase.initializeApp(config);
 
 const db = firebase.firestore();
 
-const Firebase =  {
+const Firebase =  {}
 
-  projects: () => {
-    return db.collection('projects')
-  },
-
-  social: () => {
-    return db.collection('social');
-  },
-
-  blog: () => {
-    return db.collection('blog');
-  }
-}
-
-export const fetch = (collection, observer) => {
+export const fetch = (collection, sort, observer) => {
   return db.collection(collection)
-  .orderBy('time')
+  .orderBy(sort)
   .onSnapshot(observer)
 }
 

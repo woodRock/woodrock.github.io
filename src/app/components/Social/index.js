@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {withFirebase} from '../../util/Firebase';
+import {fetch} from '../../util/Firebase';
 import './index.css';
 import uuid from 'uuid';
 
@@ -7,22 +7,21 @@ const SocialPage = (props) => {
   const [social, setSocial] = useState([]);
 
   useEffect(() => {
-    props.firebase.social().orderBy('title').get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        const data = {
-          'id': doc.id,
-          'title': doc.data().title,
-          'link': doc.data().link,
-          'image': doc.data().image,
-          'description': doc.data().description
-        };
-        setSocial(prevSocial => [
-          ...prevSocial,
-          data
-        ]);
-      })
+    fetch('social', 'title', {
+      next: querySnapshot => {
+        querySnapshot.forEach(doc => {
+          const data = {
+            'id': doc.id,
+            ...doc.data()
+          };
+          setSocial(prevSocial => [
+            ...prevSocial,
+            data
+          ]);
+        })
+      }
     })
-  }, [props.firebase]);
+  }, [setSocial]);
 
   return (<div>
     {social.length && <div>...</div>}
@@ -44,4 +43,4 @@ const SocialItem = ({social}) => (<span>
   </a>
 </span>);
 
-export default withFirebase(SocialPage);
+export default SocialPage;
