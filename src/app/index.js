@@ -5,6 +5,7 @@ import SocialPage from './components/Social';
 import Navigation from './components/Navigation';
 import CopyRight from './components/Copyright';
 import './index.css';
+import Firebase, {FirebaseProvider} from './util/Firebase'
 
 const Header = () => (<div>
   <div className="navigation twitter-style-border">
@@ -23,10 +24,12 @@ const Footer = () => (<div>
   <CopyRight></CopyRight>
 </div>);
 
-const App = () => (<HashRouter>
-  <Header/>
-  <Container/>
-  <Footer/>
-</HashRouter>);
+const App = () => (<FirebaseProvider value={Firebase}>
+  <HashRouter>
+    <Header/>
+    <Container/>
+    <Footer/>
+  </HashRouter>
+</FirebaseProvider>);
 
 export default App;

@@ -54,7 +54,7 @@ const BlogItem = ({blog}) => (<div className="blog-post twitter-style-border">
   </div>
   <div className="blog-content">
     <h2>{blog.title}</h2>
-    <ReactMarkdown source={(blog.markdown + "").replace(/\\n/g, "\n\n")}/>
+    <ReactMarkdown source={(blog.markdown + "")}/>
   </div>
 </div>);
 
