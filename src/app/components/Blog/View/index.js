@@ -26,7 +26,7 @@ const ViewBlog = props => {
       }
     });
     return unsubscribe;
-  }, []);
+  }, [id]);
 
   return (
     <div className="blog">
