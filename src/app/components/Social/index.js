@@ -7,7 +7,7 @@ const SocialPage = (props) => {
   const [social, setSocial] = useState([]);
 
   useEffect(() => {
-    fetch('social', 'title', {
+    const unsubscribe = fetch('social', 'title', {
       next: querySnapshot => {
         querySnapshot.forEach(doc => {
           const data = {
@@ -20,7 +20,8 @@ const SocialPage = (props) => {
           ]);
         })
       }
-    })
+    });
+    return unsubscribe;
   }, [setSocial]);
 
   return (<div>

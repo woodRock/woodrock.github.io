@@ -5,12 +5,13 @@ import TimeAgo from '../../util/TimeAgo';
 import logo from '../../../assets/logo.png';
 import Loading from '../Loading';
 import './index.css';
+import uuid from 'uuid';
 
 const ProjectsPage = (props) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch('projects', 'time', {
+    const unsubscribe = fetch('projects', 'time', {
       next: querySnapshot => {
       querySnapshot.forEach(doc => {
         const data = {
@@ -26,7 +27,8 @@ const ProjectsPage = (props) => {
           data
         ]);
       })
-    }})
+    }});
+    return unsubscribe;
   }, [setProjects]);
 
   return (<div>
@@ -41,7 +43,7 @@ const ProjectsPage = (props) => {
 }
 
 const ProjectList = ({projects}) => (<div>
-  {projects.map(project => (<ProjectItem key={project.id} project={project}/>))}
+  {projects.map(project => (<ProjectItem key={uuid.v4()} project={project}/>))}
 </div>);
 
 const ProjectItem = ({project}) => (<div className="project-container">

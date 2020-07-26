@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter, Route} from "react-router-dom";
+import {HashRouter, Route, Redirect} from "react-router-dom";
 import ROUTES from './constants/routes';
 import SocialPage from './components/Social';
 import Navigation from './components/Navigation';
@@ -15,16 +15,18 @@ const Header = () => (<div>
 
 const Container = () => (<div className="container twitter-style-border">
   <div className="">
-    {ROUTES.map(r => (<Route key={r.path} path={r.path} component={r.component}/>))}
+    <Redirect from='/' to='/home'></Redirect>
+    {
+      ROUTES.map(
+        r => (r.path === 'home')
+        ? <Route key={r.path} path={r.path} exact="exact" component={r.component}/>
+        : <Route key={r.path} path={r.path} exact="exact" component={r.component}/>)
+    }
   </div>
-</div>);
-
-const Footer = () => (<div>
+</div>); const Footer = () => (<div>
   <SocialPage></SocialPage>
   <CopyRight></CopyRight>
-</div>);
-
-const App = () => (<FirebaseProvider value={Firebase}>
+</div>); const App = () => (<FirebaseProvider value={Firebase}>
   <HashRouter>
     <Header/>
     <Container/>

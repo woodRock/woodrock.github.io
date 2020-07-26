@@ -11,19 +11,21 @@ const BlogPage = (props) => {
   const [blog, setBlog] = useState([]);
 
   useEffect(() => {
-    fetch('blog', 'time', {
+    const unsubscribe = fetch('blog', 'time', {
       next: querySnapshot => {
-      querySnapshot.forEach(doc => {
-        const data = {
-          'id': doc.id,
-          ...doc.data()
-        };
-        setBlog(prevBlog => [
-          ...prevBlog,
-          data
-        ]);
-      })
-    }})
+        querySnapshot.forEach(doc => {
+          const data = {
+            'id': doc.id,
+            ...doc.data()
+          };
+          setBlog(prevBlog => [
+            ...prevBlog,
+            data
+          ]);
+        })
+      }
+    });
+    return unsubscribe;
   }, [setBlog]);
 
   return (<div className="blog">
@@ -38,7 +40,7 @@ const BlogPage = (props) => {
 }
 
 const BlogList = ({blog}) => (<div>
-  {blog.map(s => (<BlogItem key={s.id} blog={s}/>))}
+  {blog.map(s => (<BlogItem key={uuid.v4()} blog={s}/>))}
 </div>);
 
 const BlogItem = ({blog}) => (<div className="blog-post twitter-style-border">
