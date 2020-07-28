@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
-import {useParams, Link} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import {fetch} from "../../../util/Firebase";
+import { useFirebase } from "../../../util/Firebase/context";
 import TimeAgo from "../../../util/TimeAgo";
 import logo from "../../../../assets/logo.png";
 import Loading from "../../Loading";
@@ -9,7 +9,8 @@ import "../index.css";
 
 const ViewBlog = props => {
   const [blog, setBlog] = useState();
-  let {id} = useParams();
+  const { fetch } = useFirebase();
+  let { id } = useParams();
 
   useEffect(() => {
     const unsubscribe = fetch("blog", "time", {
@@ -26,17 +27,17 @@ const ViewBlog = props => {
       }
     });
     return unsubscribe;
-  }, [id]);
+  }, [id, fetch]);
 
   return (
     <div className="blog">
       {" "}
-      {blog ? <BlogItem blog={blog} /> : <Loading/>}{" "}
+      {blog ? <BlogItem blog={blog} /> : <Loading />}{" "}
     </div>
   );
 };
 
-const BlogItem = ({blog}) => (
+const BlogItem = ({ blog }) => (
   <div className="blog-post twitter-style-border">
     <h1>
       <Link to="/blog">
@@ -45,7 +46,7 @@ const BlogItem = ({blog}) => (
       {blog.title}
     </h1>
     <div className="title">
-      <img class="logo" src={logo} alt="woodRock github logo"/>
+      <img class="logo" src={logo} alt="woodRock github logo" />
       <span class="blog-title-text">
         woodRock•{" "}
         <i>

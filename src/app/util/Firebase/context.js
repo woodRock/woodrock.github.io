@@ -1,13 +1,13 @@
-import React, {createContext } from 'react';
+import React, { createContext, useContext } from "react";
+import fetch from "./firebase";
 
-const FirebaseContext = createContext({})
+const FirebaseContext = createContext({});
+export const useFirebase = () => useContext(FirebaseContext);
 
-export const FirebaseProvider = FirebaseContext.Provider;
-
-export const FirebaseConsumer = FirebaseContext.Consumer;
-
-export const withFirebase = Component => props => (
-  <FirebaseConsumer>
-    {state => <Component {...props} firebase={state}></Component>}
-  </FirebaseConsumer>
-)
+export default function FirebaseProvider({ children }) {
+  return (
+    <FirebaseContext.Provider value={{ fetch }}>
+      {children}
+    </FirebaseContext.Provider>
+  );
+}

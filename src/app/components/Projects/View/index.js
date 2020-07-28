@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from "react";
-import {useParams, Link} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import {fetch} from "../../../util/Firebase";
+import { useFirebase } from "../../../util/Firebase/context";
 import Loading from "../../Loading";
 import "../index.css";
 
 const ViewProject = props => {
   const [project, setProject] = useState();
-  let {id} = useParams();
+  const { fetch } = useFirebase();
+  let { id } = useParams();
 
   useEffect(() => {
     const unsubscribe = fetch("projects", "time", {
@@ -24,40 +25,46 @@ const ViewProject = props => {
       }
     });
     return unsubscribe;
-  }, [id]);
+  }, [id, fetch]);
 
-  return (<div className="project">
-    {" "}
-    {
-      (project)
-        ? <ProjectItem project={project}/>
-        : <Loading/>
-    }{" "}
-  </div>);
+  return (
+    <div className="project">
+      {" "}
+      {project ? <Project {...project} /> : <Loading />}{" "}
+    </div>
+  );
 };
 
-const ProjectItem = ({project}) => (<div className="project-container">
-  <div className="title">
-    <h1>
-      <Link to="/projects">
-        <i className="material-icons">chevron_left</i>
-      </Link>
-      <Link to={'/project/' + project.id}>{project.title}</Link>
-    </h1>
-    <div className="description text">
-      <ReactMarkdown source={project.description}></ReactMarkdown>
+const Project = ({ id, title, description, link, image }) => (
+  <div className="project-container">
+    <div className="title">
+      <h1>
+        <Link to="/projects">
+          <i className="material-icons">chevron_left</i>
+        </Link>
+        <Link to={"/project/" + id}>{title}</Link>
+      </h1>
+      <div className="description text">
+        <ReactMarkdown source={description}></ReactMarkdown>
+      </div>
     </div>
-  </div>
-  <div className="project">
-    <a href={project.link}>
-      <img class="project-image" width="100%" height="width" src={project.image} alt={project.title}/>
-    </a>
-    <div>
-      <a href={project.link} className="github-link">
-        <i className="fa fa-github"></i>
+    <div className="project">
+      <a href={link}>
+        <img
+          class="project-image"
+          width="100%"
+          height="width"
+          src={image}
+          alt={title}
+        />
       </a>
+      <div>
+        <a href={link} className="github-link">
+          <i className="fa fa-github"></i>
+        </a>
+      </div>
     </div>
   </div>
-</div>);
+);
 
 export default ViewProject;

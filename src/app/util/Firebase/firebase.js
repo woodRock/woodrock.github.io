@@ -1,17 +1,14 @@
-import * as firebase from 'firebase/';
-import 'firebase/firestore';
-import config from './config';
+import * as Firebase from "firebase/";
+import "firebase/firestore";
+import config from "./config";
 
-firebase.initializeApp(config);
+Firebase.initializeApp(config);
+const db = Firebase.firestore();
 
-const db = firebase.firestore();
+const fetch = (collection, sort, observer) =>
+  db
+    .collection(collection)
+    .orderBy(sort)
+    .onSnapshot(observer);
 
-const Firebase =  {}
-
-export const fetch = (collection, sort, observer) => {
-  return db.collection(collection)
-  .orderBy(sort)
-  .onSnapshot(observer)
-}
-
-export default Firebase;
+export default fetch;

@@ -1,57 +1,57 @@
-import HomePage from "../components/Home";
-import ProjectsPage from "../components/Projects";
-import BlogPage from "../components/Blog";
-import EducationPage from "../components/Education";
-import JobPage from "../components/Job";
-import SkillsPage from "../components/Skills";
-import CVPage from "../components/CV";
+import Home from "../components/Home/Home";
+import Projects from "../components/Projects/Projects";
+import Blog from "../components/Blog/Blog";
+import Education from "../components/Education/Education";
+import Jobs from "../components/Job/Jobs";
+import Skills from "../components/Skills/Skills";
+import CV from "../components/CV/CV";
 import ViewBlog from "../components/Blog/View";
 import ViewProject from "../components/Projects/View";
 
 const ROUTES = [
   {
     path: "/",
-    component: HomePage
+    component: Home
   },
   {
     name: "Home",
     path: "/home",
-    component: HomePage,
+    component: Home,
     icon: "home" // material-icons class name
   },
   {
     name: "Projects",
     path: "/projects",
-    component: ProjectsPage,
+    component: Projects,
     icon: "code"
   },
   {
     name: "Blog",
     path: "/blog",
-    component: BlogPage,
+    component: Blog,
     icon: "create"
   },
   {
     name: "Skills",
     path: "/skills",
-    component: SkillsPage,
+    component: Skills,
     icon: "language"
   },
   {
     name: "Education",
     path: "/education",
-    component: EducationPage,
+    component: Education,
     icon: "school"
   },
   {
     name: "Jobs",
     path: "/job",
-    component: JobPage,
+    component: Jobs,
     icon: "work"
   },
   {
     path: "/cv",
-    component: CVPage,
+    component: CV,
     icon: ""
   },
   {
