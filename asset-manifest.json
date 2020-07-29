@@ -1,28 +1,33 @@
 {
   "files": {
-    "main.css": "/static/css/main.9d152347.chunk.css",
-    "main.js": "/static/js/main.72df1eb9.chunk.js",
-    "main.js.map": "/static/js/main.72df1eb9.chunk.js.map",
+    "main.css": "/static/css/main.96146b27.chunk.css",
+    "main.js": "/static/js/main.1336c240.chunk.js",
+    "main.js.map": "/static/js/main.1336c240.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8558ebc3.js",
     "runtime-main.js.map": "/static/js/runtime-main.8558ebc3.js.map",
-    "static/js/2.7a05639e.chunk.js": "/static/js/2.7a05639e.chunk.js",
-    "static/js/2.7a05639e.chunk.js.map": "/static/js/2.7a05639e.chunk.js.map",
+    "static/js/2.ef468725.chunk.js": "/static/js/2.ef468725.chunk.js",
+    "static/js/2.ef468725.chunk.js.map": "/static/js/2.ef468725.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.22fad47c6e2384bfb3efc948c0011ec9.js": "/precache-manifest.22fad47c6e2384bfb3efc948c0011ec9.js",
+    "precache-manifest.416fe27dd4323b75272cef958c0f3193.js": "/precache-manifest.416fe27dd4323b75272cef958c0f3193.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.9d152347.chunk.css.map": "/static/css/main.9d152347.chunk.css.map",
-    "static/js/2.7a05639e.chunk.js.LICENSE.txt": "/static/js/2.7a05639e.chunk.js.LICENSE.txt",
+    "static/css/main.96146b27.chunk.css.map": "/static/css/main.96146b27.chunk.css.map",
+    "static/js/2.ef468725.chunk.js.LICENSE.txt": "/static/js/2.ef468725.chunk.js.LICENSE.txt",
     "static/media/home.md": "/static/media/home.a71538e0.md",
-    "static/media/job.md": "/static/media/job.45df9c08.md",
+    "static/media/ibs.md": "/static/media/ibs.f9e79478.md",
     "static/media/logo.png": "/static/media/logo.e2ca0a41.png",
+    "static/media/macs.md": "/static/media/macs.0fc29bca.md",
     "static/media/me.jpg": "/static/media/me.791eff73.jpg",
-    "static/media/school.md": "/static/media/school.f9e79478.md",
-    "static/media/skills.md": "/static/media/skills.b3e295d9.md"
+    "static/media/niwa.md": "/static/media/niwa.181c615f.md",
+    "static/media/rc.md": "/static/media/rc.0332008a.md",
+    "static/media/skills.md": "/static/media/skills.b3e295d9.md",
+    "static/media/stjohns.md": "/static/media/stjohns.45df9c08.md",
+    "static/media/swis.md": "/static/media/swis.965bd400.md",
+    "static/media/vuw.md": "/static/media/vuw.5c3093bd.md"
   },
   "entrypoints": [
     "static/js/runtime-main.8558ebc3.js",
-    "static/js/2.7a05639e.chunk.js",
-    "static/css/main.9d152347.chunk.css",
-    "static/js/main.72df1eb9.chunk.js"
+    "static/js/2.ef468725.chunk.js",
+    "static/css/main.96146b27.chunk.css",
+    "static/js/main.1336c240.chunk.js"
   ]
 }
