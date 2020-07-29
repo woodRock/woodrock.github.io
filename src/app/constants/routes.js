@@ -1,12 +1,16 @@
-import Home from "../components/Home/Home";
-import Projects from "../components/Projects/Projects";
-import Blog from "../components/Blog/Blog";
-import Education from "../components/Education/Education";
-import Jobs from "../components/Job/Jobs";
-import Skills from "../components/Skills/Skills";
-import CV from "../components/CV/CV";
-import ViewBlog from "../components/Blog/View";
-import ViewProject from "../components/Projects/View";
+import Projects from "../components/Projects";
+import Blog from "../components/Blog";
+import Education from "../components/Education";
+import Jobs from "../components/Jobs";
+import CV from "../components/CV";
+import ViewBlog from "../components/ViewBlog";
+import ViewProject from "../components/ViewProject";
+import {withMarkdown} from "../util/Markdown";
+import home from "../constants/home.md";
+import skills from "../constants/skills.md";
+
+const Home = withMarkdown(home);
+const Skills = withMarkdown(skills);
 
 const ROUTES = [
   {

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { useFirebase } from "../../util/Firebase/context";
-import TimeAgo from "../../util/TimeAgo";
-import logo from "../../../assets/logo.png";
-import Loading from "../Loading";
-import "./index.css";
+import { useFirebase } from "../util/context";
+import TimeAgo from "../util/TimeAgo";
+import logo from "../../assets/logo.png";
+import Loading from "./Loading";
 import uuid from "uuid";
 import { Link } from "react-router-dom";
 

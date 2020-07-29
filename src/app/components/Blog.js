@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import TimeAgo from "../../util/TimeAgo";
-import logo from "../../../assets/logo.png";
-import Loading from "../Loading";
+import TimeAgo from "../util/TimeAgo";
+import { useFirebase } from "../util/context";
+import logo from "../../assets/logo.png";
+import Loading from "./Loading";
 import { Link } from "react-router-dom";
-import "./index.css";
 import uuid from "uuid";
-import { useFirebase } from "../../util/Firebase/context";
 
 const Blog = props => {
   const [blog, setBlog] = useState([]);

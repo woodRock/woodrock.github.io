@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useParams, Link} from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { useFirebase } from "../../../util/Firebase/context";
-import TimeAgo from "../../../util/TimeAgo";
-import logo from "../../../../assets/logo.png";
-import Loading from "../../Loading";
-import "../index.css";
+import {useFirebase} from "../util/context";
+import TimeAgo from "../util/TimeAgo";
+import logo from "../../assets/logo.png";
+import Loading from "./Loading";
 
 const ViewBlog = props => {
   const [blog, setBlog] = useState();
-  const { fetch } = useFirebase();
-  let { id } = useParams();
+  const {fetch} = useFirebase();
+  let {id} = useParams();
 
   useEffect(() => {
     const unsubscribe = fetch("blog", "time", {
@@ -37,7 +36,7 @@ const ViewBlog = props => {
   );
 };
 
-const BlogItem = ({ blog }) => (
+const BlogItem = ({blog}) => (
   <div className="blog-post twitter-style-border">
     <h1>
       <Link to="/blog">

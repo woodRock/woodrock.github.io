@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import fetch from "./firebase";
+import fetch from "./Firebase";
 
 const FirebaseContext = createContext({});
 export const useFirebase = () => useContext(FirebaseContext);

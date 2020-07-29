@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { useFirebase } from "../../../util/Firebase/context";
-import Loading from "../../Loading";
-import "../index.css";
+import { useFirebase } from "../util/context";
+import Loading from "./Loading";
 
 const ViewProject = props => {
   const [project, setProject] = useState();
@@ -51,7 +50,7 @@ const Project = ({ id, title, description, link, image }) => (
     <div className="project">
       <a href={link}>
         <img
-          class="project-image"
+          className="project-image"
           width="100%"
           height="width"
           src={image}
