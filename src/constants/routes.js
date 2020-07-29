@@ -1,16 +1,43 @@
 import Projects from "../components/Projects";
+import React from "react";
 import Blog from "../components/Blog";
-import Education from "../components/Education";
-import Jobs from "../components/Jobs";
-import CV from "../components/CV";
 import ViewBlog from "../components/ViewBlog";
 import ViewProject from "../components/ViewProject";
-import {withMarkdown} from "../util/Markdown";
-import home from "../constants/home.md";
-import skills from "../constants/skills.md";
+import Timeline from "../api/Timeline";
+import {withMarkdown} from "../api/Markdown";
+import home from "../assets/home.md";
+import skills from "../assets/skills.md";
+import ibsMD from "../assets/schools/ibs.md";
+import swisMD from "../assets/schools/swis.md";
+import rcMD from "../assets/schools/rc.md";
+import vuwMD from "../assets/schools/vuw.md";
+import macsMD from "../assets/jobs/macs.md";
+import niwaMD from "../assets/jobs/niwa.md";
+import johnsMD from "../assets/jobs/stjohns.md";
 
 const Home = withMarkdown(home);
 const Skills = withMarkdown(skills);
+
+const schools = [
+  withMarkdown(vuwMD),
+  withMarkdown(rcMD),
+  withMarkdown(swisMD),
+  withMarkdown(ibsMD)
+];
+
+const Education = () => {
+  return <Timeline title="Education" events={schools} />;
+};
+
+const jobs = [
+  withMarkdown(niwaMD),
+  withMarkdown(johnsMD),
+  withMarkdown(macsMD)
+];
+
+const Jobs = () => {
+  return <Timeline title="Jobs" events={jobs} />;
+};
 
 const ROUTES = [
   {
@@ -52,11 +79,6 @@ const ROUTES = [
     path: "/job",
     component: Jobs,
     icon: "work"
-  },
-  {
-    path: "/cv",
-    component: CV,
-    icon: ""
   },
   {
     path: "/blog/:id",

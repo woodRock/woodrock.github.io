@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
-import {useFirebase} from "../util/context";
+import React, { useState, useEffect } from "react";
+import { useFirebase } from "../api/context";
 import uuid from "uuid";
 
 const SocialPage = props => {
   const [social, setSocial] = useState([]);
-  const {fetch} = useFirebase();
+  const { fetch } = useFirebase();
 
   useEffect(() => {
     const unsubscribe = fetch("social", "title", {
@@ -33,7 +33,7 @@ const SocialPage = props => {
   );
 };
 
-const SocialList = ({social}) => (
+const SocialList = ({ social }) => (
   <div className="social">
     {social.map(s => (
       <SocialItem key={uuid.v4()} social={s} />
@@ -41,7 +41,7 @@ const SocialList = ({social}) => (
   </div>
 );
 
-const SocialItem = ({social}) => (
+const SocialItem = ({ social }) => (
   <span>
     <a href={social.link}>
       <i className={"link fa fa-" + social.title}></i>

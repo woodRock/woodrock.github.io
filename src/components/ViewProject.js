@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { useFirebase } from "../util/context";
+import { useFirebase } from "../api/context";
 import Loading from "./Loading";
 
 const ViewProject = props => {

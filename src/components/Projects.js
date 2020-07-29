@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { useFirebase } from "../util/context";
-import TimeAgo from "../util/TimeAgo";
+import { useFirebase } from "../api/context";
+import TimeAgo from "../api/TimeAgo";
 import logo from "../assets/logo.png";
 import Loading from "./Loading";
 import uuid from "uuid";
