@@ -4,7 +4,7 @@ import Blog from "../components/Blog";
 import ViewBlog from "../components/ViewBlog";
 import ViewProject from "../components/ViewProject";
 import Timeline from "../api/Timeline";
-import {withMarkdown} from "../api/Markdown";
+import Markdown from "../api/Markdown";
 import home from "../assets/home.md";
 import skills from "../assets/skills.md";
 import ibsMD from "../assets/schools/ibs.md";
@@ -15,25 +15,21 @@ import macsMD from "../assets/jobs/macs.md";
 import niwaMD from "../assets/jobs/niwa.md";
 import johnsMD from "../assets/jobs/stjohns.md";
 
-const Home = withMarkdown(home);
-const Skills = withMarkdown(skills);
+const Home = () => {
+  return <Markdown markdown={home} />;
+};
 
-const schools = [
-  withMarkdown(vuwMD),
-  withMarkdown(rcMD),
-  withMarkdown(swisMD),
-  withMarkdown(ibsMD)
-];
+const Skills = () => {
+  return <Markdown markdown={skills} />;
+};
+
+const schools = [vuwMD, rcMD, swisMD, ibsMD];
 
 const Education = () => {
   return <Timeline title="Education" events={schools} />;
 };
 
-const jobs = [
-  withMarkdown(niwaMD),
-  withMarkdown(johnsMD),
-  withMarkdown(macsMD)
-];
+const jobs = [niwaMD, johnsMD, macsMD];
 
 const Jobs = () => {
   return <Timeline title="Jobs" events={jobs} />;

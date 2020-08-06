@@ -1,32 +1,26 @@
-import React, {Component} from "react";
+import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown/";
 
-const withMarkdown = markdown => {
-  class withMarkdown extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        terms: null
-      };
-    }
+const Markdown = ({ markdown }) => {
+  const [terms, setTerms] = useState(null);
 
-    componentDidMount() {
-      fetch(markdown)
-        .then(response => response.text())
-        .then(text => {
-          this.setState({terms: text});
-        });
-    }
+  const fetchMarkdown = async markdown => {
+    fetch(markdown)
+      .then(response => response.text())
+      .then(text => {
+        setTerms(text);
+      });
+  };
 
-    render() {
-      return (
-        <div className="content">
-          <ReactMarkdown source={this.state.terms} />
-        </div>
-      );
-    }
-  }
-  return withMarkdown;
+  useEffect(() => {
+    fetchMarkdown(markdown);
+  }, [markdown, terms]);
+
+  return (
+    <div className="content">
+      {terms ? <ReactMarkdown source={terms} /> : <h1>Loading</h1>}
+    </div>
+  );
 };
 
-export {withMarkdown};
+export default Markdown;
