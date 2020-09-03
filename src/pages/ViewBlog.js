@@ -2,30 +2,30 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { useFirebase } from "../api/context";
-import TimeAgo from "../api/TimeAgo";
+import TimeAgo from "../components/TimeAgo";
 import logo from "../assets/logo.png";
-import Loading from "./Loading";
+import Loading from "../components/Loading";
 
-const ViewBlog = props => {
+const ViewBlog = () => {
   const [blog, setBlog] = useState();
   const { fetch } = useFirebase();
   let { id } = useParams();
 
   useEffect(() => {
     const unsubscribe = fetch("blog", "time", {
-      next: querySnapshot => {
-        querySnapshot.forEach(doc => {
+      next: (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           const data = {
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           };
           if (id === data.id) {
             setBlog(data);
           }
         });
-      }
+      },
     });
-    return unsubscribe;
+    return () => unsubscribe();
   }, [id, fetch]);
 
   return (
@@ -45,14 +45,14 @@ const BlogItem = ({ blog }) => (
       {blog.title}
     </h1>
     <div className="title">
-      <img class="logo" src={logo} alt="woodRock github logo" />
-      <span class="blog-title-text">
+      <img className="logo" src={logo} alt="woodRock github logo" />
+      <span className="blog-title-text">
         woodRock•{" "}
         <i>
           <span className="secondary">
             {" "}
             {TimeAgo({
-              date: blog.time
+              date: blog.time,
             })}{" "}
           </span>{" "}
         </i>{" "}

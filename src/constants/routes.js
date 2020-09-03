@@ -1,89 +1,61 @@
-import Projects from "../components/Projects";
-import React from "react";
-import Blog from "../components/Blog";
-import ViewBlog from "../components/ViewBlog";
-import ViewProject from "../components/ViewProject";
-import Timeline from "../api/Timeline";
-import Markdown from "../api/Markdown";
-import home from "../assets/home.md";
-import skills from "../assets/skills.md";
-import ibsMD from "../assets/schools/ibs.md";
-import swisMD from "../assets/schools/swis.md";
-import rcMD from "../assets/schools/rc.md";
-import vuwMD from "../assets/schools/vuw.md";
-import macsMD from "../assets/jobs/macs.md";
-import niwaMD from "../assets/jobs/niwa.md";
-import johnsMD from "../assets/jobs/stjohns.md";
-
-const Home = () => {
-  return <Markdown markdown={home} />;
-};
-
-const Skills = () => {
-  return <Markdown markdown={skills} />;
-};
-
-const schools = [vuwMD, rcMD, swisMD, ibsMD];
-
-const Education = () => {
-  return <Timeline title="Education" events={schools} />;
-};
-
-const jobs = [niwaMD, johnsMD, macsMD];
-
-const Jobs = () => {
-  return <Timeline title="Jobs" events={jobs} />;
-};
+import Home from "../pages/Home";
+import Projects from "../pages/Projects";
+import ViewProject from "../pages/ViewProject";
+import Blog from "../pages/Blog";
+import ViewBlog from "../pages/ViewBlog";
+import Skills from "../pages/Skills";
+import Education from "../pages/Education";
+import Jobs from "../pages/Jobs";
 
 const ROUTES = [
   {
     path: "/",
-    component: Home
+    component: Home,
   },
   {
     name: "Home",
     path: "/home",
     component: Home,
-    icon: "home" // material-icons class name
+    icon: "home", // material-icons class name
   },
   {
     name: "Projects",
     path: "/projects",
     component: Projects,
-    icon: "code"
+    icon: "code",
   },
   {
     name: "Blog",
     path: "/blog",
     component: Blog,
-    icon: "create"
+    icon: "create",
   },
   {
     name: "Skills",
     path: "/skills",
     component: Skills,
-    icon: "language"
+    icon: "language",
   },
   {
     name: "Education",
     path: "/education",
     component: Education,
-    icon: "school"
+    icon: "school",
   },
   {
     name: "Jobs",
     path: "/job",
     component: Jobs,
-    icon: "work"
+    icon: "work",
   },
   {
     path: "/blog/:id",
-    component: ViewBlog
+    component: ViewBlog,
   },
   {
     path: "/project/:id",
-    component: ViewProject
-  }
+    component: ViewProject,
+  },
 ];
 
 export default ROUTES;

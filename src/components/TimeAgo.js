@@ -9,9 +9,10 @@ JavascriptTimeAgo.locale(en);
 const style = "Twitter";
 
 export default function TimeAgo({ date }) {
+  const stringToDate = new Date(date);
   return (
     <>
-      <ReactTimeAgo date={date} timeStyle={style} />
+      <ReactTimeAgo date={stringToDate} timeStyle={style} />
     </>
   );
 }

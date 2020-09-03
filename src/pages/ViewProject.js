@@ -2,28 +2,28 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { useFirebase } from "../api/context";
-import Loading from "./Loading";
+import Loading from "../components/Loading";
 
-const ViewProject = props => {
+const ViewProject = () => {
   const [project, setProject] = useState();
   const { fetch } = useFirebase();
   let { id } = useParams();
 
   useEffect(() => {
     const unsubscribe = fetch("projects", "time", {
-      next: querySnapshot => {
-        querySnapshot.forEach(doc => {
+      next: (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           const data = {
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           };
           if (id === data.id) {
             setProject(data);
           }
         });
-      }
+      },
     });
-    return unsubscribe;
+    return () => unsubscribe();
   }, [id, fetch]);
 
   return (
@@ -44,7 +44,7 @@ const Project = ({ id, title, description, link, image }) => (
         <Link to={"/project/" + id}>{title}</Link>
       </h1>
       <div className="description text">
-        <ReactMarkdown source={description}></ReactMarkdown>
+        <ReactMarkdown source={description} />
       </div>
     </div>
     <div className="project">
@@ -59,7 +59,7 @@ const Project = ({ id, title, description, link, image }) => (
       </a>
       <div>
         <a href={link} className="github-link">
-          <i className="fa fa-github"></i>
+          <i className="fa fa-github" />
         </a>
       </div>
     </div>

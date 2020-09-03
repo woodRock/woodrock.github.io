@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import ROUTES from "./constants/routes";
-import SocialPage from "./components/Social";
+import SocialPage from "./pages/Social";
 import Navigation from "./components/Navigation";
 import CopyRight from "./components/Copyright";
 import "./index.css";
@@ -15,7 +15,7 @@ const Header = () => (
 const Container = () => (
   <div className="container twitter-style-border">
     <div className="">
-      {ROUTES.map(r => (
+      {ROUTES.map((r) => (
         <Route key={r.path} path={r.path} exact component={r.component} />
       ))}
     </div>
@@ -24,8 +24,8 @@ const Container = () => (
 
 const Footer = () => (
   <>
-    <SocialPage></SocialPage>
-    <CopyRight></CopyRight>
+    <SocialPage />
+    <CopyRight />
   </>
 );
 

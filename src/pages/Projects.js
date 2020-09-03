@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { useFirebase } from "../api/context";
-import TimeAgo from "../api/TimeAgo";
+import TimeAgo from "../components/TimeAgo";
 import logo from "../assets/logo.png";
-import Loading from "./Loading";
-import uuid from "uuid";
+import Loading from "../components/Loading";
+import { v4 } from "uuid";
 import { Link } from "react-router-dom";
 
-const Projects = props => {
+const Projects = () => {
   const [projects, setProjects] = useState([]);
   const { fetch } = useFirebase();
 
   useEffect(() => {
     const unsubscribe = fetch("projects", "time", {
-      next: querySnapshot => {
-        querySnapshot.forEach(doc => {
+      next: (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           const data = {
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           };
-          setProjects(prevProjects => [...prevProjects, data]);
+          setProjects((prevProjects) => [...prevProjects, data]);
         });
-      }
+      },
     });
-    return unsubscribe;
+    return () => unsubscribe();
   }, [fetch]);
 
   return (
@@ -45,8 +45,8 @@ const Projects = props => {
 
 const ProjectList = ({ projects }) => (
   <div>
-    {projects.map(project => (
-      <Project key={uuid.v4()} project={project} />
+    {projects.map((project) => (
+      <Project key={v4()} project={project} />
     ))}
   </div>
 );
@@ -54,7 +54,7 @@ const ProjectList = ({ projects }) => (
 const Project = ({ project }) => (
   <div className="project-container">
     <div className="title">
-      <img class="logo" src={logo} alt="woodRock github logo" />
+      <img className="logo" src={logo} alt="woodRock github logo" />
       <span className="project-title-text">
         <span className="header">@woodRock</span>•
         <i className="secondary">{TimeAgo({ date: project.time })}</i>
@@ -63,13 +63,13 @@ const Project = ({ project }) => (
         <h2>
           <Link to={"/project/" + project.id}>{project.title}</Link>
         </h2>
-        <ReactMarkdown source={project.description}></ReactMarkdown>
+        <ReactMarkdown source={project.description} />
       </div>
     </div>
     <div className="project">
       <a href={project.link}>
         <img
-          class="project-image"
+          className="project-image"
           width="100%"
           height="width"
           src={project.image}
@@ -78,7 +78,7 @@ const Project = ({ project }) => (
       </a>
       <div>
         <a href={project.link} className="github-link">
-          <i className="fa fa-github"></i>
+          <i className="fa fa-github" />
         </a>
       </div>
     </div>

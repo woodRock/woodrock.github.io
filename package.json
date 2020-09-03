@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/uuid": "^8.0.0",
     "firebase": "^7.14.2",
+    "javascript-time-ago": "^2.0.13",
+    "prettier": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-gist": "^1.2.2",
@@ -15,7 +17,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-time-ago": "^5.0.8",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "uuid": "^8.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,12 +1,13 @@
 import React from "react";
-import Markdown from "../api/Markdown";
+import Markdown from "./Markdown";
+import { v4 } from "uuid";
 
 const Timeline = ({ title, events }) => (
   <div>
     <h1>{title}</h1>
-    <div class="timeline">
+    <div className="timeline">
       {events.map((file, i) => {
-        return <Event file={file} i={i} />;
+        return <Event key={v4()} file={file} i={i} />;
       })}
     </div>
   </div>
@@ -15,8 +16,8 @@ const Timeline = ({ title, events }) => (
 const Event = ({ file, i }) => {
   const side = i % 2 ? "right" : "left";
   return (
-    <div class={"timeline-container " + side}>
-      <div class="timeline-content twitter-style-border">
+    <div className={"timeline-container " + side}>
+      <div className="timeline-content twitter-style-border">
         <Markdown markdown={file} />
       </div>
     </div>
