@@ -4,17 +4,17 @@ import ReactMarkdown from "react-markdown/";
 const Markdown = ({ markdown }) => {
   const [terms, setTerms] = useState(null);
 
-  const fetchMarkdown = async markdown => {
+  const fetchMarkdown = async (markdown) => {
     fetch(markdown)
-      .then(response => response.text())
-      .then(text => {
+      .then((response) => response.text())
+      .then((text) => {
         setTerms(text);
       });
   };
 
   useEffect(() => {
     fetchMarkdown(markdown);
-  }, [markdown, terms]);
+  });
 
   return (
     <div className="content">
