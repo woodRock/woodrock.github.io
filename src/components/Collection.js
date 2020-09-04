@@ -3,10 +3,6 @@ import { useFirebase } from "../api/context";
 import Loading from "../components/Loading";
 import { v4 } from "uuid";
 
-const capitalize = (phrase) => {
-  return phrase.replace(/^\w/, (c) => c.toUpperCase());
-};
-
 const Collection = ({ Child, collectionName, sort }) => {
   const [collection, setCollection] = useState([]);
   const { fetch } = useFirebase();
@@ -37,6 +33,10 @@ const Collection = ({ Child, collectionName, sort }) => {
       )}
     </div>
   );
+};
+
+const capitalize = (phrase) => {
+  return phrase.replace(/^\w/, (c) => c.toUpperCase());
 };
 
 export default Collection;

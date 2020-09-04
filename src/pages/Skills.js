@@ -1,5 +1,5 @@
-import Markdown from "../components/Markdown";
 import React from "react";
+import Markdown from "../components/Markdown";
 import skills from "../assets/skills.md";
 
 const Skills = () => {

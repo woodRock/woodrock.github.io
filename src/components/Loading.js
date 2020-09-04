@@ -1,9 +1,8 @@
 import React from "react";
 import logo from "../assets/logo.png";
 
-const speed = 3;
-
 const Loading = () => {
+  const speed = 3;
   return (
     <div className="loading stage">
       <img

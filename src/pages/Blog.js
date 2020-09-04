@@ -1,8 +1,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import { Link } from "react-router-dom";
 import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
-import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Blog = () => {

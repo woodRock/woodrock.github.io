@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { useFirebase } from "../api/context";
 import TimeAgo from "../components/TimeAgo";
-import logo from "../assets/logo.png";
 import Loading from "../components/Loading";
+import logo from "../assets/logo.png";
 
 const ViewBlog = () => {
   const [blog, setBlog] = useState();
