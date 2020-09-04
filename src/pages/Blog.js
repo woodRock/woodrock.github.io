@@ -1,70 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import TimeAgo from "../components/TimeAgo";
-import { useFirebase } from "../api/context";
-import logo from "../assets/logo.png";
-import Loading from "../components/Loading";
+import Collection from "../components/Collection";
 import { Link } from "react-router-dom";
-import { v4 } from "uuid";
+import logo from "../assets/logo.png";
 
 const Blog = () => {
-  const [blog, setBlog] = useState([]);
-  const { fetch } = useFirebase();
-
-  useEffect(() => {
-    const unsubscribe = fetch("blog", "time", {
-      next: (querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const data = {
-            id: doc.id,
-            ...doc.data(),
-          };
-          setBlog((prevBlog) => [...prevBlog, data]);
-        });
-      },
-    });
-    return () => unsubscribe();
-  }, [fetch]);
-
-  return (
-    <div className="blog">
-      <h1>Blog</h1>
-      {!blog.length && <Loading />}
-      {blog ? (
-        <BlogList
-          blog={blog.sort((a, b) => new Date(b.time) - new Date(a.time))}
-        />
-      ) : (
-        <div>There are no blog posts ...</div>
-      )}
-    </div>
-  );
+  return <Collection Child={BlogItem} collectionName={"blog"} sort={"time"} />;
 };
 
-const BlogList = ({ blog }) => (
-  <div>
-    {blog.map((s) => (
-      <BlogItem key={v4()} blog={s} />
-    ))}
-  </div>
-);
-
-const BlogItem = ({ blog }) => (
+const BlogItem = ({ item }) => (
   <div className="blog-post twitter-style-border">
     <div className="title">
       <img className="logo" src={logo} alt="woodRock github logo" />
       <span className="blog-title-text">
         woodRock •
         <i>
-          <span className="secondary">{TimeAgo({ date: blog.time })}</span>
+          <span className="secondary">{TimeAgo({ date: item.time })}</span>
         </i>
       </span>
     </div>
     <div className="blog-content">
       <h2>
-        <Link to={"/blog/" + blog.id}>{blog.title}</Link>
+        <Link to={"/blog/" + item.id}>{item.title}</Link>
       </h2>
-      <ReactMarkdown source={blog.markdown + ""} />
+      <ReactMarkdown source={item.markdown + ""} />
     </div>
   </div>
 );

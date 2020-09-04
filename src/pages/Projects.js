@@ -1,83 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
-import { useFirebase } from "../api/context";
-import TimeAgo from "../components/TimeAgo";
-import logo from "../assets/logo.png";
-import Loading from "../components/Loading";
-import { v4 } from "uuid";
 import { Link } from "react-router-dom";
+import TimeAgo from "../components/TimeAgo";
+import Collection from "../components/Collection";
+import logo from "../assets/logo.png";
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
-  const { fetch } = useFirebase();
-
-  useEffect(() => {
-    const unsubscribe = fetch("projects", "time", {
-      next: (querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const data = {
-            id: doc.id,
-            ...doc.data(),
-          };
-          setProjects((prevProjects) => [...prevProjects, data]);
-        });
-      },
-    });
-    return () => unsubscribe();
-  }, [fetch]);
-
-  return (
-    <div>
-      <h1>Projects</h1>
-      {!projects.length && <Loading />}
-      {projects ? (
-        <ProjectList
-          projects={projects.sort(
-            (a, b) => new Date(b.time) - new Date(a.time)
-          )}
-        />
-      ) : (
-        <div>There are no projects ...</div>
-      )}
-    </div>
-  );
+  return <Collection Child={Project} collectionName="projects" sort="time" />;
 };
 
-const ProjectList = ({ projects }) => (
-  <div>
-    {projects.map((project) => (
-      <Project key={v4()} project={project} />
-    ))}
-  </div>
-);
-
-const Project = ({ project }) => (
+const Project = ({ item }) => (
   <div className="project-container">
     <div className="title">
       <img className="logo" src={logo} alt="woodRock github logo" />
       <span className="project-title-text">
         <span className="header">@woodRock</span>•
-        <i className="secondary">{TimeAgo({ date: project.time })}</i>
+        <i className="secondary">{TimeAgo({ date: item.time })}</i>
       </span>
       <div className="description text">
         <h2>
-          <Link to={"/project/" + project.id}>{project.title}</Link>
+          <Link to={"/project/" + item.id}>{item.title}</Link>
         </h2>
-        <ReactMarkdown source={project.description} />
+        <ReactMarkdown source={item.description} />
       </div>
     </div>
     <div className="project">
-      <a href={project.link}>
+      <a href={item.link}>
         <img
           className="project-image"
           width="100%"
           height="width"
-          src={project.image}
-          alt={project.title}
+          src={item.image}
+          alt={item.title}
         />
       </a>
       <div>
-        <a href={project.link} className="github-link">
+        <a href={item.link} className="github-link">
           <i className="fa fa-github" />
         </a>
       </div>

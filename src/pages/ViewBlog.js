@@ -31,18 +31,18 @@ const ViewBlog = () => {
   return (
     <div className="blog">
       {" "}
-      {blog ? <BlogItem blog={blog} /> : <Loading />}{" "}
+      {blog ? <BlogItem item={blog} /> : <Loading />}{" "}
     </div>
   );
 };
 
-const BlogItem = ({ blog }) => (
+const BlogItem = ({ item }) => (
   <div className="blog-post twitter-style-border">
     <h1>
       <Link to="/blog">
         <i className="material-icons">chevron_left</i>
       </Link>
-      {blog.title}
+      {item.title}
     </h1>
     <div className="title">
       <img className="logo" src={logo} alt="woodRock github logo" />
@@ -52,14 +52,14 @@ const BlogItem = ({ blog }) => (
           <span className="secondary">
             {" "}
             {TimeAgo({
-              date: blog.time,
+              date: item.time,
             })}{" "}
           </span>{" "}
         </i>{" "}
       </span>{" "}
     </div>{" "}
     <div className="blog-content">
-      <ReactMarkdown source={blog.markdown + ""} />{" "}
+      <ReactMarkdown source={item.markdown + ""} />{" "}
     </div>{" "}
   </div>
 );
