@@ -9,7 +9,10 @@ const Loading = () => {
       <img
         className="square loading-logo"
         style={{
-          animation: `spin ${speed}s linear infinite`
+          animation: `spin ${speed}s linear infinite`,
+          width: "50px",
+          height: "50px",
+          borderRadius: "50px",
         }}
         src={logo}
         alt="img"
