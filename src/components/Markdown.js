@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown/";
+import Loading from "./Loading";
 
 const Markdown = ({ markdown }) => {
   const [terms, setTerms] = useState(null);
@@ -18,7 +19,7 @@ const Markdown = ({ markdown }) => {
 
   return (
     <div className="content">
-      {terms ? <ReactMarkdown source={terms} /> : <h1>Loading</h1>}
+      {terms ? <ReactMarkdown source={terms} /> : <Loading />}
     </div>
   );
 };
