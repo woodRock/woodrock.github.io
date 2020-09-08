@@ -1,6 +1,6 @@
 {
-  "short_name": "React Primer",
-  "name": "An introductory example of a React application",
+  "short_name": "woodrock",
+  "name": "Woodrock: Jesse Wood's online Portfolio",
   "icons": [
     {
       "src": "favicon.ico",
