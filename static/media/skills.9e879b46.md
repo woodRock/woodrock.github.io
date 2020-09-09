@@ -16,13 +16,17 @@
 ## Databases
 
 -   Firebase
+-   GraphQL 
 -   Postgres
 -   Postgis
+-   SQLite
 
 ## Web Frameworks
 
 -   Angular
+-   Ionic
 -   React
+-   React Native 
 -   Vue
 
 ## VCS
@@ -30,6 +34,7 @@
 -   Git
 -   Github
 -   Gitlab
+-   GitBucket
 
 ## OS
 
@@ -47,8 +52,11 @@
 
 -   Adobe Photoshop
 -   Adobe XD
+-   Atom 
 -   Blender
+-   DBeaver
 -   Figma
 -   PlantUML
 -   Pyplot
 -   QGIS
+-   Unreal Engine
