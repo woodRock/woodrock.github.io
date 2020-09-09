@@ -12,6 +12,7 @@
 -   Mapserver
 -   Python
 -   Ruby
+-   R
 
 ## Databases
 
@@ -56,7 +57,9 @@
 -   Blender
 -   DBeaver
 -   Figma
+-   Kaggle
 -   PlantUML
 -   Pyplot
 -   QGIS
+-   RStudio
 -   Unreal Engine
