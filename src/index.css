@@ -12,6 +12,26 @@
   --text-font: Roboto;
 }
 
+#social-link {
+  position: relative;
+  top: 0;
+  transition: top ease 0.3s;
+}
+
+#social-link:hover {
+  top: -10px;
+}
+
+#nav-link {
+  position: relative;
+  left: 0;
+  transition: left ease 0.3s;
+}
+
+#nav-link:hover {
+  left: -10px;
+}
+
 .text {
   color: var(--text);
 }

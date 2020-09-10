@@ -36,17 +36,17 @@ const SocialPage = () => {
 const SocialList = ({ social }) => (
   <div className="social">
     {social.map((s) => (
-      <SocialItem key={v4()} social={s} />
+      <SocialLink key={v4()} social={s} />
     ))}
   </div>
 );
 
-const SocialItem = ({ social }) => (
-  <span>
+const SocialLink = ({ social }) => (
+  <>
     <a href={social.link}>
-      <i className={"link fa fa-" + social.title} />
+      <i id="social-link" className={"link fa fa-" + social.title} />
     </a>
-  </span>
+  </>
 );
 
 export default SocialPage;

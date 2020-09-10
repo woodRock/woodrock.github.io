@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import ROUTES from "./constants/routes";
-import SocialPage from "./pages/Social";
+import SocialPage from "./components/Social";
 import Navigation from "./components/Navigation";
 import CopyRight from "./components/Copyright";
 import "./index.css";
