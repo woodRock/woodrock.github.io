@@ -42,11 +42,9 @@ const SocialList = ({ social }) => (
 );
 
 const SocialLink = ({ social }) => (
-  <>
-    <a href={social.link}>
-      <i id="social-link" className={"link fa fa-" + social.title} />
-    </a>
-  </>
+  <a href={social.link}>
+    <i id="social-link" className={"link fa fa-" + social.title} />
+  </a>
 );
 
 export default SocialPage;

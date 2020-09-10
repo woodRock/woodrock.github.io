@@ -19,7 +19,7 @@ const Navigation = () => {
     <ul style={{ width: "100%" }}>
       {width < 1000 ? null : (
         <li>
-          <img className="avatar" width="80%" src={me} alt="" />
+          <img className="avatar" style={{ width: "80%" }} src={me} alt="" />
         </li>
       )}
       <Pages />
@@ -32,7 +32,7 @@ const Pages = () => {
     <>
       {ROUTES.map((r) =>
         r.icon === undefined ? null : (
-          <li key={v4()}>
+          <li style={{ width: "60%" }} key={v4()}>
             <Page route={r} />
           </li>
         )
@@ -43,7 +43,16 @@ const Pages = () => {
 
 const Page = ({ route }) => {
   return (
-    <Link id="nav-link" className="link" to={route.path}>
+    <Link
+      style={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignContent: "center",
+      }}
+      id="nav-link"
+      className="link"
+      to={route.path}
+    >
       <i className="link material-icons">{route.icon}</i>
       <span className="link link-text">{route.name}</span>
     </Link>
