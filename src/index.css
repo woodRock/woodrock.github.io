@@ -471,12 +471,8 @@ button {
   }
 
   .navigation ul {
-    overflow: auto;
-    bottom: 2%;
-    /* position: fixed; */
-    width: 100%;
-    left: 0;
-    position: fixed;
+    display: flex;
+    justify-content: space-between;
   }
 
   .navigation ul li {
