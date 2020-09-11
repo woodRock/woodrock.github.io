@@ -52,6 +52,7 @@
   color: var(--link-color);
   transition: color 0.1s ease-in-out;
   text-decoration: none;
+  outline:none !important;
 }
 
 .link:hover, button:hover, a:hover {
