@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
 import logo from "../assets/logo.png";
+import "../index.css";
 
 const Projects = () => {
   return <Collection Child={Project} collectionName="projects" sort="time" />;
@@ -19,7 +20,9 @@ const Project = ({ item }) => (
       </span>
       <div className="description text">
         <h2>
-          <Link to={"/project/" + item.id}>{item.title}</Link>
+          <Link id="nav-link" to={"/project/" + item.id}>
+            {item.title}
+          </Link>
         </h2>
         <ReactMarkdown source={item.description} />
       </div>
