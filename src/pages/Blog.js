@@ -7,7 +7,14 @@ import logo from "../assets/logo.png";
 import "../index.css";
 
 const Blog = () => {
-  return <Collection Child={BlogItem} collectionName={"blog"} sort={"time"} />;
+  return (
+    <Collection
+      Child={BlogItem}
+      collectionName={"blog"}
+      sort={"time"}
+      styles=""
+    />
+  );
 };
 
 const BlogItem = ({ item }) => (

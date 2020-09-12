@@ -5,45 +5,49 @@ import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
 import logo from "../assets/logo.png";
 import "../index.css";
+import "./Projects.css";
 
 const Projects = () => {
-  return <Collection Child={Project} collectionName="projects" sort="time" />;
+  return (
+    <Collection
+      Child={Project}
+      collectionName="projects"
+      sort="time"
+      styles="card-list"
+    />
+  );
 };
 
 const Project = ({ item }) => (
-  <div className="project-container">
-    <div className="title">
-      <img className="logo" src={logo} alt="woodRock github logo" />
-      <span className="project-title-text">
-        <span className="header">@woodRock</span>•
-        <i className="secondary">{TimeAgo({ date: item.time })}</i>
-      </span>
-      <div className="description text">
-        <h2>
-          <Link id="nav-link" to={"/project/" + item.id}>
-            {item.title}
-          </Link>
-        </h2>
-        <ReactMarkdown source={item.description} />
-      </div>
-    </div>
-    <div className="project">
+  <article className="card">
+    <header className="card-header">
+      <i className="secondary">{TimeAgo({ date: item.time })}</i>
+      <Link id="nav-link" to={"/project/" + item.id}>
+        <h2>{item.title}</h2>
+      </Link>
+    </header>
+    <div className="card-image">
       <a href={item.link}>
-        <img
-          className="project-image"
-          width="100%"
-          height="width"
-          src={item.image}
-          alt={item.title}
-        />
+        <img src={item.image} alt={item.title} />
       </a>
-      <div>
-        <a href={item.link} className="github-link">
-          <i className="fa fa-github" />
-        </a>
+    </div>
+    <div className="card-author">
+      <a href="#" className="author-avatar">
+        <img src={logo} alt="Woodrock logo" />
+      </a>
+      <svg className="half-circle" viewBox="0 0 106 57">
+        <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+      </svg>
+      <div className="author-name">
+        <div className="author-name-prefix">Author</div>
+        Jesse Wood
       </div>
     </div>
-  </div>
+  </article>
 );
+
+const Description = ({ item }) => {
+  return <ReactMarkdown source={item.description} />;
+};
 
 export default Projects;
