@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
 import logo from "../assets/logo.png";
-import "../index.css";
 import "./Projects.css";
 
 const Projects = () => {
@@ -18,33 +17,35 @@ const Projects = () => {
   );
 };
 
-const Project = ({ item }) => (
-  <article className="card">
-    <header className="card-header">
-      <i className="secondary">{TimeAgo({ date: item.time })}</i>
-      <Link id="nav-link" to={"/project/" + item.id}>
-        <h2>{item.title}</h2>
-      </Link>
-    </header>
-    <div className="card-image">
-      <a href={item.link}>
-        <img src={item.image} alt={item.title} />
-      </a>
-    </div>
-    <div className="card-author">
-      <a href="#" className="author-avatar">
-        <img src={logo} alt="Woodrock logo" />
-      </a>
-      <svg className="half-circle" viewBox="0 0 106 57">
-        <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-      </svg>
-      <div className="author-name">
-        <div className="author-name-prefix">Author</div>
-        Jesse Wood
+const Project = ({ item }) => {
+  return (
+    <article className="card">
+      <header className="card-header">
+        <i className="secondary">{TimeAgo({ date: item.time })}</i>
+        <Link id="nav-link" to={"/project/" + item.id}>
+          <h2>{item.title}</h2>
+        </Link>
+      </header>
+      <div className="card-image">
+        <a href={item.link}>
+          <img src={item.image} alt={item.title} />
+        </a>
       </div>
-    </div>
-  </article>
-);
+      <div className="card-author">
+        <a href="#" className="author-avatar">
+          <img src={logo} alt="Woodrock logo" />
+        </a>
+        <svg className="half-circle" viewBox="0 0 106 57">
+          <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+        </svg>
+        <div className="author-name">
+          <div className="author-name-prefix">Author</div>
+          Jesse Wood
+        </div>
+      </div>
+    </article>
+  );
+};
 
 const Description = ({ item }) => {
   return <ReactMarkdown source={item.description} />;

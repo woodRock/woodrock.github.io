@@ -1,6 +1,7 @@
 import React from "react";
 import Markdown from "./Markdown";
 import { v4 } from "uuid";
+import "./Timeline.css";
 
 const Timeline = ({ title, events }) => (
   <div>

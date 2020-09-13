@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
 import logo from "../assets/logo.png";
-import "../index.css";
 
 const Blog = () => {
   return (
