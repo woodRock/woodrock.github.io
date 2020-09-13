@@ -1,6 +1,7 @@
 :root {
   font-size: 16px;
-  font-family: 'Open Sans';
+  font-family: Roboto;
+  font: Roboto;
   --highlight: #bc13fe;
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
