@@ -36,8 +36,8 @@
 
 .nav-link:hover {
   filter: grayscale(0%) opacity(1);
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
+  background: #23232e;
+  color: #b6b6b6;
 }
 
 .link-text {
@@ -53,7 +53,7 @@
 }
 
 .link-icon {
-  color: #ff7eee;
+  color: var(--highlight);
 }
 
 .link-icon {
@@ -147,7 +147,7 @@
   width: 15rem;
   opacity: 0;
   z-index: 2;
-  background: blue;
+  background: var(--bg-secondary);
   border-top: 2px solid white;
 
   border-bottom-left-radius: 8px;
@@ -180,7 +180,7 @@
 
 .dropdown-item a::before {
   content: ' ';
-  border: 2px solid white;
+  border: 2px solid var(--text-secondary);
   border-radius: 50%;
   width: 2rem;
   height: 2rem;

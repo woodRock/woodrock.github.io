@@ -10,20 +10,11 @@ const Navigation = () => {
   const [reload, useReload] = useState("");
   const [theme, setTheme] = useTheme();
 
-  function darkButton(e) {
+  function toggleTheme(e) {
     e.preventDefault();
-    setTheme("dark");
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
   }
-
-  const lightButton = (e) => {
-    e.preventDefault();
-    setTheme("light");
-  };
-
-  const solarButton = (e) => {
-    e.preventDefault();
-    setTheme("solar");
-  };
 
   return (
     <nav className="navbar">
@@ -45,32 +36,10 @@ const Navigation = () => {
           ) : null
         )}
         <li className="nav-item has-dropdown">
-          <a className="nav-link" href="#" onClick={(e) => e.preventDefault()}>
+          <a className="nav-link" href="#" onClick={(e) => toggleTheme(e)}>
             <i className="link-icon material-icons">palette</i>
             <span className="link-text">Theme</span>
           </a>
-          <ul className="dropdown">
-            <li className="dropdown-item">
-              <a
-                id="light"
-                class="light"
-                href="#"
-                onClick={(e) => lightButton(e)}
-              >
-                light
-              </a>
-            </li>
-            <li className="dropdown-item">
-              <a id="dark" href="#" onClick={(e) => darkButton(e)}>
-                dark
-              </a>
-            </li>
-            <li className="dropdown-item">
-              <a id="solar" href="#" onClick={(e) => solarButton(e)}>
-                solar
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
     </nav>

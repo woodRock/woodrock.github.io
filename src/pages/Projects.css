@@ -25,12 +25,12 @@
   flex-direction: column;
 
   height: 350px;
-  width: 400px;
-  min-width: 300px;
+  width: 250px;
+  min-width: 250px;
   padding: 1.5rem;
 
   border-radius: 16px;
-  background: #17151d;
+  background: var(--bg-primary);
   box-shadow: -1rem 0 3rem #000;
 
   transition: .2s;

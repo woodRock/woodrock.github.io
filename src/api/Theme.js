@@ -1,10 +1,10 @@
-import React, {createContext, useContext, useState} from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const ThemeContext = createContext([]);
 const useTheme = () => useContext(ThemeContext);
 
-const ThemeProvider = ({children}) => {
-  const [theme, setTheme] = useState("");
+const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState("dark");
   return (
     <ThemeContext.Provider value={[theme, setTheme]}>
       {children}
@@ -13,4 +13,4 @@ const ThemeProvider = ({children}) => {
 };
 
 export default ThemeProvider;
-export {useTheme};
+export { useTheme };

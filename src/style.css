@@ -1,6 +1,7 @@
 :root {
   font-size: 16px;
   font-family: 'Open Sans';
+  --highlight: #bc13fe;
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
   --bg-primary: #23232e;
@@ -30,20 +31,12 @@
   --bg-secondary: #f5e5b8;
 }
 
-.theme-icon {
-  display: none;
+h1 {
+  color: var(--text-secondary);
 }
 
-.dark #darkIcon {
-  display: block;
-}
-
-.light #lightIcon {
-  display: block;
-}
-
-.solar #solarIcon {
-  display: block;
+h2 {
+  color: var(--text-secondary);
 }
 
 body {
@@ -69,9 +62,12 @@ body::-webkit-scrollbar-thumb {
 main {
   margin-left: 5rem;
   padding: 1rem;
+  min-height: 100vh;
 }
 
 a {
   color: currentColor;
   text-decoration: none;
+  outline: 0;
+
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
 import logo from "../assets/logo.png";
+import "./Blog.css";
 
 const Blog = () => {
   return (
@@ -18,21 +19,15 @@ const Blog = () => {
 
 const BlogItem = ({ item }) => (
   <div className="blog-post twitter-style-border">
-    <div className="title">
-      <img className="logo" src={logo} alt="woodRock github logo" />
-      <span className="blog-title-text">
-        woodRock •
-        <i>
-          <span className="secondary">{TimeAgo({ date: item.time })}</span>
-        </i>
-      </span>
-    </div>
     <div className="blog-content">
       <h2>
-        <Link id="nav-link" to={"/blog/" + item.id}>
+        <Link class="blog-title" to={"/blog/" + item.id}>
           {item.title}
         </Link>
       </h2>
+      <i>
+        <span className="secondary">{TimeAgo({ date: item.time })}</span>
+      </i>
       <ReactMarkdown source={item.markdown + ""} />
     </div>
   </div>
