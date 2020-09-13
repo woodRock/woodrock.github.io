@@ -38,29 +38,23 @@ const ViewBlog = () => {
 
 const BlogItem = ({ item }) => (
   <div className="blog-post twitter-style-border">
-    <h1>
-      <Link to="/blog">
-        <i className="material-icons">chevron_left</i>
-      </Link>
-      {item.title}
-    </h1>
-    <div className="title">
-      <img className="logo" src={logo} alt="woodRock github logo" />
-      <span className="blog-title-text">
-        woodRock•{" "}
-        <i>
-          <span className="secondary">
-            {" "}
-            {TimeAgo({
-              date: item.time,
-            })}{" "}
-          </span>{" "}
-        </i>{" "}
-      </span>{" "}
-    </div>{" "}
+    <h1>{item.title}</h1>
     <div className="blog-content">
-      <ReactMarkdown source={item.markdown + ""} />{" "}
-    </div>{" "}
+      <div className="title">
+        <span className="blog-title-text">
+          <i>
+            <span className="secondary">
+              {TimeAgo({
+                date: item.time,
+              })}
+            </span>
+          </i>
+        </span>
+      </div>
+      <div className="blog-content">
+        <ReactMarkdown source={item.markdown + ""} />
+      </div>
+    </div>
   </div>
 );
 

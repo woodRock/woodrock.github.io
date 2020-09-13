@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useFirebase } from "../api/context";
 import Loading from "../components/Loading";
 import { v4 } from "uuid";
+import "../pages/Projects.css";
 
-const Collection = ({ Child, collectionName, sort }) => {
+const Collection = ({ Child, collectionName, sort, styles }) => {
   const [collection, setCollection] = useState([]);
   const { fetch } = useFirebase();
 
@@ -26,11 +27,13 @@ const Collection = ({ Child, collectionName, sort }) => {
     <div>
       <h1>{capitalize(collectionName)}</h1>
       {!collection.length && <Loading />}
-      {collection ? (
-        collection.map((item) => <Child key={v4()} item={item} />)
-      ) : (
-        <div>There are no {collectionName}s ...</div>
-      )}
+      <section className={styles}>
+        {collection ? (
+          collection.map((item) => <Child key={v4()} item={item} />)
+        ) : (
+          <div>There are no {collectionName}s ...</div>
+        )}
+      </section>
     </div>
   );
 };

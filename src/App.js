@@ -4,24 +4,33 @@ import ROUTES from "./constants/routes";
 import SocialPage from "./components/Social";
 import Navigation from "./components/Navigation";
 import CopyRight from "./components/Copyright";
-import "./index.css";
+import "./style.css";
+import { useTheme } from "./api/Theme";
 
-const App = () => (
-  <HashRouter>
-    <Header />
-    <Container />
-    <Footer />
-  </HashRouter>
-);
+const App = () => {
+  const [theme] = useTheme();
+  return (
+    <body className={theme}>
+      <HashRouter>
+        <Navigation />
+        <main>
+          <Actual />
+        </main>
+      </HashRouter>
+    </body>
+  );
+};
 
-const Header = () => (
-  <div className="navigation twitter-style-border">
-    <Navigation />
+const Header = () => <div className="navigation twitter-style-border"></div>;
+
+const Container = () => (
+  <div className="main">
+    <h1>test</h1>
   </div>
 );
 
-const Container = () => (
-  <div className="container twitter-style-border">
+function Actual() {
+  return (
     <div className="">
       {ROUTES.map((route) => (
         <Route
@@ -32,14 +41,14 @@ const Container = () => (
         />
       ))}
     </div>
-  </div>
-);
+  );
+}
 
 const Footer = () => (
-  <>
+  <div className="main">
     <SocialPage />
     <CopyRight />
-  </>
+  </div>
 );
 
 export default App;
