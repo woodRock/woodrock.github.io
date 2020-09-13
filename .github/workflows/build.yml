@@ -13,3 +13,5 @@ jobs:
         run: |
           npm ci
           npm run-script build
+        env:
+          CI: false
