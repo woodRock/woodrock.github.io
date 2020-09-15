@@ -8,7 +8,23 @@ import vuwMD from "../assets/schools/vuw.md";
 const schools = [vuwMD, rcMD, swisMD, ibsMD];
 
 const Education = () => {
-  return <Timeline title="Education" events={schools} />;
+  return (
+    <div style={styles.container} className="twitter-style-border">
+      <div style={styles.content}>
+        <Timeline title="Education" events={schools} />;
+      </div>
+    </div>
+  );
+};
+
+const styles = {
+  container: {
+    width: "60%",
+    minHeight: "100vh"
+  },
+  content: {
+    padding: "2.5rem"
+  }
 };
 
 export default Education;

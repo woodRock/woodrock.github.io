@@ -65,3 +65,42 @@ a {
   outline: 0;
 
 }
+
+.github-link {
+  background: var(--bg-primary);
+  padding: 10px;
+  border-radius: 5%;
+  transition: 300ms;
+  filter: grayscale(100%) opacity(0.7);
+}
+
+.github-link:hover {
+  filter: grayscale(0%) opacity(1);
+  background: var(--bg-secondary);
+  color: #b6b6b6;
+}
+
+.github-link .link-text {
+  display: none;
+  transition: display 1000ms ease;
+}
+
+.github-link:hover .link-text {
+  display: inline;
+}
+
+.github-link:hover i {
+  color: var(--highlight);
+}
+
+a {
+  padding: 2px;
+  transition: 300ms;
+  filter: grayscale(100%) opacity(0.7);
+}
+
+a:hover {
+  filter: grayscale(0%) opacity(1);
+  background: var(--bg-secondary);
+  color: var(--highlight);
+}
