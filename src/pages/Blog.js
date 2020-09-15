@@ -18,7 +18,7 @@ const Blog = () => {
 };
 
 const BlogItem = ({ item }) => (
-  <div className="blog-post twitter-style-border">
+  <div style={styles.container} className="blog-post twitter-style-border">
     <div className="blog-content">
       <h2>
         <Link class="blog-title" to={"/blog/" + item.id}>
@@ -32,5 +32,11 @@ const BlogItem = ({ item }) => (
     </div>
   </div>
 );
+
+const styles = {
+  container: {
+    width: "60%"
+  }
+};
 
 export default Blog;

@@ -11,17 +11,17 @@ const ViewProject = () => {
 
   useEffect(() => {
     const unsubscribe = fetch("projects", "time", {
-      next: (querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+      next: querySnapshot => {
+        querySnapshot.forEach(doc => {
           const data = {
             id: doc.id,
-            ...doc.data(),
+            ...doc.data()
           };
           if (id === data.id) {
             setProject(data);
           }
         });
-      },
+      }
     });
     return () => unsubscribe();
   }, [id, fetch]);
@@ -35,35 +35,49 @@ const ViewProject = () => {
 };
 
 const Project = ({ id, title, description, link, image }) => (
-  <div className="project-container">
-    <div className="title">
-      <h1>
-        <Link to="/projects">
-          <i className="material-icons">chevron_left</i>
-        </Link>
-        <Link to={"/project/" + id}>{title}</Link>
-      </h1>
-      <div className="description text">
-        <ReactMarkdown source={description} />
-      </div>
-    </div>
-    <div className="project">
-      <a href={link}>
-        <img
-          className="project-image"
-          width="100%"
-          height="width"
-          src={image}
-          alt={title}
-        />
-      </a>
-      <div>
-        <a href={link} className="github-link">
-          <i className="fa fa-github" />
+  <div className="project-container twitter-style-border">
+    <div className="link-container">
+      <Link className="github-link" to="/blog">
+        <i className="material-icons">chevron_left</i>
+        <span>{"  "}</span>
+        <span className="link-text">Back</span>
+      </Link>
+      <div style={styles.container}>
+        <h1>
+          <Link to={"/project/" + id}>{title}</Link>
+        </h1>
+        <a href={link}>
+          <img style={styles.image} src={image} alt={title} />
         </a>
+        <div style={styles.description}>
+          <ReactMarkdown source={description} />
+        </div>
+        <div className="link-container">
+          <a href={link} className="github-link">
+            <i className="fa fa-github" />
+            <span>{"  "}</span>
+            <span className="link-text">View Source </span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 );
+
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "left",
+    width: "60%",
+    minHeight: "100vh",
+    padding: "2.5rem"
+  },
+  description: {},
+  image: {
+    width: "200px",
+    height: "200px"
+  }
+};
 
 export default ViewProject;
