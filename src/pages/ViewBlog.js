@@ -12,7 +12,7 @@ const ViewBlog = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    const unsubscribe = fetch("blog", "time", {
+    fetch("blog", "time", {
       next: (querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const data = {
@@ -25,7 +25,6 @@ const ViewBlog = () => {
         });
       },
     });
-    return () => unsubscribe();
   }, [id, fetch]);
 
   return (

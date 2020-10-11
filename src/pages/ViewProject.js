@@ -10,7 +10,7 @@ const ViewProject = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    const unsubscribe = fetch("projects", "time", {
+    fetch("projects", "time", {
       next: (querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const data = {
@@ -23,7 +23,6 @@ const ViewProject = () => {
         });
       },
     });
-    return () => unsubscribe();
   }, [id, fetch]);
 
   return (
