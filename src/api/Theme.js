@@ -48,8 +48,7 @@ const useThemeDispatcher = () => {
 const reducer = (state, action) => {
   switch (action.type) {
     case "toggle":
-      const next = state.theme === "dark" ? "light" : "dark";
-      return { theme: next };
+      return { theme: toggle(state.theme) };
     default:
       return { theme: "dark" };
   }
@@ -69,6 +68,14 @@ const ThemeProvider = ({ children }) => {
       </ThemeContextDispatch.Provider>
     </ThemeContextState.Provider>
   );
+};
+
+/**
+ * Utility method to return the inverted theme.
+ * It toggles the input from light to dark, or vice versa.
+ */
+const toggle = (theme) => {
+  return theme === "dark" ? "light" : "dark";
 };
 
 export default ThemeProvider;
