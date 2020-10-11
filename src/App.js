@@ -5,12 +5,12 @@ import SocialPage from "./components/Social";
 import Navigation from "./components/Navigation";
 import CopyRight from "./components/Copyright";
 import "./style.css";
-import { useTheme } from "./api/Theme";
+import { useThemeState } from "./api/Theme";
 
 const App = () => {
-  const [theme] = useTheme();
+  const state = useThemeState();
   return (
-    <body className={theme}>
+    <body className={state.theme}>
       <HashRouter>
         <Navigation />
         <main>

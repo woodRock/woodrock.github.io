@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import ROUTES from "../constants/routes";
 import logo from "../assets/logo.png";
 import { v4 } from "uuid";
 import "./Navigation.css";
-import { useTheme } from "../api/Theme";
+import { useThemeDispatcher } from "../api/Theme";
 
 const Navigation = () => {
-  const [reload, useReload] = useState("");
-  const [theme, setTheme] = useTheme();
+  const dispatch = useThemeDispatcher();
 
   function toggleTheme(e) {
     e.preventDefault();
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
+    dispatch({ type: "toggle" });
   }
 
   return (
