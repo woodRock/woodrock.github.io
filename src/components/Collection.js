@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useFirebase } from "../api/context";
+import { useFirebase } from "../api/Firebase";
 import Loading from "../components/Loading";
 import { v4 } from "uuid";
 import "../pages/Projects.css";
@@ -9,18 +9,16 @@ const Collection = ({ Child, collectionName, sort, styles }) => {
   const { fetch } = useFirebase();
 
   useEffect(() => {
-    const unsubscribe = fetch(collectionName, sort, {
+    fetch(collectionName, sort, {
       next: (querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const data = {
-            id: doc.id,
-            ...doc.data(),
-          };
-          setCollection((prev) => [data, ...prev]);
-        });
+        setCollection(
+          querySnapshot.docs.map((doc) => {
+            const data = { id: doc.id, ...doc.data() };
+            return data;
+          })
+        );
       },
     });
-    return () => unsubscribe();
   }, [fetch, collectionName, sort]);
 
   return (

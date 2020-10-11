@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { useFirebase } from "../api/context";
+import { useFirebase } from "../api/Firebase";
 import Loading from "../components/Loading";
 
 const ViewProject = () => {
@@ -11,17 +11,17 @@ const ViewProject = () => {
 
   useEffect(() => {
     const unsubscribe = fetch("projects", "time", {
-      next: querySnapshot => {
-        querySnapshot.forEach(doc => {
+      next: (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           const data = {
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           };
           if (id === data.id) {
             setProject(data);
           }
         });
-      }
+      },
     });
     return () => unsubscribe();
   }, [id, fetch]);
@@ -71,13 +71,13 @@ const styles = {
     alignItems: "left",
     width: "60%",
     minHeight: "100vh",
-    padding: "2.5rem"
+    padding: "2.5rem",
   },
   description: {},
   image: {
     width: "200px",
-    height: "200px"
-  }
+    height: "200px",
+  },
 };
 
 export default ViewProject;

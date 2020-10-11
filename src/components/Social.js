@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { v4 } from "uuid";
-import { useFirebase } from "../api/context";
+import { useFirebase } from "../api/Firebase";
 import "./Social.css";
 
 const SocialPage = () => {

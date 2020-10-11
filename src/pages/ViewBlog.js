@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { useFirebase } from "../api/context";
+import { useFirebase } from "../api/Firebase";
 import TimeAgo from "../components/TimeAgo";
 import Loading from "../components/Loading";
 import logo from "../assets/logo.png";
@@ -13,17 +13,17 @@ const ViewBlog = () => {
 
   useEffect(() => {
     const unsubscribe = fetch("blog", "time", {
-      next: querySnapshot => {
-        querySnapshot.forEach(doc => {
+      next: (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           const data = {
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           };
           if (id === data.id) {
             setBlog(data);
           }
         });
-      }
+      },
     });
     return () => unsubscribe();
   }, [id, fetch]);
@@ -52,7 +52,7 @@ const BlogItem = ({ item }) => (
           <i>
             <span className="secondary">
               {TimeAgo({
-                date: item.time
+                date: item.time,
               })}
             </span>
           </i>
@@ -68,11 +68,11 @@ const BlogItem = ({ item }) => (
 const styles = {
   blog: {
     width: "60%",
-    minHeight: "100vh"
+    minHeight: "100vh",
   },
   title: {
-    paddingLeft: "5rem"
-  }
+    paddingLeft: "5rem",
+  },
 };
 
 export default ViewBlog;

@@ -4,14 +4,14 @@ import React, { createContext, useContext, useReducer } from "react";
  * This stores the state for the theme context.
  * That is a string value, which is `light` or `dark`.
  */
-const ThemeContextState = createContext([]);
+const ThemeContextState = createContext(undefined);
 
 /**
  * This stores the dispatch for the theme context.
  * It handles the actions we can perform on the state.
  * We can `toggle` the state, from `light` to `dark`, or vice versa.
  */
-const ThemeContextDispatch = createContext([]);
+const ThemeContextDispatch = createContext(undefined);
 
 /**
  * Syntax sugar for using the context theme's state
