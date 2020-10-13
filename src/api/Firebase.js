@@ -32,9 +32,10 @@ const FirebaseProvider = ({ children }) => {
   /**
    * Most components simply need to fetch a collection
    * We perform artitrary sorting based on a particular key.
+   * We sort the collection by an existing field in descending order.
    */
   const fetch = (collection, sort, observer) => {
-    db.collection(collection).orderBy(sort).onSnapshot(observer);
+    db.collection(collection).orderBy(sort, "desc").onSnapshot(observer);
   };
 
   return (
