@@ -8,7 +8,7 @@
 
 Tinkerer / Engineer in the making
 
-Third-year engineering student majoring in Software. Finding an opportunity to apply and expand my knowledge. Highly motivated and ready learn new things, with experience in the service industry and a passion for all things tech.
+Fourth-year engineering student majoring in Software. Finding an opportunity to apply and expand my knowledge. Highly motivated and ready learn new things, with experience in the service industry and a passion for all things tech.
 
 I spend my time productively doing the following:
 
