@@ -21,7 +21,7 @@ const App = () => {
 
 const Pages = () => {
   return (
-    <div className="">
+    <>
       {ROUTES.map((route) => (
         <Route
           key={route.path}
@@ -30,7 +30,7 @@ const Pages = () => {
           component={route.component}
         />
       ))}
-    </div>
+    </>
   );
 };
 
