@@ -19,8 +19,8 @@ const Navigation = () => {
       <ul className="navbar-nav">
         <li className="logo nav-item">
           <a href="#" className="nav-link">
-            <span className="link-text">Woodrock</span>
             <img src={logo} alt="Brand Logo" />
+            <span className="link-text">Woodrock</span>
           </a>
         </li>
         {ROUTES.map((route) =>
