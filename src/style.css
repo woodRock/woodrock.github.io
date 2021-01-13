@@ -24,7 +24,6 @@
   --bg-secondary: #141418;
 }
 
-
 h1 {
   color: var(--text-secondary);
 }
@@ -38,7 +37,7 @@ body {
   background-color: var(--bg-primary);
   margin: 0;
   padding: 0;
-  transition:  background 500ms ease-in-out, color 1000ms ease-in-out;
+  transition: background 500ms ease-in-out, color 1000ms ease-in-out;
 }
 
 body::-webkit-scrollbar {
@@ -63,7 +62,6 @@ a {
   color: currentColor;
   text-decoration: none;
   outline: 0;
-
 }
 
 .github-link {
@@ -103,4 +101,14 @@ a:hover {
   filter: grayscale(0%) opacity(1);
   background: var(--bg-secondary);
   color: var(--highlight);
+}
+
+.blog-post {
+  width: 60%;
+}
+
+@media (max-width: 70em) {
+  .blog-post {
+    width: 90%;
+  }
 }

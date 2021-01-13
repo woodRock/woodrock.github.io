@@ -36,7 +36,7 @@ const ViewBlog = () => {
 };
 
 const BlogItem = ({ item }) => (
-  <div className="blog-post twitter-style-border" style={styles.blog}>
+  <div className="blog-post twitter-style-border">
     <div className="link-container">
       <Link className="github-link" to="/blog">
         <i className="material-icons">chevron_left</i>

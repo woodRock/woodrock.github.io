@@ -17,26 +17,22 @@ const Blog = () => {
   );
 };
 
-const BlogItem = ({ item }) => (
-  <div style={styles.container} className="blog-post twitter-style-border">
-    <div className="blog-content">
-      <h2>
-        <Link class="blog-title" to={"/blog/" + item.id}>
-          {item.title}
-        </Link>
-      </h2>
-      <i>
-        <span className="secondary">{TimeAgo({ date: item.time })}</span>
-      </i>
-      <ReactMarkdown source={item.markdown + ""} />
+const BlogItem = ({ item }) => {
+  return (
+    <div className="blog-post twitter-style-border">
+      <div className="blog-content">
+        <h2>
+          <Link className="blog-title" to={"/blog/" + item.id}>
+            {item.title}
+          </Link>
+        </h2>
+        <i>
+          <span className="secondary">{TimeAgo({ date: item.time })}</span>
+        </i>
+        <ReactMarkdown source={item.markdown + ""} />
+      </div>
     </div>
-  </div>
-);
-
-const styles = {
-  container: {
-    width: "60%"
-  }
+  );
 };
 
 export default Blog;
