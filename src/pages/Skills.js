@@ -4,7 +4,7 @@ import skills from "../assets/skills.md";
 
 const Skills = () => {
   return (
-    <div style={styles.container} className="twitter-style-border">
+    <div style={styles.container} className="content twitter-style-border">
       <div style={styles.content}>
         <Markdown markdown={skills} />
       </div>
@@ -14,12 +14,12 @@ const Skills = () => {
 
 const styles = {
   container: {
-    width: "60%",
-    minHeight: "100vh"
+    //   width: "60%",
+    minHeight: "100vh",
   },
   content: {
-    padding: "2.5rem"
-  }
+    paddingLeft: "2.5rem",
+  },
 };
 
 export default Skills;

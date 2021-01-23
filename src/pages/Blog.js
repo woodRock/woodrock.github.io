@@ -3,7 +3,6 @@ import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
-import logo from "../assets/logo.png";
 import "./Blog.css";
 
 const Blog = () => {
@@ -29,7 +28,7 @@ const BlogItem = ({ item }) => {
         <i>
           <span className="secondary">{TimeAgo({ date: item.time })}</span>
         </i>
-        <ReactMarkdown source={item.markdown + ""} />
+        <ReactMarkdown source={item.markdown} />
       </div>
     </div>
   );

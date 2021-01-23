@@ -9,7 +9,7 @@ const schools = [vuwMD, rcMD, swisMD, ibsMD];
 
 const Education = () => {
   return (
-    <div style={styles.container} className="twitter-style-border">
+    <div style={styles.container} className="content">
       <div style={styles.content}>
         <Timeline title="Education" events={schools} />;
       </div>
@@ -18,13 +18,13 @@ const Education = () => {
 };
 
 const styles = {
-  container: {
-    width: "60%",
-    minHeight: "100vh"
-  },
-  content: {
-    padding: "2.5rem"
-  }
+  // container: {
+  //   width: "60%",
+  //   minHeight: "100vh",
+  // },
+  // content: {
+  //   padding: "2.5rem",
+  // },
 };
 
 export default Education;

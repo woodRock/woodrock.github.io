@@ -34,7 +34,7 @@ const FirebaseProvider = ({ children }) => {
    * We perform artitrary sorting based on a particular key.
    * We sort the collection by an existing field in descending order.
    */
-  const fetch = (collection, sort, observer) => {
+  const fetch = (collection, sort = "time", observer) => {
     db.collection(collection).orderBy(sort, "desc").onSnapshot(observer);
   };
 

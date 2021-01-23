@@ -4,7 +4,6 @@ import ReactMarkdown from "react-markdown";
 import { useFirebase } from "../api/Firebase";
 import TimeAgo from "../components/TimeAgo";
 import Loading from "../components/Loading";
-import logo from "../assets/logo.png";
 
 const ViewBlog = () => {
   const [blog, setBlog] = useState();

@@ -24,6 +24,12 @@
   --bg-secondary: #141418;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 h1 {
   color: var(--text-secondary);
 }
@@ -107,8 +113,16 @@ a:hover {
   width: 60%;
 }
 
+.content {
+  padding: "2.5rem";
+}
+
 @media (max-width: 70em) {
   .blog-post {
+    width: 90%;
+  }
+
+  .content {
     width: 90%;
   }
 }
