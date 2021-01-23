@@ -115,6 +115,15 @@ a:hover {
 
 .content {
   padding-left: 2.5rem;
+  width: 60%;
+  min-height: 90vh;
+}
+
+.twitter-style-border {
+  /* Twitter style borders */
+  border-width: thin;
+  border-style: solid;
+  border-color: var(--text);
 }
 
 @media (max-width: 70em) {

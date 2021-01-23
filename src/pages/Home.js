@@ -5,8 +5,8 @@ import "../style.css";
 
 const Home = () => {
   return (
-    <div className="twitter-style-border">
-      <div className="container">
+    <div className="content twitter-style-border">
+      <div className="">
         <Markdown markdown={home} />
       </div>
     </div>
