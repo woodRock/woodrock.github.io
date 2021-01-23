@@ -43,7 +43,7 @@ const BlogItem = ({ item }) => (
         <span className="link-text">Back</span>
       </Link>
     </div>
-    <h1 style={styles.title}>{item.title}</h1>
+    <h1>{item.title}</h1>
     <div className="blog-content">
       <div className="title">
         <span className="blog-title-text">
@@ -57,20 +57,10 @@ const BlogItem = ({ item }) => (
         </span>
       </div>
       <div>
-        <ReactMarkdown source={item.markdown + ""} />
+        <ReactMarkdown source={item.markdown} />
       </div>
     </div>
   </div>
 );
-
-const styles = {
-  blog: {
-    width: "60%",
-    minHeight: "100vh",
-  },
-  title: {
-    paddingLeft: "5rem",
-  },
-};
 
 export default ViewBlog;

@@ -9,22 +9,12 @@ const schools = [vuwMD, rcMD, swisMD, ibsMD];
 
 const Education = () => {
   return (
-    <div style={styles.container} className="content">
-      <div style={styles.content}>
+    <div className="content">
+      <div>
         <Timeline title="Education" events={schools} />;
       </div>
     </div>
   );
-};
-
-const styles = {
-  // container: {
-  //   width: "60%",
-  //   minHeight: "100vh",
-  // },
-  // content: {
-  //   padding: "2.5rem",
-  // },
 };
 
 export default Education;
