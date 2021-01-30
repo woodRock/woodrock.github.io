@@ -24,6 +24,7 @@ const Collection = ({ Child, collectionName, sort, styles }) => {
   return (
     <div>
       <h1>{capitalize(collectionName)}</h1>
+      <hr />
       {!collection.length && <Loading />}
       <section className={styles}>
         {collection ? (

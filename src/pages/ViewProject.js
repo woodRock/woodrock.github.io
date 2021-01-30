@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { useFirebase } from "../api/Firebase";
+import TimeAgo from "../components/TimeAgo";
 import Loading from "../components/Loading";
+import logo from "../assets/logo.png";
 
 const ViewProject = () => {
   const [project, setProject] = useState();
@@ -33,31 +35,49 @@ const ViewProject = () => {
   );
 };
 
-const Project = ({ id, title, description, link, image }) => (
-  <div className="project-container twitter-style-border">
-    <div className="link-container">
+const Project = ({ id, title, time, description, link, image }) => (
+  <div>
+    <div>
       <Link className="github-link" to="/projects">
         <i className="material-icons">chevron_left</i>
         <span>{"  "}</span>
         <span className="link-text">Back</span>
       </Link>
-      <div style={styles.container}>
-        <h1>
-          <Link to={"/projects/" + id}>{title}</Link>
-        </h1>
-        <a href={link}>
-          <img style={styles.image} src={image} alt={title} />
+    </div>
+    <img
+      style={{ marginLeft: "15%", maxWidth: "50hw", maxHeight: "50vh" }}
+      src={image}
+      alt={title}
+    />
+    <h1 style={{ marginLeft: "15%" }}>{title}</h1>
+    <div style={{ marginLeft: "15%", marginRight: "30%" }}>
+      <hr />
+      <img
+        style={{ height: "50px", width: "50px", borderRadius: "50px" }}
+        src={logo}
+        alt="Brand Logo"
+      />
+      &emsp;
+      <span>
+        <span>Jesse Wood</span>
+        &emsp;
+        <span className="secondary">
+          {TimeAgo({
+            date: time,
+          })}
+        </span>
+        &emsp;
+        <a href={link} className="github-link">
+          <i className="fa fa-github" />
+          <span>{"  "}</span>
+          <span className="link-text">View Source </span>
         </a>
-        <div style={styles.description}>
-          <ReactMarkdown source={description} />
-        </div>
-        <div className="link-container">
-          <a href={link} className="github-link">
-            <i className="fa fa-github" />
-            <span>{"  "}</span>
-            <span className="link-text">View Source </span>
-          </a>
-        </div>
+      </span>
+      <hr />
+    </div>
+    <div style={{ marginLeft: "15%", marginRight: "30%" }}>
+      <div style={styles.description}>
+        <ReactMarkdown source={description} />
       </div>
     </div>
   </div>

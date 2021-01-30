@@ -1,5 +1,4 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
@@ -27,9 +26,9 @@ const Project = ({ item }) => {
         </Link>
       </header>
       <div className="card-image">
-        <a href={item.link}>
+        <Link to={"/projects/" + item.id}>
           <img src={item.image} alt={item.title} />
-        </a>
+        </Link>
       </div>
       <div className="card-author">
         <a href="#" className="author-avatar">
@@ -45,10 +44,6 @@ const Project = ({ item }) => {
       </div>
     </article>
   );
-};
-
-const Description = ({ item }) => {
-  return <ReactMarkdown source={item.description} />;
 };
 
 export default Projects;

@@ -44,6 +44,7 @@ body {
   margin: 0;
   padding: 0;
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
+  transition: display 500ms ease-in-out;
 }
 
 body::-webkit-scrollbar {
@@ -86,7 +87,6 @@ a {
 
 .github-link .link-text {
   display: none;
-  transition: display 1000ms ease;
 }
 
 .github-link:hover .link-text {

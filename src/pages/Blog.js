@@ -1,35 +1,39 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
+import { timeToRead, teaser } from "../api/blog";
 import TimeAgo from "../components/TimeAgo";
 import Collection from "../components/Collection";
-import "./Blog.css";
 
 const Blog = () => {
+  const props = { Child: BlogItem, collectionName: "blog", sort: "time" };
   return (
-    <Collection
-      Child={BlogItem}
-      collectionName={"blog"}
-      sort={"time"}
-      styles=""
-    />
+    <div>
+      <Collection {...props} />
+    </div>
   );
 };
 
 const BlogItem = ({ item }) => {
   return (
-    <div className="blog-post twitter-style-border">
-      <div className="blog-content">
+    <div style={{ marginLeft: "30%", marginRight: "30%" }}>
+      <div>
         <h2>
-          <Link className="blog-title" to={"/blogs/" + item.id}>
+          <Link className="" to={"/blogs/" + item.id}>
             {item.title}
           </Link>
         </h2>
         <i>
-          <span className="secondary">{TimeAgo({ date: item.time })}</span>
+          <span className="">{TimeAgo({ date: item.time })}</span>
+          &emsp;
+          <span class="material-icons">query_builder</span>
+          <span style={{ textAlign: "left" }}>
+            {timeToRead(item.markdown) + " mins"}
+          </span>
         </i>
-        <ReactMarkdown source={item.markdown} />
+        <br />
+        <p> {teaser(item.markdown)}</p>
       </div>
+      <hr />
     </div>
   );
 };
