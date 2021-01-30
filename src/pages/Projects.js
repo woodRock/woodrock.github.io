@@ -22,7 +22,7 @@ const Project = ({ item }) => {
     <article className="card">
       <header className="card-header">
         <i className="secondary">{TimeAgo({ date: item.time })}</i>
-        <Link id="nav-link" to={"/project/" + item.id}>
+        <Link id="nav-link" to={"/projects/" + item.id}>
           <h2>{item.title}</h2>
         </Link>
       </header>

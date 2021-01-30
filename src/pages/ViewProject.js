@@ -36,14 +36,14 @@ const ViewProject = () => {
 const Project = ({ id, title, description, link, image }) => (
   <div className="project-container twitter-style-border">
     <div className="link-container">
-      <Link className="github-link" to="/blog">
+      <Link className="github-link" to="/projects">
         <i className="material-icons">chevron_left</i>
         <span>{"  "}</span>
         <span className="link-text">Back</span>
       </Link>
       <div style={styles.container}>
         <h1>
-          <Link to={"/project/" + id}>{title}</Link>
+          <Link to={"/projects/" + id}>{title}</Link>
         </h1>
         <a href={link}>
           <img style={styles.image} src={image} alt={title} />

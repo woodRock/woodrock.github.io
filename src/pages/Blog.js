@@ -21,7 +21,7 @@ const BlogItem = ({ item }) => {
     <div className="blog-post twitter-style-border">
       <div className="blog-content">
         <h2>
-          <Link className="blog-title" to={"/blog/" + item.id}>
+          <Link className="blog-title" to={"/blogs/" + item.id}>
             {item.title}
           </Link>
         </h2>

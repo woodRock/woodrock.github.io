@@ -26,7 +26,7 @@ const ROUTES = [
   },
   {
     name: "Blog",
-    path: "/blog",
+    path: "/blogs",
     component: Blog,
     icon: "create",
   },
@@ -49,11 +49,11 @@ const ROUTES = [
     icon: "work",
   },
   {
-    path: "/blog/:id",
+    path: "/blogs/:id",
     component: ViewBlog,
   },
   {
-    path: "/project/:id",
+    path: "/projects/:id",
     component: ViewProject,
   },
 ];
