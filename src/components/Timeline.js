@@ -6,6 +6,7 @@ import "./Timeline.css";
 const Timeline = ({ title, events }) => (
   <div>
     <h1>{title}</h1>
+    <hr />
     <div className="timeline">
       {events.map((file, i) => {
         return <Event key={v4()} file={file} i={i} />;

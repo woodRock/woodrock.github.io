@@ -17,11 +17,7 @@ const Markdown = ({ markdown }) => {
     fetchMarkdown(markdown);
   });
 
-  return (
-    <div className="content">
-      {terms ? <ReactMarkdown source={terms} /> : <Loading />}
-    </div>
-  );
+  return <div>{terms ? <ReactMarkdown source={terms} /> : <Loading />}</div>;
 };
 
 export default Markdown;

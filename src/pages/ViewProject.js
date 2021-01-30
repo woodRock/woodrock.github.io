@@ -28,9 +28,13 @@ const ViewProject = () => {
   }, [id, fetch]);
 
   return (
-    <div className="project">
-      {" "}
-      {project ? <Project {...project} /> : <Loading />}{" "}
+    <div>
+      <h1>Projects</h1>
+      <hr />
+      <div className="project">
+        {" "}
+        {project ? <Project {...project} /> : <Loading />}{" "}
+      </div>
     </div>
   );
 };

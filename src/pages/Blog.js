@@ -17,11 +17,9 @@ const BlogItem = ({ item }) => {
   return (
     <div style={{ marginLeft: "30%", marginRight: "30%" }}>
       <div>
-        <h2>
-          <Link className="" to={"/blogs/" + item.id}>
-            {item.title}
-          </Link>
-        </h2>
+        <Link to={"/blogs/" + item.id}>
+          <h2>{item.title}</h2>
+        </Link>
         <i>
           <span className="">{TimeAgo({ date: item.time })}</span>
           &emsp;

@@ -38,6 +38,8 @@ const ViewBlog = () => {
 
 const BlogItem = ({ item }) => (
   <div>
+    <h1>Blog</h1>
+    <hr />
     <div className="link-container">
       <Link className="github-link" to="/blogs">
         <i className="material-icons">chevron_left</i>

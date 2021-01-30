@@ -4,13 +4,7 @@ import home from "../assets/home.md";
 import "../style.css";
 
 const Home = () => {
-  return (
-    <div className="content twitter-style-border">
-      <div className="">
-        <Markdown markdown={home} />
-      </div>
-    </div>
-  );
+  return <Markdown markdown={home} />;
 };
 
 export default Home;

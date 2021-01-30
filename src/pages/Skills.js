@@ -3,13 +3,7 @@ import Markdown from "../components/Markdown";
 import skills from "../assets/skills.md";
 
 const Skills = () => {
-  return (
-    <div className="content twitter-style-border">
-      <div>
-        <Markdown markdown={skills} />
-      </div>
-    </div>
-  );
+  return <Markdown markdown={skills} />;
 };
 
 export default Skills;
