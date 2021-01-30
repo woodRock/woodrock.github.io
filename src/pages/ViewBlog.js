@@ -46,8 +46,8 @@ const BlogItem = ({ item }) => (
       </Link>
     </div>
     <h1 style={{ marginLeft: "15%" }}>{item.title}</h1>
-    <hr />
-    <div style={{ marginLeft: "15%" }}>
+    <div style={{ marginLeft: "15%", marginRight: "30%" }}>
+      <hr />
       <img
         style={{ height: "50px", width: "50px", borderRadius: "50px" }}
         src={logo}
@@ -69,8 +69,8 @@ const BlogItem = ({ item }) => (
           {timeToRead(item.markdown) + " mins"}
         </span>
       </span>
+      <hr />
     </div>
-    <hr />
     <div style={{ marginLeft: "15%", marginRight: "30%" }}>
       <ReactMarkdown source={item.markdown} />
     </div>
