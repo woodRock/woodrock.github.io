@@ -4,7 +4,7 @@ import home from "../assets/home.md";
 import "../style.css";
 
 const Home = () => {
-  return <Markdown markdown={home} />;
+  return <Markdown title={"Home"} markdown={home} />;
 };
 
 export default Home;
