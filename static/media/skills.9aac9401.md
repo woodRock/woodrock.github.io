@@ -1,7 +1,3 @@
-# Skills
-
----
-
 ## Languages
 
 - Bash
