@@ -48,40 +48,45 @@ const Project = ({ id, title, time, description, link, image }) => (
         <span className="link-text">Back</span>
       </Link>
     </div>
-    <img
-      style={{ marginLeft: "15%", maxWidth: "50hw", maxHeight: "50vh" }}
-      src={image}
-      alt={title}
-    />
-    <h1 style={{ marginLeft: "15%" }}>{title}</h1>
-    <div style={{ marginLeft: "15%", marginRight: "30%" }}>
-      <hr />
-      <img
-        style={{ height: "50px", width: "50px", borderRadius: "50px" }}
-        src={logo}
-        alt="Brand Logo"
-      />
-      &emsp;
-      <span>
-        <span>Jesse Wood</span>
+    <div
+      style={{
+        marginLeft: "15%",
+        marginRight: "30%",
+        maxWidth: "50hw",
+        maxHeight: "50vh",
+      }}
+    >
+      <img src={image} alt={title} />
+      <h1>{title}</h1>
+      <div>
+        <hr />
+        <img
+          style={{ height: "50px", width: "50px", borderRadius: "50px" }}
+          src={logo}
+          alt="Brand Logo"
+        />
         &emsp;
-        <span className="secondary">
-          {TimeAgo({
-            date: time,
-          })}
+        <span>
+          <span>Jesse Wood</span>
+          &emsp;
+          <span className="secondary">
+            {TimeAgo({
+              date: time,
+            })}
+          </span>
+          &emsp;
+          <a href={link} className="github-link">
+            <i className="fa fa-github" />
+            <span>{"  "}</span>
+            <span className="link-text">View Source </span>
+          </a>
         </span>
-        &emsp;
-        <a href={link} className="github-link">
-          <i className="fa fa-github" />
-          <span>{"  "}</span>
-          <span className="link-text">View Source </span>
-        </a>
-      </span>
-      <hr />
-    </div>
-    <div style={{ marginLeft: "15%", marginRight: "30%" }}>
-      <div style={styles.description}>
-        <ReactMarkdown source={description} />
+        <hr />
+      </div>
+      <div>
+        <div style={styles.description}>
+          <ReactMarkdown source={description} />
+        </div>
       </div>
     </div>
   </div>
