@@ -12,7 +12,7 @@ const ViewProject = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    fetch("projects", "time", {
+    fetch("projects", "time", "desc", {
       next: (querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const data = {
@@ -56,7 +56,7 @@ const Project = ({ id, title, time, description, link, image }) => (
         maxHeight: "50vh",
       }}
     >
-      <img src={image} alt={title} />
+      <img style={{ maxHeight: "30vh" }} src={image} alt={title} />
       <h1>{title}</h1>
       <div>
         <hr />

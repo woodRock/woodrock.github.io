@@ -13,7 +13,7 @@ const ViewBlog = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    fetch("blog", "time", {
+    fetch("blog", "time", "desc", {
       next: (querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const data = {

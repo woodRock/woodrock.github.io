@@ -10,7 +10,7 @@ const Collection = ({ Child, collectionName, sort, styles }) => {
   const { fetch } = useFirebase();
 
   useEffect(() => {
-    fetch(collectionName, sort, {
+    fetch(collectionName, sort, "desc", {
       next: (querySnapshot) => {
         setCollection(
           querySnapshot.docs.map((doc) => {
