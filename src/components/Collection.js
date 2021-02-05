@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { capitalize } from "../api/utility";
 import { useFirebase } from "../api/Firebase";
 import Loading from "../components/Loading";
 import { v4 } from "uuid";
@@ -35,10 +36,6 @@ const Collection = ({ Child, collectionName, sort, styles }) => {
       </section>
     </div>
   );
-};
-
-const capitalize = (phrase) => {
-  return phrase.replace(/^\w/, (c) => c.toUpperCase());
 };
 
 export default Collection;

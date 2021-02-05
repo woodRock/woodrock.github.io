@@ -7,8 +7,6 @@ import vuwMD from "../assets/schools/vuw.md";
 
 const schools = [vuwMD, rcMD, swisMD, ibsMD];
 
-const Education = () => {
-  return <Timeline title="Education" events={schools} />;
-};
+const Education = () => <Timeline title="Education" events={schools} />;
 
 export default Education;

@@ -6,14 +6,6 @@ import johnsMD from "../assets/jobs/stjohns.md";
 
 const jobs = [niwaMD, johnsMD, macsMD];
 
-const Jobs = () => {
-  return (
-    <div>
-      <div>
-        <Timeline title="Jobs" events={jobs} />;
-      </div>
-    </div>
-  );
-};
+const Jobs = () => <Timeline title="Jobs" events={jobs} />;
 
 export default Jobs;

@@ -15,15 +15,14 @@ const Timeline = ({ title, events }) => (
   </div>
 );
 
-const Event = ({ file, i }) => {
-  const side = i % 2 ? "right" : "left";
-  return (
-    <div className={"timeline-container " + side}>
-      <div className="timeline-content twitter-style-border">
-        <Markdown markdown={file} />
-      </div>
+const Event = ({ file, i }) => (
+  <div className={"timeline-container " + side(i)}>
+    <div className="timeline-content twitter-style-border">
+      <Markdown markdown={file} />
     </div>
-  );
-};
+  </div>
+);
+
+const side = (i) => (i % 2 ? "right" : "left");
 
 export default Timeline;

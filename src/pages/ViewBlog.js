@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { useFirebase } from "../api/Firebase";
-import { timeToRead } from "../api/blog";
+import { timeToRead } from "../api/utility";
 import TimeAgo from "../components/TimeAgo";
 import Loading from "../components/Loading";
 import logo from "../assets/logo.png";

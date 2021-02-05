@@ -8,11 +8,10 @@ JavascriptTimeAgo.locale(en);
 
 const style = "Twitter";
 
-export default function TimeAgo({ date }) {
-  const stringToDate = new Date(date);
-  return (
-    <>
-      <ReactTimeAgo date={stringToDate} timeStyle={style} />
-    </>
-  );
-}
+const stringToDate = (date) => new Date(date);
+
+const TimeAgo = ({ date }) => (
+  <ReactTimeAgo date={stringToDate(date)} timeStyle={style} />
+);
+
+export default TimeAgo;
