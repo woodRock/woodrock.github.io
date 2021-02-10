@@ -18,4 +18,10 @@ A web application to display my software development portfolio. Featuring a cond
 - [St Johns](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/jobs/stjohns.md)
 - [Macs](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/jobs/macs.md)
 
+## Education
+
+- [Victoria](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/schools/vuw.md)
+- [Rongotai](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/schools/rc.md)
+
+
 [repository](https://github.com/woodRock/woodrock.github.io)
