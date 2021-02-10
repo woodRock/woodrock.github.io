@@ -12,4 +12,10 @@ A web application to display my software development portfolio. Featuring a cond
 - [Home](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/home.md)
 - [Skills](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/skills.md)
 
+## Jobs
+
+- [Niwa](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/jobs/niwa.md)
+- [St Johns](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/jobs/stjohns.md)
+- [Macs](https://github.com/woodRock/woodrock.github.io/blob/dev/src/assets/jobs/macs.md)
+
 [repository](https://github.com/woodRock/woodrock.github.io)
