@@ -1,18 +1,9 @@
-## 2012
+## 2012 - 2018
+# Back of House / Front of House - [Mac’s Brewery](https://macs.co.nz/our-story/), Wellington, NZ
 
-# Mac's Brewery
-
-They are the flagship bar for New Zealand's Mac's beer. [Mac's](https://macs.co.nz/our-story/) is a function centre, restaurant and bar.
-
-**Roles:**
-
--   Bartender
--   Barista
--   Functions
--   Waiter
--   Kitchen-Hand
--   Glassy
-
-This was my first job. I started with no work experience, and steadily progressed through the company. I learnt valuable communication, event coordination and conflict resolution skills.
+- Upskilling to learn all aspects of the trade.
+- Cope under pressure in a fast-paced work environment that involved risk management, i.e. negotiations with
+disorderly customers.
+- Empathetic and Active Listening when dealing with confrontations.
 
 [![Mac's Brewery logo](https://www.macsbrewbars.co.nz/images/logo-macs.png)](https://macs.co.nz/our-story/)
