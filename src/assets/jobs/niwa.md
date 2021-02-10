@@ -1,11 +1,14 @@
-## Now - 2020
+## 2020 to Present
 
-# Niwa
+# Software Intern - [NIWA](niwa.co.nz/) , Wellington, NZ
 
-[NIWA](https://niwa.co.nz/about/our-company), the National Institute of Water and Atmospheric Research, is a Crown Research Institute established in 1992. It operates as a stand-alone company with its own Board of Directors and Executive.
-
-**Role:** Volunteer Work Experience
-
-My work experience involved developing a geographic information system (GIS). This used the [Mapserver](https://mapserver.org/) framework to create a web map service (WMS) to render data stored on a [postgis](https://postgis.net/) database. An example of this workflow can be found on my github [here](https://github.com/woodRock/solid-waffle).
+- Multi-disciplinary collaboration to implement an end to end best practice OGC Standard software.
+- Open-source technology stack to create web services that queried a database on a Linux cloud server.
+- Without previous expertise in Geo-Physics or Biology, Data Understanding was an important area of this work.
+We extracted requirements for software using the knowledge provided from other disciplines.
+- Participate in weekly meetings to communicate progress. Documentation of work to non-technical users through
+best practise agile methodology.
+- Work remotely from home due to the COVID-19 pandemic. Utilizing industry-standard tools (i.e, Microsoft Teams
+for communication and Pulse Secure for SSH).
 
 [![niwa logo](https://media.glassdoor.com/sqll/446203/niwa-squarelogo-1537142405945.png)](https://niwa.co.nz/about/our-company)
