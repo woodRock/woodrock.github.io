@@ -1,7 +1,6 @@
 # woodrock.tk
 
 ![Lint](https://github.com/woodRock/woodrock.github.io/workflows/Lint/badge.svg)
-![Build](https://github.com/woodRock/woodrock.github.io/workflows/Build/badge.svg)
 ![Deploy](https://github.com/woodRock/woodrock.github.io/workflows/Deploy/badge.svg)
 ![CodeQL](https://github.com/woodRock/woodrock.github.io/workflows/CodeQL/badge.svg)
 
