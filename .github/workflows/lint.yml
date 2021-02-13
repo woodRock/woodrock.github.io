@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - src/*
 jobs:
   run-linters:
     runs-on: ubuntu-latest

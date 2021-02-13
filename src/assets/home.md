@@ -4,21 +4,17 @@
 
 **Jesse Wood**, _Wellington, NZ_
 
-Tinkerer / Engineer in the making
+## Hi there 👋
 
-Fourth-year engineering student majoring in Software. Finding an opportunity to apply and expand my knowledge. Highly motivated and ready learn new things, with experience in the service industry and a passion for all things tech.
+My goal is to leave the world a better place than I found it. I plan to bring that goal into reality by creating technology which improves the quality of life. These goals have motivated my passion for software engineering and the open-source community as a tool for sharing knowledge. This objective has led me to a voluntary internship at NIWA, collaborating with scientists and physicists to publish their research on our oceans and atmosphere to a global audience. Software is a medium to explore my scientific curiosity and contribute a meaningful change.
 
-I spend my time productively doing the following:
+## Socials 
 
-- BE Engineering @[Wellington University](#/education)
-- work experience @[NIWA](#/job)
-- personal projects @[woodRock](#/projects)
+- [Twitter](https://twitter.com/jrhwood)
+- [LinkedIn](https://www.linkedin.com/in/jrhwood/)
+- [HashNode](https://woodrock.hashnode.dev/)
 
-Some of my other interests include:
+## Support
 
-- Classical / Blues Guitar (10+ years)
-- Rockets / Astronomy
-- PC Gaming
-- Table tennis
-- Canoe Polo
-- Debating
+- [Buy](https://www.buymeacoffee.com/woodrock) me a coffee ☕
+- $ETH --> 0x045BA9c0c69AF53B2Fca0e1A3769E44D9a328696
