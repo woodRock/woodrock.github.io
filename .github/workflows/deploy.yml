@@ -4,8 +4,8 @@ on:
     branches: 
       - dev
     paths:
-      - src/*
-      - public/*
+      - src/**
+      - public/**
       - package.json
 jobs:
   build-and-deploy:
