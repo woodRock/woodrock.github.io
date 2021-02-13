@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import * as Firebase from "firebase/";
+import firebase from "firebase/app";
 import "firebase/firestore";
 import config from "./config";
 
@@ -26,8 +26,8 @@ const useFirebase = () => {
  * All subcomponents can access this context.
  */
 const FirebaseProvider = ({ children }) => {
-  Firebase.initializeApp(config);
-  const db = Firebase.firestore();
+  firebase.initializeApp(config);
+  const db = firebase.firestore();
 
   /**
    * Most components simply need to fetch a collection
