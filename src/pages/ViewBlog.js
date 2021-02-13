@@ -10,7 +10,7 @@ import logo from "../assets/logo.png";
 const ViewBlog = () => {
   const [blog, setBlog] = useState();
   const { fetch } = useFirebase();
-  let { id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     fetch("blog", "time", "desc", {

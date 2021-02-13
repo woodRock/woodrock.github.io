@@ -9,7 +9,7 @@ import logo from "../assets/logo.png";
 const ViewProject = () => {
   const [project, setProject] = useState();
   const { fetch } = useFirebase();
-  let { id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     fetch("projects", "time", "desc", {
