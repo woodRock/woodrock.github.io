@@ -28,4 +28,4 @@ jobs:
           BRANCH: master # The branch the action should deploy to.
           FOLDER: build # The folder the action should deploy.
           CLEAN: true
-          CLEAN_EXCLUDE: CNAME  
+          CLEAN_EXCLUDE: '["CNAME",".well-known/brave-rewards-verification.txt"]'
