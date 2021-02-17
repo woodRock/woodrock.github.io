@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: woodrock.tk
-Token: 92e63c3ae5ac7d32f1a7dcd541a8d0f10e9343aa79a9e08b6b6838a931463275
