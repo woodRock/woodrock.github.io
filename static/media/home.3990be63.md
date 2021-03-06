@@ -8,6 +8,12 @@
 
 My goal is to leave the world a better place than I found it. I plan to bring that goal into reality by creating technology which improves the quality of life. These goals have motivated my passion for software engineering and the open-source community as a tool for sharing knowledge. This objective has led me to a voluntary internship at NIWA, collaborating with scientists and physicists to publish their research on our oceans and atmosphere to a global audience. Software is a medium to explore my scientific curiosity and contribute a meaningful change.
 
+## Some things I made ...
+
+- [Bug Tracker](https://bugs.woodrock.tk) - AngularJS + Firebase: Bug tracking application similar to Github issues.
+- [Academic Scholar](https://scholar.woodrock.tk) - Ionic + Firebase: Scrapes the Google Scholar API to generate and store LaTeX references.
+- [Portfolio CMS](https://dev.woodrock.tk) - Vue + Firebase: Content Management System for my Portfolio Website made using .
+
 ## Socials 
 
 - [Twitter](https://twitter.com/jrhwood)
