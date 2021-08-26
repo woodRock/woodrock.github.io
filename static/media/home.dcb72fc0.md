@@ -10,11 +10,11 @@ My goal is to leave the world a better place than I found it. I plan to bring th
 
 ## Some things I made ...
 
-- [Bug Tracker](https://bugs.woodrock.tk) - AngularJS + Firebase: Bug tracking application similar to Github issues.
-- [Academic Scholar](https://scholar.woodrock.tk) - Ionic + Firebase: Scrapes the Google Scholar API to generate and store LaTeX references.
-- [Portfolio CMS](https://dev.woodrock.tk) - Vue + Firebase: Content Management System for my Portfolio Website made using .
+- [Bug Tracker](https://github.com/woodRock/bug-tracker) - AngularJS + Firebase: Bug tracking application similar to Github issues.
+- [Academic Scholar](https://github.com/woodRock/ionic-scholar) - Ionic + Firebase: Scrapes the Google Scholar API to generate and store LaTeX references.
+- [Portfolio CMS](https://github.com/woodRock/content-manager) - Vue + Firebase: Content Management System for my Portfolio Website made using .
 
-## Socials 
+## Socials
 
 - [Twitter](https://twitter.com/jrhwood)
 - [LinkedIn](https://www.linkedin.com/in/jrhwood/)
