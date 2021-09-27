@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+[![Deploy](https://github.com/woodRock/woodrock.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/woodRock/woodrock.github.io/actions/workflows/deploy.yml)
+[![CodeQL](https://github.com/woodRock/woodrock.github.io/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/woodRock/woodrock.github.io/actions/workflows/codeql-analysis.yml)
+[![Lint](https://github.com/woodRock/woodrock.github.io/actions/workflows/lint.yml/badge.svg)](https://github.com/woodRock/woodrock.github.io/actions/workflows/lint.yml)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
