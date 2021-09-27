@@ -17,7 +17,7 @@ import Home from "../assets/home.png";
 const VTimeline = ({markers}) => (
   <VerticalTimeline className={ "timeline" } >
     <HomeButton />
-    { markers.map( ({name, url, type, date}, index) => (
+    { markers.map( ({name, url, type, date, image}, index) => (
       <VerticalTimelineElement
         className={ type == "work" ? "vertical-timeline-element--work" : "vertical-timeline-element--education" }
         date={ date }
@@ -27,6 +27,7 @@ const VTimeline = ({markers}) => (
       >
         <h3 className="vertical-timeline-element-title">{name}</h3>
         <h4 className="vertical-timeline-element-subtitle">{type}</h4>
+        <img src={ image } style={{width: "10rem"}}/>
         <p>
           <a href={ url }> See More...</a> 
         </p>
