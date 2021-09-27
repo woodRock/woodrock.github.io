@@ -33,7 +33,7 @@ const Legend = ({types, colors}) => {
       return div;
     };
     legend.addTo(map);
-  },[]);
+  },[colors, map, types]);
   
   return null;
 };

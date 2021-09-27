@@ -35,7 +35,7 @@ const MarkerMap = ({ location, markers }) => (
         <LayersControl.Overlay checked key={ t } name={ t }>
           <LayerGroup>
             {  
-                        markers.filter(({ type }) => t == type)
+                        markers.filter(({ type }) => t === type)
                         .map((marker,index) => (
                           <MapMarker { ...marker } key={ t+index } />
                         ))
@@ -110,7 +110,7 @@ const colors = {
  * @returns true if duplicate, false otherwise.
  */
 const isDuplicate = (type, name) => {
-  return type == "work" && name == "Victoria University of Wellington";
+  return type === "work" && name === "Victoria University of Wellington";
 };
 
 export default MarkerMap;

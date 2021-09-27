@@ -19,15 +19,15 @@ const VTimeline = ({markers}) => (
     <HomeButton />
     { markers.map( ({name, url, type, date, image}, index) => (
       <VerticalTimelineElement
-        className={ type == "work" ? "vertical-timeline-element--work" : "vertical-timeline-element--education" }
+        className={ type === "work" ? "vertical-timeline-element--work" : "vertical-timeline-element--education" }
         date={ date }
-        icon={ type == "work" ? <Icon source={ WorkIcon } /> : <Icon source={ EducationIcon } /> }
+        icon={ type === "work" ? <Icon source={ WorkIcon } /> : <Icon source={ EducationIcon } /> }
         iconStyle={ { background: colors[type], color: "#fff" } }
         key={ index }
       >
         <h3 className="vertical-timeline-element-title">{name}</h3>
         <h4 className="vertical-timeline-element-subtitle">{type}</h4>
-        <img src={ image } style={{width: "10rem"}}/>
+        <img src={ image } alt={name} style={{width: "10rem"}}/>
         <p>
           <a href={ url }> See More...</a> 
         </p>
@@ -70,6 +70,7 @@ const HomeButton = () => {
 const Icon = ({source}) =>  (
   <img
     src={ source } 
+    alt={ "icon" }
     style={ { 
       maxWidth : "100%", 
       bottom: "100px",
