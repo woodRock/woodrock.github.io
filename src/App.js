@@ -1,36 +1,31 @@
+import "./App.css";
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import { useThemeState } from "./api/Theme";
-import ROUTES from "./constants/routes";
-import "./style.css";
+import Map from "./pages/Map";
+import Dice from "./components/Dice";
+import Timeline from "./pages/Timeline";
 
 const App = () => {
-  const state = useThemeState();
   return (
-    <body className={state.theme}>
+    <div className="App">
       <Router>
-        <Navigation />
-        <main>
-          <Pages />
-        </main>
-      </Router>
-    </body>
-  );
-};
-
-const Pages = () => {
-  return (
-    <>
-      {ROUTES.map((route) => (
         <Route
-          key={route.path}
-          path={route.path}
+          component={ Map }
           exact
-          component={route.component}
+          path={ "/" }
         />
-      ))}
-    </>
+        <Route
+          component={ Dice }
+          exact
+          path={ "/dice" }
+        />
+        <Route
+          component={ Timeline }
+          exact
+          path={ "/timeline" }
+        />
+      </Router>
+    </div>
   );
 };
 
