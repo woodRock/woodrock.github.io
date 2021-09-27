@@ -15,6 +15,8 @@ import Home from "../assets/home.png";
  * @param {markers} param0 a collection of locations with information.
  */
 const VTimeline = ({markers}) => (
+  <React.Fragment>
+  <div className="bg-image">  
   <VerticalTimeline className={ "timeline" } >
     <HomeButton />
     { markers.map( ({name, url, type, date, image}, index) => (
@@ -35,6 +37,8 @@ const VTimeline = ({markers}) => (
     ))}
     <HomeButton />
   </VerticalTimeline>
+  </div>
+  </React.Fragment>
 );
 
 VTimeline.propTypes = {
