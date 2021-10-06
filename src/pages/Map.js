@@ -23,14 +23,6 @@ const markers = [
         date: "2021 - present"
     },
     { 
-        name: "Victoria University of Wellington", 
-        position: [-41.28993225097656,174.7685546875],
-        image: "https://i1.sndcdn.com/avatars-000751225282-2lnuu5-original.jpg",
-        url: "https://www.wgtn.ac.nz/",
-        type: "school",
-        date: "2021 - present"
-    },
-    { 
         name: "Wellington Chamber Of Commerce", 
         position: [-41.28666552, 174.772996908],
         image: "https://www.wecc.org.nz/__data/assets/image/0009/3312/bg-chamber-header.png",
@@ -45,6 +37,14 @@ const markers = [
         url: "https://www.niwa.co.nz/",
         type: "work",
         date: "2020 - present"
+    },
+    { 
+        name: "Victoria University of Wellington", 
+        position: [-41.28993225097656,174.7685546875],
+        image: "https://i1.sndcdn.com/avatars-000751225282-2lnuu5-original.jpg",
+        url: "https://www.wgtn.ac.nz/",
+        type: "school",
+        date: "2016 - present"
     },
     { 
         name: "Rongotai College", 
