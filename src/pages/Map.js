@@ -55,7 +55,7 @@ const markers = [
         date: "2011 - 2015"
     },
     { 
-        name: "SWIS Intermediate School", 
+        name: "SWIS Intermediate", 
         position: [-41.3183829,174.7789825],
         image: "https://i.imgur.com/Qlf29ue.jpeg",
         url: "http://www.swis.school.nz/",
@@ -63,7 +63,7 @@ const markers = [
         date: "2010 - 2012"
     },
     { 
-        name: "Island Bay School", 
+        name: "Island Bay", 
         position: [-41.3357583,174.7754525],
         image: "https://pbs.twimg.com/profile_images/3241466964/c617b804550de86eae67350babc41f07_400x400.jpeg",
         url: "https://www.islandbay.school.nz/",
