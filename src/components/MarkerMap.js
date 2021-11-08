@@ -110,7 +110,7 @@ const colors = {
  * @returns true if duplicate, false otherwise.
  */
 const isDuplicate = (type, name) => {
-  return type === "work" && name === "Victoria University of Wellington";
+  return type === "work" && (name === "VUW - Tutor" || name === "VUW - Research Assistant");
 };
 
 export default MarkerMap;

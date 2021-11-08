@@ -12,15 +12,24 @@ const Map = () => (
 // GPS coordinates of Wellington.
 const location = [-41.31, 174.79]; 
 
+
 // Marker metadata for locations of interest with a Popup.
 const markers = [
     { 
-        name: "Victoria University of Wellington", 
+        name: "VUW - Research Assistant", 
         position: [-41.28993225097656,174.7685546875],
-        image: "https://i1.sndcdn.com/avatars-000751225282-2lnuu5-original.jpg",
+        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
         url: "https://www.wgtn.ac.nz/",
         type: "work",
         date: "2021 - present"
+    },
+    { 
+        name: "VUW - Tutor", 
+        position: [-41.28993225097656,174.7685546875],
+        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
+        url: "https://www.wgtn.ac.nz/",
+        type: "work",
+        date: "2021 - 3 months"
     },
     { 
         name: "Wellington Chamber Of Commerce", 
@@ -28,7 +37,7 @@ const markers = [
         image: "https://www.wecc.org.nz/__data/assets/image/0009/3312/bg-chamber-header.png",
         url: "https://www.wecc.org.nz/",
         type: "work",
-        date: "2021 - present"
+        date: "2021 - 9 months"
     },
     { 
         name: "Niwa", 
@@ -39,9 +48,9 @@ const markers = [
         date: "2020 - present"
     },
     { 
-        name: "Victoria University of Wellington", 
+        name: "VUW - BE (Hons) Software Engineering", 
         position: [-41.28993225097656,174.7685546875],
-        image: "https://i1.sndcdn.com/avatars-000751225282-2lnuu5-original.jpg",
+        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
         url: "https://www.wgtn.ac.nz/",
         type: "school",
         date: "2016 - present"
@@ -68,7 +77,7 @@ const markers = [
         image: "https://pbs.twimg.com/profile_images/3241466964/c617b804550de86eae67350babc41f07_400x400.jpeg",
         url: "https://www.islandbay.school.nz/",
         type: "school",
-        date: "2004 - 2006"
+        date: "2004 - 2009"
     }
 ];
 
