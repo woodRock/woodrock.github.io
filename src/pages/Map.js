@@ -32,7 +32,7 @@ const markers = [
         date: "2021 - 3 months"
     },
     { 
-        name: "Wellington Chamber Of Commerce", 
+        name: "Wellington Chamber Of Commerce - Web Developer", 
         position: [-41.28666552, 174.772996908],
         image: "https://www.wecc.org.nz/__data/assets/image/0009/3312/bg-chamber-header.png",
         url: "https://www.wecc.org.nz/",
@@ -40,7 +40,7 @@ const markers = [
         date: "2021 - 9 months"
     },
     { 
-        name: "Niwa", 
+        name: "Niwa - Software Developer (contract)", 
         position: [-41.3019314,174.8055404],
         image: "https://media.glassdoor.com/sqll/446203/niwa-squarelogo-1537142405945.png",
         url: "https://www.niwa.co.nz/",
