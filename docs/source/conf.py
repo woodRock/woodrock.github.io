@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'woodrock.github.io'
+project = 'woodrock'
 copyright = '2022, Jesse Wood'
 author = 'Jesse Wood'
 
