@@ -12,12 +12,12 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../src'))
+sys.path.insert(0, os.path.abspath('../src'))  # Add js src folder.
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'woodrock'
+project = 'woodrock.github.io'
 copyright = '2022, Jesse Wood'
 author = 'Jesse Wood'
 
@@ -32,7 +32,6 @@ release = '1.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx_js'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -57,4 +56,3 @@ html_theme = 'sphinx_rtd_theme'  # (source: https://bit.ly/3qMc3EO)
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-js_source_path = '../../src'
