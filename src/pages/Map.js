@@ -48,14 +48,6 @@ const markers = [
         date: "2020 - present"
     },
     { 
-        name: "VUW - BE (Hons) Software Engineering", 
-        position: [-41.28993225097656,174.7685546875],
-        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
-        url: "https://www.wgtn.ac.nz/",
-        type: "school",
-        date: "2016 - 2022"
-    },
-    { 
         name: "VUW - Research Assistant", 
         position: [-41.28993225097656,174.7685546875],
         image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
@@ -78,6 +70,14 @@ const markers = [
         url: "https://www.wecc.org.nz/",
         type: "work",
         date: "2021 - 9 months"
+    },
+    { 
+        name: "VUW - BE (Hons) Software Engineering", 
+        position: [-41.28993225097656,174.7685546875],
+        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
+        url: "https://www.wgtn.ac.nz/",
+        type: "school",
+        date: "2016 - 2021"
     },
     { 
         name: "Rongotai College", 
