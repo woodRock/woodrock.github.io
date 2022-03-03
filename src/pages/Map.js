@@ -53,7 +53,7 @@ const markers = [
         image: "https://media.glassdoor.com/sqll/446203/niwa-squarelogo-1537142405945.png",
         url: "https://www.niwa.co.nz/",
         type: "work",
-        date: "2020 - present"
+        date: "2020 - Present"
     },
     { 
         name: "VUW - Research Assistant", 
@@ -61,7 +61,7 @@ const markers = [
         image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
         url: "https://www.wgtn.ac.nz/",
         type: "work",
-        date: "2021 - 2022 - 3 months",
+        date: "2021 - 2022",
     },
     { 
         name: "VUW - Tutor", 
@@ -69,7 +69,7 @@ const markers = [
         image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
         url: "https://www.wgtn.ac.nz/",
         type: "work",
-        date: "2021 - 3 months"
+        date: "2021"
     },
     { 
         name: "Wellington Chamber Of Commerce - Web Developer", 
@@ -77,7 +77,7 @@ const markers = [
         image: "https://www.wecc.org.nz/__data/assets/image/0009/3312/bg-chamber-header.png",
         url: "https://www.wecc.org.nz/",
         type: "work",
-        date: "2021 - 9 months"
+        date: "2021"
     },
     { 
         name: "VUW - BE (Hons) Software Engineering", 
