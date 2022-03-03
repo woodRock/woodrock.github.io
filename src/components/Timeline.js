@@ -1,3 +1,10 @@
+/**
+ * Timeline component - Timeline.js
+ * ================================
+ * 
+ * A vertical timeline from the interwebs (source: https://bit.ly/3AJfrmk).
+ */
+
 import React from "react";
 import { useHistory } from "react-router-dom";
 import propTypes from "prop-types";
@@ -11,8 +18,7 @@ import WorkIcon from "../assets/work.png";
 import Home from "../assets/home.png";
 
 /**
- * A vertical timeline from the interwebs (source: https://bit.ly/3AJfrmk).
- * @param {markers} param0 a collection of locations with information.
+ * @param {markers} param0 a collection of locations with information - see {@link Timeline} for more information.
  */
 const VTimeline = ({markers}) => (
   <React.Fragment>
@@ -50,15 +56,12 @@ VTimeline.propTypes = {
  * @returns {React.Component} a button to return to the home page.
  */
 const HomeButton = () => {
-  // Get the history object from the react-router-dom library.
   const history = useHistory();
 
-  // Return to home page.
   function home() {
     history.push("/");
   }
 
-  // Green button with home icon.
   return (
     <VerticalTimelineElement
       icon={ <Icon source={ Home } /> }

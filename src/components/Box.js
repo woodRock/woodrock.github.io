@@ -1,3 +1,14 @@
+/**
+ * Box component - Box.js
+ * ======================
+ * 
+ * The Box component is a 3D box that can be rotated.
+ * It attaches a static mesh to a 3D rotating box. 
+ * We put our logo as the face of each side of that cube. 
+ * This component uses the [Threejs]{@link https://threejs.org/} library.
+ * The dice changes size when it is clicked.
+ */
+
 import React, { useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -5,22 +16,18 @@ import * as THREE from "three";
 import logo from "../assets/logo.png";
 
 /**
- * Attachs a static mesh to 3D rotating box. 
  * @param {React.Component} props 
  * @returns A rotating box with a texture.
  */
 const Box = (props) => {
   const mesh = useRef();
 
-  // Store state for if user is clicking on the box.
   const [active, setActive] = useState(false);
 
-  // Update mesh rotation on each frame
   useFrame(() => {
     mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
   });
 
-  // Load the static-mesh once (i.e memoize)
   const texture = useMemo(
     () => new THREE.TextureLoader().load(logo), [],
   );

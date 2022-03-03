@@ -1,3 +1,14 @@
+/**
+ * MarkerMap component - MarkerMap.js
+ * ==================================
+ * 
+ * The MarkerMap component displays a map with a set of markers at a given location.
+ * A marker is defined in the [MapMarker]{@link MapMarker} component.
+ * This displays a map using the [Leaflet js]{@link https://leafletjs.com/} library. 
+ * The main purpose of this class to allow for custom icons on the leaflet map. 
+ * The library doesn't easily support this, so solutions are hacky at best. 
+ */
+
 import React from "react";
 import { Circle, LayerGroup, LayersControl, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom"; 
@@ -18,9 +29,13 @@ L.Marker.prototype.options.icon = DefaultIcon;
 // --------------------------------------------------
 
 /**
- * Display a map with a set of markers at a given location.
+ * We use the [OpenStreetMap]{@link https://www.openstreetmap.org/} API for tile layers.
+ * We make a request to the API based on a center location. We disable scroll to zoom by 
+ * default, this just makes it simpler to explore the map, without unexpected zooming behaviour. 
  * 
- * @param {NewType, markers} param0 - default location, and markers for map.
+ * @param {[Int, Int]} location - default location, the center of the map for the map API request.
+ * @param {Int} zoom - The default zoom level for the map. Defaults to 13. This gives a reasonable 
+ * view of Wellington City, New Zealand. This can be changed to suit the user's location.
  * @returns Leaflet map with markers.
  */
 const MarkerMap = ({ location, markers }) => (
@@ -52,12 +67,22 @@ MarkerMap.propTypes = {
   markers: PropTypes.array.isRequired
 };
 
-// Types of markers.
+
+/**
+ * There are three types of locations: school, work, interest.
+ * These types are used to determine the colour of the marker.
+ * This colour is the same for both the Map and Timeline components. 
+ */
 const types = ["school", "work", "interest"];
 
 /**
- * Constructs the customized marker for each location.
- * @param {name, position, image, type} param0 
+ * Constructs the customized leaflet marker for each location.
+ * 
+ * @param {string} name - The name of the location.
+ * @param {[Int, Int]} location - The GPS coordinates of the location (lat, long).
+ * @param {string} image - The URI for the location brand logo.
+ * @param {string} url - The URL to the homepage (if any) of the location.
+ * @param {string} type - The type of location (i.e. school, work, interest).
  */
 const MapMarker = ({ name, position, image, url, type }) => (
   <Marker key={ name } position={ position }>
@@ -96,7 +121,11 @@ MapMarker.propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-// Color dictionary for markers.
+
+/**
+ * Defines the colours for each location type.
+ * These are consistent for Map and Timeline. 
+ */
 const colors = {
   school: "#c2185b",
   work: "#1976d2",
@@ -104,7 +133,10 @@ const colors = {
 };
 
 /**
- * Checks if location is a duplicate. 
+ * Checks if location is a duplicate. For example, a user 
+ * may got to school and work at the same location (e.g. University).
+ * Or, have two seperate jobs at the same location (e.g. promotion). 
+ * 
  * @param {*} type (i.e. school, work, interest)
  * @param {*} name of the location.
  * @returns true if duplicate, false otherwise.

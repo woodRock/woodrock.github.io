@@ -1,10 +1,14 @@
+/**
+ * Map page - Map.js
+ * ======================
+ * 
+ * This shows a Map with markers for my education and work experience. 
+ * For now, it gives a map of Wellington, New Zealand.
+ */
+
 import React from "react";
 import MarkerMap from "../components/MarkerMap";
 
-/**
- * A Map of Wellington with markers for locations of interest.
- * For example: current workplace, schools, university. 
- */
 const Map = () => (
   <MarkerMap location={ location } markers={ markers } />
 );
@@ -12,8 +16,20 @@ const Map = () => (
 // GPS coordinates of Wellington.
 const location = [-41.31, 174.79]; 
 
-
-// Marker metadata for locations of interest with a Popup.
+/**
+ * These markers are used to show the places that are displayed on the map. 
+ * They are also used in the Timeline component, so the order matters, they
+ * must be from newest to oldest, such that the newest marker is on top.
+ * 
+ * The markers are in the format:
+ * 
+ * @param {String} name - The name of the role. 
+ * @param {[Int, Int]} position - The GPS coordinates of the place (lat, long)
+ * @param {String} image - A URI of the workplace logo.
+ * @param {String} url - A URL to their homepage.
+ * @param {String} type - The type of marker, either "work", "education" or "interest".
+ * @param {String} date - The time period when the role was held (i.e. 2005 - 2007).
+ */
 const markers = [
     { 
         name: "VUW - Tutor", 
