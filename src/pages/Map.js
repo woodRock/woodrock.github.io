@@ -32,6 +32,14 @@ const location = [-41.31, 174.79];
  */
 const markers = [
     { 
+        name: "VUW - PhD in Artificial Intelligence", 
+        position: [-41.28993225097656,174.7685546875],
+        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
+        url: "https://ecs.wgtn.ac.nz/Main/GradJesseWood",
+        type: "school",
+        date: "2022 - Present"
+    },
+    { 
         name: "VUW - Tutor", 
         position: [-41.28993225097656,174.7685546875],
         image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
