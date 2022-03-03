@@ -77,7 +77,7 @@ const markers = [
         image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
         url: "https://www.wgtn.ac.nz/",
         type: "school",
-        date: "2016 - present"
+        date: "2016 - 2021"
     },
     { 
         name: "Rongotai College", 
