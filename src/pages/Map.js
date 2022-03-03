@@ -16,12 +16,20 @@ const location = [-41.31, 174.79];
 // Marker metadata for locations of interest with a Popup.
 const markers = [
     { 
+        name: "VUW - Tutor", 
+        position: [-41.28993225097656,174.7685546875],
+        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
+        url: "https://www.wgtn.ac.nz/",
+        type: "work",
+        date: "2022 - Present"
+    },
+    { 
         name: "VUW - Research Assistant", 
         position: [-41.28993225097656,174.7685546875],
         image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
         url: "https://www.wgtn.ac.nz/",
         type: "work",
-        date: "2021 - present"
+        date: "2021 - 2022 - 3 months",
     },
     { 
         name: "VUW - Tutor", 
