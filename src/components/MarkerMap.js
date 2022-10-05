@@ -107,7 +107,7 @@ const MapMarker = ({ name, position, image, url, type }) => (
       center={ position }
       pathOptions={ { color: colors[type], fillColor: colors[type] } }
       // Draws concentric rings for duplicate locations.
-      radius={ isDuplicate(type, name)? 170 : 100 }
+      radius={ 100 }
       weight={ 5 }
     />
   </Marker>
@@ -132,18 +132,18 @@ const colors = {
   interest: "purple"
 };
 
-/**
- * Checks if location is a duplicate. For example, a user 
- * may got to school and work at the same location (e.g. University).
- * Or, have two seperate jobs at the same location (e.g. promotion). 
- * 
- * @param {*} type (i.e. school, work, interest)
- * @param {*} name of the location.
- * @returns true if duplicate, false otherwise.
- */
-const isDuplicate = (type, name) => {
-  return type === "work" && (name === "VUW - Tutor" || name === "VUW - Research Assistant");
-};
+// /**
+//  * Checks if location is a duplicate. For example, a user 
+//  * may got to school and work at the same location (e.g. University).
+//  * Or, have two seperate jobs at the same location (e.g. promotion). 
+//  * 
+//  * @param {*} type (i.e. school, work, interest)
+//  * @param {*} name of the location.
+//  * @returns true if duplicate, false otherwise.
+//  */
+// const isDuplicate = (type, name) => {
+//   return type === "work" && (name === "VUW - Tutor" || name === "VUW - Research Assistant" || name === "VUW - PhD in Artificial Intelligence");
+// };
 
 export default MarkerMap;
 export {types, colors};

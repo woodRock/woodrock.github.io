@@ -1,6 +1,6 @@
 /**
  * Timeline page - Timeline.js
- * ================================
+ * ===========================
  * 
  * The Timeline displays a chronological list of markers - 
  * that consist of education, work experience and interests.

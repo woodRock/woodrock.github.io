@@ -15,6 +15,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import Map from "./pages/Map";
 import Dice from "./components/Dice";
 import Timeline from "./pages/Timeline";
+import AJCAI from "./pages/AJCAI";
 
 const App = () => {
   return (
@@ -26,14 +27,19 @@ const App = () => {
           path={ "/" }
         />
         <Route
+          component={ Timeline }
+          exact
+          path={ "/timeline" }
+        />
+        <Route
           component={ Dice }
           exact
           path={ "/dice" }
         />
         <Route
-          component={ Timeline }
+          component={ AJCAI }
           exact
-          path={ "/timeline" }
+          path={ "/AJCAI" }
         />
       </Router>
     </div>

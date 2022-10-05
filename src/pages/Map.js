@@ -1,6 +1,6 @@
 /**
  * Map page - Map.js
- * ======================
+ * =================
  * 
  * This shows a Map with markers for my education and work experience. 
  * For now, it gives a map of Wellington, New Zealand.
@@ -32,28 +32,20 @@ const location = [-41.31, 174.79];
  */
 const markers = [
     { 
+        name: "AJCAI 2022 - Published first paper!", 
+        position: [-41.28993225097656,174.7685546875],
+        image: "https://ajcai2022.org/wp-content/uploads/2022/05/ColouredLogo.png",
+        url: "http://woodrock.github.io/#/AJCAI",
+        type: "school",
+        date: "December 2022"
+    },
+    { 
         name: "VUW - PhD in Artificial Intelligence", 
         position: [-41.28993225097656,174.7685546875],
         image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
         url: "https://ecs.wgtn.ac.nz/Main/GradJesseWood",
         type: "school",
         date: "2022 - Present"
-    },
-    { 
-        name: "VUW - Tutor", 
-        position: [-41.28993225097656,174.7685546875],
-        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
-        url: "https://www.wgtn.ac.nz/",
-        type: "work",
-        date: "2022 - Present"
-    },
-    { 
-        name: "Niwa - Software Developer (contract)", 
-        position: [-41.3019314,174.8055404],
-        image: "https://media.glassdoor.com/sqll/446203/niwa-squarelogo-1537142405945.png",
-        url: "https://www.niwa.co.nz/",
-        type: "work",
-        date: "2020 - Present"
     },
     { 
         name: "VUW - Research Assistant", 
@@ -69,15 +61,23 @@ const markers = [
         image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
         url: "https://www.wgtn.ac.nz/",
         type: "work",
-        date: "2021"
+        date: "2021 - Present"
     },
     { 
-        name: "Wellington Chamber Of Commerce - Web Developer", 
-        position: [-41.28666552, 174.772996908],
-        image: "https://www.wecc.org.nz/__data/assets/image/0009/3312/bg-chamber-header.png",
-        url: "https://www.wecc.org.nz/",
+        name: "VUW - Tutor", 
+        position: [-41.28993225097656,174.7685546875],
+        image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
+        url: "https://www.wgtn.ac.nz/",
         type: "work",
-        date: "2021"
+        date: "2021 - Present"
+    },
+    { 
+        name: "Niwa - Software Developer (contract)", 
+        position: [-41.3019314,174.8055404],
+        image: "https://media.glassdoor.com/sqll/446203/niwa-squarelogo-1537142405945.png",
+        url: "https://www.niwa.co.nz/",
+        type: "work",
+        date: "2020 - Present"
     },
     { 
         name: "VUW - BE (Hons) Software Engineering", 
