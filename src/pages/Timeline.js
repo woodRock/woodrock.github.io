@@ -9,9 +9,14 @@
  */
 
 import React from "react";
+import { useParams } from "react-router-dom";
 import { markers } from "./Map";
 import VTimeline from "../components/Timeline.js";
 
-const Timeline = () => <VTimeline markers={markers} />;
+const Timeline = () => {
+  // The id is the name of the marker that is selected.
+  const { id } = useParams();
+  return <VTimeline markers={markers} id={id} />;
+};
 
 export default Timeline;

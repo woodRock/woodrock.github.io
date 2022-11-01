@@ -19,7 +19,7 @@ import EducationIcon from "../assets/education.png";
 import WorkIcon from "../assets/work.png";
 import MapIcon from "../assets/map_pin.png";
 import { HomeButton, Icon } from "./Buttons";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /**
  * The timeline component displays a vertical timeline of events.
@@ -28,9 +28,7 @@ import { Link, useParams } from "react-router-dom";
  *
  * @param {markers} param0 a collection of locations with information - see {@link Timeline} for more information.
  */
-const VTimeline = ({ markers }) => {
-  // The id is the date of the event, this is used to scroll to the correct event.
-  const { id } = useParams();
+const VTimeline = ({ markers, id }) => {
   // This stores a reference to the event that is currently selected.
   const myRef = createRef(null);
   // Scrolls to the selected event.
