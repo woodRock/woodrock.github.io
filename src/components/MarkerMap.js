@@ -127,7 +127,7 @@ const types = ["school", "work", "interest"];
  * @param {string} url - The URL to the homepage (if any) of the location.
  * @param {string} type - The type of location (i.e. school, work, interest).
  */
-const MapMarker = ({ name, position, image, url, type }) => (
+const MapMarker = ({ name, position, image, url, type, date }) => (
   <Marker key={name} position={position}>
     <Popup>
       <a href={url}>
@@ -144,7 +144,7 @@ const MapMarker = ({ name, position, image, url, type }) => (
       <br />
       {name}
       <br />
-      <Link to={"/timeline"}> See more</Link>
+      <Link to={"/timeline/" + date}> See more</Link>
     </Popup>
     <Circle
       center={position}

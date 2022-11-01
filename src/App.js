@@ -25,7 +25,7 @@ const App = () => {
       <CenterProvider>
         <Router>
           <Route component={Map} exact path={"/"} />
-          <Route component={Timeline} exact path={"/timeline"} />
+          <Route component={Timeline} exact path={"/timeline/:id"} />
           <Route component={Dice} exact path={"/dice"} />
           <Route component={AJCAI} exact path={"/AJCAI"} />
         </Router>
