@@ -22,10 +22,12 @@ const App = () => {
     <div className="App">
       {/* Center Provider keeps track of a global variable of the center of the map. */}
       <Router>
-        <Route component={Map} exact path={"/:id?"} />
+        {/* Important for this route path to be above optional map route. */}
+        <Route component={AJCAI} exact path={"/AJCAI"} />
+        <Route component={Map} exact path={"/"} />
+        <Route component={Map} exact path={"/map/:id?"} />
         <Route component={Timeline} exact path={"/timeline/:id?"} />
         <Route component={Dice} exact path={"/dice"} />
-        <Route component={AJCAI} exact path={"/AJCAI"} />
       </Router>
     </div>
   );

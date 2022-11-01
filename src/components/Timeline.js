@@ -67,7 +67,7 @@ const VTimeline = ({ markers, id }) => {
               <img src={image} alt={name} style={{ width: "10rem" }} />
               <p>
                 {/* Links to map, setting its center at current timeline event. */}
-                <Link to={"/" + name}>
+                <Link to={"/map/" + name}>
                   Find on map...
                   <img
                     src={MapIcon}
