@@ -103,7 +103,9 @@ const SetViewOnUpdate = () => {
 
   // Update the center of the map when the center changes globally.
   useEffect(() => {
-    map.setView(center, map.getZoom(), { animate: true });
+    setTimeout(() => {
+      map.setView(center, map.getZoom(), { animate: true });
+    }, 500);
   }, [center, map]);
 
   return null;

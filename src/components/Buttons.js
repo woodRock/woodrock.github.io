@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { VerticalTimelineElement } from "react-vertical-timeline-component";
 import propTypes from "prop-types";
-import { useCenter, DEFAULT_CENTER } from "../api/center";
+import { useCenter } from "../api/center";
 import Home from "../assets/home.png";
 
 /**
