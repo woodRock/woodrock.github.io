@@ -9,7 +9,7 @@
  * The library doesn't easily support this, so solutions are hacky at best.
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Circle,
   LayerGroup,
@@ -18,8 +18,11 @@ import {
   Marker,
   Popup,
   TileLayer,
+  useMapEvent,
+  useMap,
 } from "react-leaflet";
 import { Link } from "react-router-dom";
+import { useCenter } from "../api/center";
 import PropTypes from "prop-types";
 import Legend from "./Legend";
 
@@ -48,6 +51,8 @@ L.Marker.prototype.options.icon = DefaultIcon;
  */
 const MarkerMap = ({ location, markers }) => (
   <MapContainer center={location} scrollWheelZoom={false} zoom={13}>
+    <SetViewOnClick />
+    <SetViewOnUpdate />
     <LayersControl position="topright">
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -72,6 +77,36 @@ const MarkerMap = ({ location, markers }) => (
 MarkerMap.propTypes = {
   location: PropTypes.array.isRequired,
   markers: PropTypes.array.isRequired,
+};
+
+/**
+ * This component allows the user to click on the map to set the center of the map.
+ * @returns functional component that sets the map view to the center location.
+ */
+const SetViewOnClick = () => {
+  // Update center when the user clicks a position on the map.
+  const map = useMapEvent("click", (e) => {
+    map.setView(e.latlng, map.getZoom(), { animate: true });
+  });
+
+  return null;
+};
+
+/**
+ * Also, it listens to changes in the center of the map and updates the center context.
+ * This can be useful as the center context stores the desired center of the map globally.
+ * @returns functional component that updates map view when center context changes.
+ */
+const SetViewOnUpdate = () => {
+  const { center } = useCenter();
+  const map = useMap();
+
+  // Update the center of the map when the center changes globally.
+  useEffect(() => {
+    map.setView(center, 13);
+  }, [center, map]);
+
+  return null;
 };
 
 /**
@@ -137,6 +172,9 @@ const colors = {
   interest: "purple",
 };
 
+export default MarkerMap;
+export { types, colors };
+
 // /**
 //  * Checks if location is a duplicate. For example, a user
 //  * may got to school and work at the same location (e.g. University).
@@ -149,6 +187,3 @@ const colors = {
 // const isDuplicate = (type, name) => {
 //   return type === "work" && (name === "VUW - Tutor" || name === "VUW - Research Assistant" || name === "VUW - PhD in Artificial Intelligence");
 // };
-
-export default MarkerMap;
-export { types, colors };

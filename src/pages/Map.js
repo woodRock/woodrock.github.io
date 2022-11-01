@@ -9,10 +9,12 @@
 import React from "react";
 import MarkerMap from "../components/MarkerMap";
 
-const Map = () => <MarkerMap location={center} markers={markers} />;
+const Map = () => {
+  return <MarkerMap location={DEFAULT_CENTER} markers={markers} />;
+};
 
 // GPS coordinates of Wellington.
-const center = [-41.31, 174.79];
+const DEFAULT_CENTER = [-41.31, 174.79];
 
 /**
  * These markers are used to show the places that are displayed on the map.
@@ -31,7 +33,7 @@ const center = [-41.31, 174.79];
 const markers = [
   {
     name: "AJCAI 2022 - Published first paper!",
-    position: [-41.28993225097656, 174.7685546875],
+    position: [-31.960772129781056, 115.87370512655177],
     image: "https://ajcai2022.org/wp-content/uploads/2022/05/ColouredLogo.png",
     url: "http://woodrock.github.io/#/AJCAI",
     type: "school",
