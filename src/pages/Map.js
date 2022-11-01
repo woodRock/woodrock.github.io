@@ -8,10 +8,22 @@
 
 import React from "react";
 import MarkerMap from "../components/MarkerMap";
-import { DEFAULT_CENTER } from "../api/center";
+import { useParams } from "react-router-dom";
+
+const DEFAULT_CENTER = [-41.2865, 174.7762];
 
 const Map = () => {
-  return <MarkerMap location={DEFAULT_CENTER} markers={markers} />;
+  const { id } = useParams();
+  let center;
+  // If the id exists, the user is being redirected from the timeline.
+  if (id !== null && id !== undefined) {
+    const selected = markers.filter((marker) => marker.name === id)[0].position;
+    center = selected !== null ? selected : DEFAULT_CENTER;
+  } else {
+    // Otherwise, the user has just entered the home page.
+    center = DEFAULT_CENTER;
+  }
+  return <MarkerMap location={center} markers={markers} />;
 };
 
 /**
@@ -115,4 +127,4 @@ const markers = [
 ];
 
 export default Map;
-export { markers };
+export { markers, DEFAULT_CENTER };

@@ -1,7 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { VerticalTimelineElement } from "react-vertical-timeline-component";
 import propTypes from "prop-types";
-import { useCenter } from "../api/center";
 import Home from "../assets/home.png";
 
 /**
@@ -10,11 +9,9 @@ import Home from "../assets/home.png";
  */
 const HomeButton = () => {
   const history = useHistory();
-  const { reset } = useCenter();
 
   function home() {
     // Ensures that the map is centered on Wellington.
-    reset();
     history.push("/");
   }
 

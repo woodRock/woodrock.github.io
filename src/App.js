@@ -16,20 +16,17 @@ import Map from "./pages/Map";
 import Dice from "./components/Dice";
 import Timeline from "./pages/Timeline";
 import AJCAI from "./pages/AJCAI";
-import { CenterProvider } from "./api/center";
 
 const App = () => {
   return (
     <div className="App">
       {/* Center Provider keeps track of a global variable of the center of the map. */}
-      <CenterProvider>
-        <Router>
-          <Route component={Map} exact path={"/"} />
-          <Route component={Timeline} exact path={"/timeline/:id"} />
-          <Route component={Dice} exact path={"/dice"} />
-          <Route component={AJCAI} exact path={"/AJCAI"} />
-        </Router>
-      </CenterProvider>
+      <Router>
+        <Route component={Map} exact path={"/:id?"} />
+        <Route component={Timeline} exact path={"/timeline/:id?"} />
+        <Route component={Dice} exact path={"/dice"} />
+        <Route component={AJCAI} exact path={"/AJCAI"} />
+      </Router>
     </div>
   );
 };

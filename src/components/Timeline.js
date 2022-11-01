@@ -20,7 +20,6 @@ import WorkIcon from "../assets/work.png";
 import MapIcon from "../assets/map_pin.png";
 import { HomeButton, Icon } from "./Buttons";
 import { Link, useParams } from "react-router-dom";
-import { useCenter } from "../api/center";
 
 /**
  * The timeline component displays a vertical timeline of events.
@@ -30,9 +29,6 @@ import { useCenter } from "../api/center";
  * @param {markers} param0 a collection of locations with information - see {@link Timeline} for more information.
  */
 const VTimeline = ({ markers }) => {
-  // We use this to update the center of the map when the Map Icon is clicked.
-  const { updateCenter } = useCenter();
-
   // The id is the date of the event, this is used to scroll to the correct event.
   const { id } = useParams();
   // This stores a reference to the event that is currently selected.
@@ -67,13 +63,13 @@ const VTimeline = ({ markers }) => {
               key={index}
             >
               {/* Scroll to the selected event on the timeline. */}
-              {id === date && <div ref={myRef} />}
+              {id === name && <div ref={myRef} />}
               <h3 className="vertical-timeline-element-title">{name}</h3>
               <h4 className="vertical-timeline-element-subtitle">{type}</h4>
               <img src={image} alt={name} style={{ width: "10rem" }} />
               <p>
                 {/* Links to map, setting its center at current timeline event. */}
-                <Link to={"/"} onClick={() => updateCenter(position)}>
+                <Link to={"/" + name}>
                   Find on map...
                   <img
                     src={MapIcon}
