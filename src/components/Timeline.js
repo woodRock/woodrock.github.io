@@ -39,10 +39,8 @@ const VTimeline = ({ markers }) => {
   const myRef = createRef(null);
   // Scrolls to the selected event.
   useEffect(() => {
-    setTimeout(() => {
-      // Scroll to selected event.
-      myRef.current.scrollIntoView();
-    }, 500);
+    // Scroll to selected event.
+    myRef.current.scrollIntoView();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
