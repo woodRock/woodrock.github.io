@@ -56,4 +56,4 @@ const useCenter = () => {
  */
 const CenterContext = createContext();
 
-export { CenterProvider, useCenter };
+export { CenterProvider, useCenter, DEFAULT_CENTER };

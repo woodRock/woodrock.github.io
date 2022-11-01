@@ -8,13 +8,11 @@
 
 import React from "react";
 import MarkerMap from "../components/MarkerMap";
+import { DEFAULT_CENTER } from "../api/center";
 
 const Map = () => {
   return <MarkerMap location={DEFAULT_CENTER} markers={markers} />;
 };
-
-// GPS coordinates of Wellington.
-const DEFAULT_CENTER = [-41.31, 174.79];
 
 /**
  * These markers are used to show the places that are displayed on the map.
