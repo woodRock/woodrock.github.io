@@ -139,6 +139,7 @@ const AJCAI = () => {
             <img
               src="https://www.freeiconspng.com/uploads/pdf-icon-png-pdf-zum-download-2.png"
               width="15rem"
+              alt="pdf icon"
             />
           </a>
         </li>
@@ -152,6 +153,7 @@ const AJCAI = () => {
             <img
               src="https://www.freeiconspng.com/uploads/pdf-icon-png-pdf-zum-download-2.png"
               width="15rem"
+              alt="pdf icon"
             />
           </a>
         </li>
@@ -165,6 +167,7 @@ const AJCAI = () => {
             <img
               src="https://www.freeiconspng.com/uploads/pdf-icon-png-pdf-zum-download-2.png"
               width="15rem"
+              alt="pdf icon"
             />
           </a>
         </li>
@@ -178,6 +181,7 @@ const AJCAI = () => {
             <img
               src="https://logos-download.com/wp-content/uploads/2016/09/GitHub_logo.png"
               width="15rem"
+              alt="github icon"
             />
           </a>
         </li>
