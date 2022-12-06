@@ -144,6 +144,19 @@ const AJCAI = () => {
         </li>
         <li>
           <a
+            href="https://github.com/woodRock/fishy-business/blob/main/papers/AJCAI_Presentation/presentation3476.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Presentation
+            <img
+              src="https://www.freeiconspng.com/uploads/pdf-icon-png-pdf-zum-download-2.png"
+              width="15rem"
+            />
+          </a>
+        </li>
+        <li>
+          <a
             href="https://github.com/woodRock/fishy-business/blob/main/papers/AJCAI_Poster/poster3476.pdf"
             target="_blank"
             rel="noreferrer"
