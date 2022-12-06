@@ -201,7 +201,7 @@ const AJCAI = () => {
         the corresponding publishers!
       </p>
       <p>
-        See springer link for the final paper (this requires a subscription!){" "}
+        See
         <a
           href="https://link.springer.com/chapter/10.1007/978-3-031-22695-3_36"
           target="_blank"
@@ -209,6 +209,7 @@ const AJCAI = () => {
         >
           Springer Nature
         </a>{" "}
+        for the final paper (this requires a subscription!){" "}
       </p>
       <h4>Contact</h4>
       <ol>
