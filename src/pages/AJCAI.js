@@ -201,7 +201,7 @@ const AJCAI = () => {
         the corresponding publishers!
       </p>
       <p>
-        See springer link for the final paper (this requires a subscription!).
+        See springer link for the final paper (this requires a subscription!){" "}
         <a
           href="https://link.springer.com/chapter/10.1007/978-3-031-22695-3_36"
           target="_blank"
