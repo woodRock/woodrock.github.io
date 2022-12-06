@@ -181,7 +181,17 @@ const AJCAI = () => {
       <p>
         The paper/poster here are for faster dissemination and academic research
         convinence purpose only, and the copyright of the final paper belongs to
-        the corresponding publishers !
+        the corresponding publishers!
+      </p>
+      <p>
+        See springer link for the final paper (this requires a subscription!).
+        <a
+          href="https://link.springer.com/chapter/10.1007/978-3-031-22695-3_36"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Springer Nature
+        </a>{" "}
       </p>
       <h4>Contact</h4>
       <ol>
