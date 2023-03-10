@@ -42,6 +42,15 @@ const Map = () => {
  */
 const markers = [
   {
+    name: "Linda Lee Wood (Thompson) - Funeral Service",
+    position: [-41.340463, 174.77152],
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiujvYUKe8ab_lgpsKdwp85Rqw2YOiqdwK2A&usqp=CAU",
+    url: "http://woodrock.github.io/#/LindaLeeWood",
+    type: "interest",
+    date: "March 16th, 2023",
+  },
+  {
     name: "AJCAI 2022 - Published first paper!",
     position: [-31.960772129781056, 115.87370512655177],
     image: "https://ajcai2022.org/wp-content/uploads/2022/05/ColouredLogo.png",
