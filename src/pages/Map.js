@@ -42,6 +42,14 @@ const Map = () => {
  */
 const markers = [
   {
+    name: "Doctoral proposal seminar",
+    position: [-41.28993225097656, 174.77],
+    image: "https://pbs.twimg.com/media/F7zrox5aAAAXA6c?format=jpg&name=medium",
+    url: "http://woodrock.github.io/#/proposal",
+    type: "school",
+    date: "October 2023",
+  },
+  {
     name: "Linda Lee Wood (Thompson) - Funeral Service",
     position: [-41.340463, 174.77152],
     image:

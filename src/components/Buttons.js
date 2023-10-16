@@ -1,3 +1,4 @@
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { VerticalTimelineElement } from "react-vertical-timeline-component";
 import propTypes from "prop-types";

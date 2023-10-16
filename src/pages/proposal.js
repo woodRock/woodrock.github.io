@@ -28,7 +28,7 @@ const AJCAI = () => {
       <h1>
         Rapid determination of bulk composition and quality of marine biomass in mass spectrometry
       </h1>
-      <p style={{ color: "grey" }}>
+      <p style={{ color: "black" }}>
         Jesse Wood<sup>1</sup>
         <a
           href="https://orcid.org/0000-0003-3756-2122"
@@ -42,6 +42,9 @@ const AJCAI = () => {
             height="16"
           />
         </a>
+      </p>
+      <p style={{ color: "grey" }}>
+        supervisors:
         , Bach Nguyen<sup>1</sup>
         <a
           href="https://orcid.org/0000-0002-6930-6863"
@@ -159,16 +162,28 @@ const AJCAI = () => {
       </ul>
       <h4>Doctoral Proposal Seminar</h4>
       <p>
-        35th Australasian Joint Conference on Artificial Intelligence to be held
-        in Perth, Western Australia in December 2022. See{" "}
+
+      In order to progress from provisional registration, you must write a full research proposal. The proposal provides evidence that your proposed research is viable and that you have the capacity to carry it out successfully. To progress to full registration, you must:
+
+      <ol>
+        <li>write a full research proposal (length is dependent on school/programme requirements)</li>
+        <li>present the proposal orally</li>
+        <li>meet any other requirements set by your school or programme, including any required coursework.</li>
+      </ol>
+
+        Many schools will require you to present your proposal orally. In such cases, your School will normally advertise the presentation, and open it to all staff and postgraduate students who may be interested. 
+        
+        Visit
+        {" "}
         <a href="https://www.wgtn.ac.nz/fgr/current-phd/provisional-to-full-registration/the-proposal" target="_blank" rel="noreferrer">
-          VUW 2023
-        </a>{" "}
+          provisional to full registration - the proposal
+        </a>
+        {" "}
         for more information.
       </p>
       <p>
         The proposal/slides here are for faster dissemination and academic research
-        convinence purpose only, and the copyright of the final paper belongs to
+        convinence purpose only, and the copyright of the final thesis belongs to
         the corresponding publishers!
       </p>
       <h4>Contact</h4>
