@@ -45,7 +45,7 @@ const AJCAI = () => {
       </p>
       <p style={{ color: "grey" }}>
         supervisors:
-        , Bach Nguyen (primary) <sup>1</sup>
+        , Bach Nguyen <sup>1</sup>
         <a
           href="https://orcid.org/0000-0002-6930-6863"
           target="_blank"
