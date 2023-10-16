@@ -22,7 +22,7 @@ jobs:
       - name: Install and Build 🔧
         uses: actions/setup-node@v3
         with:
-          node-version: '10.1.0'
+          node-version: '12.0.0'
           cache: 'npm'
       - run: | 
           npm install
