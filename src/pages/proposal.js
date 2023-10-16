@@ -111,8 +111,9 @@ const AJCAI = () => {
           <ol>
             <li>precise fish species and body part identification via binary and multi-class classification, respectively;</li>
             <li>quantitative contaminant analysis employing multi-label classification and multi-output regression; and </li>
-            <li>traceability through pair-wise comparison and instance recognition. By validating against traditional baselines and various downstream tasks, this work aims to enhance chemical analytical processes and offer fresh insights into the chemical and traceability aspects of marine biology and fisheries through advanced AI applications.</li>
+            <li>traceability through pair-wise comparison and instance recognition. </li>
           </ol>
+          By validating against traditional baselines and various downstream tasks, this work aims to enhance chemical analytical processes and offer fresh insights into the chemical and traceability aspects of marine biology and fisheries through advanced AI applications.
           </p>
         </>
       )}
