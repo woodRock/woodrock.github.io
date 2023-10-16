@@ -16,6 +16,7 @@ import Map from "./pages/Map";
 import Dice from "./components/Dice";
 import Timeline from "./pages/Timeline";
 import AJCAI from "./pages/AJCAI";
+import Proposal from "./pages/proposal";
 import LindaLeeWood from "./pages/LindaLeeWood";
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
       <Router>
         {/* Important for this route path to be above optional map route. */}
         <Route component={AJCAI} exact path={"/AJCAI"} />
+        <Route component={Proposal} exact path={"/proposal"} />
         <Route component={LindaLeeWood} exact path={"/LindaLeeWood"} />
         <Route component={Map} exact path={"/"} />
         <Route component={Map} exact path={"/map/:id?"} />
