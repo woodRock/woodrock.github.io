@@ -24,8 +24,9 @@ jobs:
         with:
           node-version: '12.0.0'
           # cache: 'npm'
+        # clean install
       - run: | 
-          npm install
+          npm ci
           npm run build
         env: 
           CI: false
