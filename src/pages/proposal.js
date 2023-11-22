@@ -134,6 +134,20 @@ const AJCAI = () => {
         </li>
         <li>
           <a
+            href="https://prezi.com/view/IJ7eURbj5FVEErzaoboU/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Presentation (fancy)
+            <img
+              src="https://www.freeiconspng.com/uploads/pdf-icon-png-pdf-zum-download-2.png"
+              width="15rem"
+              alt="pdf icon"
+            />
+          </a>
+        </li>
+        <li>
+          <a
             href="https://github.com/woodRock/fishy-business/blob/main/proposal/slides.pdf"
             target="_blank"
             rel="noreferrer"
