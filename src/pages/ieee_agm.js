@@ -276,11 +276,11 @@ const IEEE_AGM = () => {
           </p>
         </li>
         <li>
-          Wellington Free Ambulance, Wellington, New Zealand
+        Coastal and Freshwater Group, Cawthron Institute, Nelson, New Zealand
           <p>
             {" "}
             <a
-              href="ross.venell@cawthron.org.nz"
+              href="mailto:ross.venell@cawthron.org.nz"
               target="_blank"
               rel="noreferrer"
             >
