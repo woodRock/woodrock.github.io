@@ -26,7 +26,7 @@ const IEEE_AGM = () => {
       }}
     >
       <h1>
-        IEEE AGM - Read More from the Papers Presented by Jesse Wood
+        IEEE AGM | Real-World AI Applications | Talk by Jesse Wood
       </h1>
       <p style={{ color: "black" }}>
         Mohamad Rimas<sup>1</sup>
