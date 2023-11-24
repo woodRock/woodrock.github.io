@@ -42,6 +42,14 @@ const Map = () => {
  */
 const markers = [
   {
+    name: "IEEE AGM | Real-World AI Applications | Talk by Jesse Wood",
+    position: [-41.2881, 174.74],
+    image: "image.png",
+    url: "https://s3.amazonaws.com/libapps/accounts/1104/images/ieee.jpg",
+    type: "school",
+    date: "November 2023",
+  },
+  {
     name: "Doctoral proposal seminar",
     position: [-41.28993225097656, 174.77],
     image: "https://pbs.twimg.com/media/F7zrox5aAAAXA6c?format=jpg&name=medium",
