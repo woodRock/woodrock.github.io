@@ -57,7 +57,7 @@ const IEEE_AGM = () => {
         </a>
         , Carl McMillan<sup>1</sup>
         <a
-          href="https://orcid.org/0000-0001-8108-6720"
+          href="https://orcid.org/0009-0009-7507-7882"
           target="_blank"
           rel="noreferrer"
         >
