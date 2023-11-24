@@ -298,7 +298,7 @@ const IEEE_AGM = () => {
             >
               Hui Ma
             </a>
-            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> @ecs.vuw.ac.nz</a>
+            <a href="https://people.wgtn.ac.nz/Hui.Ma" style={{color: "grey"}}> @ecs.vuw.ac.nz</a>
             {" "}
           </p>
         </li>
