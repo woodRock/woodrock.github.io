@@ -281,7 +281,7 @@ const IEEE_AGM = () => {
             >
               Joyce Mwangama
             </a>
-            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> mwangama@uct.ac.za</a>
+            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> @uct.ac.za</a>
             {" "}
           </p>
         </li>
@@ -296,7 +296,7 @@ const IEEE_AGM = () => {
             >
               Hui Ma
             </a>
-            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> mwangama@uct.ac.za</a>
+            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> @ecs.vuw.ac.nz</a>
             {" "}
           </p>
         </li>
