@@ -42,8 +42,6 @@ const IEEE_AGM = () => {
             height="16"
           />
         </a>
-      </p>
-      <p style={{ color: "grey" }}>
         , Jesse Wood<sup>1</sup>
         <a
           href="https://orcid.org/0000-0002-6930-6863"
@@ -241,6 +239,7 @@ const IEEE_AGM = () => {
             >
               jordan.maclaughlan
             </a>
+            <> {"}"} </>
           </p>
         </li>
         <li>
