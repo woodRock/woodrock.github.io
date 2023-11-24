@@ -94,6 +94,7 @@ const IEEE_AGM = () => {
           IEEE AGM - Presentation on Real-World AI Applications. Read More from the Papers Presented 
           <ol>
             <li>Rimas - Machine Learning-Based Service Differentiation in the 5G Core Network</li>
+            <li>Anjila - Leiden Fitness-Based Genetic Algorithm with Niching for Community Detection in Large Social Networks</li>
             <li>Jesse - Automated Fish Classification Using Unprocessed Fatty Acic Chromatographic Data: A Machine Learning Approach </li>
             <li>Carl - Improving Buoy Detection with Deep Tranfer Learning for Mussel Farm Buoyancy </li>
             <li>Jordan - Learning Emergency Medical Dispatch Policies Via Genetic Programming</li>
