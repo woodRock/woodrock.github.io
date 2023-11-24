@@ -254,12 +254,14 @@ const IEEE_AGM = () => {
           <p>
             {" "}
             <a
-              href="mailto:daniel.killeen@plantandfood.co.nz"
+              href="mailto:jb.mwangama@uct.ac.za"
               target="_blank"
               rel="noreferrer"
             >
               Joyce Mwangama
-            </a>{" "}
+            </a>
+            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> @plantandfood.co.nz</a>
+            {" "}
           </p>
         </li>
         <li>
@@ -273,7 +275,9 @@ const IEEE_AGM = () => {
               rel="noreferrer"
             >
               Daniel killeen
-            </a>{" "}
+            </a> 
+            <a href="https://www.plantandfood.com/en-nz/" style={{color: "grey"}}> @plantandfood.co.nz</a>
+            {" "}
           </p>
         </li>
         <li>
@@ -286,7 +290,9 @@ const IEEE_AGM = () => {
               rel="noreferrer"
             >
               Ross Vennell
-            </a>{" "}
+            </a>
+            <a href="https://www.cawthron.org.nz/about-us/" style={{color: "grey"}}> @cawthron.org.nz</a>
+            {" "}
           </p>
         </li>
         {/* <li>
