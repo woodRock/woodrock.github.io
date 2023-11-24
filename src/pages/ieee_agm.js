@@ -154,7 +154,9 @@ const IEEE_AGM = () => {
               alt="pdf icon"
             />
           </a>
-        </li>
+        </li>  
+      </ul>
+      <ul>
         <li>
           <a
             href="https://prezi.com/view/Jq0JfwOh3y7RFwtiy5BX/"
@@ -169,7 +171,7 @@ const IEEE_AGM = () => {
             />
           </a>
         </li>
-        
+      </ul>
       <h4>Institute for Electrical and Electronics Engineers (IEEE) Anual Group Meeting (AGM)</h4>
       <p>
         Dear NZ Central Section members, 
