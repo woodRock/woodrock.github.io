@@ -236,6 +236,7 @@ const IEEE_AGM = () => {
             >
               rimas.mohamad
             </a>
+            <> {", "} </>
             <a 
               href="mailto:desilanja@ecs.vuw.ac.nz"
               target="_blank"
