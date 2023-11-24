@@ -246,6 +246,7 @@ const IEEE_AGM = () => {
               jordan.maclaughlan
             </a>
             <> {"}"} </>
+            <a href="https://ecs.wgtn.ac.nz/Groups/ECRG/" style={{color: "grey"}}> @ecs.vuw.ac.nz </a>
           </p>
         </li>
         <li>
