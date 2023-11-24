@@ -118,6 +118,20 @@ const IEEE_AGM = () => {
           </a>
         </li> 
         <li>
+          <a 
+            href="https://link.springer.com/chapter/10.1007/978-981-99-7022-3_39"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Anjila 
+            <img
+              src="https://www.freeiconspng.com/uploads/pdf-icon-png-pdf-zum-download-2.png"
+              width="15rem"
+              alt="pdf icon"
+            />
+          </a>
+        </li>
+        <li>
           <a
             href="https://link.springer.com/chapter/10.1007/978-3-031-22695-3_36"
             target="_blank"
@@ -221,6 +235,13 @@ const IEEE_AGM = () => {
             >
               rimas.mohamad
             </a>
+            <a 
+              href="mailto:desilanja@ecs.vuw.ac.nz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              anjila.desilva
+            </a>
             <> {", "} </>
             <a
               href="mailto:jesse.wood@ecs.vuw.ac.nz"
@@ -259,6 +280,21 @@ const IEEE_AGM = () => {
               rel="noreferrer"
             >
               Joyce Mwangama
+            </a>
+            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> mwangama@uct.ac.za</a>
+            {" "}
+          </p>
+        </li>
+        <li>
+        Te Herenga Waka, Victoria University of Wellington, Wellington, New Zealand
+          <p>
+            {" "}
+            <a
+              href="hui.ma@ecs.vuw.ac.nz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Hui Ma
             </a>
             <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> mwangama@uct.ac.za</a>
             {" "}
