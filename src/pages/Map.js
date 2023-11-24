@@ -44,8 +44,8 @@ const markers = [
   {
     name: "IEEE AGM | Real-World AI Applications | Talk by Jesse Wood",
     position: [-41.2881, 174.74],
-    image: "image.png",
-    url: "https://s3.amazonaws.com/libapps/accounts/1104/images/ieee.jpg",
+    image: "https://s3.amazonaws.com/libapps/accounts/1104/images/ieee.jpg",
+    url: "http://woodrock.github.io/#/IEEE_AGM",
     type: "school",
     date: "November 2023",
   },
