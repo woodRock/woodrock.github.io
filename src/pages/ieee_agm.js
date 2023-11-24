@@ -105,7 +105,7 @@ const IEEE_AGM = () => {
       <ul>
         <li>
           <a
-            href="https://github.com/woodRock/fishy-business/blob/main/proposal/proposal.pdf"
+            href="https://ieeexplore.ieee.org/document/9415263"
             target="_blank"
             rel="noreferrer"
           >
@@ -116,8 +116,10 @@ const IEEE_AGM = () => {
               alt="pdf icon"
             />
           </a>
+        </li> 
+        <li>
           <a
-            href="https://github.com/woodRock/fishy-business/blob/main/proposal/proposal.pdf"
+            href="https://link.springer.com/chapter/10.1007/978-3-031-22695-3_36"
             target="_blank"
             rel="noreferrer"
           >
@@ -128,8 +130,10 @@ const IEEE_AGM = () => {
               alt="pdf icon"
             />
           </a>
+        </li> 
+        <li>
           <a
-            href="https://github.com/woodRock/fishy-business/blob/main/proposal/proposal.pdf"
+            href="https://arxiv.org/abs/2308.09238"
             target="_blank"
             rel="noreferrer"
           >
@@ -140,8 +144,10 @@ const IEEE_AGM = () => {
               alt="pdf icon"
             />
           </a>
+        </li> 
+        <li>
           <a
-            href="https://github.com/woodRock/fishy-business/blob/main/proposal/proposal.pdf"
+            href="https://dl.acm.org/doi/10.1145/3583131.3590434"
             target="_blank"
             rel="noreferrer"
           >
@@ -152,7 +158,7 @@ const IEEE_AGM = () => {
               alt="pdf icon"
             />
           </a>
-        </li>  
+         </li>
       </ul>
       <ul>
         <li>
