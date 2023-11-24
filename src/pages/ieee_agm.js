@@ -31,7 +31,7 @@ const IEEE_AGM = () => {
       <p style={{ color: "black" }}>
         Mohamad Rimas<sup>1</sup>
         <a
-          href="https://orcid.org/0000-0003-3756-2122"
+          href="https://orcid.org/0000-0002-2862-3272"
           target="_blank"
           rel="noreferrer"
         >
@@ -44,7 +44,7 @@ const IEEE_AGM = () => {
         </a>
         , Jesse Wood<sup>1</sup>
         <a
-          href="https://orcid.org/0000-0002-6930-6863"
+          href="https://orcid.org/0000-0003-3756-2122"
           target="_blank"
           rel="noreferrer"
         >
@@ -57,7 +57,7 @@ const IEEE_AGM = () => {
         </a>
         , Carl McMillan<sup>1</sup>
         <a
-          href="https://orcid.org/0000-0002-4865-8026"
+          href="https://orcid.org/0000-0001-8108-6720"
           target="_blank"
           rel="noreferrer"
         >
@@ -70,7 +70,7 @@ const IEEE_AGM = () => {
         </a>
         , Jordan MacLaughlan<sup>1</sup>
         <a
-          href="https://orcid.org/0000-0003-4463-9538"
+          href="https://orcid.org/0000-0002-3163-9419"
           target="_blank"
           rel="noreferrer"
         >
@@ -260,7 +260,7 @@ const IEEE_AGM = () => {
             >
               Joyce Mwangama
             </a>
-            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> @plantandfood.co.nz</a>
+            <a href="https://ebe.uct.ac.za/department-electrical-engineering/contacts/joyce-mwangama" style={{color: "grey"}}> mwangama@uct.ac.za</a>
             {" "}
           </p>
         </li>
