@@ -302,4 +302,4 @@ const IEEE_AGM = () => {
   );
 };
 
-export default AJCAI;
+export default IEEE_AGM;
