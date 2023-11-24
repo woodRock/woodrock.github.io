@@ -157,7 +157,7 @@ const IEEE_AGM = () => {
         </li>
         <li>
           <a
-            href="https://prezi.com/view/IJ7eURbj5FVEErzaoboU/"
+            href="https://prezi.com/view/Jq0JfwOh3y7RFwtiy5BX/"
             target="_blank"
             rel="noreferrer"
           >
@@ -172,29 +172,34 @@ const IEEE_AGM = () => {
         
       <h4>Institute for Electrical and Electronics Engineers (IEEE) Anual Group Meeting (AGM)</h4>
       <p>
-
-      In order to progress from provisional registration, you must write a full research proposal. The proposal provides evidence that your proposed research is viable and that you have the capacity to carry it out successfully. To progress to full registration, you must:
-
-      <ol>
-        <li>write a full research proposal (length is dependent on school/programme requirements)</li>
-        <li>present the proposal orally</li>
-        <li>meet any other requirements set by your school or programme, including any required coursework.</li>
-      </ol>
-
-        Many schools will require you to present your proposal orally. In such cases, your School will normally advertise the presentation, and open it to all staff and postgraduate students who may be interested. 
+        Dear NZ Central Section members, 
         
-        Visit
+        our Section's annual AGM meeting for 2023 is to be held at the Wellesley Boutique Hotel on Monday 27th November, 2023. 
+        
+        This event will consist of the AGM meeting followed by two talks, ending with a buffet dinner for members and partners. 
+        
+        Details are given below:
+        <ul> 
+          <li>Venue: Wellesley Boutique Hotel, 2-8 Maginnity Street, Wellington 6011</li>
+          <li>Date: Monday 27th November, 2023</li>
+          <li>Time: 6pm according to the following plan</li>
+            <ol>
+              <li>Start - 6:00 pm</li>
+              <li>AGM - 7:00pm-7:30pm (approx)</li>
+              <li>Dinner (buffet) - 9:00pm</li>
+            </ol>
+        </ul>
+        All NZ Central Section members can and are encouraged to attend the AGM. The AGM is free to attend!
+
+        The dinner, however, is not included. There will be a $20 NZD charge for dinner.
+          
+        Register
         {" "}
-        <a href="https://www.wgtn.ac.nz/fgr/current-phd/provisional-to-full-registration/the-proposal" target="_blank" rel="noreferrer">
-          provisional to full registration - the proposal
+        <a href="https://enotice.mmsend.com/link.cfm?r=UZ4-u-2z1fJf9rV1-liHqg~~&pe=kDr5YEbCQPM1u1BV9ec1nwNviD2tR6xuLkBc0X3hDgJwUlgxcaoLmY3gnWFNtM6HnwQ3gNamMA8BA7bDJTps2A~~&t=vxGV5HpB2qnjuObBqe0Xng~~" target="_blank" rel="noreferrer">
+          Link
         </a>
         {" "}
         for more information.
-      </p>
-      <p>
-        The proposal/slides here are for faster dissemination and academic research
-        convinence purpose only, and the copyright of the final thesis belongs to
-        the corresponding publishers!
       </p>
       <h4>Contact</h4>
       <ol>
