@@ -42,6 +42,19 @@ const IEEE_AGM = () => {
             height="16"
           />
         </a>
+        Anjila deSilva<sup>1</sup>
+        <a
+          href="https://orcid.org/0000-0001-8923-6893"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            alt="ORCID logo"
+            src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png"
+            width="16"
+            height="16"
+          />
+        </a>
         , Jesse Wood<sup>1</sup>
         <a
           href="https://orcid.org/0000-0003-3756-2122"
