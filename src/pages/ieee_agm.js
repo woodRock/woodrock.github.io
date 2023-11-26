@@ -81,7 +81,7 @@ const IEEE_AGM = () => {
             height="16"
           />
         </a>
-        , Jordan MacLaughlan<sup>1</sup>
+        , Jordan MacLachlan<sup>1</sup>
         <a
           href="https://orcid.org/0000-0002-3163-9419"
           target="_blank"
@@ -279,7 +279,7 @@ const IEEE_AGM = () => {
               target="_blank"
               rel="noreferrer"
             >
-              jordan.maclaughlan
+              jordan.macLachlan
             </a>
             <> {"}"} </>
             <a href="https://ecs.wgtn.ac.nz/Groups/ECRG/" style={{color: "grey"}}> @ecs.vuw.ac.nz </a>
