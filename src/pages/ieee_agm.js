@@ -81,6 +81,19 @@ const IEEE_AGM = () => {
             height="16"
           />
         </a>
+        , Dylon Zeng<sup>1</sup>
+        <a 
+          href="https://orcid.org/0000-0002-0998-0856"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            alt="ORCID logo"
+            src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png"
+            width="16"
+            height="16"
+          />
+        </a>
         , Jordan MacLachlan<sup>1</sup>
         <a
           href="https://orcid.org/0000-0002-3163-9419"
@@ -110,6 +123,7 @@ const IEEE_AGM = () => {
             <li>Anjali  - Leiden Fitness-Based Genetic Algorithm with Niching for Community Detection in Large Social Networks</li>
             <li>Jesse - Automated Fish Classification Using Unprocessed Fatty Acic Chromatographic Data: A Machine Learning Approach </li>
             <li>Carl - Improving Buoy Detection with Deep Tranfer Learning for Mussel Farm Buoyancy </li>
+            <li>Dylon - A new multi-object tracking pipeline based on computer vision techniques for mussel farms</li>
             <li>Jordan - Learning Emergency Medical Dispatch Policies Via Genetic Programming</li>
           </ol>
           Advanced applications of Artificial Intelligence (AI) in the real-world are becoming more common. Those real-world applications, include, but are not limited to, 5G cellular splicing, automated fish classification, automated mussel float byoancy detection, and last but not least, emergency medical dispatch policies.
@@ -166,6 +180,20 @@ const IEEE_AGM = () => {
             rel="noreferrer"
           >
             Carl 
+            <img
+              src="https://www.freeiconspng.com/uploads/pdf-icon-png-pdf-zum-download-2.png"
+              width="15rem"
+              alt="pdf icon"
+            />
+          </a>
+        </li> 
+        <li>
+          <a
+            href="https://www.tandfonline.com/doi/full/10.1080/03036758.2023.2240466"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Dylon 
             <img
               src="https://www.freeiconspng.com/uploads/pdf-icon-png-pdf-zum-download-2.png"
               width="15rem"
@@ -272,6 +300,14 @@ const IEEE_AGM = () => {
               rel="noreferrer"
             >
               carl.mcmillan
+            </a>
+            <> {", "} </>
+            <a
+              href="mailto:dylon.zeng@ecs.vuw.ac.nz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              dylon.zeng
             </a>
             <> {", "} </>
             <a
