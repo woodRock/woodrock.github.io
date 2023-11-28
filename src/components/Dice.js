@@ -30,7 +30,7 @@ const Dice = () => {
   setInterval(move_dice, `100`);
 
   return (
-  <React.Fragment>
+  <>
     <Link to="/">Home</Link>
     <Canvas>
       <ambientLight intensity={0.5} />
@@ -38,7 +38,7 @@ const Dice = () => {
       <pointLight position={[-10, -10, -10]} />
       <Box position={dice_center} />
     </Canvas>
-  </React.Fragment>
+  </>
   );
 }
 
