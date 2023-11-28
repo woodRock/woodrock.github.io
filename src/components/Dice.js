@@ -13,6 +13,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import Box from "./Box";
+import { HomeButton } from "./Buttons";
 
 const Dice = () => {
 
@@ -31,7 +32,7 @@ const Dice = () => {
 
   return (
   <>
-    <Link to="/">Home</Link>
+    <HomeButton />
     <Canvas>
       <ambientLight intensity={0.5} />
       <spotLight angle={0.15} penumbra={1} position={[10, 10, 10]} />
