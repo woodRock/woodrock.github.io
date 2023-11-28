@@ -24,7 +24,7 @@ const Dice = () => {
   const move_dice = () => {
     const x = Math.random() * 4 - 2;
     const y = Math.random() * 4 - 2;
-    const z = 0;
+    const z = Math.random() * 1 - 0.5;
     set_dice_center([x, y, z]);
   };
 
