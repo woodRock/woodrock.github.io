@@ -32,7 +32,5 @@
     "not dead",
     "not op_mini all"
   ],
-  "devDependencies": {
-    
-  }
+  "devDependencies": {}
 }

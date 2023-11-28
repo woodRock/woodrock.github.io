@@ -35,7 +35,7 @@ const Box = (props) => {
       {...props}
       onClick={() => setActive(!active)}
       ref={mesh} // Size changes when user clicks the box.
-      scale={active ? [2, 2, 2] : [1.5, 1.5, 1.5]}
+      scale={active ? [1, 1, 1] : [0.5, 0.5, 0.5]}
     >
       <boxBufferGeometry args={[2, 2, 2]} />
       <meshBasicMaterial attach="material" side={THREE.DoubleSide}>

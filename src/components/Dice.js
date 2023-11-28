@@ -9,26 +9,33 @@
  * By default this die, links to the home page when clicked.
  */
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import Box from "./Box";
 import { HomeButton } from "./Buttons";
+import "./Dice.css";
 
 const Dice = () => {
 
-  dice_center, set_dice_center = useState([0, 0, 0]);
+  const [dice_center, set_dice_center] = useState([0, 0, 0]);
 
   // Move the dice randomly around the screen.
   const move_dice = () => {
     const x = Math.random() * 10 - 5;
     const y = Math.random() * 10 - 5;
-    const z = Math.random() * 10 - 5;
+    const z = 0;
     set_dice_center([x, y, z]);
   };
 
-  // Move the dice every 0.1 seconds.
-  setInterval(move_dice, `100`);
+  useEffect(() => {
+    // Move the dice every 2 seconds
+    const interval = setInterval(() => {
+      move_dice()
+    }, 2_000);
+    return () => clearInterval(interval);
+  }, []);
+  
 
   return (
   <>
