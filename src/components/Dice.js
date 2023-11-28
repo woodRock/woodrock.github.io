@@ -22,8 +22,8 @@ const Dice = () => {
 
   // Move the dice randomly around the screen.
   const move_dice = () => {
-    const x = Math.random() * 10 - 5;
-    const y = Math.random() * 10 - 5;
+    const x = Math.random() * 4 - 2;
+    const y = Math.random() * 4 - 2;
     const z = 0;
     set_dice_center([x, y, z]);
   };
