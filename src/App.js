@@ -15,8 +15,10 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import Map from "./pages/Map";
 import Dice from "./components/Dice";
 import Timeline from "./pages/Timeline";
+import AIRA from "./pages/AIRA";
 import AJCAI from "./pages/AJCAI";
 import Proposal from "./pages/proposal";
+import Graph from "./pages/graph";
 import LindaLeeWood from "./pages/LindaLeeWood";
 import IEEE_AGM from "./pages/ieee_agm";
 
@@ -27,8 +29,10 @@ const App = () => {
       {/* Center Provider keeps track of a global variable of the center of the map. */}
       <Router>
         {/* Important for this route path to be above optional map route. */}
+        <Route component={AIRA} exact path={"/AIRA"} />        
         <Route component={AJCAI} exact path={"/AJCAI"} />
         <Route component={Proposal} exact path={"/proposal"} />
+        <Route component={Graph} exact path={"/graph"} />
         <Route component={LindaLeeWood} exact path={"/LindaLeeWood"} />
         <Route component={IEEE_AGM} exact path={"/IEEE_AGM"} />
         <Route component={Map} exact path={"/"} />

@@ -42,6 +42,14 @@ const Map = () => {
  */
 const markers = [
   {
+    name: "AIRA 2024 - Published second paper!",
+    position: [-36.79789974055223, 174.75687553927318],
+    image: "https://nz.rs-cdn.com/images/nwsjh-3cwy7/page/ee64e199ce51b8d2d7d798403cc17cee__a6fe/zoom547x139z100000cw547.png.webp",
+    url: "http://woodrock.github.io/#/AIRA",
+    type: "school",
+    date: "April 2024",
+  },
+  {
     name: "IEEE AGM | Real-World AI Applications | Talk by Jesse Wood",
     position: [-41.28138, 174.77727],
     image: "https://s3.amazonaws.com/libapps/accounts/1104/images/ieee.jpg",
