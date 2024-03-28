@@ -120,7 +120,7 @@ const AIRA = () => {
       <ul>
         <li>
           <a
-            href="https://github.com/woodRock/fishy-business/blob/main/papers/AJCAI/paper3476.pdf"
+            href="https://github.com/woodRock/fishy-business/blob/main/papers/AIRA/paper.pdf"
             target="_blank"
             rel="noreferrer"
           >
