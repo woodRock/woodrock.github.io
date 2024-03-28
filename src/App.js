@@ -29,7 +29,6 @@ const App = () => {
       {/* Center Provider keeps track of a global variable of the center of the map. */}
       <Router>
         {/* Important for this route path to be above optional map route. */}
-        <Route component={AIRA} exact path={"/AIRA"} />        
         <Route component={AJCAI} exact path={"/AJCAI"} />
         <Route component={Proposal} exact path={"/proposal"} />
         <Route component={Graph} exact path={"/graph"} />
