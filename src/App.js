@@ -15,7 +15,6 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import Map from "./pages/Map";
 import Dice from "./components/Dice";
 import Timeline from "./pages/Timeline";
-import AIRA from "./pages/AIRA";
 import AJCAI from "./pages/AJCAI";
 import Proposal from "./pages/proposal";
 import Graph from "./pages/graph";
