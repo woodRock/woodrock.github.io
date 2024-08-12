@@ -164,7 +164,7 @@ const AJCAI_2024 = () => {
         </li> */}
         <li>
           <a
-            href="https://github.com/woodRock/fishy-business/tree/main/code/pso"
+            href="https://github.com/woodRock/fishy-business/tree/main/code"
             target="_blank"
             rel="noreferrer"
           >
@@ -177,12 +177,12 @@ const AJCAI_2024 = () => {
           </a>
         </li>
       </ul>
-      <h4>AJCAI 2022</h4>
+      <h4>AJCAI 2024</h4>
       <p>
         37th Australasian Joint Conference on Artificial Intelligence to be held
         in Melbourne, Southeastern Australia in November 2024. See{" "}
         <a href="https://ajcai2024.org/" target="_blank" rel="noreferrer">
-          AJCAI 2022
+          AJCAI 2024
         </a>{" "}
         for more information.
       </p>
