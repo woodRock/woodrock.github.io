@@ -42,12 +42,12 @@ const Map = () => {
  */
 const markers = [
   {
-    name: "AIRA 2024 - Published second paper!",
-    position: [-36.79789974055223, 174.75687553927318],
-    image: "https://nz.rs-cdn.com/images/nwsjh-3cwy7/page/ee64e199ce51b8d2d7d798403cc17cee__a6fe/zoom547x139z100000cw547.png.webp",
-    url: "http://woodrock.github.io/#/AIRA",
+    name: "AJCAI 2024 - Published second paper!",
+    position: [37.8136, 144.9631],
+    image: "https://ajcai2024.org/imgs/logo.png",
+    url: "http://woodrock.github.io/#/AJCAI_2024",
     type: "school",
-    date: "April 2024",
+    date: "November 2024",
   },
   {
     name: "IEEE AGM | Real-World AI Applications | Talk by Jesse Wood",
@@ -78,7 +78,7 @@ const markers = [
     name: "AJCAI 2022 - Published first paper!",
     position: [-31.960772129781056, 115.87370512655177],
     image: "https://ajcai2022.org/wp-content/uploads/2022/05/ColouredLogo.png",
-    url: "http://woodrock.github.io/#/AJCAI",
+    url: "http://woodrock.github.io/#/AJCAI_2022",
     type: "school",
     date: "December 2022",
   },

@@ -12,7 +12,7 @@ import React from "react";
 import { HomeButton } from "../components/Buttons.js";
 import useIsMobile from "../api/IsMobile.js";
 
-const AJCAI = () => {
+const AJCAI_2022 = () => {
   const isMobile = useIsMobile();
 
   return (
@@ -272,4 +272,4 @@ const AJCAI = () => {
   );
 };
 
-export default AJCAI;
+export default AJCAI_2022;
