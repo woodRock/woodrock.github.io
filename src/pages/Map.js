@@ -58,6 +58,14 @@ const markers = [
     date: "August 2024",
   },
   {
+    name: "Seafood New Zealand Conference 2024",
+    position: [-36.85286161216932, 174.76057286582883],
+    image: "https://www.seafood.co.nz/fileadmin/templates/img/SFNZ_Logo_Inverted_NEW.svg",
+    url: "https://www.seafood.co.nz/news-and-events/conference",
+    type: "school",
+    date: "August 2024",
+  },
+  {
     name: "IEEE AGM | Real-World AI Applications | Talk by Jesse Wood",
     position: [-41.28138, 174.77727],
     image: "https://s3.amazonaws.com/libapps/accounts/1104/images/ieee.jpg",
@@ -89,6 +97,22 @@ const markers = [
     url: "http://woodrock.github.io/#/AJCAI_2022",
     type: "school",
     date: "December 2022",
+  },
+  {
+    name: "GECCO 2022 - Attended virtually",
+    position: [42.3601, 71.0589],
+    image: "https://gecco-2022.sigevo.org/dl742",
+    url: "https://gecco-2022.sigevo.org/HomePage",
+    type: "school",
+    date: "July 2022",
+  },
+  {
+    name: "EvoStar 2022 - Attended virtually",
+    position: [40.416775, -3.703790],
+    image: "https://www.evostar.org/2022/wp-content/themes/sparkling/img/logo/logo_2.png",
+    url: "https://www.evostar.org/2022/",
+    type: "school",
+    date: "April 2022",
   },
   {
     name: "VUW - PhD in Artificial Intelligence",
