@@ -139,21 +139,13 @@ const markers = [
     date: "2021 - Present",
   },
   {
-    name: "VUW - Tutor",
-    position: [-41.28993225097656, 174.7685546875],
-    image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
-    url: "https://www.wgtn.ac.nz/",
-    type: "work",
-    date: "2021 - Present",
-  },
-  {
     name: "Niwa - Software Developer (contract)",
     position: [-41.3019314, 174.8055404],
     image:
       "https://media.glassdoor.com/sqll/446203/niwa-squarelogo-1537142405945.png",
     url: "https://www.niwa.co.nz/",
     type: "work",
-    date: "2020 - Present",
+    date: "2020 - 2024",
   },
   {
     name: "VUW - BE (Hons) Software Engineering",
