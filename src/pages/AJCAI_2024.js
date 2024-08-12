@@ -122,7 +122,7 @@ const AJCAI_2024 = () => {
       <ul>
         <li>
           <a
-            href="https://github.com/woodRock/fishy-business/blob/main/papers/AJCAI/paper3476.pdf"
+            href="https://github.com/woodRock/fishy-business/blob/main/papers/AJCAI%202024/AJCAI/paper.pdf"
             target="_blank"
             rel="noreferrer"
           >
@@ -136,7 +136,7 @@ const AJCAI_2024 = () => {
         </li>
         <li>
           <a
-            href="https://github.com/woodRock/fishy-business/blob/main/papers/AJCAI_Presentation/presentation3476.pdf"
+            href="https://github.com/woodRock/fishy-business/blob/main/papers/AJCAI%202024/AJCAI%20Presentation/slides.pdf"
             target="_blank"
             rel="noreferrer"
           >
@@ -148,7 +148,7 @@ const AJCAI_2024 = () => {
             />
           </a>
         </li>
-        <li>
+        {/* <li>
           <a
             href="https://github.com/woodRock/fishy-business/blob/main/papers/AJCAI_Poster/poster3476.pdf"
             target="_blank"
@@ -161,7 +161,7 @@ const AJCAI_2024 = () => {
               alt="pdf icon"
             />
           </a>
-        </li>
+        </li> */}
         <li>
           <a
             href="https://github.com/woodRock/fishy-business/tree/main/code/pso"
