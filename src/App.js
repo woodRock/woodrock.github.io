@@ -17,6 +17,7 @@ import Dice from "./components/Dice";
 import Timeline from "./pages/Timeline";
 import AJCAI_2022 from "./pages/AJCAI_2022";
 import AJCAI_2024 from "./pages/AJCAI_2024";
+import IEEE_Symposium_2024 from "./pages/IEEE_Symposium_2024";
 import Proposal from "./pages/proposal";
 import Graph from "./pages/graph";
 import LindaLeeWood from "./pages/LindaLeeWood";
@@ -30,6 +31,7 @@ const App = () => {
       <Router>
         {/* Important for this route path to be above optional map route. */}
         <Route component={AJCAI_2024} exact path={"/AJCAI_2024"} />
+        <Route component={IEEE_Symposium_2024} exact path={"/IEEE_Symposium_2024"} />
         <Route component={AJCAI_2022} exact path={"/AJCAI_2022"} />
         <Route component={Proposal} exact path={"/proposal"} />
         <Route component={Graph} exact path={"/graph"} />
