@@ -50,6 +50,14 @@ const markers = [
     date: "November 2024",
   },
   {
+    name: "IEEE Symposium 2024",
+    position: [-41.28993225097656, 174.77],
+    image: "https://s3.amazonaws.com/libapps/accounts/1104/images/ieee.jpg",
+    url: "http://woodrock.github.io/#/AJCAI_2024",
+    type: "school",
+    date: "August 2024",
+  },
+  {
     name: "IEEE AGM | Real-World AI Applications | Talk by Jesse Wood",
     position: [-41.28138, 174.77727],
     image: "https://s3.amazonaws.com/libapps/accounts/1104/images/ieee.jpg",
