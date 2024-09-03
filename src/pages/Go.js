@@ -6,7 +6,8 @@ const CELL_SIZE = 30;
 const STONE_SIZE = 28;
 
 const GoBoard = () => {
-  const [board, setBoard] = useState(Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null)));
+  const EMPTY_BOARD = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null))
+  const [board, setBoard] = useState(EMPTY_BOARD);
   const [currentPlayer, setCurrentPlayer] = useState('black');
 
   const handleIntersectionClick = (row, col) => {
@@ -17,6 +18,19 @@ const GoBoard = () => {
       setCurrentPlayer(currentPlayer === 'black' ? 'white' : 'black');
     }
   };
+
+  const handleRemoveStone = (e, row, col) => {
+    e.preventDefault();
+    const newBoard = [...board];
+    newBoard[row][col] = null;
+    setBoard(newBoard);
+    // setCurrentPlayer(currentPlayer === 'black' ? 'white' : 'black');
+  };
+
+  const resetBoard = () => {
+      setBoard(EMPTY_BOARD);
+      setCurrentPlayer('black')
+  }
 
   const renderBoard = () => {
     const lines = [];
@@ -55,6 +69,7 @@ const GoBoard = () => {
   return (
     <div className="go-container">
       <h1 className="go-title">Go Board</h1>
+      <button onClick={() => resetBoard()}>Reset</button>
       <div className="go-board">
         <svg width={BOARD_SIZE * CELL_SIZE} height={BOARD_SIZE * CELL_SIZE}>
           {renderBoard()}
@@ -69,6 +84,7 @@ const GoBoard = () => {
                 height={CELL_SIZE}
                 className="clickable-area"
                 onClick={() => handleIntersectionClick(rowIndex, colIndex)}
+                onContextMenu={(e) => handleRemoveStone(e, rowIndex, colIndex)}
               />
             ))
           )}
