@@ -6,6 +6,7 @@ const BOARD_SIZE = 19;
 const CELL_SIZE = 30;
 const STONE_SIZE = 28;
 const STAR_POINT_SIZE = 8;
+const DEFAULT_KOMI = 6.5;
 
 const GoBoard = () => {
   const EMPTY_BOARD = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
@@ -14,6 +15,9 @@ const GoBoard = () => {
   const [currentPlayer, setCurrentPlayer] = useState('black');
   const [koPoint, setKoPoint] = useState(null);
   const [message, setMessage] = useState('');
+  const [score, setScore] = useState(null);
+  const [territory, setTerritory] = useState(null); 
+  const [komi, setKomi] = useState(DEFAULT_KOMI);
 
   const currentBoard = boardHistory[currentStep];
 
@@ -37,7 +41,7 @@ const GoBoard = () => {
     const selfCapture = isSelfCapture(newBoard, row, col);
     
     if (selfCapture && capturedStones.length === 0) {
-      setMessage("Self-capture without capturing opponent stones is not allowed.");
+      setMessage("Self-capture is not allowed.");
       return;
     }
 
@@ -55,6 +59,8 @@ const GoBoard = () => {
     setBoardHistory([...newHistory, newBoard]);
     setCurrentStep(currentStep + 1);
     setCurrentPlayer(currentPlayer === 'black' ? 'white' : 'black');
+    setScore(null);
+    setTerritory(null);
   };
 
   const undo = () => {
@@ -62,6 +68,8 @@ const GoBoard = () => {
       setCurrentStep(currentStep - 1);
       setCurrentPlayer(currentPlayer === 'black' ? 'white' : 'black');
       setKoPoint(null);
+      setScore(null);
+      setTerritory(null);
     }
   };
 
@@ -70,6 +78,8 @@ const GoBoard = () => {
       setCurrentStep(currentStep + 1);
       setCurrentPlayer(currentPlayer === 'black' ? 'white' : 'black');
       setKoPoint(null);
+      setScore(null);
+      setTerritory(null);
     }
   };
 
@@ -77,12 +87,16 @@ const GoBoard = () => {
     setCurrentStep(0);
     setCurrentPlayer('black');
     setKoPoint(null);
+    setScore(null);
+    setTerritory(null);
   };
 
   const redoAll = () => {
     setCurrentStep(boardHistory.length - 1);
     setCurrentPlayer(boardHistory.length % 2 === 0 ? 'black' : 'white');
     setKoPoint(null);
+    setScore(null);
+    setTerritory(null);
   };
 
   const isKoPoint = (row, col) => {
@@ -151,28 +165,142 @@ const GoBoard = () => {
     setCurrentPlayer('black');
     setKoPoint(null);
     setMessage('');
+    setScore(null);
+    setTerritory(null);
+  };
+
+  const calculateScore = () => {
+    const newTerritory = Array(BOARD_SIZE).fill().map(() => Array(BOARD_SIZE).fill(null));
+    const visited = Array(BOARD_SIZE).fill().map(() => Array(BOARD_SIZE).fill(false));
+
+    const floodFill = (row, col) => {
+      if (!isValidPosition(row, col) || visited[row][col]) return { black: 0, white: 0, neutral: 0 };
+      visited[row][col] = true;
+
+      if (currentBoard[row][col] === 'black') return { black: 1, white: 0, neutral: 0 };
+      if (currentBoard[row][col] === 'white') return { black: 0, white: 1, neutral: 0 };
+
+      let result = { black: 0, white: 0, neutral: 1 };
+      const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+      
+      for (const [dx, dy] of directions) {
+        const nextResult = floodFill(row + dx, col + dy);
+        result.black += nextResult.black;
+        result.white += nextResult.white;
+        result.neutral += nextResult.neutral;
+      }
+
+      return result;
+    };
+
+    let blackTerritory = 0;
+    let whiteTerritory = 0;
+    let blackStones = 0;
+    let whiteStones = 0;
+
+    for (let row = 0; row < BOARD_SIZE; row++) {
+      for (let col = 0; col < BOARD_SIZE; col++) {
+        if (!visited[row][col]) {
+          const result = floodFill(row, col);
+          if (result.black > 0 && result.white === 0) {
+            blackTerritory += result.neutral;
+            for (let i = 0; i < BOARD_SIZE; i++) {
+              for (let j = 0; j < BOARD_SIZE; j++) {
+                if (visited[i][j] && newTerritory[i][j] === null && currentBoard[i][j] === null) {
+                  newTerritory[i][j] = 'black';
+                }
+              }
+            }
+          } else if (result.white > 0 && result.black === 0) {
+            whiteTerritory += result.neutral;
+            for (let i = 0; i < BOARD_SIZE; i++) {
+              for (let j = 0; j < BOARD_SIZE; j++) {
+                if (visited[i][j] && newTerritory[i][j] === null && currentBoard[i][j] === null) {
+                  newTerritory[i][j] = 'white';
+                }
+              }
+            }
+          }
+          // Reset visited for neutral territory
+          for (let i = 0; i < BOARD_SIZE; i++) {
+            for (let j = 0; j < BOARD_SIZE; j++) {
+              if (newTerritory[i][j] === null) {
+                visited[i][j] = false;
+              }
+            }
+          }
+        }
+        if (currentBoard[row][col] === 'black') blackStones++;
+        if (currentBoard[row][col] === 'white') whiteStones++;
+      }
+    }
+
+    setScore({
+      black: blackStones + blackTerritory,
+      white: whiteStones + whiteTerritory + komi
+    });
+    setTerritory(newTerritory);
   };
 
   const renderBoard = () => {
-    const lines = [];
-    const stones = [];
-    const starPoints = [];
+    const elements = [];
+
+    // Draw board background
+    elements.push(
+      <rect key="board-bg" x="0" y="0" width={BOARD_SIZE * CELL_SIZE} height={BOARD_SIZE * CELL_SIZE} fill="#DEB887" />
+    );
 
     // Draw lines
     for (let i = 0; i < BOARD_SIZE; i++) {
-      lines.push(
+      elements.push(
         <line key={`h${i}`} x1={CELL_SIZE/2} y1={CELL_SIZE/2 + i * CELL_SIZE} x2={CELL_SIZE/2 + (BOARD_SIZE-1) * CELL_SIZE} y2={CELL_SIZE/2 + i * CELL_SIZE} className="board-line" />
       );
-      lines.push(
+      elements.push(
         <line key={`v${i}`} x1={CELL_SIZE/2 + i * CELL_SIZE} y1={CELL_SIZE/2} x2={CELL_SIZE/2 + i * CELL_SIZE} y2={CELL_SIZE/2 + (BOARD_SIZE-1) * CELL_SIZE} className="board-line" />
       );
+    }
+
+    // Draw star points
+    const starPointPositions = [3, 9, 15];
+    starPointPositions.forEach(row => {
+      starPointPositions.forEach(col => {
+        elements.push(
+          <circle
+            key={`star-${row}-${col}`}
+            cx={CELL_SIZE/2 + col * CELL_SIZE}
+            cy={CELL_SIZE/2 + row * CELL_SIZE}
+            r={STAR_POINT_SIZE/2}
+            className="star-point"
+          />
+        );
+      });
+    });
+
+    // Draw territory
+    if (territory) {
+      territory.forEach((row, rowIndex) => {
+        row.forEach((cell, colIndex) => {
+          if (cell) {
+            elements.push(
+              <rect
+                key={`territory-${rowIndex}-${colIndex}`}
+                x={colIndex * CELL_SIZE}
+                y={rowIndex * CELL_SIZE}
+                width={CELL_SIZE}
+                height={CELL_SIZE}
+                className={`territory ${cell}`}
+              />
+            );
+          }
+        });
+      });
     }
 
     // Draw stones
     currentBoard.forEach((row, rowIndex) => {
       row.forEach((cell, colIndex) => {
         if (cell) {
-          stones.push(
+          elements.push(
             <circle
               key={`${rowIndex}-${colIndex}`}
               cx={CELL_SIZE/2 + colIndex * CELL_SIZE}
@@ -185,23 +313,7 @@ const GoBoard = () => {
       });
     });
 
-    // Draw star points
-    const starPointPositions = [3, 9, 15];
-    starPointPositions.forEach(row => {
-      starPointPositions.forEach(col => {
-        starPoints.push(
-          <circle
-            key={`star-${row}-${col}`}
-            cx={CELL_SIZE/2 + col * CELL_SIZE}
-            cy={CELL_SIZE/2 + row * CELL_SIZE}
-            r={STAR_POINT_SIZE/2}
-            className="star-point"
-          />
-        );
-      });
-    });
-
-    return [...lines, ...starPoints, ...stones];
+    return elements;
   };
 
   return (
@@ -213,6 +325,7 @@ const GoBoard = () => {
         <button onClick={undo} disabled={currentStep === 0} title="Undo">&#8592;</button>
         <button onClick={redo} disabled={currentStep === boardHistory.length - 1} title="Redo">&#8594;</button>
         <button onClick={redoAll} disabled={currentStep === boardHistory.length - 1} title="Redo All">&#8677;</button>
+        <button onClick={calculateScore}>Calculate Score</button>
       </div>
       <div className="go-board">
         <svg width={BOARD_SIZE * CELL_SIZE} height={BOARD_SIZE * CELL_SIZE}>
@@ -235,6 +348,13 @@ const GoBoard = () => {
       </div>
       <p className="current-player">Current player: <span className="player-name">{currentPlayer}</span></p>
       {message && <p className="message">{message}</p>}
+      {score && (
+        <div className="score">
+          <h2>Score</h2>
+          <p>Black: {score.black}</p>
+          <p>White: {score.white}</p>
+        </div>
+      )}
     </div>
   );
 };

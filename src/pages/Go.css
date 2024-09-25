@@ -85,3 +85,46 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.score {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.score h2 {
+  margin-bottom: 10px;
+}
+
+.score p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.territory {
+    opacity: 0.3;
+    stroke-width: 1;
+    stroke: #888;
+}
+  
+.territory.black {
+    fill: #000000;
+}
+
+.territory.white {
+    fill: #FFFFFF;
+}
+
+/* Ensure stones are rendered on top of territory */
+.stone {
+    stroke: black;
+    stroke-width: 1;
+    z-index: 10;
+}
+
+.stone.black {
+    fill: black;
+}
+
+.stone.white {
+    fill: white;
+}
