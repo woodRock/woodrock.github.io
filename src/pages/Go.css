@@ -1,0 +1,87 @@
+/* // GoBoard.css */
+.go-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.go-title {
+  margin-bottom: 20px;
+}
+
+.go-board {
+  background-color: #DEB887;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.board-line {
+  stroke: black;
+  stroke-width: 1;
+}
+
+.stone {
+  stroke: black;
+  stroke-width: 1;
+}
+
+.stone.black {
+  fill: black;
+}
+
+.stone.white {
+  fill: white;
+}
+
+.clickable-area {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.current-player {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.player-name {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.star-point {
+  fill: black;
+}
+
+.controls {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.controls button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.controls button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
