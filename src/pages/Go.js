@@ -1,5 +1,5 @@
 // GoBoard.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import './Go.css';
 
 const BOARD_SIZE = 19;
@@ -7,6 +7,7 @@ const CELL_SIZE = 30;
 const STONE_SIZE = 28;
 const STAR_POINT_SIZE = 8;
 const DEFAULT_KOMI = 6.5;
+const LABEL_OFFSET = 25; // Offset for grid labels
 
 const GoBoard = () => {
   const EMPTY_BOARD = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
@@ -18,6 +19,7 @@ const GoBoard = () => {
   const [score, setScore] = useState(null);
   const [territory, setTerritory] = useState(null); 
   const [komi, setKomi] = useState(DEFAULT_KOMI);
+  const fileInputRef = useRef(null);
 
   const currentBoard = boardHistory[currentStep];
 
@@ -247,16 +249,30 @@ const GoBoard = () => {
 
     // Draw board background
     elements.push(
-      <rect key="board-bg" x="0" y="0" width={BOARD_SIZE * CELL_SIZE} height={BOARD_SIZE * CELL_SIZE} fill="#DEB887" />
+      <rect key="board-bg" x={LABEL_OFFSET} y={LABEL_OFFSET} width={BOARD_SIZE * CELL_SIZE} height={BOARD_SIZE * CELL_SIZE} fill="#DEB887" />
     );
 
-    // Draw lines
+    // Draw grid lines
     for (let i = 0; i < BOARD_SIZE; i++) {
       elements.push(
-        <line key={`h${i}`} x1={CELL_SIZE/2} y1={CELL_SIZE/2 + i * CELL_SIZE} x2={CELL_SIZE/2 + (BOARD_SIZE-1) * CELL_SIZE} y2={CELL_SIZE/2 + i * CELL_SIZE} className="board-line" />
+        <line 
+          key={`h${i}`} 
+          x1={LABEL_OFFSET + CELL_SIZE/2} 
+          y1={LABEL_OFFSET + CELL_SIZE/2 + i * CELL_SIZE} 
+          x2={LABEL_OFFSET + CELL_SIZE/2 + (BOARD_SIZE-1) * CELL_SIZE} 
+          y2={LABEL_OFFSET + CELL_SIZE/2 + i * CELL_SIZE} 
+          className="board-line" 
+        />
       );
       elements.push(
-        <line key={`v${i}`} x1={CELL_SIZE/2 + i * CELL_SIZE} y1={CELL_SIZE/2} x2={CELL_SIZE/2 + i * CELL_SIZE} y2={CELL_SIZE/2 + (BOARD_SIZE-1) * CELL_SIZE} className="board-line" />
+        <line 
+          key={`v${i}`} 
+          x1={LABEL_OFFSET + CELL_SIZE/2 + i * CELL_SIZE} 
+          y1={LABEL_OFFSET + CELL_SIZE/2} 
+          x2={LABEL_OFFSET + CELL_SIZE/2 + i * CELL_SIZE} 
+          y2={LABEL_OFFSET + CELL_SIZE/2 + (BOARD_SIZE-1) * CELL_SIZE} 
+          className="board-line" 
+        />
       );
     }
 
@@ -267,14 +283,45 @@ const GoBoard = () => {
         elements.push(
           <circle
             key={`star-${row}-${col}`}
-            cx={CELL_SIZE/2 + col * CELL_SIZE}
-            cy={CELL_SIZE/2 + row * CELL_SIZE}
+            cx={LABEL_OFFSET + CELL_SIZE/2 + col * CELL_SIZE}
+            cy={LABEL_OFFSET + CELL_SIZE/2 + row * CELL_SIZE}
             r={STAR_POINT_SIZE/2}
             className="star-point"
           />
         );
       });
     });
+
+    // Draw grid labels
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      // Letter labels (A-T, skipping I)
+      const letter = String.fromCharCode(65 + (i >= 8 ? i + 1 : i));
+      elements.push(
+        <text
+          key={`label-${letter}`}
+          x={LABEL_OFFSET + CELL_SIZE/2 + i * CELL_SIZE}
+          y={LABEL_OFFSET - 5}
+          textAnchor="middle"
+          className="grid-label"
+        >
+          {letter}
+        </text>
+      );
+
+      // Number labels (1-19)
+      elements.push(
+        <text
+          key={`label-${19-i}`}
+          x={LABEL_OFFSET - 5}
+          y={LABEL_OFFSET + CELL_SIZE/2 + i * CELL_SIZE}
+          textAnchor="end"
+          dominantBaseline="central"
+          className="grid-label"
+        >
+          {19 - i}
+        </text>
+      );
+    }
 
     // Draw territory
     if (territory) {
@@ -284,8 +331,8 @@ const GoBoard = () => {
             elements.push(
               <rect
                 key={`territory-${rowIndex}-${colIndex}`}
-                x={colIndex * CELL_SIZE}
-                y={rowIndex * CELL_SIZE}
+                x={LABEL_OFFSET + colIndex * CELL_SIZE}
+                y={LABEL_OFFSET + rowIndex * CELL_SIZE}
                 width={CELL_SIZE}
                 height={CELL_SIZE}
                 className={`territory ${cell}`}
@@ -303,8 +350,8 @@ const GoBoard = () => {
           elements.push(
             <circle
               key={`${rowIndex}-${colIndex}`}
-              cx={CELL_SIZE/2 + colIndex * CELL_SIZE}
-              cy={CELL_SIZE/2 + rowIndex * CELL_SIZE}
+              cx={LABEL_OFFSET + CELL_SIZE/2 + colIndex * CELL_SIZE}
+              cy={LABEL_OFFSET + CELL_SIZE/2 + rowIndex * CELL_SIZE}
               r={STONE_SIZE/2}
               className={`stone ${cell}`}
             />
@@ -314,6 +361,103 @@ const GoBoard = () => {
     });
 
     return elements;
+  };
+
+  const exportSGF = () => {
+    let sgf = "(;FF[4]\nGM[1]\nSZ[19]\n";
+    sgf += `KM[${komi}]\n`;
+    
+    for (let i = 1; i < boardHistory.length; i++) {
+      const prevBoard = boardHistory[i - 1];
+      const currentBoard = boardHistory[i];
+      const color = i % 2 === 1 ? 'B' : 'W';
+      
+      for (let row = 0; row < BOARD_SIZE; row++) {
+        for (let col = 0; col < BOARD_SIZE; col++) {
+          if (prevBoard[row][col] !== currentBoard[row][col] && currentBoard[row][col] !== null) {
+            const x = String.fromCharCode(97 + col);
+            const y = String.fromCharCode(97 + row);
+            sgf += `;${color}[${x}${y}]`;
+          }
+        }
+      }
+    }
+    
+    sgf += ")";
+    
+    const blob = new Blob([sgf], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'game.sgf';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const importSGF = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const sgf = e.target.result;
+        const newBoardHistory = parseSGF(sgf);
+        setBoardHistory(newBoardHistory);
+        setCurrentStep(newBoardHistory.length - 1);
+        setCurrentPlayer(newBoardHistory.length % 2 === 0 ? 'black' : 'white');
+        setScore(null);
+        setTerritory(null);
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const parseSGF = (sgf) => {
+    const newBoardHistory = [EMPTY_BOARD];
+    const moves = sgf.match(/;([BW])\[([a-s]{2})\]/g) || [];
+    
+    moves.forEach(move => {
+      const color = move[1] === 'B' ? 'black' : 'white';
+      const x = move.charCodeAt(3) - 97;
+      const y = move.charCodeAt(4) - 97;
+      
+      const newBoard = newBoardHistory[newBoardHistory.length - 1].map(row => [...row]);
+      newBoard[y][x] = color;
+      
+      // Handle captures
+      const capturedStones = getCapturedStones(newBoard, y, x);
+      capturedStones.forEach(([capturedY, capturedX]) => {
+        newBoard[capturedY][capturedX] = null;
+      });
+      
+      // Check for self-capture
+      if (isSelfCapture(newBoard, y, x)) {
+        newBoard[y][x] = null;
+      }
+      
+      newBoardHistory.push(newBoard);
+    });
+    
+    return newBoardHistory;
+  };
+
+  const getCapturedStones = (board, row, col) => {
+    const currentColor = board[row][col];
+    const opponentColor = currentColor === 'black' ? 'white' : 'black';
+    const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+    const capturedStones = [];
+    
+    directions.forEach(([dy, dx]) => {
+      const newRow = row + dy;
+      const newCol = col + dx;
+      if (isValidPosition(newRow, newCol) && board[newRow][newCol] === opponentColor) {
+        const group = [];
+        if (!hasLiberty(board, newRow, newCol, opponentColor, new Set(), group)) {
+          capturedStones.push(...group);
+        }
+      }
+    });
+    const LABEL_OFFSET = 15; // Offset for grid labels
+    return capturedStones;
   };
 
   return (
@@ -326,17 +470,25 @@ const GoBoard = () => {
         <button onClick={redo} disabled={currentStep === boardHistory.length - 1} title="Redo">&#8594;</button>
         <button onClick={redoAll} disabled={currentStep === boardHistory.length - 1} title="Redo All">&#8677;</button>
         <button onClick={calculateScore}>Calculate Score</button>
+        <button onClick={exportSGF} title="Export SGF">&#8599;</button>
+        <button onClick={() => fileInputRef.current.click()} title="Import SGF">&#8593;</button>
+        <input 
+          type="file" 
+          ref={fileInputRef} 
+          style={{display: 'none'}} 
+          onChange={importSGF} 
+          accept=".sgf"
+        />
       </div>
       <div className="go-board">
-        <svg width={BOARD_SIZE * CELL_SIZE} height={BOARD_SIZE * CELL_SIZE}>
+        <svg width={BOARD_SIZE * CELL_SIZE + LABEL_OFFSET * 2} height={BOARD_SIZE * CELL_SIZE + LABEL_OFFSET * 2}>
           {renderBoard()}
-          {/* Clickable areas */}
           {currentBoard.map((row, rowIndex) =>
             row.map((_, colIndex) => (
               <rect
                 key={`click-${rowIndex}-${colIndex}`}
-                x={colIndex * CELL_SIZE}
-                y={rowIndex * CELL_SIZE}
+                x={LABEL_OFFSET + colIndex * CELL_SIZE}
+                y={LABEL_OFFSET + rowIndex * CELL_SIZE}
                 width={CELL_SIZE}
                 height={CELL_SIZE}
                 className="clickable-area"
