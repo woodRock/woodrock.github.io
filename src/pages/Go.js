@@ -249,7 +249,13 @@ const GoBoard = () => {
 
     // Draw board background
     elements.push(
-      <rect key="board-bg" x={LABEL_OFFSET} y={LABEL_OFFSET} width={BOARD_SIZE * CELL_SIZE} height={BOARD_SIZE * CELL_SIZE} fill="#DEB887" />
+      <rect 
+        key="board-bg" 
+        x={LABEL_OFFSET} 
+        y={LABEL_OFFSET} 
+        width={(BOARD_SIZE * CELL_SIZE)} 
+        height={(BOARD_SIZE * CELL_SIZE)} 
+        fill="#DEB887" />
     );
 
     // Draw grid lines
@@ -370,7 +376,7 @@ const GoBoard = () => {
     for (let i = 1; i < boardHistory.length; i++) {
       const prevBoard = boardHistory[i - 1];
       const currentBoard = boardHistory[i];
-      const color = i % 2 === 1 ? 'B' : 'W';
+      const color = i % 2 === 0 ? 'B' : 'W';
       
       for (let row = 0; row < BOARD_SIZE; row++) {
         for (let col = 0; col < BOARD_SIZE; col++) {
@@ -499,14 +505,16 @@ const GoBoard = () => {
         </svg>
       </div>
       <p className="current-player">Current player: <span className="player-name">{currentPlayer}</span></p>
-      {message && <p className="message">{message}</p>}
-      {score && (
-        <div className="score">
-          <h2>Score</h2>
-          <p>Black: {score.black}</p>
-          <p>White: {score.white}</p>
-        </div>
-      )}
+      <div>
+          {message && <p className="message">{message}</p>}
+          {score && (
+            <div className="score">
+              <h2>Score</h2>
+              <p>Black: {score.black}</p>
+              <p>White: {score.white}</p>
+            </div>
+          )}
+      </div>
     </div>
   );
 };
