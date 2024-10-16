@@ -15,9 +15,11 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import Map from "./pages/Map";
 import Dice from "./components/Dice";
 import GoBoard from "./pages/Go";
+import ChessBoard from "./pages/Chess";
 import Timeline from "./pages/Timeline";
 import AJCAI_2022 from "./pages/AJCAI_2022";
 import AJCAI_2024 from "./pages/AJCAI_2024";
+import Faslip from "./pages/Faslip";
 import IEEE_Symposium_2024 from "./pages/IEEE_Symposium_2024";
 import Proposal from "./pages/proposal";
 import Graph from "./pages/graph";
@@ -38,11 +40,13 @@ const App = () => {
         <Route component={Graph} exact path={"/graph"} />
         <Route component={LindaLeeWood} exact path={"/LindaLeeWood"} />
         <Route component={IEEE_AGM} exact path={"/IEEE_AGM"} />
+        <Route component={Faslip} exact path={"/FASLIP"} />
         <Route component={Map} exact path={"/"} />
         <Route component={Map} exact path={"/map/:id?"} />
         <Route component={Timeline} exact path={"/timeline/:id?"} />
         <Route component={Dice} exact path={"/dice"} />
         <Route component={GoBoard} exact path={"/go"} />
+        <Route component={ChessBoard} exact path={"/chess"} />
       </Router>
     </div>
   );
