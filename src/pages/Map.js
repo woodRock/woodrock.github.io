@@ -42,12 +42,12 @@ const Map = () => {
  */
 const markers = [
   {
-    name: "AJCAI 2024 - Published second paper!",
-    position: [37.8136, 144.9631],
-    image: "https://ajcai2024.org/imgs/logo.png",
-    url: "http://woodrock.github.io/#/AJCAI_2024",
+    name: "Presented at FASLIP",
+    position: [-41.28993225097656, 174.7685546875],
+    image: "https://www.wgtn.ac.nz/__data/assets/image/0011/1754678/Shield.png",
+    url: "http://woodrock.github.io/#/FASLIP",
     type: "school",
-    date: "November 2024",
+    date: "October 2024",
   },
   {
     name: "IEEE Symposium 2024",
