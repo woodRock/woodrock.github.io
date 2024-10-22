@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@react-three/fiber": "^7.0.7",
+    "components": "^0.1.0",
     "leaflet": "^1.7.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -31,6 +32,5 @@
     ">0.2%",
     "not dead",
     "not op_mini all"
-  ],
-  "devDependencies": {}
+  ]
 }

@@ -15,6 +15,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import Map from "./pages/Map";
 import Dice from "./components/Dice";
 import GoBoard from "./pages/Go";
+import LorenzAttractor from "./pages/Lorzenz";
 import ChessBoard from "./pages/Chess";
 import Timeline from "./pages/Timeline";
 import AJCAI_2022 from "./pages/AJCAI_2022";
@@ -44,6 +45,7 @@ const App = () => {
         <Route component={Map} exact path={"/"} />
         <Route component={Map} exact path={"/map/:id?"} />
         <Route component={Timeline} exact path={"/timeline/:id?"} />
+        <Route component={LorenzAttractor} exact path={"/lorenz"} />
         <Route component={Dice} exact path={"/dice"} />
         <Route component={GoBoard} exact path={"/go"} />
         <Route component={ChessBoard} exact path={"/chess"} />
