@@ -12,9 +12,88 @@ const DigitClassifier = () => {
   const predictTimeoutRef = useRef(null);
   const [canvasSize, setCanvasSize] = useState(280);
 
-  // Neural Network class remains the same
+  // Neural Network class implementation remains the same
   class NeuralNetwork {
-    // ... (previous Neural Network implementation)
+    constructor() {
+      this.weights1 = new Array(784).fill(0).map(() => new Array(128).fill(0).map(() => Math.random() * 2 - 1));
+      this.weights2 = new Array(128).fill(0).map(() => new Array(10).fill(0).map(() => Math.random() * 2 - 1));
+      this.bias1 = new Array(128).fill(0);
+      this.bias2 = new Array(10).fill(0);
+    }
+
+    sigmoid(x) {
+      return 1 / (1 + Math.exp(-Math.max(-10, Math.min(10, x))));
+    }
+
+    forward(input) {
+      const hidden = new Array(128).fill(0);
+      for (let i = 0; i < 128; i++) {
+        let sum = this.bias1[i];
+        for (let j = 0; j < 784; j++) {
+          sum += input[j] * this.weights1[j][i];
+        }
+        hidden[i] = this.sigmoid(sum);
+      }
+
+      const output = new Array(10).fill(0);
+      for (let i = 0; i < 10; i++) {
+        let sum = this.bias2[i];
+        for (let j = 0; j < 128; j++) {
+          sum += hidden[j] * this.weights2[j][i];
+        }
+        output[i] = this.sigmoid(sum);
+      }
+
+      return output;
+    }
+
+    train(input, target, learningRate = 0.1) {
+      // Forward pass
+      const hidden = new Array(128).fill(0);
+      for (let i = 0; i < 128; i++) {
+        let sum = this.bias1[i];
+        for (let j = 0; j < 784; j++) {
+          sum += input[j] * this.weights1[j][i];
+        }
+        hidden[i] = this.sigmoid(sum);
+      }
+
+      const output = new Array(10).fill(0);
+      for (let i = 0; i < 10; i++) {
+        let sum = this.bias2[i];
+        for (let j = 0; j < 128; j++) {
+          sum += hidden[j] * this.weights2[j][i];
+        }
+        output[i] = this.sigmoid(sum);
+      }
+
+      // Backward pass
+      const deltaOutput = output.map((o, i) => o - target[i]);
+      const deltaHidden = new Array(128).fill(0);
+      
+      for (let i = 0; i < 128; i++) {
+        for (let j = 0; j < 10; j++) {
+          deltaHidden[i] += deltaOutput[j] * this.weights2[i][j];
+        }
+        deltaHidden[i] *= hidden[i] * (1 - hidden[i]);
+      }
+
+      // Update weights and biases
+      for (let i = 0; i < 784; i++) {
+        for (let j = 0; j < 128; j++) {
+          this.weights1[i][j] -= learningRate * input[i] * deltaHidden[j];
+        }
+      }
+
+      for (let i = 0; i < 128; i++) {
+        for (let j = 0; j < 10; j++) {
+          this.weights2[i][j] -= learningRate * hidden[i] * deltaOutput[j];
+        }
+      }
+
+      this.bias1 = this.bias1.map((b, i) => b - learningRate * deltaHidden[i]);
+      this.bias2 = this.bias2.map((b, i) => b - learningRate * deltaOutput[i]);
+    }
   }
 
   useEffect(() => {
