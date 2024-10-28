@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 const DigitClassifier = () => {
-  // Previous state declarations remain the same
   const [model, setModel] = useState(null);
   const [isTraining, setIsTraining] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -12,7 +11,6 @@ const DigitClassifier = () => {
   const predictTimeoutRef = useRef(null);
   const [canvasSize, setCanvasSize] = useState(280);
 
-  // Neural Network class implementation remains the same
   class NeuralNetwork {
     constructor() {
       this.weights1 = new Array(784).fill(0).map(() => new Array(128).fill(0).map(() => Math.random() * 2 - 1));
@@ -194,13 +192,60 @@ const DigitClassifier = () => {
     setPrediction(null);
   };
 
-  // Training and classification functions remain the same
   const trainModel = async () => {
-    // ... (previous implementation)
+    setIsTraining(true);
+    setProgress(0);
+    const nn = new NeuralNetwork();
+    setModel(nn);
+
+    const trainingData = [];
+    for (let i = 0; i < 1000; i++) {
+      const digit = Math.floor(Math.random() * 10);
+      const input = new Array(784).fill(0).map(() => Math.random() < 0.2 ? 1 : 0);
+      const target = new Array(10).fill(0);
+      target[digit] = 1;
+      trainingData.push({ input, target });
+    }
+
+    for (let epoch = 0; epoch < 10; epoch++) {
+      for (let i = 0; i < trainingData.length; i++) {
+        const { input, target } = trainingData[i];
+        nn.train(input, target);
+      }
+      setProgress((epoch + 1) * 10);
+      await new Promise(resolve => setTimeout(resolve, 50));
+    }
+
+    setModel(nn);
+    setIsTraining(false);
   };
 
   const classifyDigit = () => {
-    // ... (previous implementation)
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const input = [];
+    
+    for (let y = 0; y < 28; y++) {
+      for (let x = 0; x < 28; x++) {
+        let sum = 0;
+        const sX = Math.floor(x * (canvas.width / 28));
+        const sY = Math.floor(y * (canvas.height / 28));
+        
+        for (let dy = 0; dy < Math.floor(canvas.height / 28); dy++) {
+          for (let dx = 0; dx < Math.floor(canvas.width / 28); dx++) {
+            const pixelIndex = ((sY + dy) * canvas.width + (sX + dx)) * 4;
+            sum += (255 - imageData.data[pixelIndex]) / 255;
+          }
+        }
+        input.push(sum / (Math.floor(canvas.width / 28) * Math.floor(canvas.height / 28)));
+      }
+    }
+
+    const output = model.forward(input);
+    const predictedDigit = output.indexOf(Math.max(...output));
+    const confidence = Math.max(...output) * 100;
+    setPrediction({ digit: predictedDigit, confidence: confidence.toFixed(1) });
   };
 
   return (
