@@ -23,21 +23,6 @@ const DigitClassifier = () => {
       );
       this.bias1 = new Array(128).fill(0);
       this.bias2 = new Array(10).fill(0);
-
-      // Check for NaNs in the weights.
-      if (this.weights1.some((row) => row.some((x) => isNaN(x)))) {
-        console.error('NaN detected in weights1');
-      }
-      if (this.weights2.some((row) => row.some((x) => isNaN(x)))) {
-        console.error('NaN detected in weights2');
-      }
-      // Check for NaNs in the biases.
-      if (this.bias1.some((x) => isNaN(x))) {
-        console.error('NaN detected in bias1');
-      }
-      if (this.bias2.some((x) => isNaN(x))) {
-        console.error('NaN detected in bias2');
-      }
     }
   
     // Stable sigmoid function
@@ -53,11 +38,6 @@ const DigitClassifier = () => {
   
     // Forward pass with NaN checks
     forward(input) {
-      // Check if input in NaN.
-      if (input.some((x) => isNaN(x))) {
-        console.error('NaN detected in input');
-      }
-
       const hidden = new Array(128).fill(0).map(() => Math.random() * 2 - 1); // Random values between -1 and 1
       for (let i = 0; i < 128; i++) {
         let sum = this.bias1[i];
@@ -65,10 +45,7 @@ const DigitClassifier = () => {
           sum += input[j] * this.weights1[j][i];
         }
         hidden[i] = this.sigmoid(sum);
-        // Check for NaN
-        if (isNaN(hidden[i])) {
-          console.error('NaN detected in hidden layer');
-        }
+  
       }
 
       const output = new Array(10).fill(0).map(() => Math.random() * 2 - 1); // Random values between -1 and 1
@@ -78,22 +55,12 @@ const DigitClassifier = () => {
           sum += hidden[j] * this.weights2[j][i];
         }
         output[i] = this.sigmoid(sum);
-        // Check for NaN
-        if (isNaN(output[i])) {
-          console.error('NaN detected in output layer');
-        }
       }
   
       return output;
     }
   
     train(input, target, learningRate = 0.01) {
-      // Check if input in NaN.
-      if (input.some((x) => isNaN(x))) {
-        console.error('NaN detected in input');
-        return;
-      }
-
       // Forward pass
       const hidden = new Array(128).fill(0).map(() => Math.random() * 2 - 1); // Random values between -1 and 1
       for (let i = 0; i < 128; i++) {
@@ -174,7 +141,7 @@ const DigitClassifier = () => {
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
 
-    // Cleanup
+    // Cleanu
     return () => window.removeEventListener('resize', updateCanvasSize);
   }, [canvasSize]);
 
