@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Papa from 'papaparse';
 
 const DigitClassifier = () => {
   const [model, setModel] = useState(null);
@@ -13,50 +14,98 @@ const DigitClassifier = () => {
 
   class NeuralNetwork {
     constructor() {
-      this.weights1 = new Array(784).fill(0).map(() => new Array(128).fill(0).map(() => Math.random() * 2 - 1));
-      this.weights2 = new Array(128).fill(0).map(() => new Array(10).fill(0).map(() => Math.random() * 2 - 1));
+      // Initialize weights with small random values
+      this.weights1 = new Array(784).fill(0).map(() =>
+        new Array(128).fill(0).map(() => Math.random() * 0.01 - 0.005) // Small random values
+      );
+      this.weights2 = new Array(128).fill(0).map(() =>
+        new Array(10).fill(0).map(() => Math.random() * 0.01 - 0.005) // Small random values
+      );
       this.bias1 = new Array(128).fill(0);
       this.bias2 = new Array(10).fill(0);
-    }
 
+      // Check for NaNs in the weights.
+      if (this.weights1.some((row) => row.some((x) => isNaN(x)))) {
+        console.error('NaN detected in weights1');
+      }
+      if (this.weights2.some((row) => row.some((x) => isNaN(x)))) {
+        console.error('NaN detected in weights2');
+      }
+      // Check for NaNs in the biases.
+      if (this.bias1.some((x) => isNaN(x))) {
+        console.error('NaN detected in bias1');
+      }
+      if (this.bias2.some((x) => isNaN(x))) {
+        console.error('NaN detected in bias2');
+      }
+    }
+  
+    // Stable sigmoid function
     sigmoid(x) {
-      return 1 / (1 + Math.exp(-Math.max(-10, Math.min(10, x))));
+      if (x >= 0) {
+        const z = Math.exp(-x);
+        return 1 / (1 + z);
+      } else {
+        const z = Math.exp(x);
+        return z / (1 + z);
+      }
     }
-
+  
+    // Forward pass with NaN checks
     forward(input) {
-      const hidden = new Array(128).fill(0);
+      // Check if input in NaN.
+      if (input.some((x) => isNaN(x))) {
+        console.error('NaN detected in input');
+      }
+
+      const hidden = new Array(128).fill(0).map(() => Math.random() * 2 - 1); // Random values between -1 and 1
       for (let i = 0; i < 128; i++) {
         let sum = this.bias1[i];
         for (let j = 0; j < 784; j++) {
           sum += input[j] * this.weights1[j][i];
         }
         hidden[i] = this.sigmoid(sum);
+        // Check for NaN
+        if (isNaN(hidden[i])) {
+          console.error('NaN detected in hidden layer');
+        }
       }
 
-      const output = new Array(10).fill(0);
+      const output = new Array(10).fill(0).map(() => Math.random() * 2 - 1); // Random values between -1 and 1
       for (let i = 0; i < 10; i++) {
         let sum = this.bias2[i];
         for (let j = 0; j < 128; j++) {
           sum += hidden[j] * this.weights2[j][i];
         }
         output[i] = this.sigmoid(sum);
+        // Check for NaN
+        if (isNaN(output[i])) {
+          console.error('NaN detected in output layer');
+        }
       }
-
+  
       return output;
     }
+  
+    train(input, target, learningRate = 0.01) {
+      // Check if input in NaN.
+      if (input.some((x) => isNaN(x))) {
+        console.error('NaN detected in input');
+        return;
+      }
 
-    train(input, target, learningRate = 0.1) {
       // Forward pass
-      const hidden = new Array(128).fill(0);
+      const hidden = new Array(128).fill(0).map(() => Math.random() * 2 - 1); // Random values between -1 and 1
       for (let i = 0; i < 128; i++) {
         let sum = this.bias1[i];
+
         for (let j = 0; j < 784; j++) {
-          sum += input[j] * this.weights1[j][i];
+          sum += input[j] * this.weights1[j][i]
         }
         hidden[i] = this.sigmoid(sum);
       }
-
-      const output = new Array(10).fill(0);
+  
+      const output = new Array(128).fill(0).map(() => Math.random() * 2 - 1); // Random values between -1 and 1
       for (let i = 0; i < 10; i++) {
         let sum = this.bias2[i];
         for (let j = 0; j < 128; j++) {
@@ -64,36 +113,38 @@ const DigitClassifier = () => {
         }
         output[i] = this.sigmoid(sum);
       }
-
+  
       // Backward pass
       const deltaOutput = output.map((o, i) => o - target[i]);
       const deltaHidden = new Array(128).fill(0);
-      
+  
       for (let i = 0; i < 128; i++) {
         for (let j = 0; j < 10; j++) {
           deltaHidden[i] += deltaOutput[j] * this.weights2[i][j];
         }
-        deltaHidden[i] *= hidden[i] * (1 - hidden[i]);
+        deltaHidden[i] *= hidden[i] * (1 - hidden[i]); // Sigmoid derivative
       }
-
-      // Update weights and biases
+  
+      // Update weights and biases with clamping to avoid extreme updates
       for (let i = 0; i < 784; i++) {
         for (let j = 0; j < 128; j++) {
-          this.weights1[i][j] -= learningRate * input[i] * deltaHidden[j];
+          const weightUpdate = learningRate * input[i] * deltaHidden[j];
+          this.weights1[i][j] -= weightUpdate;
         }
       }
-
+  
       for (let i = 0; i < 128; i++) {
         for (let j = 0; j < 10; j++) {
-          this.weights2[i][j] -= learningRate * hidden[i] * deltaOutput[j];
+          const weightUpdate = learningRate * hidden[i] * deltaOutput[j];
+          this.weights2[i][j] -= weightUpdate;
         }
       }
-
+  
       this.bias1 = this.bias1.map((b, i) => b - learningRate * deltaHidden[i]);
       this.bias2 = this.bias2.map((b, i) => b - learningRate * deltaOutput[i]);
     }
   }
-
+  
   useEffect(() => {
     const updateCanvasSize = () => {
       // Set canvas size based on screen width
@@ -192,33 +243,66 @@ const DigitClassifier = () => {
     setPrediction(null);
   };
 
+  // Load the MNIST dataset
+  const loadMNIST = async () => {
+    console.log("Loading MNIST dataset...");
+    return new Promise((resolve, reject) => {
+      Papa.parse('/data/mnist_train.csv', {
+        download: true,
+        header: false,
+        complete: (results) => {
+          const trainingData = results.data.map(row => {
+            // Skip the first row which contains the header.
+            if (row[0] === "label") return null;
+
+            const label = row[0];
+            const input = row.slice(1).map(pixel => pixel / 255); // Normalize pixel values
+            const target = new Array(10).fill(0);
+            target[label] = 1; // One-hot encoding
+            return { input, target };
+          });
+
+          // Remove the first element which is null
+          trainingData.shift();
+
+          resolve(trainingData);
+        },
+        error: reject,
+      });
+    });
+  };
+
   const trainModel = async () => {
+    console.log("Training the model...");
     setIsTraining(true);
     setProgress(0);
     const nn = new NeuralNetwork();
     setModel(nn);
-
-    const trainingData = [];
-    for (let i = 0; i < 1000; i++) {
-      const digit = Math.floor(Math.random() * 10);
-      const input = new Array(784).fill(0).map(() => Math.random() < 0.2 ? 1 : 0);
-      const target = new Array(10).fill(0);
-      target[digit] = 1;
-      trainingData.push({ input, target });
-    }
-
-    for (let epoch = 0; epoch < 10; epoch++) {
-      for (let i = 0; i < trainingData.length; i++) {
-        const { input, target } = trainingData[i];
-        nn.train(input, target);
+  
+    const trainingData = await loadMNIST();
+    const miniBatchSize = 32; // You can adjust this size
+    const numEpochs = 10;
+  
+    for (let epoch = 0; epoch < numEpochs; epoch++) {
+      // Shuffle the training data
+      trainingData.sort(() => Math.random() - 0.5);
+  
+      for (let i = 0; i < trainingData.length; i += miniBatchSize) {
+        const miniBatch = trainingData.slice(i, i + miniBatchSize);
+        
+        // Train on each mini-batch
+        miniBatch.forEach(({ input, target }) => {
+          nn.train(input, target);
+        });
       }
-      setProgress((epoch + 1) * 10);
+  
+      setProgress(((epoch + 1) / numEpochs) * 100);
       await new Promise(resolve => setTimeout(resolve, 50));
     }
-
-    setModel(nn);
+  
     setIsTraining(false);
   };
+  
 
   const classifyDigit = () => {
     const canvas = canvasRef.current;
