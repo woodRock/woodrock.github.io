@@ -20,14 +20,14 @@ const DigitClassifier = () => {
         const cnn = new ConvolutionalNeuralNetwork();
         const success = cnn.loadWeights();
         if (success) {
-          console.log('Successfully loaded saved model!');
+          console.log("Successfully loaded saved model!");
           setModel(cnn);
           setModelLoaded(true);
         } else {
-          console.log('No saved model found, please train a new one.');
+          console.log("No saved model found, please train a new one.");
         }
       } catch (error) {
-        console.error('Error loading saved model:', error);
+        console.error("Error loading saved model:", error);
       }
     };
 
@@ -95,20 +95,20 @@ const DigitClassifier = () => {
       };
 
       this.bn1 = {
-        gamma: Array(8).fill(1),    // Scale for conv1
-        beta: Array(8).fill(0)      // Shift for conv1
+        gamma: Array(8).fill(1), // Scale for conv1
+        beta: Array(8).fill(0), // Shift for conv1
       };
-      
+
       this.bn2 = {
-        gamma: Array(16).fill(1),   // Scale for conv2
-        beta: Array(16).fill(0)     // Shift for conv2
+        gamma: Array(16).fill(1), // Scale for conv2
+        beta: Array(16).fill(0), // Shift for conv2
       };
-      
+
       this.bnFC1 = {
-        gamma: Array(128).fill(1),  // Scale for FC1
-        beta: Array(128).fill(0)    // Shift for FC1
+        gamma: Array(128).fill(1), // Scale for FC1
+        beta: Array(128).fill(0), // Shift for FC1
       };
-    
+
       // Initialize running statistics
       this.runningMean = null;
       this.runningVar = null;
@@ -196,48 +196,49 @@ const DigitClassifier = () => {
       // Running statistics for inference
       if (!this.runningMean) this.runningMean = new Array(x.length).fill(0);
       if (!this.runningVar) this.runningVar = new Array(x.length).fill(1);
-      
+
       const epsilon = 1e-8;
       const momentum = 0.9;
-    
+
       if (training) {
         // Calculate mean and variance for current batch
         const mean = x.reduce((a, b) => a + b, 0) / x.length;
-        const variance = x.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / x.length;
-        
+        const variance =
+          x.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / x.length;
+
         // Update running statistics
         for (let i = 0; i < this.runningMean.length; i++) {
-          this.runningMean[i] = momentum * this.runningMean[i] + (1 - momentum) * mean;
-          this.runningVar[i] = momentum * this.runningVar[i] + (1 - momentum) * variance;
+          this.runningMean[i] =
+            momentum * this.runningMean[i] + (1 - momentum) * mean;
+          this.runningVar[i] =
+            momentum * this.runningVar[i] + (1 - momentum) * variance;
         }
-        
+
         // Normalize using batch statistics
-        return x.map(val => (val - mean) / Math.sqrt(variance + epsilon));
+        return x.map((val) => (val - mean) / Math.sqrt(variance + epsilon));
       } else {
         // Use running statistics for inference
-        return x.map((val, i) => 
-          (val - this.runningMean[i]) / Math.sqrt(this.runningVar[i] + epsilon)
+        return x.map(
+          (val, i) =>
+            (val - this.runningMean[i]) /
+            Math.sqrt(this.runningVar[i] + epsilon),
         );
       }
     }
 
     // Add dropout helper function
     dropout(x, rate = 0.5, training = true) {
-      if (!training) return x;  // During inference, no dropout
-      
+      if (!training) return x; // During inference, no dropout
+
       // For 2D arrays (convolutional layers)
       if (Array.isArray(x[0])) {
-        return x.map(row => 
-          row.map(val => 
-            Math.random() > rate ? val / (1 - rate) : 0
-          )
+        return x.map((row) =>
+          row.map((val) => (Math.random() > rate ? val / (1 - rate) : 0)),
         );
       }
-      
+
       // For 1D arrays (fully connected layers)
-      return x.map(val => 
-        Math.random() > rate ? val / (1 - rate) : 0
-      );
+      return x.map((val) => (Math.random() > rate ? val / (1 - rate) : 0));
     }
 
     convolve(input, layer, saveCache = false) {
@@ -316,56 +317,67 @@ const DigitClassifier = () => {
       }
     }
 
-    forward(inputArray, saveCache = false, training = true) {  // Add training parameter
+    forward(inputArray, saveCache = false, training = true) {
+      // Add training parameter
       try {
         // Reshape input to 1x28x28
-        const input = [Array(28).fill().map((_, i) => 
-          Array(28).fill().map((_, j) => inputArray[i * 28 + j])
-        )];
-    
+        const input = [
+          Array(28)
+            .fill()
+            .map((_, i) =>
+              Array(28)
+                .fill()
+                .map((_, j) => inputArray[i * 28 + j]),
+            ),
+        ];
+
         // First conv layer
         const conv1Result = this.convolve(input, this.conv1, saveCache);
-        const conv1Normalized = conv1Result.output.map(channel => 
+        const conv1Normalized = conv1Result.output.map((channel) =>
           this.batchNorm(channel.flat()).reduce((rows, val, index) => {
             const rowIndex = Math.floor(index / channel[0].length);
             if (!rows[rowIndex]) rows[rowIndex] = [];
             rows[rowIndex].push(val);
             return rows;
-          }, [])
+          }, []),
         );
-        
+
         // Add dropout after conv1
-        const conv1Dropout = conv1Normalized.map(channel =>
-          this.dropout(channel, 0.1, training)  // 10% dropout rate
+        const conv1Dropout = conv1Normalized.map(
+          (channel) => this.dropout(channel, 0.1, training), // 10% dropout rate
         );
-        
+
         const pool1Result = this.maxPool(conv1Dropout, 2, saveCache);
-    
+
         // Second conv layer
-        const conv2Result = this.convolve(pool1Result.output, this.conv2, saveCache);
-        const conv2Normalized = conv2Result.output.map(channel => 
+        const conv2Result = this.convolve(
+          pool1Result.output,
+          this.conv2,
+          saveCache,
+        );
+        const conv2Normalized = conv2Result.output.map((channel) =>
           this.batchNorm(channel.flat()).reduce((rows, val, index) => {
             const rowIndex = Math.floor(index / channel[0].length);
             if (!rows[rowIndex]) rows[rowIndex] = [];
             rows[rowIndex].push(val);
             return rows;
-          }, [])
+          }, []),
         );
-        
+
         // Add dropout after conv2
-        const conv2Dropout = conv2Normalized.map(channel =>
-          this.dropout(channel, 0.1, training)  // 10% dropout rate
+        const conv2Dropout = conv2Normalized.map(
+          (channel) => this.dropout(channel, 0.1, training), // 10% dropout rate
         );
-        
+
         const pool2Result = this.maxPool(conv2Dropout, 2, saveCache);
-    
+
         // Flatten
         const flattened = pool2Result.output.flat(2);
-    
+
         // FC1 with batch norm and dropout
         const fc1 = Array(128).fill(0);
         const fc1PreAct = saveCache ? Array(128).fill(0) : null;
-        
+
         for (let i = 0; i < 128; i++) {
           let sum = this.fc1.bias[i];
           for (let j = 0; j < flattened.length; j++) {
@@ -374,14 +386,14 @@ const DigitClassifier = () => {
           if (saveCache) fc1PreAct[i] = sum;
           fc1[i] = this.relu(sum);
         }
-        
+
         const fc1Normalized = this.batchNorm(fc1);
-        const fc1Dropout = this.dropout(fc1Normalized, 0.1, training);  // 10% dropout rate for FC layer
-    
+        const fc1Dropout = this.dropout(fc1Normalized, 0.1, training); // 10% dropout rate for FC layer
+
         // FC2 layer
         const output = Array(10).fill(0);
         const outputPreAct = saveCache ? Array(10).fill(0) : null;
-        
+
         for (let i = 0; i < 10; i++) {
           let sum = this.fc2.bias[i];
           for (let j = 0; j < 128; j++) {
@@ -390,22 +402,22 @@ const DigitClassifier = () => {
           if (saveCache) outputPreAct[i] = sum;
           output[i] = this.sigmoid(sum);
         }
-    
+
         if (saveCache) {
           return {
             output,
             cache: {
               input,
-              conv1: { 
-                ...conv1Result, 
+              conv1: {
+                ...conv1Result,
                 normalized: conv1Normalized,
-                dropout: conv1Dropout 
+                dropout: conv1Dropout,
               },
               pool1: pool1Result,
-              conv2: { 
-                ...conv2Result, 
+              conv2: {
+                ...conv2Result,
                 normalized: conv2Normalized,
-                dropout: conv2Dropout 
+                dropout: conv2Dropout,
               },
               pool2: pool2Result,
               flattened,
@@ -413,11 +425,11 @@ const DigitClassifier = () => {
               fc1PreAct,
               fc1Raw: fc1,
               fc1Normalized,
-              output: outputPreAct
-            }
+              output: outputPreAct,
+            },
           };
         }
-        
+
         return output;
       } catch (error) {
         console.error("Error in forward pass:", error);
@@ -719,23 +731,23 @@ const DigitClassifier = () => {
       return correct / predictions.length;
     }
 
-    saveWeights(name = 'mnist-weights') {
+    saveWeights(name = "mnist-weights") {
       const weights = {
         conv1: {
           filters: this.conv1.filters,
-          bias: this.conv1.bias
+          bias: this.conv1.bias,
         },
         conv2: {
           filters: this.conv2.filters,
-          bias: this.conv2.bias
+          bias: this.conv2.bias,
         },
         fc1: {
           weights: this.fc1.weights,
-          bias: this.fc1.bias
+          bias: this.fc1.bias,
         },
         fc2: {
           weights: this.fc2.weights,
-          bias: this.fc2.bias
+          bias: this.fc2.bias,
         },
         // Include batch norm parameters if using them
         bn1: this.bn1,
@@ -744,25 +756,25 @@ const DigitClassifier = () => {
         runningMean: this.runningMean,
         runningVar: this.runningVar,
         // Save timestamp for versioning
-        savedAt: new Date().toISOString()
+        savedAt: new Date().toISOString(),
       };
-  
+
       try {
         localStorage.setItem(name, JSON.stringify(weights));
         return true;
       } catch (error) {
-        console.error('Error saving weights:', error);
+        console.error("Error saving weights:", error);
         return false;
       }
     }
-  
-    loadWeights(name = 'mnist-weights') {
+
+    loadWeights(name = "mnist-weights") {
       try {
         const savedWeights = localStorage.getItem(name);
         if (!savedWeights) return false;
-  
+
         const weights = JSON.parse(savedWeights);
-  
+
         // Load the weights
         this.conv1.filters = weights.conv1.filters;
         this.conv1.bias = weights.conv1.bias;
@@ -772,17 +784,17 @@ const DigitClassifier = () => {
         this.fc1.bias = weights.fc1.bias;
         this.fc2.weights = weights.fc2.weights;
         this.fc2.bias = weights.fc2.bias;
-  
+
         // Load batch norm parameters if they exist
         if (weights.bn1) this.bn1 = weights.bn1;
         if (weights.bn2) this.bn2 = weights.bn2;
         if (weights.bnFC1) this.bnFC1 = weights.bnFC1;
         if (weights.runningMean) this.runningMean = weights.runningMean;
         if (weights.runningVar) this.runningVar = weights.runningVar;
-  
+
         return true;
       } catch (error) {
-        console.error('Error loading weights:', error);
+        console.error("Error loading weights:", error);
         return false;
       }
     }
@@ -928,7 +940,6 @@ const DigitClassifier = () => {
       cnn.saveWeights();
       setModelLoaded(true);
       console.log("Weights saved successfully!");
-
     } catch (error) {
       console.error("Training error:", error);
     } finally {
@@ -1127,31 +1138,32 @@ const DigitClassifier = () => {
     <div style={styles.container}>
       <div style={styles.card}>
         <h2 style={styles.title}>Digit Classifier</h2>
-        
+
         <div style={styles.content}>
           <div style={styles.buttonContainer}>
-            <button 
-              onClick={trainModel} 
+            <button
+              onClick={trainModel}
               disabled={isTraining}
               style={{
                 ...styles.button,
-                ...(isTraining ? styles.buttonDisabled : {})
+                ...(isTraining ? styles.buttonDisabled : {}),
               }}
             >
-              {isTraining ? 'Training...' : modelLoaded ? 'Retrain Model' : 'Train Model'}
+              {isTraining
+                ? "Training..."
+                : modelLoaded
+                  ? "Retrain Model"
+                  : "Train Model"}
             </button>
-            
-            <button 
-              onClick={clearCanvas}
-              style={styles.button}
-            >
+
+            <button onClick={clearCanvas} style={styles.button}>
               Clear Canvas
             </button>
           </div>
 
           {modelLoaded && (
-            <div style={{...styles.alert, backgroundColor: '#a7f3d0'}}>
-              <p style={{...styles.alertText, color: '#047857'}}>
+            <div style={{ ...styles.alert, backgroundColor: "#a7f3d0" }}>
+              <p style={{ ...styles.alertText, color: "#047857" }}>
                 Model loaded and ready to use!
               </p>
             </div>
@@ -1160,14 +1172,16 @@ const DigitClassifier = () => {
           {isTraining && (
             <div style={styles.progressContainer}>
               <div style={styles.progressBar}>
-                <div 
+                <div
                   style={{
                     ...styles.progressFill,
-                    width: `${progress}%`
+                    width: `${progress}%`,
                   }}
                 />
               </div>
-              <p style={styles.progressText}>Training Progress: {progress.toFixed(1)}%</p>
+              <p style={styles.progressText}>
+                Training Progress: {progress.toFixed(1)}%
+              </p>
             </div>
           )}
 
@@ -1191,7 +1205,8 @@ const DigitClassifier = () => {
           {prediction !== null && (
             <div style={styles.alert}>
               <p style={styles.alertText}>
-                Predicted Digit: {prediction.digit} (Confidence: {prediction.confidence}%)
+                Predicted Digit: {prediction.digit} (Confidence:{" "}
+                {prediction.confidence}%)
               </p>
             </div>
           )}

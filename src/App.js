@@ -28,7 +28,6 @@ import Graph from "./pages/graph";
 import LindaLeeWood from "./pages/LindaLeeWood";
 import IEEE_AGM from "./pages/ieee_agm";
 
-
 const App = () => {
   return (
     <div className="App">
@@ -36,7 +35,11 @@ const App = () => {
       <Router>
         {/* Important for this route path to be above optional map route. */}
         <Route component={AJCAI_2024} exact path={"/AJCAI_2024"} />
-        <Route component={IEEE_Symposium_2024} exact path={"/IEEE_Symposium_2024"} />
+        <Route
+          component={IEEE_Symposium_2024}
+          exact
+          path={"/IEEE_Symposium_2024"}
+        />
         <Route component={AJCAI_2022} exact path={"/AJCAI_2022"} />
         <Route component={Proposal} exact path={"/proposal"} />
         <Route component={Graph} exact path={"/graph"} />
