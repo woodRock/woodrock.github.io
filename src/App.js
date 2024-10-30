@@ -15,7 +15,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import Map from "./pages/Map";
 import Dice from "./components/Dice";
 import GoBoard from "./pages/Go";
-import DigitClassifier from "./pages/Neural";
+import DigitClassifier from "./pages/CNN";
 import LorenzAttractor from "./pages/Lorzenz";
 import ChessBoard from "./pages/Chess";
 import Timeline from "./pages/Timeline";
