@@ -813,7 +813,7 @@ const DigitClassifier = () => {
         throw new Error("Invalid data format");
       }
 
-      const miniBatchSize = 64; // Increased batch size
+      const miniBatchSize = 128; // Increased batch size
       const numEpochs = 20; // More epochs
       const initialLearningRate = 0.005; // Adjusted learning rate
       let learningRate = initialLearningRate;
