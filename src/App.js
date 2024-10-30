@@ -48,6 +48,7 @@ const App = () => {
         <Route component={Timeline} exact path={"/timeline/:id?"} />
         <Route component={DigitClassifier} exact path={"/neural"} />
         <Route component={LorenzAttractor} exact path={"/lorenz"} />
+        <Route component={NeuralNet} exact path={"/neural"} />
         <Route component={Dice} exact path={"/dice"} />
         <Route component={GoBoard} exact path={"/go"} />
         <Route component={ChessBoard} exact path={"/chess"} />
