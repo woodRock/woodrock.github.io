@@ -1,40 +1,36 @@
 name: Deploy
-on: 
+on:
   push:
-    branches: 
-      - dev
-    paths:
-      - src/**
-      - public/**
-      - package.json
-      - .github/workflows/**
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
-        with:
-          persist-credentials: false
+    branches: dev
+  pull_request:
+    branches: dev
 
-      # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-      # Borrowed from LaserFlash (see https://github.com/LaserFlash)
-      - name: Install and Build 🔧
-        uses: actions/setup-node@v3
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
         with:
-          node-version: '20.8.1'
-          # cache: 'npm'
-        # clean install
-      - run: | 
-          npm install
-          npm run build
-        env: 
-          CI: false
-        
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+          deno-version: v2.x
+
+      - name: Build step
+        run: "deno task build"
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
         with:
-          BRANCH: master # The branch the action should deploy to.
-          FOLDER: build # The folder the action should deploy.
-          CLEAN: true
-          CLEAN_EXCLUDE: '["CNAME",".well-known/brave-rewards-verification.txt"]'
+          project: "woodrock-github-io"
+          entrypoint: "main.ts"
+          root: "."
+          
+          
