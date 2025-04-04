@@ -5,7 +5,6 @@
 import * as $Countdown from "./routes/Countdown.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $about from "./routes/about.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $contact from "./routes/contact.tsx";
 import * as $download from "./routes/download.ts";
@@ -17,6 +16,7 @@ import * as $search from "./routes/search.tsx";
 import * as $Countdown_1 from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $GetYear from "./islands/GetYear.tsx";
+import * as $MobileMenu from "./islands/MobileMenu.tsx";
 import * as $RenderTime from "./islands/RenderTime.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -25,7 +25,6 @@ const manifest = {
     "./routes/Countdown.tsx": $Countdown,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/about.tsx": $about,
     "./routes/api/joke.ts": $api_joke,
     "./routes/contact.tsx": $contact,
     "./routes/download.ts": $download,
@@ -39,6 +38,7 @@ const manifest = {
     "./islands/Countdown.tsx": $Countdown_1,
     "./islands/Counter.tsx": $Counter,
     "./islands/GetYear.tsx": $GetYear,
+    "./islands/MobileMenu.tsx": $MobileMenu,
     "./islands/RenderTime.tsx": $RenderTime,
   },
   baseUrl: import.meta.url,
