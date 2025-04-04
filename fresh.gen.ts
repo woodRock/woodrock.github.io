@@ -5,20 +5,29 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_check_file from "./routes/api/check-file.ts";
+import * as $api_doc_chat from "./routes/api/doc-chat.ts";
+import * as $api_doc_summary from "./routes/api/doc-summary.ts";
 import * as $api_joke from "./routes/api/joke.ts";
+import * as $api_llm_gemini from "./routes/api/llm-gemini.ts";
+import * as $api_llm_proposal from "./routes/api/llm-proposal.ts";
+import * as $api_llm from "./routes/api/llm.ts";
 import * as $api_search from "./routes/api/search.ts";
 import * as $contact from "./routes/contact.tsx";
 import * as $countdown from "./routes/countdown.tsx";
+import * as $doc_chat_filename_ from "./routes/doc-chat/[filename].tsx";
 import * as $download from "./routes/download.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $llm from "./routes/llm.tsx";
 import * as $projects from "./routes/projects.tsx";
 import * as $publications from "./routes/publications.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $wordle from "./routes/wordle.tsx";
 import * as $Countdown from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $DocChat from "./islands/DocChat.tsx";
 import * as $GetYear from "./islands/GetYear.tsx";
+import * as $LLMIsland from "./islands/LLMIsland.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
 import * as $MobileMenuIsland from "./islands/MobileMenuIsland.tsx";
 import * as $OnnxWordleSolver from "./islands/OnnxWordleSolver.tsx";
@@ -32,13 +41,20 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/api/check-file.ts": $api_check_file,
+    "./routes/api/doc-chat.ts": $api_doc_chat,
+    "./routes/api/doc-summary.ts": $api_doc_summary,
     "./routes/api/joke.ts": $api_joke,
+    "./routes/api/llm-gemini.ts": $api_llm_gemini,
+    "./routes/api/llm-proposal.ts": $api_llm_proposal,
+    "./routes/api/llm.ts": $api_llm,
     "./routes/api/search.ts": $api_search,
     "./routes/contact.tsx": $contact,
     "./routes/countdown.tsx": $countdown,
+    "./routes/doc-chat/[filename].tsx": $doc_chat_filename_,
     "./routes/download.ts": $download,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/llm.tsx": $llm,
     "./routes/projects.tsx": $projects,
     "./routes/publications.tsx": $publications,
     "./routes/search.tsx": $search,
@@ -47,7 +63,9 @@ const manifest = {
   islands: {
     "./islands/Countdown.tsx": $Countdown,
     "./islands/Counter.tsx": $Counter,
+    "./islands/DocChat.tsx": $DocChat,
     "./islands/GetYear.tsx": $GetYear,
+    "./islands/LLMIsland.tsx": $LLMIsland,
     "./islands/MobileMenu.tsx": $MobileMenu,
     "./islands/MobileMenuIsland.tsx": $MobileMenuIsland,
     "./islands/OnnxWordleSolver.tsx": $OnnxWordleSolver,
