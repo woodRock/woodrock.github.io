@@ -147,15 +147,15 @@ export const handler: Handlers = {
       // Create a prompt for the LLM
       const prompt = `You are an AI research assistant helping a user chat about a document. The document is:
 
-${documentText}
+      ${documentText}
 
-${chatContext ? `Previous conversation:\n${chatContext}\n\n` : ""}
+      ${chatContext ? `Previous conversation:\n${chatContext}\n\n` : ""}
 
-User's latest question: "${question}"
+      User's latest question: "${question}"
 
-Provide a helpful, accurate, and concise response focused on the document's content. If the question asks about information not in the document, you can make reasonable inferences based on the research area, but clearly indicate what's explicitly in the document versus what's inferred.
+      Provide a helpful, accurate, and concise response focused on the document's content. If the question asks about information not in the document, you can make reasonable inferences based on the research area, but clearly indicate what's explicitly in the document versus what's inferred.
 
-Format your response in a clear, conversational style and make sure it directly addresses the user's question.`;
+      Format your response in a clear, conversational style and make sure it directly addresses the user's question.`;
       
       // Make the API request
       const endpoint = `https://generativelanguage.googleapis.com/v1/${modelToUse}:generateContent`;

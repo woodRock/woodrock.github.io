@@ -1,7 +1,68 @@
 // routes/contact.tsx
+
+// Import section remains the same
 import { Button } from "../components/Button.tsx";
 import { FreshContext } from "$fresh/server.ts";
 import { useState } from "preact/hooks";
+import { TeamMember } from "../components/TeamMember.tsx";
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  email: string;
+  linkedin: string;
+  imageSrc: string;
+}
+
+export const teamMembers: TeamMember[] = [
+  {
+    id: "jesse-wood",
+    name: "Jesse Wood",
+    title: "PhD Candidate",
+    bio: "Software engineer with expertise in full-stack development, machine learning, and data visualization. Passionate about building tools that solve real-world problems.",
+    email: "jrhwood98@gmail.com",
+    linkedin: "https://www.linkedin.com/in/jrhwood",
+    imageSrc: "https://pbs.twimg.com/profile_images/1904799151331958786/KxV1kqJ7_400x400.jpg"
+  },
+  {
+    id: "bach-hoai-nguyen",
+    name: "Bach Hoai Nguyen",
+    title: "Lecturer",
+    bio: "Lecturer in Computer Science at Victoria University of Wellington. My research focuses on machine learning, data mining, and their applications in various domains.",
+    email: "Bach.Nguyen@ecs.vuw.ac.nz",
+    linkedin: "https://www.linkedin.com/in/hoaibach/",
+    imageSrc: "https://media.licdn.com/dms/image/v2/C5603AQFaaqLgqEnTiw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1618949389434?e=1749081600&v=beta&t=GCYFhel6O1zziWZ5OdcNBl-dCDBe1NE4HYmqnTBE_VY"
+  },
+  {
+    id: "bing-xue",
+    name: "Bing Xue",
+    title: "Professor, IEEE Fellow",
+    bio: "Professor of Computer Science at Victoria University of Wellington. I am interested in the intersection of AI and human-computer interaction.",
+    email: "Bing.Xue@ecs.vuw.ac.nz",
+    linkedin: "https://www.linkedin.com/in/bing-xue-116a4736/",
+    imageSrc: "https://homepages.ecs.vuw.ac.nz/~xuebing/Photos/BingXUE.png"
+  },
+  {
+    id: "mengjie-zhang",
+    name: "Mengjie Zhang",
+    title: "Professor, IEEE Fellow",
+    bio: "Professor of Computer Science at Victoria University of Wellington. My research interests include evolutionary computation, machine learning, and their applications.",
+    email: "Mengjie.Zhang@ecs.vuw.ac.nz",
+    linkedin: "https://www.linkedin.com/in/mengjie-zhang-a8b156a7",
+    imageSrc: "https://homepages.ecs.vuw.ac.nz/~mengjie/mengjie-new.jpg"
+  },
+  {
+    id: "daniel-killeen",
+    name: "Daniel Killeen",
+    title: "Project Manager, PhD",
+    bio: "I lead a team of chemists that work on multidisiplinary applied research projects. Our focus is on science delivery that achieves real-world impact.",
+    email: "Daniel.Killeen@plantandfood.co.nz",
+    linkedin: "https://www.linkedin.com/in/daniel-killeen-7a1a7885/",
+    imageSrc: "https://images.ctfassets.net/y9no91j9bwnp/7E9E6yx1L7L6XcvJrAMBP2/a50d912f31c3a9808b3f2ff456d3c52b/profile-photo-daniel-killeen.jpg?w=800&h=800&q=80"
+  }
+];
 
 export default function Contact() {
   return (
@@ -123,7 +184,7 @@ export default function Contact() {
                 Send Me a Message
               </h2>
 
-              <form class="space-y-4">
+              <form class="space-y-4"   action="https://formspree.io/f/mpwpynqy" method="POST">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
@@ -238,6 +299,18 @@ export default function Contact() {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Our Team Section */}
+        <div class="mt-12">
+          <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
+            Our Team
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map(member => (
+              <TeamMember key={member.id} member={member} />
+            ))}
           </div>
         </div>
       </div>

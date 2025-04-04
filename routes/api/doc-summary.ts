@@ -57,12 +57,12 @@ async function generateSummary(documentText: string): Promise<string> {
   }
 
   const prompt = `Please provide a concise, informative summary of the following document. 
-Focus on the key points, main arguments, and significant findings. 
-The summary should be clear, objective, and capture the essence of the document:
+  Focus on the key points, main arguments, and significant findings. 
+  The summary should be clear, objective, and capture the essence of the document:
 
-${documentText}
+  ${documentText}
 
-Summary:`;
+  Summary:`;
 
   const endpoint = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
   const url = `${endpoint}?key=${apiKey}`;

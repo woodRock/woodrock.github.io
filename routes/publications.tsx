@@ -21,7 +21,7 @@ export default function Publications() {
       linkLabel: "Open Access",
       year: 2022,
       journal: "Australasian Joint Conference on Artificial Intelligence",
-      backgroundColor: "#E1CFE8"
+      backgroundColor: "#CFE1E8"
     },
     {
       title: "Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry",
