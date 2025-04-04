@@ -20,7 +20,7 @@ export default function Publications() {
       link: "https://openaccess.wgtn.ac.nz/articles/chapter/Automated_Fish_Classification_Using_Unprocessed_Fatty_Acid_Chromatographic_Data_A_Machine_Learning_Approach/22107473",
       linkLabel: "Open Access",
       year: 2022,
-      journal: "Journal of Machine Learning for Biomedical Imaging",
+      journal: "Australasian Joint Conference on Artificial Intelligence",
       backgroundColor: "#E1CFE8"
     },
     {
