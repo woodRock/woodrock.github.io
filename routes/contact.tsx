@@ -33,7 +33,7 @@ export const teamMembers: TeamMember[] = [
     bio: "Lecturer in Computer Science at Victoria University of Wellington. My research focuses on machine learning, data mining, and their applications in various domains.",
     email: "Bach.Nguyen@ecs.vuw.ac.nz",
     linkedin: "https://www.linkedin.com/in/hoaibach/",
-    imageSrc: "https://media.licdn.com/dms/image/v2/C5603AQFaaqLgqEnTiw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1618949389434?e=1749081600&v=beta&t=GCYFhel6O1zziWZ5OdcNBl-dCDBe1NE4HYmqnTBE_VY"
+    imageSrc: "https://people.wgtn.ac.nz/bach.nguyen/thumbnail"
   },
   {
     id: "bing-xue",
