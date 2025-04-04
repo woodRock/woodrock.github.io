@@ -13,10 +13,12 @@ import * as $index from "./routes/index.tsx";
 import * as $projects from "./routes/projects.tsx";
 import * as $publications from "./routes/publications.tsx";
 import * as $search from "./routes/search.tsx";
+import * as $wordle from "./routes/wordle.tsx";
 import * as $Countdown_1 from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $GetYear from "./islands/GetYear.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
+import * as $OnnxWordleSolver from "./islands/OnnxWordleSolver.tsx";
 import * as $PaperCardContent from "./islands/PaperCardContent.tsx";
 import * as $RenderTime from "./islands/RenderTime.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -34,12 +36,14 @@ const manifest = {
     "./routes/projects.tsx": $projects,
     "./routes/publications.tsx": $publications,
     "./routes/search.tsx": $search,
+    "./routes/wordle.tsx": $wordle,
   },
   islands: {
     "./islands/Countdown.tsx": $Countdown_1,
     "./islands/Counter.tsx": $Counter,
     "./islands/GetYear.tsx": $GetYear,
     "./islands/MobileMenu.tsx": $MobileMenu,
+    "./islands/OnnxWordleSolver.tsx": $OnnxWordleSolver,
     "./islands/PaperCardContent.tsx": $PaperCardContent,
     "./islands/RenderTime.tsx": $RenderTime,
   },
