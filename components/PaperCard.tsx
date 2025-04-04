@@ -1,5 +1,6 @@
 // components/PaperCard.tsx
 import { Button } from "./Button.tsx";
+import PaperCardContent from "../islands/PaperCardContent.tsx";
 
 interface PaperCardProps {
   title: string;
@@ -36,12 +37,8 @@ export default function PaperCard({
         
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">{title}</h2>
         
-        <div className="mb-6">
-          <p className="text-gray-600 leading-relaxed line-clamp-3 mb-2">{abstract}</p>
-          <button className="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
-            Read more
-          </button>
-        </div>
+        {/* Abstract content with Read More functionality */}
+        <PaperCardContent abstract={abstract} />
         
         <div className="flex flex-wrap gap-3">
           <a 

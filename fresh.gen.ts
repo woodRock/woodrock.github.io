@@ -17,6 +17,7 @@ import * as $Countdown_1 from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $GetYear from "./islands/GetYear.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
+import * as $PaperCardContent from "./islands/PaperCardContent.tsx";
 import * as $RenderTime from "./islands/RenderTime.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -39,6 +40,7 @@ const manifest = {
     "./islands/Counter.tsx": $Counter,
     "./islands/GetYear.tsx": $GetYear,
     "./islands/MobileMenu.tsx": $MobileMenu,
+    "./islands/PaperCardContent.tsx": $PaperCardContent,
     "./islands/RenderTime.tsx": $RenderTime,
   },
   baseUrl: import.meta.url,
