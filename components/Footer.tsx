@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <h2 class="text-lg font-semibold mb-4">About</h2>
             <p class="text-gray-300 text-sm">
-              Portfolio showcasing research publications, projects, and professional work in data science and engineering.
+              Portfolio showcasing research publications, projects, and professional work in artificial intelligence, data science and software engineering.
             </p>
           </div>
           

@@ -1,6 +1,6 @@
 // _app.tsx
 import { type PageProps } from "$fresh/server.ts";
-import Navigation from "../components/Navigation.tsx";
+import NavigationWithSearch from "../components/NavigationWithSearch.tsx";
 import Footer from "../components/Footer.tsx";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
@@ -49,7 +49,7 @@ export default function App({ Component, url }: PageProps) {
         </div>
         
         {/* Navigation with proper path */}
-        <Navigation path={currentPath} />
+        <NavigationWithSearch path={currentPath} />
         
         {/* Main content */}
         <main class="flex-grow">

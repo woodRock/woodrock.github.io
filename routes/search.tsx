@@ -1,32 +1,19 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+// routes/search.tsx
+import { PageProps } from "$fresh/server.ts";
+import SearchBoxIsland from "../islands/SearchBoxIsland.tsx";
 
-const NAMES = ["Alice", "Bob", "Charlie", "Dave", "Eve", "Frank"];
-
-interface Data {
-  results: string[];
-  query: string;
+// Define your SearchData interface if needed
+interface SearchData {
+  // Add properties as needed
 }
 
-export const handler: Handlers<Data> = {
-  GET(req, ctx) {
-    const url = new URL(req.url);
-    const query = url.searchParams.get("q") || "";
-    const results = NAMES.filter((name) => name.includes(query));
-    return ctx.render({ results, query });
-  },
-};
-
-export default function Page({ data }: PageProps<Data>) {
-  const { results, query } = data;
+export default function SearchPage({ data }: PageProps<SearchData>) {
   return (
-    <div>
-      <form>
-        <input type="text" name="q" value={query} />
-        <button type="submit">Search</button>
-      </form>
-      <ul>
-        {results.map((name) => <li key={name}>{name}</li>)}
-      </ul>
+    <div class="min-h-screen bg-white pt-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto">
+        {/* This div creates extra white space */}
+        <div class="h-96"></div>
+      </div>
     </div>
   );
 }

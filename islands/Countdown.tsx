@@ -1,36 +1,82 @@
-import { useSignal } from "@preact/signals";
-import { useEffect } from "preact/hooks";
+import { Handlers } from "$fresh/server.ts";
+import { useState, useEffect } from "preact/hooks";
 
-const timeFmt = new Intl.RelativeTimeFormat("en-US");
+// Island component for the live countdown
+export default function CountdownIsland() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const [isComplete, setIsComplete] = useState(false);
 
-// The target date is passed as a string instead of as a `Date`, because the
-// props to island components need to be JSON (de)serializable.
-export default function Countdown(props: { target: string }) {
-  const target = new Date(props.target);
-  const now = useSignal(new Date());
-
-  // Set up an interval to update the `now` date every second with the current
-  // date as long as the component is mounted.
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (now.value > target) {
-        clearInterval(timer);
+    const targetDate = new Date("2025-08-01T00:00:00Z").getTime();
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        // Countdown is complete
+        setIsComplete(true);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
       }
-      now.value = new Date();
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [props.target]);
 
-  const secondsLeft = Math.floor(
-    (target.getTime() - now.value.getTime()) / 1000,
-  );
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // If the target date has passed, we stop counting down.
-  if (secondsLeft <= 0) {
-    return <span>🎉</span>;
+      // Ensure all values are finite
+      setTimeLeft({
+        days: Number.isFinite(days) ? days : 0,
+        hours: Number.isFinite(hours) ? hours : 0,
+        minutes: Number.isFinite(minutes) ? minutes : 0,
+        seconds: Number.isFinite(seconds) ? seconds : 0,
+      });
+    };
+
+    updateTimer(); // Initial call
+    const interval = setInterval(updateTimer, 1000); // Update every second
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+
+  if (isComplete) {
+    return (
+      <div className="text-4xl md:text-6xl font-mono text-green-600">
+        Thesis Deadline Reached!
+      </div>
+    );
   }
 
-  // Otherwise, we format the remaining time using `Intl.RelativeTimeFormat` and
-  // render it.
-  return <span>{timeFmt.format(secondsLeft, "seconds")}</span>;
+  return (
+    <div className="text-4xl md:text-6xl font-mono flex space-x-4 justify-center">
+      <div>
+        <span>{timeLeft.days}</span>
+        <span className="text-lg md:text-xl">d</span>
+      </div>
+      <div>
+        <span>{timeLeft.hours}</span>
+        <span className="text-lg md:text-xl">h</span>
+      </div>
+      <div>
+        <span>{timeLeft.minutes}</span>
+        <span className="text-lg md:text-xl">m</span>
+      </div>
+      <div>
+        <span>{timeLeft.seconds}</span>
+        <span className="text-lg md:text-xl">s</span>
+      </div>
+    </div>
+  );
 }
+
+export const handler: Handlers = {
+  GET(_req, ctx) {
+    return ctx.render();
+  },
+};

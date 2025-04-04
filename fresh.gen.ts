@@ -2,11 +2,13 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $Countdown from "./routes/Countdown.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $api_check_file from "./routes/api/check-file.ts";
 import * as $api_joke from "./routes/api/joke.ts";
+import * as $api_search from "./routes/api/search.ts";
 import * as $contact from "./routes/contact.tsx";
+import * as $countdown from "./routes/countdown.tsx";
 import * as $download from "./routes/download.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
@@ -14,22 +16,26 @@ import * as $projects from "./routes/projects.tsx";
 import * as $publications from "./routes/publications.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $wordle from "./routes/wordle.tsx";
-import * as $Countdown_1 from "./islands/Countdown.tsx";
+import * as $Countdown from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $GetYear from "./islands/GetYear.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
+import * as $MobileMenuIsland from "./islands/MobileMenuIsland.tsx";
 import * as $OnnxWordleSolver from "./islands/OnnxWordleSolver.tsx";
 import * as $PaperCardContent from "./islands/PaperCardContent.tsx";
 import * as $RenderTime from "./islands/RenderTime.tsx";
+import * as $SearchBoxIsland from "./islands/SearchBoxIsland.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/Countdown.tsx": $Countdown,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/api/check-file.ts": $api_check_file,
     "./routes/api/joke.ts": $api_joke,
+    "./routes/api/search.ts": $api_search,
     "./routes/contact.tsx": $contact,
+    "./routes/countdown.tsx": $countdown,
     "./routes/download.ts": $download,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
@@ -39,13 +45,15 @@ const manifest = {
     "./routes/wordle.tsx": $wordle,
   },
   islands: {
-    "./islands/Countdown.tsx": $Countdown_1,
+    "./islands/Countdown.tsx": $Countdown,
     "./islands/Counter.tsx": $Counter,
     "./islands/GetYear.tsx": $GetYear,
     "./islands/MobileMenu.tsx": $MobileMenu,
+    "./islands/MobileMenuIsland.tsx": $MobileMenuIsland,
     "./islands/OnnxWordleSolver.tsx": $OnnxWordleSolver,
     "./islands/PaperCardContent.tsx": $PaperCardContent,
     "./islands/RenderTime.tsx": $RenderTime,
+    "./islands/SearchBoxIsland.tsx": $SearchBoxIsland,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

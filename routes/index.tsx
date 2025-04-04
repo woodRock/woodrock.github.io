@@ -1,5 +1,6 @@
 // routes/index.tsx
 import { Button } from "../components/Button.tsx";
+import Countdown from "../components/Countdown.tsx";
 
 export default function Home() {
   return (
@@ -205,6 +206,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Thesis countdown */}
+      {/* <Countdown /> */}
 
       {/* Contact CTA */}
       <section class="py-20 px-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 text-white">

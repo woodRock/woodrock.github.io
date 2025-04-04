@@ -1,0 +1,129 @@
+[
+  {
+    "id": "pub-1",
+    "title": "PREPRINT: Hook, Line and Spectra: Machine Learning for Fish Species and Part Classification using Rapid Evaporative Ionization Mass Spectrometry",
+    "content": "Marine biomass composition analysis traditionally requires time-consuming processes and domain expertise. This study demonstrates the effectiveness of Rapid Evaporative ionization Mass Spectrometry (REIMS) combined with advanced machine learning techniques for accurate marine biomass composition determination. Using fish species and body parts as model systems representing diverse biochemical profiles, we investigate various machine learning methods, including unsupervised pre-training strategies for transformers. The deep learning approaches consistently outperformed traditional machine learning across all tasks. We further explored the explainability of the best-performing and mostly black-box models using Local Interpretable Model-agnostic Explanations to find important features driving decisions behind each of the top-performing classifiers. REIMS analysis with machine learning can be accurate and potentially explainable technique for automated marine biomass compositional analysis. It has potential applications in marine-based industry quality control, product optimization, and food safety monitoring.",
+    "type": "publication",
+    "url": "https://www.youtube.com/watch?v=c7jvWOfwc1M",
+    "metadata": {
+      "year": "2025",
+      "journal": "TBD",
+      "authors": ""
+    }
+  },
+  {
+    "id": "pub-2",
+    "title": "Automated Fish Classification Using Unprocessed Fatty Acid Chromatographic Data: A Machine Learning Approach",
+    "content": "Fish is approximately 40% edible fillet. The remaining 60% can be processed into low-value fertilizer or high-value pharmaceutical-grade omega-3 concentrates. High-value manufacturing options depend on the composition of the biomass, which varies with fish species, fish tissue and seasonally throughout the year. Fatty acid composition, measured by Gas Chromatography, is an important measure of marine biomass quality. This technique is accurate and precise, but processing and interpreting the results is time-consuming and requires domain-specific expertise. The paper investigates different classification and feature selection algorithms for their ability to automate the processing of Gas Chromatography data. Experiments found that SVM could classify compositionally diverse marine biomass based on raw chromatographic fatty acid data. The SVM model is interpretable through visualization which can highlight important features for classification. Experiments demonstrated that applying feature selection significantly reduced dimensionality and improved classification performance on high-dimensional low sample-size datasets. According to the reduction rate, feature selection could accelerate the classification system up to four times.",
+    "type": "publication",
+    "url": "https://openaccess.wgtn.ac.nz/articles/chapter/Automated_Fish_Classification_Using_Unprocessed_Fatty_Acid_Chromatographic_Data_A_Machine_Learning_Approach/22107473",
+    "metadata": {
+      "year": "2022",
+      "journal": "Australasian Joint Conference on Artificial Intelligence",
+      "authors": ""
+    }
+  },
+  {
+    "id": "pub-3",
+    "title": "Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry",
+    "content": "Navigating the analysis of mass spectrometry data for marine biomass and fish demands a technologically adept approach to derive accurate and actionable insights. This research will introduce a novel AI methodology to interpret a substantial repository of mass spectrometry datasets, utilizing pre-training strategies like Next Spectra Prediction and Masked Spectra Modeling, targeting enhanced interpretability and correlation of spectral patterns with chemical attributes. Three core research objectives are explored: 1) precise fish species and body part identification via binary and multi-class classification, respectively; 2) quantitative contaminant analysis employing multi-label classification and multi-output regression; and 3) traceability through pair-wise comparison and instance recognition. By validating against traditional baselines and various downstream tasks, this work aims to enhance chemical analytical processes and offer fresh insights into the chemical and traceability aspects of marine biology and fisheries through advanced AI applications.",
+    "type": "publication",
+    "url": "https://github.com/woodRock/fishy-business/blob/main/proposal/proposal.pdf",
+    "metadata": {
+      "year": "2022",
+      "journal": "PhD Proposal, Victoria University of Wellington",
+      "authors": ""
+    }
+  },
+  {
+    "id": "proj-1",
+    "title": "Portfolio Website",
+    "content": "",
+    "type": "project",
+    "url": "/projects#proj-1",
+    "metadata": {
+      "language": "TypeScript, Deno",
+      "github": "https://github.com/woodRock/woodrock.github.io",
+      "tags": ""
+    }
+  },
+  {
+    "id": "proj-2",
+    "title": "Fishy Business",
+    "content": "PhD Candidate in Artificial Intelligence. Applying machine learning to fish oil analysis.",
+    "type": "project",
+    "url": "/projects#proj-2",
+    "metadata": {
+      "language": "Python, Pytorch, LaTeX",
+      "github": "https://github.com/woodRock/fishy-business",
+      "tags": ""
+    }
+  },
+  {
+    "id": "proj-3",
+    "title": "Ionic Scholar",
+    "content": "This individually developed app keeps track of academic references. The app remembers the users progress, keywords, quotes. Also it can generate citations.",
+    "type": "project",
+    "url": "/projects#proj-3",
+    "metadata": {
+      "language": "Ionic, Typescript",
+      "github": "https://github.com/woodRock/ionic-scholar",
+      "tags": ""
+    }
+  },
+  {
+    "id": "proj-4",
+    "title": "Expert Chainsaw",
+    "content": "This GitHub Action used the Open Weather API to display the weather forecast for a given area. It is updated once every 30 minutes. The weather forecast is displayed within predefined tags (hidden inside HTML comments), such that it does not overwrite any other existing content in a README.",
+    "type": "project",
+    "url": "/projects#proj-4",
+    "metadata": {
+      "language": "Node, Github Actions",
+      "github": "https://github.com/woodRock/expert-chainsaw",
+      "tags": ""
+    }
+  },
+  {
+    "id": "proj-5",
+    "title": "Scaling Palm Tree",
+    "content": "A command-line interface (CLI) for bus timetables in Wellington, New Zealand.",
+    "type": "project",
+    "url": "/projects#proj-5",
+    "metadata": {
+      "language": "Rust",
+      "github": "https://github.com/woodRock/scaling-palm-tree",
+      "tags": ""
+    }
+  },
+  {
+    "id": "proj-6",
+    "title": "Wordle Solver Transformer",
+    "content": "Wordle solver with a transformer deep learning neural network.",
+    "type": "project",
+    "url": "/projects#proj-6",
+    "metadata": {
+      "language": "Python, Pytorch",
+      "github": "https://github.com/woodRock/wordle",
+      "tags": ""
+    }
+  },
+  {
+    "id": "proj-7",
+    "title": "Autograd",
+    "content": "Deep learning library written in c++ for a basic autograd.",
+    "type": "project",
+    "url": "/projects#proj-7",
+    "metadata": {
+      "language": "C++, Cuda",
+      "github": "https://github.com/woodRock/autograd",
+      "tags": ""
+    }
+  },
+  {
+    "id": "page-README",
+    "title": "README",
+    "content": "Search Feature for Portfolio Website This search feature allows users to search across your portfolio website, including projects, publications, and other content. Features - Real-time search suggestions as you type - Full search results page with highlighted terms - Searches across titles, content, and metadata - Mobile and desktop friendly - Integration with navigation Components 1. SearchBoxIsland - Interactive search box with dropdown results 2. Search API - Backend API for searching content 3. Search Results Page - Full page for displaying search results 4. Content Collector - Script to gather content from your site Implementation Steps 1. Add the Components to Your Project 1. Copy the files to their respective locations: - - - - - 2. Generate Searchable Content Run the content collector script to gather content from your site: This will create a file at containing all your searchable content. 3. Update Your Layout Replace your current navigation component with in your : Customization Adding New Content Types To add new content types: 1. Update the type in both and 2. Add the new content type to the collector script 3. Regenerate the content file Styling The search components use Tailwind CSS for styling. You can customize the appearance by modifying the classes in: - - For the dropdown search interface - - For the search results page Content Sources By default, the content collector looks for: 1. Markdown files with YAML frontmatter in: - - - 2. JSON files: - - You can modify to add more sources. Maintaining Content For best search results: 1. Keep your content up to date 2. Re-run the collector script whenever you add new content 3. Use descriptive titles and content 4. Add relevant metadata to your content Performance Considerations - The search is performed client-side for the quick suggestions - For larger sites, consider implementing server-side pagination - The content file should be kept under 1MB for optimal performance",
+    "type": "page",
+    "url": "/api/README"
+  }
+]
