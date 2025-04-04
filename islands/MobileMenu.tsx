@@ -65,7 +65,7 @@ export default function MobileMenu({ items, currentPath }: MobileMenuProps) {
 
       {/* Mobile menu, show/hide based on menu state */}
       {isOpen && (
-        <div class="absolute top-16 inset-x-0 z-50 bg-white shadow-lg rounded-b-lg">
+        <div class="absolute top-16 right-0 w-48 z-50 bg-white shadow-lg rounded-b-lg">
           <div class="px-2 pt-2 pb-3 space-y-1">
             {items.map((item) => (
               <a
