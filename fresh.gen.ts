@@ -7,11 +7,17 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $about from "./routes/about.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
+import * as $contact from "./routes/contact.tsx";
+import * as $download from "./routes/download.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $projects from "./routes/projects.tsx";
+import * as $publications from "./routes/publications.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $Countdown_1 from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $GetYear from "./islands/GetYear.tsx";
+import * as $RenderTime from "./islands/RenderTime.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -21,13 +27,19 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/about.tsx": $about,
     "./routes/api/joke.ts": $api_joke,
+    "./routes/contact.tsx": $contact,
+    "./routes/download.ts": $download,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/projects.tsx": $projects,
+    "./routes/publications.tsx": $publications,
     "./routes/search.tsx": $search,
   },
   islands: {
     "./islands/Countdown.tsx": $Countdown_1,
     "./islands/Counter.tsx": $Counter,
+    "./islands/GetYear.tsx": $GetYear,
+    "./islands/RenderTime.tsx": $RenderTime,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
