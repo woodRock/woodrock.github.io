@@ -185,7 +185,7 @@ export default function Home() {
                   Modern portfolio website built with Deno Fresh and Tailwind CSS, featuring responsive design and dynamic content.
                 </p>
                 <a 
-                  href="https://github.com/woodRock/portfolio" 
+                  href="https://github.com/woodRock/woodrock.github.io" 
                   target="_blank"
                   class="flex items-center text-blue-600 font-medium hover:text-blue-800"
                 >
