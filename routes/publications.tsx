@@ -30,7 +30,7 @@ export default function Publications() {
       link: "https://github.com/woodRock/fishy-business/blob/main/proposal/proposal.pdf",
       linkLabel: "View Publication",
       year: 2022,
-      journal: "Environmental Biotechnology",
+      journal: "PhD Proposal, Victoria University of Wellington",
       backgroundColor: "#D1E8CF"
     }
   ];
