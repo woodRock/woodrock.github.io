@@ -9,42 +9,59 @@ async function getDocumentText(documentPath: string): Promise<string> {
   // Map of known documents and their content
   const knownDocuments: Record<string, string> = {
     "wood2022rapid.pdf": `Title: Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry
-Author: Jesse Wood
-Year: 2022
-Type: PhD Research Proposal
-Institution: Victoria University of Wellington
+    Author: Jesse Wood
+    Year: 2022
+    Type: PhD Research Proposal
+    Institution: Victoria University of Wellington
 
-The proposal focuses on developing AI methods for analyzing mass spectrometry data from marine biomass and fish samples.
+    The proposal focuses on developing AI methods for analyzing mass spectrometry data from marine biomass and fish samples.
 
-Key Research Objectives:
-1. Fish species and body part identification through binary and multi-class classification
-2. Quantitative contaminant analysis using multi-label classification and multi-output regression
-3. Traceability verification through pair-wise comparison and instance recognition techniques
+    Key Research Objectives:
+    1. Fish species and body part identification through binary and multi-class classification
+    2. Quantitative contaminant analysis using multi-label classification and multi-output regression
+    3. Traceability verification through pair-wise comparison and instance recognition techniques
 
-The proposed methodology includes:
-- Pre-training strategies like Next Spectra Prediction and Masked Spectra Modeling
-- Improved interpretation of spectra patterns and their correlation with chemical attributes
-- Validation against traditional baseline methods across downstream tasks
+    The proposed methodology includes:
+    - Pre-training strategies like Next Spectra Prediction and Masked Spectra Modeling
+    - Improved interpretation of spectra patterns and their correlation with chemical attributes
+    - Validation against traditional baseline methods across downstream tasks
 
-Expected outcomes include enhanced chemical analytical processes and fresh insights into marine biology and fisheries through advanced AI applications. The work combines mass spectrometry techniques with machine learning to address important challenges in seafood quality, composition analysis, and traceability.`,
+    Expected outcomes include enhanced chemical analytical processes and fresh insights into marine biology and fisheries through advanced AI applications. The work combines mass spectrometry techniques with machine learning to address important challenges in seafood quality, composition analysis, and traceability.`,
 
     "wood2022automated.pdf": `Title: Automated Fish Classification Using Unprocessed Fatty Acid Chromatographic Data: A Machine Learning Approach
-Author: Jesse Wood
-Year: 2022
-Type: Conference Paper
-Publisher: Australasian Joint Conference on Artificial Intelligence
+    Author: Jesse Wood
+    Year: 2022
+    Type: Conference Paper
+    Publisher: Australasian Joint Conference on Artificial Intelligence
 
-Abstract:
-Fish is approximately 40% edible fillet. The remaining 60% can be processed into low-value fertilizer or high-value pharmaceutical-grade omega-3 concentrates. High-value manufacturing options depend on the composition of the biomass, which varies with fish species, fish tissue and seasonally throughout the year. Fatty acid composition, measured by Gas Chromatography, is an important measure of marine biomass quality. This technique is accurate and precise, but processing and interpreting the results is time-consuming and requires domain-specific expertise. 
+    Abstract:
+    Fish is approximately 40% edible fillet. The remaining 60% can be processed into low-value fertilizer or high-value pharmaceutical-grade omega-3 concentrates. High-value manufacturing options depend on the composition of the biomass, which varies with fish species, fish tissue and seasonally throughout the year. Fatty acid composition, measured by Gas Chromatography, is an important measure of marine biomass quality. This technique is accurate and precise, but processing and interpreting the results is time-consuming and requires domain-specific expertise. 
 
-The paper investigates different classification and feature selection algorithms for their ability to automate the processing of Gas Chromatography data. Experiments found that SVM could classify compositionally diverse marine biomass based on raw chromatographic fatty acid data. The SVM model is interpretable through visualization which can highlight important features for classification. Experiments demonstrated that applying feature selection significantly reduced dimensionality and improved classification performance on high-dimensional low sample-size datasets. According to the reduction rate, feature selection could accelerate the classification system up to four times.
+    The paper investigates different classification and feature selection algorithms for their ability to automate the processing of Gas Chromatography data. Experiments found that SVM could classify compositionally diverse marine biomass based on raw chromatographic fatty acid data. The SVM model is interpretable through visualization which can highlight important features for classification. Experiments demonstrated that applying feature selection significantly reduced dimensionality and improved classification performance on high-dimensional low sample-size datasets. According to the reduction rate, feature selection could accelerate the classification system up to four times.
 
-Key findings:
-- SVM models can successfully classify different fish species based on fatty acid profiles
-- Feature selection methods significantly improve classification performance
-- The approach reduces the need for manual processing of chromatographic data
-- The system can potentially accelerate analysis up to four times compared to traditional methods`
-  };
+    Key findings:
+    - SVM models can successfully classify different fish species based on fatty acid profiles
+    - Feature selection methods significantly improve classification performance
+    - The approach reduces the need for manual processing of chromatographic data
+    - The system can potentially accelerate analysis up to four times compared to traditional methods`,
+    
+    "wood2025hook.pdf": `Title: Hook, Line and Spectra: Machine Learning for Fish Species and Part Classification using Rapid Evaporative Ionization Mass Spectrometry
+    Author: Jesse Wood
+    Year: 2025
+    Type: Journal Article
+    Publisher: TBD
+
+    Abstract: 
+    Marine biomass composition analysis traditionally requires time-consuming processes and domain expertise. This study demonstrates the effectiveness of Rapid Evaporative ionization Mass Spectrometry (REIMS) combined with advanced machine learning techniques for accurate marine biomass composition determination. Using fish species and body parts as model systems representing diverse biochemical profiles, we investigate various machine learning methods, including unsupervised pre-training strategies for transformers. The deep learning approaches consistently outperformed traditional machine learning across all tasks. We further explored the explainability of the best-performing and mostly black-box models using Local Interpretable Model-agnostic Explanations to find important features driving decisions behind each of the top-performing classifiers. REIMS analysis with machine learning can be accurate and potentially explainable technique for automated marine biomass compositional analysis. It has potential applications in marine-based industry quality control, product optimization, and food safety monitoring.
+
+    Key findings:
+    - Deep learning models, especially transformers, significantly outperformed traditional methods in classifying fish species (99.62% accuracy) and body parts (83.94% accuracy)
+    - Pre-training transformer models improved classification performance by capturing complex patterns in high-dimensional mass spectrometry data
+    - Explainable AI techniques revealed specific mass-to-charge ratios that are critical for distinguishing between fish species and body parts
+    - The research demonstrates the potential of machine learning to automate marine biomass analysis, with applications in quality control, fraud detection, and product optimization
+    - The study introduces innovative techniques like progressive masking for pre-training, showing how machine learning can extract valuable insights from complex scientific data
+    `
+};
   
   // Return known document content or a generic placeholder
   if (knownDocuments[filename]) {
@@ -99,7 +116,7 @@ export const handler: Handlers = {
             const textModel = modelsData.models.find((m: any) => 
               !m.name.includes("vision") && 
               m.name.includes("gemini") && 
-              m.name.includes("pro"));
+              m.name.includes("flash"));
             
             if (textModel) {
               modelToUse = textModel.name;
@@ -116,7 +133,7 @@ export const handler: Handlers = {
       
       // If we couldn't determine a model, use a default
       if (!modelToUse) {
-        modelToUse = "models/gemini-1.5-pro";
+        modelToUse = "models/gemini-1.5-flash";
       }
       
       // Process chat history for context

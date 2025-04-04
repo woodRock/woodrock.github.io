@@ -84,19 +84,19 @@ function getDocumentInfo(filename: string): DocumentInfo {
   const knownDocuments: Record<string, DocumentInfo> = {
     "wood2022rapid.pdf": {
       title: "Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry",
-      path: `/static/pdf/wood2022rapid.pdf`,
+      path: `./static/wood2022rapid.pdf`,
       author: "Jesse Wood",
       year: "2022"
     },
     "wood2022automated.pdf": {
       title: "Automated Fish Classification Using Unprocessed Fatty Acid Chromatographic Data",
-      path: `/static/pdf/wood2022automated.pdf`,
+      path: `./static/wood2022automated.pdf`,
       author: "Jesse Wood",
       year: "2022"
     },
     "wood2025hook.pdf": {
       title: "Hook, Line and Spectra: Machine Learning for Fish Species and Part Classification using Rapid Evaporative Ionization Mass Spectrometry",
-      path: `/static/pdf/wood2025hook.pdf`,
+      path: `./static/wood2025hook.pdf`,
       author: "Jesse Wood",
       year: "2025"
     }
