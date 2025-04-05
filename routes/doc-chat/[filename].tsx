@@ -115,13 +115,16 @@ function getDocumentInfo(filename: string): DocumentInfo {
     
     return {
       title: formattedName,
-      path: `/static/pdf/${filename}`,
+      path: `./static/${filename}`,
     };
   }
 }
 
 export default function DocChatPage({ data }: PageProps<DocumentInfo>) {
   const { title, path, author, year, error, isApiLimitError } = data;
+
+  // Log the path to the console for debugging
+  console.log("Document path:", path);
   
   if (error) {
     return (
@@ -140,15 +143,15 @@ export default function DocChatPage({ data }: PageProps<DocumentInfo>) {
                 <p>{error}</p>
                 {isApiLimitError && (
                   <div class="mt-4">
-                    <a href="/upgrade" class="inline-block bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
-                      Upgrade Plan
+                    <a href="/" class="inline-block bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+                      Return Home
                     </a>
                   </div>
                 )}
               </div>
               <div class="p-6">
                 <a href="/" class="text-indigo-600 hover:text-indigo-800">
-                  Return to home page
+                  Return Home
                 </a>
               </div>
             </div>

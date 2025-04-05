@@ -4,12 +4,10 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_check_file from "./routes/api/check-file.ts";
 import * as $api_doc_chat from "./routes/api/doc-chat.ts";
 import * as $api_doc_summary from "./routes/api/doc-summary.ts";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_llm_gemini from "./routes/api/llm-gemini.ts";
-import * as $api_llm_proposal from "./routes/api/llm-proposal.ts";
 import * as $api_llm from "./routes/api/llm.ts";
 import * as $api_search from "./routes/api/search.ts";
 import * as $contact from "./routes/contact.tsx";
@@ -40,12 +38,10 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/check-file.ts": $api_check_file,
     "./routes/api/doc-chat.ts": $api_doc_chat,
     "./routes/api/doc-summary.ts": $api_doc_summary,
     "./routes/api/joke.ts": $api_joke,
     "./routes/api/llm-gemini.ts": $api_llm_gemini,
-    "./routes/api/llm-proposal.ts": $api_llm_proposal,
     "./routes/api/llm.ts": $api_llm,
     "./routes/api/search.ts": $api_search,
     "./routes/contact.tsx": $contact,

@@ -212,6 +212,12 @@ export default function DocChatIsland({
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
   
+  // Path for viewing the document.
+  const staticPath = "./static/";
+  const documentPathWithoutStatic = documentPath.replace(staticPath, "");
+  // Add woodrock.deno.dev/ prefix to document path
+  const documentPathWithPrefix = `https://woodrock.deno.dev/${documentPathWithoutStatic}`;
+  
   return (
     <div class="flex flex-col h-[80vh]">
       {/* Error Banner */}
@@ -307,7 +313,7 @@ export default function DocChatIsland({
           </span>
         </div>
         <a
-          href={documentPath}
+          href={documentPathWithPrefix}
           target="_blank"
           rel="noopener noreferrer"
           class="text-indigo-600 hover:text-indigo-800 text-xs inline-flex items-center"
