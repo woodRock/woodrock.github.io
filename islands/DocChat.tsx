@@ -337,7 +337,7 @@ export default function DocChatIsland({
               onKeyDown={handleKeyDown}
               rows={1}
               class="w-full p-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 resize-none"
-              placeholder="Ask about the research proposal..."
+              placeholder="Ask about the research..."
               disabled={isLoading}
             ></textarea>
             <div class="absolute bottom-2 right-2 text-xs text-gray-400">
