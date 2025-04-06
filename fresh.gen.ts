@@ -23,6 +23,7 @@ import * as $wordle from "./routes/wordle.tsx";
 import * as $Countdown from "./islands/Countdown.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $DocChat from "./islands/DocChat.tsx";
+import * as $Game404 from "./islands/Game404.tsx";
 import * as $GetYear from "./islands/GetYear.tsx";
 import * as $LLMIsland from "./islands/LLMIsland.tsx";
 import * as $MobileMenu from "./islands/MobileMenu.tsx";
@@ -58,6 +59,7 @@ const manifest = {
     "./islands/Countdown.tsx": $Countdown,
     "./islands/Counter.tsx": $Counter,
     "./islands/DocChat.tsx": $DocChat,
+    "./islands/Game404.tsx": $Game404,
     "./islands/GetYear.tsx": $GetYear,
     "./islands/LLMIsland.tsx": $LLMIsland,
     "./islands/MobileMenu.tsx": $MobileMenu,
