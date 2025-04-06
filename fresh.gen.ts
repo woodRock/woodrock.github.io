@@ -11,7 +11,6 @@ import * as $api_llm_gemini from "./routes/api/llm-gemini.ts";
 import * as $api_llm from "./routes/api/llm.ts";
 import * as $api_search from "./routes/api/search.ts";
 import * as $contact from "./routes/contact.tsx";
-import * as $countdown from "./routes/countdown.tsx";
 import * as $doc_chat_filename_ from "./routes/doc-chat/[filename].tsx";
 import * as $download from "./routes/download.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
@@ -45,7 +44,6 @@ const manifest = {
     "./routes/api/llm.ts": $api_llm,
     "./routes/api/search.ts": $api_search,
     "./routes/contact.tsx": $contact,
-    "./routes/countdown.tsx": $countdown,
     "./routes/doc-chat/[filename].tsx": $doc_chat_filename_,
     "./routes/download.ts": $download,
     "./routes/greet/[name].tsx": $greet_name_,
