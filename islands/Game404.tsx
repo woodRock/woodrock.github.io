@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import * as THREE from "npm:three";
 
-// Interface for touch controls state management
 interface TouchControls {
   moveForward: boolean;
   moveBackward: boolean;
@@ -17,7 +16,6 @@ export default function MazeGame() {
   const [gameStatus, setGameStatus] = useState("Loading...");
   const [mobileControlsEnabled, setMobileControlsEnabled] = useState(false);
 
-  // Lock screen orientation to landscape
   const lockScreenOrientation = () => {
     try {
       if (screen.orientation && screen.orientation.lock) {
@@ -29,8 +27,7 @@ export default function MazeGame() {
       console.warn("Screen orientation API not supported");
     }
   };
-  
-  // Unlock screen orientation
+
   const unlockScreenOrientation = () => {
     try {
       if (screen.orientation && screen.orientation.unlock) {
@@ -41,11 +38,9 @@ export default function MazeGame() {
     }
   };
 
-  // Toggle for mobile controls
   const toggleMobileControls = () => {
     const newState = !mobileControlsEnabled;
     setMobileControlsEnabled(newState);
-    
     if (newState) {
       lockScreenOrientation();
     } else {
@@ -54,7 +49,6 @@ export default function MazeGame() {
   };
 
   useEffect(() => {
-    // Game state
     let scene: THREE.Scene;
     let camera: THREE.PerspectiveCamera;
     let renderer: THREE.WebGLRenderer;
@@ -65,12 +59,10 @@ export default function MazeGame() {
     let animationFrameId: number;
     let lastFrameTime = 0;
 
-    // Tracking player path
     const visitedCells = new Set<string>();
     const mazeSize = 30;
     const wallWidth = 1;
 
-    // Input state
     const inputState = {
       keyboard: {
         moveForward: false,
@@ -87,27 +79,22 @@ export default function MazeGame() {
       }
     };
 
-    // Camera setup
     const cameraHolder = new THREE.Object3D();
     camera = new THREE.PerspectiveCamera(
-      75, 
-      window.innerWidth / window.innerHeight, 
-      0.1, 
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
       1000
     );
     cameraHolder.add(camera);
 
-    // Movement and camera control
-    const moveSpeed = 5.0; // Units per second, not per frame
+    const moveSpeed = 5.0;
 
-    // Maze generation
     function generateMaze(width: number, height: number): number[][] {
-      // Create a maze filled with walls
-      const maze: number[][] = Array.from({ length: height }, () => 
+      const maze: number[][] = Array.from({ length: height }, () =>
         Array(width).fill(1)
       );
 
-      // Ensure outer boundary is always a wall
       for (let x = 0; x < width; x++) {
         maze[0][x] = 1;
         maze[height - 1][x] = 1;
@@ -126,13 +113,11 @@ export default function MazeGame() {
           const nx = x + dx;
           const ny = y + dy;
 
-          // Check if new position is within bounds and not already a passage
           if (
-            nx > 0 && nx < width - 1 && 
-            ny > 0 && ny < height - 1 && 
+            nx > 0 && nx < width - 1 &&
+            ny > 0 && ny < height - 1 &&
             maze[ny][nx] === 1
           ) {
-            // Carve passage
             maze[y + dy/2][x + dx/2] = 0;
             maze[ny][nx] = 0;
             carvePassages(nx, ny);
@@ -140,45 +125,32 @@ export default function MazeGame() {
         }
       }
 
-      // Start from a random point
       const startX = 2 * Math.floor(Math.random() * ((width - 2) / 2)) + 1;
       const startY = 2 * Math.floor(Math.random() * ((height - 2) / 2)) + 1;
-      
-      // Ensure start is open
       maze[startY][startX] = 0;
-      
-      // Generate maze
       carvePassages(startX, startY);
-
-      // Ensure start and end are accessible
       maze[1][1] = 0;
       maze[height - 2][width - 2] = 0;
 
       return maze;
     }
 
-    const  maze = generateMaze(mazeSize, mazeSize);
-      
+    const maze = generateMaze(mazeSize, mazeSize);
+
     function createSolidWalls(scene: THREE.Scene) {
       const wallHeight = 3;
-      
-      // Wall Material
       const wallMaterial = new THREE.MeshStandardMaterial({
         color: 0x808080,
         roughness: 0.7,
         metalness: 0.3
       });
-
-      // Wall Geometry
       const wallGeometry = new THREE.BoxGeometry(wallWidth, wallHeight, wallWidth);
       const walls: THREE.Mesh[] = [];
 
-      // Create walls for every wall cell in the maze without gaps
       for (let z = 0; z < mazeSize; z++) {
         for (let x = 0; x < mazeSize; x++) {
           if (maze[z][x] === 1) {
             const wall = new THREE.Mesh(wallGeometry, wallMaterial);
-            // Position walls directly adjacent to each other without the gap
             wall.position.set(
               x * wallWidth - (mazeSize * wallWidth / 2),
               wallHeight / 2,
@@ -191,48 +163,40 @@ export default function MazeGame() {
           }
         }
       }
-
       return walls;
     }
 
-    // Handle touch controls
     function handleMovementTouch(e: TouchEvent, joystickBg: HTMLElement, joystickKnob: HTMLElement) {
       if (e.touches.length === 0) return;
-      
+
       const touch = e.touches[0];
       const rect = joystickBg.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
-      // Calculate distance from center
+
       const deltaX = touch.clientX - centerX;
       const deltaY = touch.clientY - centerY;
       const distance = Math.min(Math.sqrt(deltaX * deltaX + deltaY * deltaY), rect.width / 2);
       const angle = Math.atan2(deltaY, deltaX);
-      
-      // Move joystick knob
+
       const knobX = Math.cos(angle) * distance;
       const knobY = Math.sin(angle) * distance;
       joystickKnob.style.transform = `translate(${knobX}px, ${knobY}px)`;
-      
-      // Set direction flags
+
       const deadzone = 0.3;
       const normalizedDistance = distance / (rect.width / 2);
-      
-      // Reset all movement flags first
+
       inputState.touch.moveForward = false;
       inputState.touch.moveBackward = false;
       inputState.touch.moveLeft = false;
       inputState.touch.moveRight = false;
-      
+
       if (normalizedDistance > deadzone) {
-        // Set appropriate movement flags based on angle
         if (angle > -Math.PI * 0.75 && angle < -Math.PI * 0.25) {
           inputState.touch.moveForward = true;
         } else if (angle > Math.PI * 0.25 && angle < Math.PI * 0.75) {
           inputState.touch.moveBackward = true;
         }
-        
         if (angle > -Math.PI * 0.25 && angle < Math.PI * 0.25) {
           inputState.touch.moveRight = true;
         } else if (Math.abs(angle) > Math.PI * 0.75) {
@@ -240,7 +204,7 @@ export default function MazeGame() {
         }
       }
     }
-    
+
     function resetMovementJoystick(joystickKnob: HTMLElement) {
       joystickKnob.style.transform = 'translate(0, 0)';
       inputState.touch.moveForward = false;
@@ -248,35 +212,27 @@ export default function MazeGame() {
       inputState.touch.moveLeft = false;
       inputState.touch.moveRight = false;
     }
-    
+
     function handleLookTouch(e: TouchEvent) {
       if (e.touches.length === 0) return;
-      
+
       const touch = e.touches[0];
-      
+
       if (inputState.touch.lastTouch) {
-        // Calculate movement delta
         const deltaX = touch.clientX - inputState.touch.lastTouch.x;
         const deltaY = touch.clientY - inputState.touch.lastTouch.y;
-        
-        // Update camera rotation (similar to mouse movement)
+
         cameraHolder.rotation.y -= deltaX * 0.01;
         camera.rotation.x -= deltaY * 0.01;
-        
-        // Clamp pitch to prevent over-rotation
         camera.rotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, camera.rotation.x));
       }
-      
-      // Update last touch position
+
       inputState.touch.lastTouch = { x: touch.clientX, y: touch.clientY };
     }
 
-    // Create Touch Controls
     function createTouchControls(container: HTMLDivElement) {
-      // Remove existing controls if they exist
       removeExistingTouchControls();
-      
-      // Create joystick for movement
+
       const movementJoystick = document.createElement('div');
       movementJoystick.className = 'joystick movement-joystick';
       movementJoystick.innerHTML = `
@@ -291,139 +247,63 @@ export default function MazeGame() {
         </div>
       `;
       container.appendChild(movementJoystick);
-      
-      // Create look area for camera control
+
       const lookArea = document.createElement('div');
       lookArea.className = 'look-area';
       lookArea.innerHTML = '<div class="look-text">LOOK</div>';
       container.appendChild(lookArea);
-      
-      // Add styles
+
       const existingStyle = document.getElementById('touch-controls-style');
       if (!existingStyle) {
-          // Updated mobile controls CSS and positioning
-
-        // In the createTouchControls function, update the style definition:
-        // Updated mobile controls CSS for complete center positioning
-
-        // In the createTouchControls function, update the style definition:
         const style = document.createElement('style');
         style.id = 'touch-controls-style';
         style.textContent = `
-          .joystick {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            z-index: 100;
-            user-select: none;
-            touch-action: none;
-          }
-          .movement-joystick {
-            top: 60%;
-            left: 15%;
-            transform: translate(-50%, -50%); /* Center the element relative to its position */
-          }
-          .joystick-background {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-          .joystick-knob {
-            width: 40%;
-            height: 40%;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.8);
-            pointer-events: none;
-            transform: translate(0, 0);
-          }
-          .joystick-arrows {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-          }
-          .arrow {
-            position: absolute;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-          }
+          .joystick { position: absolute; width: 120px; height: 120px; z-index: 100; user-select: none; touch-action: none; }
+          .movement-joystick { top: 60%; left: 15%; transform: translate(-50%, -50%); }
+          .joystick-background { width: 100%; height: 100%; border-radius: 50%; background: rgba(255, 255, 255, 0.3); border: 2px solid rgba(255, 255, 255, 0.5); display: flex; justify-content: center; align-items: center; }
+          .joystick-knob { width: 40%; height: 40%; border-radius: 50%; background: rgba(255, 255, 255, 0.8); pointer-events: none; transform: translate(0, 0); }
+          .joystick-arrows { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+          .arrow { position: absolute; color: white; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
           .arrow.up { top: 10px; left: 50%; transform: translateX(-50%); }
           .arrow.right { right: 10px; top: 50%; transform: translateY(-50%); }
           .arrow.down { bottom: 10px; left: 50%; transform: translateX(-50%); }
           .arrow.left { left: 10px; top: 50%; transform: translateY(-50%); }
-          .look-area {
-            position: absolute;
-            top: 60%;
-            right: 15%;
-            transform: translate(50%, -50%); /* Center the element relative to its position */
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            user-select: none;
-            touch-action: none;
-          }
-          .look-text {
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-          }
+          .look-area { position: absolute; top: 60%; right: 15%; transform: translate(50%, -50%); width: 120px; height: 120px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); border: 2px solid rgba(255, 255, 255, 0.5); z-index: 100; display: flex; justify-content: center; align-items: center; user-select: none; touch-action: none; }
+          .look-text { color: white; font-weight: bold; font-size: 18px; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
         `;
         document.head.appendChild(style);
       }
-      
-      // Movement joystick handlers
+
       const joystickBg = movementJoystick.querySelector('.joystick-background') as HTMLElement;
       const joystickKnob = movementJoystick.querySelector('.joystick-knob') as HTMLElement;
-      
+
       joystickBg.addEventListener('touchstart', (e) => {
         e.preventDefault();
         handleMovementTouch(e, joystickBg, joystickKnob);
       });
-      
       joystickBg.addEventListener('touchmove', (e) => {
         e.preventDefault();
         handleMovementTouch(e, joystickBg, joystickKnob);
       });
-      
       joystickBg.addEventListener('touchend', (e) => {
         e.preventDefault();
         resetMovementJoystick(joystickKnob);
       });
-      
-      // Look area handlers
+
       lookArea.addEventListener('touchstart', (e) => {
         e.preventDefault();
         handleLookTouch(e);
       });
-      
       lookArea.addEventListener('touchmove', (e) => {
         e.preventDefault();
         handleLookTouch(e);
       });
-      
       lookArea.addEventListener('touchend', (e) => {
         e.preventDefault();
         inputState.touch.lastTouch = null;
       });
     }
 
-    // Remove existing touch controls
     function removeExistingTouchControls() {
       if (containerRef.current) {
         const joystick = containerRef.current.querySelector('.movement-joystick');
@@ -433,42 +313,74 @@ export default function MazeGame() {
       }
     }
 
-    // Enhanced collision detection with more precise checks
-    function checkCollision(position: THREE.Vector3) {
+    // Improved Collision Detection with Sliding
+    function checkCollision(currentPos: THREE.Vector3, movement: THREE.Vector3): THREE.Vector3 {
       const playerRadius = 0.3;
-      
-      // Main collision check
+      const wallHalfWidth = wallWidth / 2;
+
+      const newPos = currentPos.clone().add(movement);
+
+      // Check collision in X and Z separately for sliding
+      const testX = new THREE.Vector3(newPos.x, currentPos.y, currentPos.z);
+      const testZ = new THREE.Vector3(currentPos.x, currentPos.y, newPos.z);
+
+      let collidesX = false;
+      let collidesZ = false;
+
       for (const wall of walls) {
-        const distance = position.distanceTo(wall.position);
-        if (distance < (playerRadius + 0.5)) {
-          return true;
+        const wx = wall.position.x;
+        const wz = wall.position.z;
+
+        // Check X movement
+        if (
+          Math.abs(testX.x - wx) < wallHalfWidth + playerRadius &&
+          Math.abs(testX.z - wz) < wallHalfWidth + playerRadius
+        ) {
+          collidesX = true;
+        }
+
+        // Check Z movement
+        if (
+          Math.abs(testZ.x - wx) < wallHalfWidth + playerRadius &&
+          Math.abs(testZ.z - wz) < wallHalfWidth + playerRadius
+        ) {
+          collidesZ = true;
         }
       }
-      
-      return false;
+
+      // If both directions collide, stay at current position
+      if (collidesX && collidesZ) {
+        return currentPos.clone();
+      }
+
+      // Allow movement in non-colliding direction
+      if (collidesX) {
+        return new THREE.Vector3(currentPos.x, currentPos.y, newPos.z);
+      }
+      if (collidesZ) {
+        return new THREE.Vector3(newPos.x, currentPos.y, currentPos.z);
+      }
+
+      // No collision, allow full movement
+      return newPos;
     }
 
     function initMaze() {
-      // Scene setup
       scene = new THREE.Scene();
       scene.background = new THREE.Color(0x87CEEB);
 
-      // Renderer
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
-      
       if (containerRef.current) {
         containerRef.current.appendChild(renderer.domElement);
       }
 
-      // Minimap setup
       if (minimapRef.current) {
         minimapRef.current.width = 200;
         minimapRef.current.height = 200;
         minimapCtx = minimapRef.current.getContext('2d');
       }
 
-      // Lighting
       const ambientLight = new THREE.AmbientLight(0x404040);
       scene.add(ambientLight);
 
@@ -476,25 +388,18 @@ export default function MazeGame() {
       directionalLight.position.set(5, 5, 5);
       scene.add(directionalLight);
 
-      const wallHeight = 3;
-
-      // Create solid walls
       walls = createSolidWalls(scene);
 
-      // Ground Material
       const groundMaterial = new THREE.MeshStandardMaterial({
         color: 0x303030,
         roughness: 0.8,
         metalness: 0.2
       });
-
-      // Ground
       const groundGeometry = new THREE.PlaneGeometry(mazeSize * 2, mazeSize * 2);
       const ground = new THREE.Mesh(groundGeometry, groundMaterial);
       ground.rotation.x = -Math.PI / 2;
       scene.add(ground);
 
-      // Find free spaces
       const freeSpaces: {x: number, z: number}[] = [];
       for (let z = 0; z < mazeSize; z++) {
         for (let x = 0; x < mazeSize; x++) {
@@ -504,7 +409,6 @@ export default function MazeGame() {
         }
       }
 
-      // Goal
       const goalGeometry = new THREE.SphereGeometry(0.5, 32, 32);
       const goalMaterial = new THREE.MeshStandardMaterial({
         color: 0xFFD700,
@@ -513,11 +417,9 @@ export default function MazeGame() {
       });
       goal = new THREE.Mesh(goalGeometry, goalMaterial);
 
-      // Spawn and Goal Placement
       const spawnPoint = freeSpaces[0];
       const goalPoint = freeSpaces[freeSpaces.length - 2];
 
-      // Set initial positions - adjusted for new wall placement
       cameraHolder.position.set(
         spawnPoint.x * wallWidth - (mazeSize * wallWidth / 2),
         1.6,
@@ -532,35 +434,24 @@ export default function MazeGame() {
       );
       scene.add(goal);
 
-      // Track player path
-      // Updated trackPlayerPath function to ensure the player marker stays within walls
-
-      // Updated trackPlayerPath function to always show the player marker
       function trackPlayerPath() {
         if (!minimapCtx) return;
 
-        // Calculate cell size dynamically based on maze size
         const canvasSize = 200;
         const cellSize = Math.floor(canvasSize / mazeSize);
 
-        // Get player's grid position - adjusted for new wall placement
         const gridX = Math.floor((cameraHolder.position.x + mazeSize * wallWidth / 2) / wallWidth);
         const gridZ = Math.floor((cameraHolder.position.z + mazeSize * wallWidth / 2) / wallWidth);
-        
-        // Calculate exact position for more accurate player marker
         const exactX = ((cameraHolder.position.x + mazeSize * wallWidth / 2) / wallWidth);
         const exactZ = ((cameraHolder.position.z + mazeSize * wallWidth / 2) / wallWidth);
-        
-        // Only mark cell as visited if it's a valid path (not a wall)
+
         const cellKey = `${gridX},${gridZ}`;
         if (gridX >= 0 && gridX < mazeSize && gridZ >= 0 && gridZ < mazeSize && maze[gridZ][gridX] === 0) {
           visitedCells.add(cellKey);
         }
 
-        // Clear minimap
         minimapCtx.clearRect(0, 0, canvasSize, canvasSize);
 
-        // Draw maze on minimap
         minimapCtx.fillStyle = 'black';
         for (let z = 0; z < mazeSize; z++) {
           for (let x = 0; x < mazeSize; x++) {
@@ -570,24 +461,18 @@ export default function MazeGame() {
           }
         }
 
-        // Draw visited path - only on valid path cells
         minimapCtx.fillStyle = 'green';
         visitedCells.forEach(cell => {
           const [x, z] = cell.split(',').map(Number);
-          // Double-check that this is a path cell, not a wall
           if (x >= 0 && x < mazeSize && z >= 0 && z < mazeSize && maze[z][x] === 0) {
             minimapCtx.fillRect(x * cellSize, z * cellSize, cellSize, cellSize);
           }
         });
 
-        // Draw player position - always show, but restrict to valid minimap area
         minimapCtx.fillStyle = 'red';
         minimapCtx.beginPath();
-        
-        // Clamp player position to the bounds of the minimap
         const clampedX = Math.max(0, Math.min(mazeSize - 1, exactX));
         const clampedZ = Math.max(0, Math.min(mazeSize - 1, exactZ));
-        
         minimapCtx.arc(
           clampedX * cellSize,
           clampedZ * cellSize,
@@ -598,178 +483,71 @@ export default function MazeGame() {
         minimapCtx.fill();
       }
 
-      // Keyboard Controls
       function handleKeyDown(event: KeyboardEvent) {
         switch(event.key.toLowerCase()) {
-          case 'w':
-            inputState.keyboard.moveForward = true;
-            break;
-          case 's':
-            inputState.keyboard.moveBackward = true;
-            break;
-          case 'a':
-            inputState.keyboard.moveLeft = true;
-            break;
-          case 'd':
-            inputState.keyboard.moveRight = true;
-            break;
+          case 'w': inputState.keyboard.moveForward = true; break;
+          case 's': inputState.keyboard.moveBackward = true; break;
+          case 'a': inputState.keyboard.moveLeft = true; break;
+          case 'd': inputState.keyboard.moveRight = true; break;
         }
       }
 
       function handleKeyUp(event: KeyboardEvent) {
         switch(event.key.toLowerCase()) {
-          case 'w':
-            inputState.keyboard.moveForward = false;
-            break;
-          case 's':
-            inputState.keyboard.moveBackward = false;
-            break;
-          case 'a':
-            inputState.keyboard.moveLeft = false;
-            break;
-          case 'd':
-            inputState.keyboard.moveRight = false;
-            break;
+          case 'w': inputState.keyboard.moveForward = false; break;
+          case 's': inputState.keyboard.moveBackward = false; break;
+          case 'a': inputState.keyboard.moveLeft = false; break;
+          case 'd': inputState.keyboard.moveRight = false; break;
         }
       }
 
-      // Mouse Look
       function handleMouseMove(event: MouseEvent) {
         const movementX = event.movementX || 0;
         const movementY = event.movementY || 0;
-
-        // Horizontal rotation (Yaw)
         cameraHolder.rotation.y -= movementX * 0.002;
-
-        // Vertical rotation (Pitch)
         camera.rotation.x -= movementY * 0.002;
-
-        // Clamp pitch to prevent over-rotation
         camera.rotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, camera.rotation.x));
       }
 
-      // Animation Loop with improved wall sliding
       function animate(currentTime: number) {
         animationFrameId = requestAnimationFrame(animate);
-        
-        // Calculate delta time for smooth movement
+
         if (!lastFrameTime) lastFrameTime = currentTime;
-        const deltaTime = (currentTime - lastFrameTime) / 1000; // in seconds
+        const deltaTime = Math.min((currentTime - lastFrameTime) / 1000, 0.1);
         lastFrameTime = currentTime;
-        
-        // Skip if delta time is too large (e.g., after tab switch)
-        if (deltaTime > 0.1) return;
-        
-        // Calculate movement based on deltaTime for consistent speed
+
         const frameSpeed = moveSpeed * deltaTime;
 
-        // Direction vector based on camera orientation
         const forward = new THREE.Vector3(0, 0, -1);
         forward.applyQuaternion(cameraHolder.quaternion);
         forward.y = 0;
         forward.normalize();
 
-        // Right vector (perpendicular to forward)
         const right = new THREE.Vector3(1, 0, 0);
         right.applyQuaternion(cameraHolder.quaternion);
         right.normalize();
 
-        // Movement vector - starts at zero, accumulate direction
         const movement = new THREE.Vector3(0, 0, 0);
-
-        // Add keyboard input
-        if (inputState.keyboard.moveForward) movement.add(forward.clone().multiplyScalar(frameSpeed));
-        if (inputState.keyboard.moveBackward) movement.add(forward.clone().multiplyScalar(-frameSpeed));
-        if (inputState.keyboard.moveLeft) movement.add(right.clone().multiplyScalar(-frameSpeed));
-        if (inputState.keyboard.moveRight) movement.add(right.clone().multiplyScalar(frameSpeed));
-
-        // Add touch input if enabled
-        if (mobileControlsEnabled) {
-          if (inputState.touch.moveForward) movement.add(forward.clone().multiplyScalar(frameSpeed));
-          if (inputState.touch.moveBackward) movement.add(forward.clone().multiplyScalar(-frameSpeed));
-          if (inputState.touch.moveLeft) movement.add(right.clone().multiplyScalar(-frameSpeed));
-          if (inputState.touch.moveRight) movement.add(right.clone().multiplyScalar(frameSpeed));
+        if (inputState.keyboard.moveForward || (mobileControlsEnabled && inputState.touch.moveForward)) {
+          movement.add(forward.clone().multiplyScalar(frameSpeed));
+        }
+        if (inputState.keyboard.moveBackward || (mobileControlsEnabled && inputState.touch.moveBackward)) {
+          movement.add(forward.clone().multiplyScalar(-frameSpeed));
+        }
+        if (inputState.keyboard.moveLeft || (mobileControlsEnabled && inputState.touch.moveLeft)) {
+          movement.add(right.clone().multiplyScalar(-frameSpeed));
+        }
+        if (inputState.keyboard.moveRight || (mobileControlsEnabled && inputState.touch.moveRight)) {
+          movement.add(right.clone().multiplyScalar(frameSpeed));
         }
 
-        // Only process movement if we're actually moving
         if (movement.length() > 0) {
-          // Try full movement first
-          const fullPosition = cameraHolder.position.clone().add(movement);
-          
-          if (!checkCollision(fullPosition)) {
-            // If no collision, proceed with full movement
-            cameraHolder.position.copy(fullPosition);
-          } else {
-            // If collision detected, try sliding
-            
-            // Try sliding along X axis
-            const xSlidePosition = cameraHolder.position.clone().add(
-              new THREE.Vector3(movement.x, 0, 0)
-            );
-            
-            const canSlideX = !checkCollision(xSlidePosition);
-            
-            // Try sliding along Z axis
-            const zSlidePosition = cameraHolder.position.clone().add(
-              new THREE.Vector3(0, 0, movement.z)
-            );
-            
-            const canSlideZ = !checkCollision(zSlidePosition);
-            
-            // Apply valid slides
-            if (canSlideX) {
-              cameraHolder.position.x = xSlidePosition.x;
-            }
-            
-            if (canSlideZ) {
-              cameraHolder.position.z = zSlidePosition.z;
-            }
-            
-            // If both X and Z slides failed, try smaller incremental steps for smoother sliding
-            if (!canSlideX && !canSlideZ) {
-              // Decompose movement into 5 smaller steps
-              const smallStep = movement.clone().divideScalar(5);
-              let lastValidPosition = cameraHolder.position.clone();
-              
-              // Try up to 5 incremental steps
-              for (let i = 1; i <= 5; i++) {
-                const stepPosition = cameraHolder.position.clone().add(
-                  smallStep.clone().multiplyScalar(i)
-                );
-                
-                if (!checkCollision(stepPosition)) {
-                  lastValidPosition = stepPosition.clone();
-                } else {
-                  // Try sliding on this smaller step
-                  const smallX = cameraHolder.position.clone();
-                  smallX.x += smallStep.x * i;
-                  
-                  const smallZ = cameraHolder.position.clone();
-                  smallZ.z += smallStep.z * i;
-                  
-                  // Check if either small slide works
-                  if (!checkCollision(smallX)) {
-                    lastValidPosition = smallX.clone();
-                  }
-                  
-                  if (!checkCollision(smallZ)) {
-                    lastValidPosition = smallZ.clone();
-                  }
-                  
-                  break;
-                }
-              }
-              
-              // Update to last valid position
-              cameraHolder.position.copy(lastValidPosition);
-            }
-          }
+          const newPosition = checkCollision(cameraHolder.position, movement);
+          cameraHolder.position.copy(newPosition);
         }
 
-        // Update minimap
         trackPlayerPath();
 
-        // Goal check
         if (cameraHolder.position.distanceTo(goal.position) < 1) {
           setGameStatus("Goal Reached!");
           window.location.href = "/";
@@ -778,22 +556,18 @@ export default function MazeGame() {
         renderer.render(scene, camera);
       }
 
-      // Pointer Lock
       function requestPointerLock() {
         renderer.domElement.requestPointerLock();
       }
 
-      // Event Listeners
       renderer.domElement.addEventListener('click', requestPointerLock);
       window.addEventListener('keydown', handleKeyDown);
       window.addEventListener('keyup', handleKeyUp);
       document.addEventListener('mousemove', handleMouseMove);
 
-      // Start animation with time parameter
       lastFrameTime = performance.now();
       animationFrameId = requestAnimationFrame(animate);
 
-      // Return cleanup function
       return () => {
         cancelAnimationFrame(animationFrameId);
         renderer.domElement.removeEventListener('click', requestPointerLock);
@@ -801,8 +575,6 @@ export default function MazeGame() {
         window.removeEventListener('keyup', handleKeyUp);
         document.removeEventListener('mousemove', handleMouseMove);
         removeExistingTouchControls();
-        
-        // Dispose of Three.js resources
         if (renderer) {
           renderer.dispose();
           if (containerRef.current && renderer.domElement) {
@@ -812,17 +584,14 @@ export default function MazeGame() {
       };
     }
 
-    // Initialize maze
     cleanupFunction = initMaze();
-    
-    // Add or remove touch controls based on mobile controls state
+
     if (mobileControlsEnabled && containerRef.current) {
       createTouchControls(containerRef.current);
     } else {
       removeExistingTouchControls();
     }
 
-    // Window resize handler
     const handleResize = () => {
       if (camera && renderer) {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -830,36 +599,33 @@ export default function MazeGame() {
         renderer.setSize(window.innerWidth, window.innerHeight);
       }
     };
-    
+
     window.addEventListener('resize', handleResize);
 
-    // Cleanup on component unmount
     return () => {
       if (cleanupFunction) cleanupFunction();
       window.removeEventListener('resize', handleResize);
       unlockScreenOrientation();
-      
-      // Remove any remaining styles
       const touchControlsStyle = document.getElementById('touch-controls-style');
       if (touchControlsStyle) {
         touchControlsStyle.remove();
       }
     };
-  }, [mobileControlsEnabled]); // Re-run effect when mobile controls toggle changes
+  }, [mobileControlsEnabled]);
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      style={{ 
-        position: 'fixed', 
-        top: 0, 
-        left: 0, 
-        width: '100vw', 
-        height: '100vh', 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
         overflow: 'hidden'
       }}
     >
-      <canvas 
+      <canvas
         ref={minimapRef}
         style={{
           position: 'absolute',
@@ -869,14 +635,14 @@ export default function MazeGame() {
           backgroundColor: 'rgba(255,255,255,0.5)'
         }}
       />
-      <div 
+      <div
         style={{
-          position: 'absolute', 
-          top: '10px', 
-          left: '10px', 
-          color: 'white', 
-          background: 'rgba(0,0,0,0.7)', 
-          padding: '15px', 
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          color: 'white',
+          background: 'rgba(0,0,0,0.7)',
+          padding: '15px',
           borderRadius: '10px'
         }}
       >
@@ -885,8 +651,7 @@ export default function MazeGame() {
         <p>Click to look around</p>
         <p>Status: {gameStatus}</p>
       </div>
-      
-      {/* Mobile Controls Toggle Switch */}
+
       <div
         style={{
           position: 'absolute',
@@ -950,8 +715,7 @@ export default function MazeGame() {
           </span>
         </label>
       </div>
-      
-      {/* Conditional mobile instructions */}
+
       {mobileControlsEnabled && (
         <div
           style={{
