@@ -157,55 +157,8 @@ export default function MazeGame() {
       return maze;
     }
 
-    // Maze data
-    const maze = generateMaze(mazeSize, mazeSize);
-    
-    // Add "404" digits in the center of the maze
-    function add404ToMaze(maze: number[][]) {
-      // Calculate the center position
-      const centerX = Math.floor(mazeSize / 2) - 5; // Offset to center the digits
-      const centerY = Math.floor(mazeSize / 2) - 2; // Offset to center vertically
+    const  maze = generateMaze(mazeSize, mazeSize);
       
-      // Define the 404 pattern (1 = wall, 0 = path)
-      const digit404 = [
-        // First 4
-        [1, 0, 1],
-        [1, 0, 1],
-        [1, 1, 1],
-        [0, 0, 1],
-        [0, 0, 1],
-        // 0
-        [1, 1, 1],
-        [1, 0, 1],
-        [1, 0, 1],
-        [1, 0, 1],
-        [1, 1, 1],
-        // Second 4
-        [1, 0, 1],
-        [1, 0, 1],
-        [1, 1, 1],
-        [0, 0, 1],
-        [0, 0, 1]
-      ];
-      
-      // Place the digits in the maze (if space allows)
-      for (let y = 0; y < digit404.length; y++) {
-        for (let x = 0; x < digit404[0].length; x++) {
-          if (centerY + y < maze.length && centerX + x < maze[0].length) {
-            // Only place walls (don't erase existing paths to maintain maze connectivity)
-            if (digit404[y][x] === 1) {
-              maze[centerY + y][centerX + x] = 1;
-            }
-          }
-        }
-      }
-      
-      return maze;
-    }
-    
-    // Add the 404 digits to the maze
-    add404ToMaze(maze);
-
     function createSolidWalls(scene: THREE.Scene) {
       const wallHeight = 3;
       
@@ -348,6 +301,12 @@ export default function MazeGame() {
       // Add styles
       const existingStyle = document.getElementById('touch-controls-style');
       if (!existingStyle) {
+          // Updated mobile controls CSS and positioning
+
+        // In the createTouchControls function, update the style definition:
+        // Updated mobile controls CSS for complete center positioning
+
+        // In the createTouchControls function, update the style definition:
         const style = document.createElement('style');
         style.id = 'touch-controls-style';
         style.textContent = `
@@ -360,8 +319,9 @@ export default function MazeGame() {
             touch-action: none;
           }
           .movement-joystick {
-            bottom: 30px;
-            left: 30px;
+            top: 60%;
+            left: 15%;
+            transform: translate(-50%, -50%); /* Center the element relative to its position */
           }
           .joystick-background {
             width: 100%;
@@ -402,8 +362,9 @@ export default function MazeGame() {
           .arrow.left { left: 10px; top: 50%; transform: translateY(-50%); }
           .look-area {
             position: absolute;
-            bottom: 30px;
-            right: 30px;
+            top: 60%;
+            right: 15%;
+            transform: translate(50%, -50%); /* Center the element relative to its position */
             width: 120px;
             height: 120px;
             border-radius: 50%;
@@ -470,6 +431,21 @@ export default function MazeGame() {
         if (joystick) containerRef.current.removeChild(joystick);
         if (lookArea) containerRef.current.removeChild(lookArea);
       }
+    }
+
+    // Enhanced collision detection with more precise checks
+    function checkCollision(position: THREE.Vector3) {
+      const playerRadius = 0.3;
+      
+      // Main collision check
+      for (const wall of walls) {
+        const distance = position.distanceTo(wall.position);
+        if (distance < (playerRadius + 0.5)) {
+          return true;
+        }
+      }
+      
+      return false;
     }
 
     function initMaze() {
@@ -539,7 +515,7 @@ export default function MazeGame() {
 
       // Spawn and Goal Placement
       const spawnPoint = freeSpaces[0];
-      const goalPoint = freeSpaces[freeSpaces.length - 1];
+      const goalPoint = freeSpaces[freeSpaces.length - 2];
 
       // Set initial positions - adjusted for new wall placement
       cameraHolder.position.set(
@@ -556,36 +532,34 @@ export default function MazeGame() {
       );
       scene.add(goal);
 
-      // Collision detection
-      function checkCollision(position: THREE.Vector3) {
-        const playerRadius = 0.3;
-        return walls.some(wall => {
-          const distance = position.distanceTo(wall.position);
-          return distance < (playerRadius + 0.5);
-        });
-      }
-
       // Track player path
+      // Updated trackPlayerPath function to ensure the player marker stays within walls
+
+      // Updated trackPlayerPath function to always show the player marker
       function trackPlayerPath() {
         if (!minimapCtx) return;
-      
+
         // Calculate cell size dynamically based on maze size
         const canvasSize = 200;
         const cellSize = Math.floor(canvasSize / mazeSize);
-      
+
         // Get player's grid position - adjusted for new wall placement
         const gridX = Math.floor((cameraHolder.position.x + mazeSize * wallWidth / 2) / wallWidth);
         const gridZ = Math.floor((cameraHolder.position.z + mazeSize * wallWidth / 2) / wallWidth);
+        
+        // Calculate exact position for more accurate player marker
+        const exactX = ((cameraHolder.position.x + mazeSize * wallWidth / 2) / wallWidth);
+        const exactZ = ((cameraHolder.position.z + mazeSize * wallWidth / 2) / wallWidth);
         
         // Only mark cell as visited if it's a valid path (not a wall)
         const cellKey = `${gridX},${gridZ}`;
         if (gridX >= 0 && gridX < mazeSize && gridZ >= 0 && gridZ < mazeSize && maze[gridZ][gridX] === 0) {
           visitedCells.add(cellKey);
         }
-      
+
         // Clear minimap
         minimapCtx.clearRect(0, 0, canvasSize, canvasSize);
-      
+
         // Draw maze on minimap
         minimapCtx.fillStyle = 'black';
         for (let z = 0; z < mazeSize; z++) {
@@ -595,7 +569,7 @@ export default function MazeGame() {
             }
           }
         }
-      
+
         // Draw visited path - only on valid path cells
         minimapCtx.fillStyle = 'green';
         visitedCells.forEach(cell => {
@@ -605,13 +579,18 @@ export default function MazeGame() {
             minimapCtx.fillRect(x * cellSize, z * cellSize, cellSize, cellSize);
           }
         });
-      
-        // Draw player position
+
+        // Draw player position - always show, but restrict to valid minimap area
         minimapCtx.fillStyle = 'red';
         minimapCtx.beginPath();
+        
+        // Clamp player position to the bounds of the minimap
+        const clampedX = Math.max(0, Math.min(mazeSize - 1, exactX));
+        const clampedZ = Math.max(0, Math.min(mazeSize - 1, exactZ));
+        
         minimapCtx.arc(
-          gridX * cellSize + cellSize / 2,
-          gridZ * cellSize + cellSize / 2,
+          clampedX * cellSize,
+          clampedZ * cellSize,
           cellSize / 3,
           0,
           Math.PI * 2
@@ -669,7 +648,7 @@ export default function MazeGame() {
         camera.rotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, camera.rotation.x));
       }
 
-      // Animation Loop with consistent movement speed
+      // Animation Loop with improved wall sliding
       function animate(currentTime: number) {
         animationFrameId = requestAnimationFrame(animate);
         
@@ -712,26 +691,77 @@ export default function MazeGame() {
           if (inputState.touch.moveRight) movement.add(right.clone().multiplyScalar(frameSpeed));
         }
 
-        // Only check collision and move if we're actually moving
+        // Only process movement if we're actually moving
         if (movement.length() > 0) {
-          // Check collision before moving
-          const newPosition = cameraHolder.position.clone().add(movement);
-          if (!checkCollision(newPosition)) {
-            cameraHolder.position.copy(newPosition);
+          // Try full movement first
+          const fullPosition = cameraHolder.position.clone().add(movement);
+          
+          if (!checkCollision(fullPosition)) {
+            // If no collision, proceed with full movement
+            cameraHolder.position.copy(fullPosition);
           } else {
-            // Handle collision by trying to slide along walls
-            // Try X movement only
-            const xMovement = new THREE.Vector3(movement.x, 0, 0);
-            const xPosition = cameraHolder.position.clone().add(xMovement);
-            if (!checkCollision(xPosition)) {
-              cameraHolder.position.copy(xPosition);
+            // If collision detected, try sliding
+            
+            // Try sliding along X axis
+            const xSlidePosition = cameraHolder.position.clone().add(
+              new THREE.Vector3(movement.x, 0, 0)
+            );
+            
+            const canSlideX = !checkCollision(xSlidePosition);
+            
+            // Try sliding along Z axis
+            const zSlidePosition = cameraHolder.position.clone().add(
+              new THREE.Vector3(0, 0, movement.z)
+            );
+            
+            const canSlideZ = !checkCollision(zSlidePosition);
+            
+            // Apply valid slides
+            if (canSlideX) {
+              cameraHolder.position.x = xSlidePosition.x;
             }
             
-            // Try Z movement only
-            const zMovement = new THREE.Vector3(0, 0, movement.z);
-            const zPosition = cameraHolder.position.clone().add(zMovement);
-            if (!checkCollision(zPosition)) {
-              cameraHolder.position.copy(zPosition);
+            if (canSlideZ) {
+              cameraHolder.position.z = zSlidePosition.z;
+            }
+            
+            // If both X and Z slides failed, try smaller incremental steps for smoother sliding
+            if (!canSlideX && !canSlideZ) {
+              // Decompose movement into 5 smaller steps
+              const smallStep = movement.clone().divideScalar(5);
+              let lastValidPosition = cameraHolder.position.clone();
+              
+              // Try up to 5 incremental steps
+              for (let i = 1; i <= 5; i++) {
+                const stepPosition = cameraHolder.position.clone().add(
+                  smallStep.clone().multiplyScalar(i)
+                );
+                
+                if (!checkCollision(stepPosition)) {
+                  lastValidPosition = stepPosition.clone();
+                } else {
+                  // Try sliding on this smaller step
+                  const smallX = cameraHolder.position.clone();
+                  smallX.x += smallStep.x * i;
+                  
+                  const smallZ = cameraHolder.position.clone();
+                  smallZ.z += smallStep.z * i;
+                  
+                  // Check if either small slide works
+                  if (!checkCollision(smallX)) {
+                    lastValidPosition = smallX.clone();
+                  }
+                  
+                  if (!checkCollision(smallZ)) {
+                    lastValidPosition = smallZ.clone();
+                  }
+                  
+                  break;
+                }
+              }
+              
+              // Update to last valid position
+              cameraHolder.position.copy(lastValidPosition);
             }
           }
         }

@@ -6,7 +6,7 @@ export default function Error404Page() {
   return (
     <>
       <Head>
-        <title>404 - Simple Maze</title>
+        <title>404 - Error: Page Not Found</title>
         <style>
           {`
             body, html {
