@@ -213,7 +213,7 @@ export default function MazeGame() {
       if (distance <= extendedRadius && inputState.touch.lastLookTouch) {
         const moveX = touch.clientX - inputState.touch.lastLookTouch.x;
         const moveY = touch.clientY - inputState.touch.lastLookTouch.y;
-        const sensitivity = Math.min(1, distance / 120) * 0.01; // Scale sensitivity up to button edge
+        const sensitivity = Math.min(1, distance / 120) * 0.05; // Scale sensitivity up to button edge
         cameraHolder.rotation.y -= moveX * sensitivity;
         camera.rotation.x -= moveY * sensitivity;
         camera.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, camera.rotation.x));
