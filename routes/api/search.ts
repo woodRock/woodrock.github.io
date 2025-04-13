@@ -1,9 +1,10 @@
 // routes/api/search.ts
 import { Handlers } from "$fresh/server.ts";
+import { createSupabaseClient } from "../api/supabase.ts";
 
 // Define a type for search results
 interface SearchItem {
-  id: string;
+  id: string | number;
   title: string;
   content: string;
   type: string;
@@ -29,60 +30,71 @@ export const handler: Handlers = {
     }
     
     try {
-      // Log the path we're trying to read from
-      const searchDataPath = "./static/data/searchable-content.json";
-      console.log("Trying to read from path:", searchDataPath);
+      // Initialize Supabase client
+      const supabase = createSupabaseClient();
+      console.log("Supabase client initialized");
       
-      // Check if the file exists
-      try {
-        await Deno.stat(searchDataPath);
-        console.log("File exists");
-      } catch (e) {
-        console.error("File does not exist:", e);
-        return new Response(JSON.stringify({ error: "Search data file not found" }), {
-          status: 404,
-          headers: { "Content-Type": "application/json" },
-        });
+      // Array to store all search results
+      const searchResults: SearchItem[] = [];
+      
+      // Search in projects table
+      const { data: projectsData, error: projectsError } = await supabase
+        .from("projects")
+        .select("id, title, description, github_link")
+        .or(`title.ilike.%${query}%,description.ilike.%${query}%,language.ilike.%${query}%`);
+      
+      if (projectsError) {
+        console.error("Error searching projects:", projectsError);
+      } else {
+        console.log(`Found ${projectsData?.length || 0} matching projects`);
+        
+        // Convert projects to SearchItem format
+        const projectItems = (projectsData || []).map(project => ({
+          id: project.id.toString(),
+          title: project.title,
+          content: project.description,
+          type: "project",
+          url: `/projects#${project.id}`,
+          metadata: {
+            github: project.github_link
+          }
+        }));
+        
+        searchResults.push(...projectItems);
       }
       
-      // Load the search data
-      const searchDataText = await Deno.readTextFile(searchDataPath);
-      console.log("File content length:", searchDataText.length);
+      // Search in publications table
+      const { data: publicationsData, error: publicationsError } = await supabase
+        .from("publications")
+        .select("id, title, abstract, year, journal, link")
+        .or(`title.ilike.%${query}%,abstract.ilike.%${query}%,journal.ilike.%${query}%`);
       
-      // Verify the JSON is valid
-      let searchData: SearchItem[];
-      try {
-        searchData = JSON.parse(searchDataText);
-        console.log("Parsed JSON successfully, item count:", searchData.length);
-        console.log("Sample item:", searchData.length > 0 ? JSON.stringify(searchData[0]).substring(0, 100) + "..." : "No items");
-      } catch (e) {
-        console.error("JSON parse error:", e);
-        return new Response(JSON.stringify({ error: "Invalid search data format" }), {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        });
+      if (publicationsError) {
+        console.error("Error searching publications:", publicationsError);
+      } else {
+        console.log(`Found ${publicationsData?.length || 0} matching publications`);
+        
+        // Convert publications to SearchItem format
+        const publicationItems = (publicationsData || []).map(pub => ({
+          id: pub.id.toString(),
+          title: pub.title,
+          content: pub.abstract,
+          type: "publication",
+          url: `/publications#${pub.id}`,
+          metadata: {
+            year: pub.year.toString(),
+            journal: pub.journal,
+            link: pub.link
+          }
+        }));
+        
+        searchResults.push(...publicationItems);
       }
       
-      // Perform the search (simple contains search for now)
-      const results = searchData.filter(item => {
-        const titleMatch = item.title.toLowerCase().includes(query);
-        const contentMatch = item.content.toLowerCase().includes(query);
-        const typeMatch = item.type.toLowerCase().includes(query);
-        const urlMatch = item.url.toLowerCase().includes(query);
-        const metadataMatch = Object.values(item.metadata || {}).some(value =>
-          value.toLowerCase().includes(query)
-        );
-        // Check if any of the fields match
-        return titleMatch || contentMatch || typeMatch || urlMatch || metadataMatch;
-      });
+      console.log(`Total search results: ${searchResults.length}`);
       
-      console.log(`Search for "${query}" found ${results.length} results`);
-      if (results.length > 0) {
-        console.log("First result:", JSON.stringify(results[0]).substring(0, 100) + "...");
-      }
-      
-      // Return the results as JSON
-      return new Response(JSON.stringify(results), {
+      // Return the combined results as JSON
+      return new Response(JSON.stringify(searchResults), {
         headers: { "Content-Type": "application/json" },
       });
     } catch (error) {

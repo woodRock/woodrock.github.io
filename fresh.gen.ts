@@ -6,14 +6,14 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_doc_chat from "./routes/api/doc-chat.ts";
 import * as $api_doc_summary from "./routes/api/doc-summary.ts";
-import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_llm_gemini from "./routes/api/llm-gemini.ts";
 import * as $api_llm from "./routes/api/llm.ts";
 import * as $api_search from "./routes/api/search.ts";
+import * as $api_supabase from "./routes/api/supabase.ts";
+import * as $api_types from "./routes/api/types.ts";
 import * as $contact from "./routes/contact.tsx";
 import * as $doc_chat_filename_ from "./routes/doc-chat/[filename].tsx";
 import * as $download from "./routes/download.ts";
-import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $llm from "./routes/llm.tsx";
 import * as $projects from "./routes/projects.tsx";
@@ -40,14 +40,14 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/api/doc-chat.ts": $api_doc_chat,
     "./routes/api/doc-summary.ts": $api_doc_summary,
-    "./routes/api/joke.ts": $api_joke,
     "./routes/api/llm-gemini.ts": $api_llm_gemini,
     "./routes/api/llm.ts": $api_llm,
     "./routes/api/search.ts": $api_search,
+    "./routes/api/supabase.ts": $api_supabase,
+    "./routes/api/types.ts": $api_types,
     "./routes/contact.tsx": $contact,
     "./routes/doc-chat/[filename].tsx": $doc_chat_filename_,
     "./routes/download.ts": $download,
-    "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
     "./routes/llm.tsx": $llm,
     "./routes/projects.tsx": $projects,
