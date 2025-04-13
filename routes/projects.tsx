@@ -17,6 +17,13 @@ export default function Projects() {
       backgroundColor: "#CFE1E8"
     },
     {
+      title: "Wellington Bus Timetable",
+      language: "Typescript, Deno",
+      githubLink: "https://github.com/woodRock/bus-timetable",
+      description: "A deno fresh web application for Wellington bus timetables using the Metlink API",
+      backgroundColor: "#CFE1E8"
+    },
+    {
       title: "Ionic Scholar",
       language: "Ionic, Typescript",
       githubLink: "https://github.com/woodRock/ionic-scholar",

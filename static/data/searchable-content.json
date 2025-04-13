@@ -61,10 +61,22 @@
   },
   {
     "id": "proj-3",
+    "title": "Wellington Bus Timetable",
+    "content": "A deno fresh web application for Wellington bus timetables using the Metlink API",
+    "type": "project",
+    "url": "/projects#proj-3",
+    "metadata": {
+      "language": "Typescript, Deno",
+      "github": "https://github.com/woodRock/bus-timetable",
+      "tags": ""
+    }
+  },
+  {
+    "id": "proj-4",
     "title": "Ionic Scholar",
     "content": "This individually developed app keeps track of academic references. The app remembers the users progress, keywords, quotes. Also it can generate citations.",
     "type": "project",
-    "url": "/projects#proj-3",
+    "url": "/projects#proj-4",
     "metadata": {
       "language": "Ionic, Typescript",
       "github": "https://github.com/woodRock/ionic-scholar",
@@ -72,11 +84,11 @@
     }
   },
   {
-    "id": "proj-4",
+    "id": "proj-5",
     "title": "Expert Chainsaw",
     "content": "This GitHub Action used the Open Weather API to display the weather forecast for a given area. It is updated once every 30 minutes. The weather forecast is displayed within predefined tags (hidden inside HTML comments), such that it does not overwrite any other existing content in a README.",
     "type": "project",
-    "url": "/projects#proj-4",
+    "url": "/projects#proj-5",
     "metadata": {
       "language": "Node, Github Actions",
       "github": "https://github.com/woodRock/expert-chainsaw",
@@ -84,11 +96,11 @@
     }
   },
   {
-    "id": "proj-5",
+    "id": "proj-6",
     "title": "Scaling Palm Tree",
     "content": "A command-line interface (CLI) for bus timetables in Wellington, New Zealand.",
     "type": "project",
-    "url": "/projects#proj-5",
+    "url": "/projects#proj-6",
     "metadata": {
       "language": "Rust",
       "github": "https://github.com/woodRock/scaling-palm-tree",
@@ -96,11 +108,11 @@
     }
   },
   {
-    "id": "proj-6",
+    "id": "proj-7",
     "title": "Wordle Solver Transformer",
     "content": "Wordle solver with a transformer deep learning neural network.",
     "type": "project",
-    "url": "/projects#proj-6",
+    "url": "/projects#proj-7",
     "metadata": {
       "language": "Python, Pytorch",
       "github": "https://github.com/woodRock/wordle",
@@ -108,16 +120,23 @@
     }
   },
   {
-    "id": "proj-7",
+    "id": "proj-8",
     "title": "Autograd",
     "content": "Deep learning library written in c++ for a basic autograd.",
     "type": "project",
-    "url": "/projects#proj-7",
+    "url": "/projects#proj-8",
     "metadata": {
       "language": "C++, Cuda",
       "github": "https://github.com/woodRock/autograd",
       "tags": ""
     }
+  },
+  {
+    "id": "page-[filename]",
+    "title": "{isApiLimitError ? \"API Limit Reached\" : \"Document Error\"} | Jesse Wood",
+    "content": "Chat with Document Ask questions about this document using Gemini AI",
+    "type": "page",
+    "url": "/doc-chat/[filename].tsx"
   },
   {
     "id": "page-README",
