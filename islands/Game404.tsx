@@ -1,4 +1,3 @@
-// islands/MazeGame.tsx
 import { useEffect, useRef, useState } from "preact/hooks";
 import * as THREE from "npm:three";
 
@@ -35,6 +34,9 @@ export default function MazeGame() {
   const [speedBoostActive, setSpeedBoostActive] = useState(false);
   const [speedBoostTimeLeft, setSpeedBoostTimeLeft] = useState(0);
 
+  // Ref to track pathfinderActive immediately
+  const pathfinderActiveRef = useRef(pathfinderActive);
+
   const gameStateRef = useRef<{
     scene: THREE.Scene | null;
     camera: THREE.PerspectiveCamera | null;
@@ -66,6 +68,14 @@ export default function MazeGame() {
     maze: [],
     animationFrameId: null,
   });
+
+  // Sync pathfinderActiveRef with pathfinderActive
+  useEffect(() => {
+    pathfinderActiveRef.current = pathfinderActive;
+    if (pathfinderActive) {
+      updatePathfinder();
+    }
+  }, [pathfinderActive]);
 
   const lockScreenOrientation = () => {
     try {
@@ -259,6 +269,34 @@ export default function MazeGame() {
         parent: Node | null;
       }
 
+      if (!gameStateRef.current.maze || gameStateRef.current.maze.length === 0) {
+        console.error("Maze data is invalid or not initialized");
+        return [];
+      }
+
+      if (
+        start.x < 0 ||
+        start.x >= mazeSize ||
+        start.z < 0 ||
+        start.z >= mazeSize ||
+        end.x < 0 ||
+        end.x >= mazeSize ||
+        end.z < 0 ||
+        end.z >= mazeSize ||
+        gameStateRef.current.maze[start.z][start.x] === 1 ||
+        gameStateRef.current.maze[end.z][end.x] === 1
+      ) {
+        console.error("Invalid start or end position:", {
+          start,
+          end,
+          startCell: gameStateRef.current.maze[start.z]?.[start.x],
+          endCell: gameStateRef.current.maze[end.z]?.[end.x],
+        });
+        return [];
+      }
+
+      console.log("A* searching from", start, "to", end);
+
       const openSet: Node[] = [];
       const closedSet: Set<string> = new Set();
 
@@ -283,6 +321,7 @@ export default function MazeGame() {
             path.push({ x: temp.x, z: temp.z });
             temp = temp.parent;
           }
+          console.log("Path found:", path.reverse());
           return path.reverse();
         }
 
@@ -332,11 +371,19 @@ export default function MazeGame() {
         }
       }
 
+      console.warn("No path found from", start, "to", end);
       return [];
     }
 
     function updatePathfinder() {
-      if (!pathfinderActive || !gameStateRef.current.cameraHolder || !gameStateRef.current.goal) return;
+      if (!pathfinderActiveRef.current || !gameStateRef.current.cameraHolder || !gameStateRef.current.goal) {
+        console.warn("Pathfinder update skipped: missing dependencies", {
+          pathfinderActive: pathfinderActiveRef.current,
+          cameraHolder: !!gameStateRef.current.cameraHolder,
+          goal: !!gameStateRef.current.goal,
+        });
+        return;
+      }
 
       const playerGridX = Math.floor(
         (gameStateRef.current.cameraHolder.position.x + mazeSize * wallWidth / 2) / wallWidth
@@ -351,21 +398,43 @@ export default function MazeGame() {
         (gameStateRef.current.goal.position.z + mazeSize * wallWidth / 2) / wallWidth
       );
 
+      const clampedPlayerX = Math.max(0, Math.min(mazeSize - 1, playerGridX));
+      const clampedPlayerZ = Math.max(0, Math.min(mazeSize - 1, playerGridZ));
+      const clampedGoalX = Math.max(0, Math.min(mazeSize - 1, goalGridX));
+      const clampedGoalZ = Math.max(0, Math.min(mazeSize - 1, goalGridZ));
+
+      console.log("Updating pathfinder:", {
+        playerGridX: clampedPlayerX,
+        playerGridZ: clampedPlayerZ,
+        goalGridX: clampedGoalX,
+        goalGridZ: clampedGoalZ,
+      });
+
       gameStateRef.current.pathPoints = findPathAStar(
-        { x: playerGridX, z: playerGridZ },
-        { x: goalGridX, z: goalGridZ }
+        { x: clampedPlayerX, z: clampedPlayerZ },
+        { x: clampedGoalX, z: clampedGoalZ }
       );
+
+      console.log("Path points updated:", gameStateRef.current.pathPoints);
     }
 
     function activatePathfinder() {
+      console.log("Activating pathfinder power-up");
       if (gameStateRef.current.pathfinderTimer !== null) {
         clearInterval(gameStateRef.current.pathfinderTimer);
       }
 
       setPathfinderActive(true);
-      updatePathfinder();
+      pathfinderActiveRef.current = true; // Immediate update
 
-      const pathfinderDuration = 5000;
+      // Delay updatePathfinder to ensure cameraHolder and goal are ready
+      if (gameStateRef.current.cameraHolder && gameStateRef.current.goal) {
+        updatePathfinder();
+      } else {
+        console.warn("Delayed pathfinder update: waiting for initialization");
+      }
+
+      const pathfinderDuration = 10000;
       let startTime = Date.now();
 
       gameStateRef.current.pathfinderTimer = window.setInterval(() => {
@@ -378,7 +447,9 @@ export default function MazeGame() {
           clearInterval(gameStateRef.current.pathfinderTimer!);
           gameStateRef.current.pathfinderTimer = null;
           setPathfinderActive(false);
+          pathfinderActiveRef.current = false;
           gameStateRef.current.pathPoints = [];
+          console.log("Pathfinder deactivated");
           setGameStatus("Exploring...");
         }
       }, 100);
@@ -446,37 +517,75 @@ export default function MazeGame() {
     }
 
     function checkCollision(currentPos: THREE.Vector3, movement: THREE.Vector3): THREE.Vector3 {
-      const playerRadius = 0.3;
-      const wallHalfWidth = wallWidth / 2;
-
+      const playerRadius = 0.2; // Reduced from 0.3 for smoother navigation
+      const wallHalfWidth = 0.45; // Slightly reduced from 0.5 for buffer
       const newPos = currentPos.clone().add(movement);
-      const testX = new THREE.Vector3(newPos.x, currentPos.y, currentPos.z);
-      const testZ = new THREE.Vector3(currentPos.x, currentPos.y, newPos.z);
-
-      let collidesX = false;
-      let collidesZ = false;
-
+    
+      // Check for collisions with all walls
+      let closestCollision: { distance: number; normal: THREE.Vector3 } | null = null;
+    
+      for (const wall of gameStateRef.current.walls) {
+        const wx = wall.position.x;
+        const wz = wall.position.z;
+    
+        // Check if new position collides with wall (axis-aligned bounding box)
+        const dx = newPos.x - wx;
+        const dz = newPos.z - wz;
+        if (
+          Math.abs(dx) < wallHalfWidth + playerRadius &&
+          Math.abs(dz) < wallHalfWidth + playerRadius
+        ) {
+          // Calculate the penetration vector
+          const penetrationX = (wallHalfWidth + playerRadius) - Math.abs(dx);
+          const penetrationZ = (wallHalfWidth + playerRadius) - Math.abs(dz);
+    
+          // Determine the collision normal (pointing away from the wall)
+          let normalX = 0;
+          let normalZ = 0;
+          if (penetrationX < penetrationZ) {
+            normalX = dx > 0 ? 1 : -1; // Collide on X-axis
+          } else {
+            normalZ = dz > 0 ? 1 : -1; // Collide on Z-axis
+          }
+    
+          // Store the closest collision based on penetration distance
+          const distance = Math.min(penetrationX, penetrationZ);
+          if (!closestCollision || distance < closestCollision.distance) {
+            closestCollision = {
+              distance,
+              normal: new THREE.Vector3(normalX, 0, normalZ),
+            };
+          }
+        }
+      }
+    
+      if (!closestCollision) {
+        // No collision, allow full movement
+        return newPos;
+      }
+    
+      // Slide along the wall by projecting the movement onto the plane perpendicular to the normal
+      const normal = closestCollision.normal;
+      const moveDir = movement.clone().normalize();
+      const slideMovement = movement.clone().sub(
+        normal.clone().multiplyScalar(movement.dot(normal))
+      );
+    
+      // Recheck the slide movement to avoid new collisions
+      const slidePos = currentPos.clone().add(slideMovement);
       for (const wall of gameStateRef.current.walls) {
         const wx = wall.position.x;
         const wz = wall.position.z;
         if (
-          Math.abs(testX.x - wx) < wallHalfWidth + playerRadius &&
-          Math.abs(testX.z - wz) < wallHalfWidth + playerRadius
+          Math.abs(slidePos.x - wx) < wallHalfWidth + playerRadius &&
+          Math.abs(slidePos.z - wz) < wallHalfWidth + playerRadius
         ) {
-          collidesX = true;
-        }
-        if (
-          Math.abs(testZ.x - wx) < wallHalfWidth + playerRadius &&
-          Math.abs(testZ.z - wz) < wallHalfWidth + playerRadius
-        ) {
-          collidesZ = true;
+          // If sliding still causes a collision, revert to current position
+          return currentPos.clone();
         }
       }
-
-      if (collidesX && collidesZ) return currentPos.clone();
-      if (collidesX) return new THREE.Vector3(currentPos.x, currentPos.y, newPos.z);
-      if (collidesZ) return new THREE.Vector3(newPos.x, currentPos.y, currentPos.z);
-      return newPos;
+    
+      return slidePos;
     }
 
     function initMaze() {
@@ -501,6 +610,9 @@ export default function MazeGame() {
         minimapRef.current.width = 200;
         minimapRef.current.height = 200;
         minimapCtx = minimapRef.current.getContext("2d");
+        console.log("Minimap canvas initialized:", !!minimapCtx);
+      } else {
+        console.error("Minimap canvas ref is null");
       }
 
       const ambientLight = new THREE.AmbientLight(0x404040);
@@ -515,6 +627,7 @@ export default function MazeGame() {
       gameStateRef.current.cameraHolder = cameraHolder;
       gameStateRef.current.renderer = renderer;
       gameStateRef.current.maze = generateMaze(mazeSize, mazeSize);
+      console.log("Maze initialized:", gameStateRef.current.maze);
       gameStateRef.current.walls = createSolidWalls(scene);
 
       const groundMaterial = new THREE.MeshStandardMaterial({
@@ -542,8 +655,9 @@ export default function MazeGame() {
       });
       const goal = new THREE.Mesh(goalGeometry, goalMaterial);
 
-      const spawnPoint = freeSpaces[0];
+      const spawnPoint = freeSpaces.find(p => gameStateRef.current.maze[p.z][p.x] === 0) || freeSpaces[0];
       const goalPoint = freeSpaces[freeSpaces.length - 2];
+      console.log("Spawn point:", spawnPoint, "Goal point:", goalPoint);
 
       cameraHolder.position.set(
         spawnPoint.x * wallWidth - (mazeSize * wallWidth / 2),
@@ -574,7 +688,8 @@ export default function MazeGame() {
 
         animatePowerUps(deltaTime);
 
-        const frameSpeed = gameStateRef.current.currentMoveSpeed * deltaTime;
+        const maxStepSize = 0.1; // Max movement per frame
+        const frameSpeed = Math.min(gameStateRef.current.currentMoveSpeed * deltaTime, maxStepSize);
         const forward = new THREE.Vector3(0, 0, -1)
           .applyQuaternion(cameraHolder.quaternion)
           .setY(0)
@@ -613,7 +728,7 @@ export default function MazeGame() {
           const newPosition = checkCollision(cameraHolder.position, movement);
           cameraHolder.position.copy(newPosition);
 
-          if (pathfinderActive) {
+          if (pathfinderActiveRef.current) {
             const oldGridX = Math.floor(
               (cameraHolder.position.x - movement.x + mazeSize * wallWidth / 2) / wallWidth
             );
@@ -644,7 +759,10 @@ export default function MazeGame() {
       };
 
       function trackPlayerPath() {
-        if (!minimapCtx || !gameStateRef.current.goal) return;
+        if (!minimapCtx || !gameStateRef.current.goal) {
+          console.error("Minimap context or goal is null");
+          return;
+        }
 
         const canvasSize = 200;
         const cellSize = Math.floor(canvasSize / mazeSize);
@@ -670,6 +788,8 @@ export default function MazeGame() {
         }
 
         minimapCtx.clearRect(0, 0, canvasSize, canvasSize);
+
+        // Draw walls
         minimapCtx.fillStyle = "black";
         for (let z = 0; z < mazeSize; z++) {
           for (let x = 0; x < mazeSize; x++) {
@@ -678,6 +798,29 @@ export default function MazeGame() {
           }
         }
 
+        // Draw pathfinder path
+        if (pathfinderActiveRef.current && gameStateRef.current.pathPoints.length > 0) {
+          console.log("Attempting to draw path:", gameStateRef.current.pathPoints, "Player position:", { exactX, exactZ });
+          minimapCtx.strokeStyle = "#FF4081";
+          minimapCtx.lineWidth = 3;
+          minimapCtx.setLineDash([5, 3]);
+          minimapCtx.beginPath();
+          minimapCtx.moveTo(exactX * cellSize, exactZ * cellSize);
+          for (let i = 0; i < gameStateRef.current.pathPoints.length; i++) {
+            const point = gameStateRef.current.pathPoints[i];
+            const pathX = point.x * cellSize + cellSize / 2;
+            const pathZ = point.z * cellSize + cellSize / 2;
+            minimapCtx.lineTo(pathX, pathZ);
+          }
+          const dashOffset = (performance.now() / 100) % 8;
+          minimapCtx.lineDashOffset = -dashOffset;
+          minimapCtx.globalAlpha = 1.0;
+          minimapCtx.stroke();
+          minimapCtx.setLineDash([]);
+          minimapCtx.globalAlpha = 1.0;
+        }
+
+        // Draw visited cells
         minimapCtx.fillStyle = "green";
         gameStateRef.current.visitedCells.forEach((cell) => {
           const [x, z] = cell.split(",").map(Number);
@@ -692,6 +835,7 @@ export default function MazeGame() {
           }
         });
 
+        // Draw power-ups
         gameStateRef.current.powerUps.forEach((powerUp) => {
           if (!powerUp.collected) {
             const powerUpX = Math.floor(
@@ -703,11 +847,12 @@ export default function MazeGame() {
             minimapCtx.fillStyle =
               powerUp.type === PowerUpType.PATHFINDER ? "yellow" : "cyan";
             minimapCtx.beginPath();
-            minimapCtx.arc(powerUpX * cellSize, powerUpZ * cellSize, cellSize / 4, 0, Math.PI * 2);
+            minimapCtx.arc(powerUpX * cellSize + cellSize / 2, powerUpZ * cellSize + cellSize / 2, cellSize / 4, 0, Math.PI * 2);
             minimapCtx.fill();
           }
         });
 
+        // Draw goal
         const goalX = Math.floor(
           (gameStateRef.current.goal.position.x + mazeSize * wallWidth / 2) / wallWidth
         );
@@ -716,59 +861,17 @@ export default function MazeGame() {
         );
         minimapCtx.fillStyle = "gold";
         minimapCtx.beginPath();
-        minimapCtx.arc(goalX * cellSize, goalZ * cellSize, cellSize / 3, 0, Math.PI * 2);
+        minimapCtx.arc(goalX * cellSize + cellSize / 2, goalZ * cellSize + cellSize / 2, cellSize / 3, 0, Math.PI * 2);
         minimapCtx.fill();
 
-        // Inside the trackPlayerPath function, replace the existing pathfinder drawing block with this:
-        if (pathfinderActive && gameStateRef.current.pathPoints.length > 0) {
-          minimapCtx.strokeStyle = "#FF4081"; // Bright pink for visibility
-          minimapCtx.lineWidth = 3; // Ensure line is thick enough to see
-          minimapCtx.setLineDash([5, 3]); // Dashed line pattern
-          minimapCtx.beginPath();
-
-          // Start from the player's exact position
-          minimapCtx.moveTo(exactX * cellSize, exactZ * cellSize);
-
-          // Draw path through all points
-          for (let i = 0; i < gameStateRef.current.pathPoints.length; i++) {
-            const point = gameStateRef.current.pathPoints[i];
-            const pathX = point.x * cellSize + cellSize / 2; // Center the point in the cell
-            const pathZ = point.z * cellSize + cellSize / 2;
-            minimapCtx.lineTo(pathX, pathZ);
-          }
-
-          // Animate dash pattern
-          const dashOffset = (performance.now() / 100) % 8;
-          minimapCtx.lineDashOffset = -dashOffset;
-
-          // Ensure visibility with full opacity while active
-          minimapCtx.globalAlpha = 1.0; // Force full opacity for debugging (remove fade for now)
-
-          minimapCtx.stroke();
-          minimapCtx.setLineDash([]); // Reset dash pattern
-          minimapCtx.globalAlpha = 1.0; // Reset alpha
-        }
-
+        // Draw player
         minimapCtx.fillStyle = "red";
         minimapCtx.beginPath();
         const clampedX = Math.max(0, Math.min(mazeSize - 1, exactX));
         const clampedZ = Math.max(0, Math.min(mazeSize - 1, exactZ));
         minimapCtx.arc(clampedX * cellSize, clampedZ * cellSize, cellSize / 3, 0, Math.PI * 2);
         minimapCtx.fill();
-
-        const dirX = Math.cos(cameraHolder.rotation.y);
-        const dirZ = Math.sin(cameraHolder.rotation.y);
-        minimapCtx.strokeStyle = "red";
-        minimapCtx.lineWidth = 2;
-        minimapCtx.beginPath();
-        minimapCtx.moveTo(clampedX * cellSize, clampedZ * cellSize);
-        minimapCtx.lineTo(
-          (clampedX + dirX * 0.5) * cellSize,
-          (clampedZ - dirZ * 0.5) * cellSize
-        );
-        minimapCtx.stroke();
       }
-
       function handleKeyDown(event: KeyboardEvent) {
         switch (event.key.toLowerCase()) {
           case "w":
@@ -868,7 +971,7 @@ export default function MazeGame() {
       const touchControlsStyle = document.getElementById("touch-controls-style");
       if (touchControlsStyle) touchControlsStyle.remove();
     };
-  }, []); // Empty dependency array to run only once
+  }, []);
 
   useEffect(() => {
     function handleMovementTouch(e: TouchEvent, joystickBg: HTMLElement, joystickKnob: HTMLElement) {
@@ -1099,177 +1202,176 @@ export default function MazeGame() {
     timeLeft?: number;
   }) => {
     const iconContent = type === "pathfinder" ? "★" : "⚡";
-    const color = active ? (type === "pathfinder" // islands/MazeGame.tsx (continued)
-      ? "#FFC107" : "#4FC3F7") : "#444";
-          const label = type === "pathfinder" ? "Pathfinder" : "Speed Boost";
-      
-          const pulsing = active && timeLeft && timeLeft <= 2;
-          const pulseStyle = pulsing
-            ? {
-                animation: "pulse 0.5s infinite",
-                animationName: "pulse",
-                animationDuration: "0.5s",
-                animationIterationCount: "infinite",
-              }
-            : {};
-      
-          return (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "5px",
-                color: active ? "white" : "#aaa",
-              }}
-            >
-              <span
-                style={{
-                  backgroundColor: color,
-                  color: "#000",
-                  width: "24px",
-                  height: "24px",
-                  borderRadius: "50%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: "10px",
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  boxShadow: active ? `0 0 10px ${color}` : "none",
-                  ...pulseStyle,
-                }}
-              >
-                {iconContent}
-              </span>
-              <span>
-                {label}
-                {active && timeLeft && timeLeft > 0 ? ` (${timeLeft}s)` : ""}
-              </span>
-            </div>
-          );
-        };
-      
-        return (
-          <div
-            ref={containerRef}
-            style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", overflow: "hidden" }}
+    const color = active ? (type === "pathfinder" ? "#FFC107" : "#4FC3F7") : "#444";
+    const label = type === "pathfinder" ? "Pathfinder" : "Speed Boost";
+
+    const pulsing = active && timeLeft && timeLeft <= 2;
+    const pulseStyle = pulsing
+      ? {
+          animation: "pulse 0.5s infinite",
+          animationName: "pulse",
+          animationDuration: "0.5s",
+          animationIterationCount: "infinite",
+        }
+      : {};
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginBottom: "5px",
+          color: active ? "white" : "#aaa",
+        }}
+      >
+        <span
+          style={{
+            backgroundColor: color,
+            color: "#000",
+            width: "24px",
+            height: "24px",
+            borderRadius: "50%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginRight: "10px",
+            fontSize: "16px",
+            fontWeight: "bold",
+            boxShadow: active ? `0 0 10px ${color}` : "none",
+            ...pulseStyle,
+          }}
+        >
+          {iconContent}
+        </span>
+        <span>
+          {label}
+          {active && timeLeft && timeLeft > 0 ? ` (${timeLeft}s)` : ""}
+        </span>
+      </div>
+    );
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", overflow: "hidden" }}
+    >
+      <style>
+        {`
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+          }
+        `}
+      </style>
+      <canvas
+        ref={minimapRef}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          border: "2px solid white",
+          backgroundColor: "rgba(0,0,0,0.6)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          color: "white",
+          background: "rgba(0,0,0,0.7)",
+          padding: "15px",
+          borderRadius: "10px",
+        }}
+      >
+        <h3 style={{ marginTop: 0 }}>Maze Challenge</h3>
+        <p style={{ margin: "5px 0" }}>WASD: Move</p>
+        <p style={{ margin: "5px 0" }}>Click to look around</p>
+        <p style={{ margin: "5px 0" }}>Status: {gameStatus}</p>
+
+        <div style={{ marginTop: "10px", borderTop: "1px solid #555", paddingTop: "10px" }}>
+          <h4 style={{ margin: "0 0 5px 0", fontSize: "14px" }}>Power-ups:</h4>
+          <PowerUpIndicator active={pathfinderActive} type="pathfinder" timeLeft={pathfinderTimeLeft} />
+          <PowerUpIndicator active={speedBoostActive} type="speedBoost" timeLeft={speedBoostTimeLeft} />
+        </div>
+
+        <div style={{ marginTop: "10px", fontSize: "12px", opacity: 0.8 }}>
+          <p style={{ margin: "5px 0" }}>★ - Pathfinder (5s)</p>
+          <p style={{ margin: "5px 0" }}>⚡ - Speed Boost (10s)</p>
+        </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "220px",
+          left: "10px",
+          color: "white",
+          background: "rgba(0,0,0,0.7)",
+          padding: "10px 15px",
+          borderRadius: "10px",
+          display: "flex",
+          alignItems: "center",
+          fontSize: "14px",
+        }}
+      >
+        <span>Mobile Controls:</span>
+        <label
+          style={{ position: "relative", display: "inline-block", width: "40px", height: "20px", marginLeft: "10px" }}
+        >
+          <input
+            type="checkbox"
+            checked={mobileControlsEnabled}
+            onChange={toggleMobileControls}
+            style={{ opacity: 0, width: 0, height: 0 }}
+          />
+          <span
+            style={{
+              position: "absolute",
+              cursor: "pointer",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: mobileControlsEnabled ? "#2196F3" : "#ccc",
+              transition: ".4s",
+              borderRadius: "34px",
+            }}
           >
-            <style>
-              {`
-                @keyframes pulse {
-                  0% { transform: scale(1); }
-                  50% { transform: scale(1.2); }
-                  100% { transform: scale(1); }
-                }
-              `}
-            </style>
-            <canvas
-              ref={minimapRef}
+            <span
               style={{
                 position: "absolute",
-                top: "10px",
-                right: "10px",
-                border: "2px solid white",
-                backgroundColor: "rgba(0,0,0,0.6)",
+                content: '""',
+                height: "14px",
+                width: "14px",
+                left: mobileControlsEnabled ? "23px" : "3px",
+                bottom: "3px",
+                backgroundColor: "white",
+                transition: ".4s",
+                borderRadius: "50%",
               }}
             />
-            <div
-              style={{
-                position: "absolute",
-                top: "10px",
-                left: "10px",
-                color: "white",
-                background: "rgba(0,0,0,0.7)",
-                padding: "15px",
-                borderRadius: "10px",
-              }}
-            >
-              <h3 style={{ marginTop: 0 }}>Maze Challenge</h3>
-              <p style={{ margin: "5px 0" }}>WASD: Move</p>
-              <p style={{ margin: "5px 0" }}>Click to look around</p>
-              <p style={{ margin: "5px 0" }}>Status: {gameStatus}</p>
-      
-              <div style={{ marginTop: "10px", borderTop: "1px solid #555", paddingTop: "10px" }}>
-                <h4 style={{ margin: "0 0 5px 0", fontSize: "14px" }}>Power-ups:</h4>
-                <PowerUpIndicator active={pathfinderActive} type="pathfinder" timeLeft={pathfinderTimeLeft} />
-                <PowerUpIndicator active={speedBoostActive} type="speedBoost" timeLeft={speedBoostTimeLeft} />
-              </div>
-      
-              <div style={{ marginTop: "10px", fontSize: "12px", opacity: 0.8 }}>
-                <p style={{ margin: "5px 0" }}>★ - Pathfinder (5s)</p>
-                <p style={{ margin: "5px 0" }}>⚡ - Speed Boost (10s)</p>
-              </div>
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                top: "220px",
-                left: "10px",
-                color: "white",
-                background: "rgba(0,0,0,0.7)",
-                padding: "10px 15px",
-                borderRadius: "10px",
-                display: "flex",
-                alignItems: "center",
-                fontSize: "14px",
-              }}
-            >
-              <span>Mobile Controls:</span>
-              <label
-                style={{ position: "relative", display: "inline-block", width: "40px", height: "20px", marginLeft: "10px" }}
-              >
-                <input
-                  type="checkbox"
-                  checked={mobileControlsEnabled}
-                  onChange={toggleMobileControls}
-                  style={{ opacity: 0, width: 0, height: 0 }}
-                />
-                <span
-                  style={{
-                    position: "absolute",
-                    cursor: "pointer",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: mobileControlsEnabled ? "#2196F3" : "#ccc",
-                    transition: ".4s",
-                    borderRadius: "34px",
-                  }}
-                >
-                  <span
-                    style={{
-                      position: "absolute",
-                      content: '""',
-                      height: "14px",
-                      width: "14px",
-                      left: mobileControlsEnabled ? "23px" : "3px",
-                      bottom: "3px",
-                      backgroundColor: "white",
-                      transition: ".4s",
-                      borderRadius: "50%",
-                    }}
-                  />
-                </span>
-              </label>
-            </div>
-            {mobileControlsEnabled && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "270px",
-                  left: "10px",
-                  color: "white",
-                  background: "rgba(0,0,0,0.7)",
-                  padding: "10px 15px",
-                  borderRadius: "10px",
-                  fontSize: "14px",
-                }}
-              >
-                <p>Left joystick: Move</p>
-                <p>Right area: Look around</p>
-              </div>
-            )}
-          </div>
-        );
-      }
+          </span>
+        </label>
+      </div>
+      {mobileControlsEnabled && (
+        <div
+          style={{
+            position: "absolute",
+            top: "270px",
+            left: "10px",
+            color: "white",
+            background: "rgba(0,0,0,0.7)",
+            padding: "10px 15px",
+            borderRadius: "10px",
+            fontSize: "14px",
+          }}
+        >
+          <p>Left joystick: Move</p>
+          <p>Right area: Look around</p>
+        </div>
+      )}
+    </div>
+  );
+}
