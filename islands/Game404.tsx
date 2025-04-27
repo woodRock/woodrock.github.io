@@ -29,6 +29,7 @@ export default function MazeGame() {
   const minimapRef = useRef<HTMLCanvasElement>(null);
   const [gameStatus, setGameStatus] = useState("Loading...");
   const [mobileControlsEnabled, setMobileControlsEnabled] = useState(false);
+  const mobileControlsEnabledRef = useRef(mobileControlsEnabled); // Ref to track latest state
   const [pathfinderActive, setPathfinderActive] = useState(false);
   const [pathfinderTimeLeft, setPathfinderTimeLeft] = useState(0);
   const [speedBoostActive, setSpeedBoostActive] = useState(false);
@@ -36,6 +37,41 @@ export default function MazeGame() {
 
   // Ref to track pathfinderActive immediately
   const pathfinderActiveRef = useRef(pathfinderActive);
+
+  // Define inputState as a useRef to share across useEffect hooks
+  const inputState = useRef<{
+    keyboard: {
+      moveForward: boolean;
+      moveBackward: boolean;
+      moveLeft: boolean;
+      moveRight: boolean;
+    };
+    touch: {
+      moveForward: boolean;
+      moveBackward: boolean;
+      moveLeft: boolean;
+      moveRight: boolean;
+      moveTouchId: number | null;
+      lookTouchId: number | null;
+      lastLookTouch: { x: number; y: number } | null;
+    };
+  }>({
+    keyboard: {
+      moveForward: false,
+      moveBackward: false,
+      moveLeft: false,
+      moveRight: false,
+    },
+    touch: {
+      moveForward: false,
+      moveBackward: false,
+      moveLeft: false,
+      moveRight: false,
+      moveTouchId: null,
+      lookTouchId: null,
+      lastLookTouch: null,
+    },
+  });
 
   const gameStateRef = useRef<{
     scene: THREE.Scene | null;
@@ -77,6 +113,12 @@ export default function MazeGame() {
     }
   }, [pathfinderActive]);
 
+  // Sync mobileControlsEnabledRef with mobileControlsEnabled
+  useEffect(() => {
+    mobileControlsEnabledRef.current = mobileControlsEnabled;
+    console.log("mobileControlsEnabled updated:", mobileControlsEnabled);
+  }, [mobileControlsEnabled]);
+
   const lockScreenOrientation = () => {
     try {
       if (screen.orientation && screen.orientation.lock) {
@@ -102,6 +144,7 @@ export default function MazeGame() {
   const toggleMobileControls = () => {
     const newState = !mobileControlsEnabled;
     setMobileControlsEnabled(newState);
+    console.log("Mobile controls toggled:", newState);
     if (newState) lockScreenOrientation();
     else unlockScreenOrientation();
   };
@@ -111,24 +154,6 @@ export default function MazeGame() {
     const wallWidth = 1;
     const normalMoveSpeed = 5.0;
     const boostedMoveSpeed = 10.0;
-
-    const inputState = {
-      keyboard: {
-        moveForward: false,
-        moveBackward: false,
-        moveLeft: false,
-        moveRight: false,
-      },
-      touch: {
-        moveForward: false,
-        moveBackward: false,
-        moveLeft: false,
-        moveRight: false,
-        moveTouchId: null as number | null,
-        lookTouchId: null as number | null,
-        lastLookTouch: null as { x: number; y: number } | null,
-      },
-    };
 
     let lastFrameTime = 0;
 
@@ -517,38 +542,33 @@ export default function MazeGame() {
     }
 
     function checkCollision(currentPos: THREE.Vector3, movement: THREE.Vector3): THREE.Vector3 {
-      const playerRadius = 0.2; // Reduced from 0.3 for smoother navigation
-      const wallHalfWidth = 0.45; // Slightly reduced from 0.5 for buffer
+      const playerRadius = 0.2;
+      const wallHalfWidth = 0.45;
       const newPos = currentPos.clone().add(movement);
-    
-      // Check for collisions with all walls
+
       let closestCollision: { distance: number; normal: THREE.Vector3 } | null = null;
-    
+
       for (const wall of gameStateRef.current.walls) {
         const wx = wall.position.x;
         const wz = wall.position.z;
-    
-        // Check if new position collides with wall (axis-aligned bounding box)
+
         const dx = newPos.x - wx;
         const dz = newPos.z - wz;
         if (
           Math.abs(dx) < wallHalfWidth + playerRadius &&
           Math.abs(dz) < wallHalfWidth + playerRadius
         ) {
-          // Calculate the penetration vector
           const penetrationX = (wallHalfWidth + playerRadius) - Math.abs(dx);
           const penetrationZ = (wallHalfWidth + playerRadius) - Math.abs(dz);
-    
-          // Determine the collision normal (pointing away from the wall)
+
           let normalX = 0;
           let normalZ = 0;
           if (penetrationX < penetrationZ) {
-            normalX = dx > 0 ? 1 : -1; // Collide on X-axis
+            normalX = dx > 0 ? 1 : -1;
           } else {
-            normalZ = dz > 0 ? 1 : -1; // Collide on Z-axis
+            normalZ = dz > 0 ? 1 : -1;
           }
-    
-          // Store the closest collision based on penetration distance
+
           const distance = Math.min(penetrationX, penetrationZ);
           if (!closestCollision || distance < closestCollision.distance) {
             closestCollision = {
@@ -558,20 +578,17 @@ export default function MazeGame() {
           }
         }
       }
-    
+
       if (!closestCollision) {
-        // No collision, allow full movement
         return newPos;
       }
-    
-      // Slide along the wall by projecting the movement onto the plane perpendicular to the normal
+
       const normal = closestCollision.normal;
       const moveDir = movement.clone().normalize();
       const slideMovement = movement.clone().sub(
         normal.clone().multiplyScalar(movement.dot(normal))
       );
-    
-      // Recheck the slide movement to avoid new collisions
+
       const slidePos = currentPos.clone().add(slideMovement);
       for (const wall of gameStateRef.current.walls) {
         const wx = wall.position.x;
@@ -580,11 +597,10 @@ export default function MazeGame() {
           Math.abs(slidePos.x - wx) < wallHalfWidth + playerRadius &&
           Math.abs(slidePos.z - wz) < wallHalfWidth + playerRadius
         ) {
-          // If sliding still causes a collision, revert to current position
           return currentPos.clone();
         }
       }
-    
+
       return slidePos;
     }
 
@@ -688,7 +704,7 @@ export default function MazeGame() {
 
         animatePowerUps(deltaTime);
 
-        const maxStepSize = 0.1; // Max movement per frame
+        const maxStepSize = 0.1;
         const frameSpeed = Math.min(gameStateRef.current.currentMoveSpeed * deltaTime, maxStepSize);
         const forward = new THREE.Vector3(0, 0, -1)
           .applyQuaternion(cameraHolder.quaternion)
@@ -698,54 +714,50 @@ export default function MazeGame() {
           .applyQuaternion(cameraHolder.quaternion)
           .normalize();
 
+        console.log("Animate tick:", {
+          mobileControlsEnabled: mobileControlsEnabledRef.current,
+          touchInput: inputState.current.touch,
+          keyboardInput: inputState.current.keyboard,
+          frameSpeed,
+        });
+
         const movement = new THREE.Vector3(0, 0, 0);
         if (
-          inputState.keyboard.moveForward ||
-          (mobileControlsEnabled && inputState.touch.moveForward)
+          inputState.current.keyboard.moveForward ||
+          (mobileControlsEnabledRef.current && inputState.current.touch.moveForward)
         ) {
           movement.add(forward.clone().multiplyScalar(frameSpeed));
         }
         if (
-          inputState.keyboard.moveBackward ||
-          (mobileControlsEnabled && inputState.touch.moveBackward)
+          inputState.current.keyboard.moveBackward ||
+          (mobileControlsEnabledRef.current && inputState.current.touch.moveBackward)
         ) {
           movement.add(forward.clone().multiplyScalar(-frameSpeed));
         }
         if (
-          inputState.keyboard.moveLeft ||
-          (mobileControlsEnabled && inputState.touch.moveLeft)
+          inputState.current.keyboard.moveLeft ||
+          (mobileControlsEnabledRef.current && inputState.current.touch.moveLeft)
         ) {
           movement.add(right.clone().multiplyScalar(-frameSpeed));
         }
         if (
-          inputState.keyboard.moveRight ||
-          (mobileControlsEnabled && inputState.touch.moveRight)
+          inputState.current.keyboard.moveRight ||
+          (mobileControlsEnabledRef.current && inputState.current.touch.moveRight)
         ) {
           movement.add(right.clone().multiplyScalar(frameSpeed));
         }
 
         if (movement.length() > 0) {
+          console.log("Movement computed:", {
+            movement: movement.toArray(),
+            currentPos: cameraHolder.position.toArray(),
+          });
           const newPosition = checkCollision(cameraHolder.position, movement);
+          console.log("New position after collision:", {
+            newPosition: newPosition.toArray(),
+            changed: !newPosition.equals(cameraHolder.position),
+          });
           cameraHolder.position.copy(newPosition);
-
-          if (pathfinderActiveRef.current) {
-            const oldGridX = Math.floor(
-              (cameraHolder.position.x - movement.x + mazeSize * wallWidth / 2) / wallWidth
-            );
-            const oldGridZ = Math.floor(
-              (cameraHolder.position.z - movement.z + mazeSize * wallWidth / 2) / wallWidth
-            );
-            const newGridX = Math.floor(
-              (cameraHolder.position.x + mazeSize * wallWidth / 2) / wallWidth
-            );
-            const newGridZ = Math.floor(
-              (cameraHolder.position.z + mazeSize * wallWidth / 2) / wallWidth
-            );
-
-            if (oldGridX !== newGridX || oldGridZ !== newGridZ) {
-              updatePathfinder();
-            }
-          }
         }
 
         trackPlayerPath();
@@ -789,7 +801,6 @@ export default function MazeGame() {
 
         minimapCtx.clearRect(0, 0, canvasSize, canvasSize);
 
-        // Draw walls
         minimapCtx.fillStyle = "black";
         for (let z = 0; z < mazeSize; z++) {
           for (let x = 0; x < mazeSize; x++) {
@@ -798,7 +809,6 @@ export default function MazeGame() {
           }
         }
 
-        // Draw pathfinder path
         if (pathfinderActiveRef.current && gameStateRef.current.pathPoints.length > 0) {
           console.log("Attempting to draw path:", gameStateRef.current.pathPoints, "Player position:", { exactX, exactZ });
           minimapCtx.strokeStyle = "#FF4081";
@@ -820,7 +830,6 @@ export default function MazeGame() {
           minimapCtx.globalAlpha = 1.0;
         }
 
-        // Draw visited cells
         minimapCtx.fillStyle = "green";
         gameStateRef.current.visitedCells.forEach((cell) => {
           const [x, z] = cell.split(",").map(Number);
@@ -835,7 +844,6 @@ export default function MazeGame() {
           }
         });
 
-        // Draw power-ups
         gameStateRef.current.powerUps.forEach((powerUp) => {
           if (!powerUp.collected) {
             const powerUpX = Math.floor(
@@ -852,7 +860,6 @@ export default function MazeGame() {
           }
         });
 
-        // Draw goal
         const goalX = Math.floor(
           (gameStateRef.current.goal.position.x + mazeSize * wallWidth / 2) / wallWidth
         );
@@ -864,7 +871,6 @@ export default function MazeGame() {
         minimapCtx.arc(goalX * cellSize + cellSize / 2, goalZ * cellSize + cellSize / 2, cellSize / 3, 0, Math.PI * 2);
         minimapCtx.fill();
 
-        // Draw player
         minimapCtx.fillStyle = "red";
         minimapCtx.beginPath();
         const clampedX = Math.max(0, Math.min(mazeSize - 1, exactX));
@@ -872,19 +878,20 @@ export default function MazeGame() {
         minimapCtx.arc(clampedX * cellSize, clampedZ * cellSize, cellSize / 3, 0, Math.PI * 2);
         minimapCtx.fill();
       }
+
       function handleKeyDown(event: KeyboardEvent) {
         switch (event.key.toLowerCase()) {
           case "w":
-            inputState.keyboard.moveForward = true;
+            inputState.current.keyboard.moveForward = true;
             break;
           case "s":
-            inputState.keyboard.moveBackward = true;
+            inputState.current.keyboard.moveBackward = true;
             break;
           case "a":
-            inputState.keyboard.moveLeft = true;
+            inputState.current.keyboard.moveLeft = true;
             break;
           case "d":
-            inputState.keyboard.moveRight = true;
+            inputState.current.keyboard.moveRight = true;
             break;
         }
       }
@@ -892,16 +899,16 @@ export default function MazeGame() {
       function handleKeyUp(event: KeyboardEvent) {
         switch (event.key.toLowerCase()) {
           case "w":
-            inputState.keyboard.moveForward = false;
+            inputState.current.keyboard.moveForward = false;
             break;
           case "s":
-            inputState.keyboard.moveBackward = false;
+            inputState.current.keyboard.moveBackward = false;
             break;
           case "a":
-            inputState.keyboard.moveLeft = false;
+            inputState.current.keyboard.moveLeft = false;
             break;
           case "d":
-            inputState.keyboard.moveRight = false;
+            inputState.current.keyboard.moveRight = false;
             break;
         }
       }
@@ -977,13 +984,18 @@ export default function MazeGame() {
     function handleMovementTouch(e: TouchEvent, joystickBg: HTMLElement, joystickKnob: HTMLElement) {
       e.preventDefault();
       const touch = Array.from(e.touches).find(
-        (t) => t.identifier === inputState.touch.moveTouchId
+        (t) => t.identifier === inputState.current.touch.moveTouchId
       );
-      if (!touch) return;
+      if (!touch) {
+        console.log("No touch found for moveTouchId:", inputState.current.touch.moveTouchId);
+        return;
+      }
 
       const rect = joystickBg.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
+
+      console.log("Movement touch detected:", { clientX: touch.clientX, clientY: touch.clientY, centerX, centerY, rect });
 
       const deltaX = touch.clientX - centerX;
       const deltaY = touch.clientY - centerY;
@@ -993,37 +1005,54 @@ export default function MazeGame() {
       const knobX = Math.cos(angle) * distance;
       const knobY = Math.sin(angle) * distance;
       joystickKnob.style.transform = `translate(${knobX}px, ${knobY}px)`;
+      joystickKnob.classList.add("active");
 
-      const deadzone = 0.3;
+      const deadzone = 0.1;
       const normalizedDistance = distance / (rect.width / 2);
 
-      inputState.touch.moveForward = false;
-      inputState.touch.moveBackward = false;
-      inputState.touch.moveLeft = false;
-      inputState.touch.moveRight = false;
+      inputState.current.touch.moveForward = false;
+      inputState.current.touch.moveBackward = false;
+      inputState.current.touch.moveLeft = false;
+      inputState.current.touch.moveRight = false;
 
       if (normalizedDistance > deadzone) {
-        if (angle > -Math.PI * 0.75 && angle < -Math.PI * 0.25) inputState.touch.moveForward = true;
-        else if (angle > Math.PI * 0.25 && angle < Math.PI * 0.75)
-          inputState.touch.moveBackward = true;
-        if (angle > -Math.PI * 0.25 && angle < Math.PI * 0.25) inputState.touch.moveRight = true;
-        else if (Math.abs(angle) > Math.PI * 0.75) inputState.touch.moveLeft = true;
+        if (angle >= -Math.PI * 0.75 && angle <= -Math.PI * 0.25) {
+          inputState.current.touch.moveForward = true;
+        } else if (angle >= Math.PI * 0.25 && angle <= Math.PI * 0.75) {
+          inputState.current.touch.moveBackward = true;
+        }
+        if (angle >= -Math.PI * 0.25 && angle <= Math.PI * 0.25) {
+          inputState.current.touch.moveRight = true;
+        } else if (angle <= -Math.PI * 0.75 || angle >= Math.PI * 0.75) {
+          inputState.current.touch.moveLeft = true;
+        }
       }
+
+      console.log("Movement state:", {
+        moveForward: inputState.current.touch.moveForward,
+        moveBackward: inputState.current.touch.moveBackward,
+        moveLeft: inputState.current.touch.moveLeft,
+        moveRight: inputState.current.touch.moveRight,
+        angle,
+        normalizedDistance,
+      });
     }
 
     function resetMovementJoystick(joystickKnob: HTMLElement) {
       joystickKnob.style.transform = "translate(0, 0)";
-      inputState.touch.moveForward = false;
-      inputState.touch.moveBackward = false;
-      inputState.touch.moveLeft = false;
-      inputState.touch.moveRight = false;
-      inputState.touch.moveTouchId = null;
+      joystickKnob.classList.remove("active");
+      inputState.current.touch.moveForward = false;
+      inputState.current.touch.moveBackward = false;
+      inputState.current.touch.moveLeft = false;
+      inputState.current.touch.moveRight = false;
+      inputState.current.touch.moveTouchId = null;
+      console.log("Movement joystick reset");
     }
 
     function handleLookTouch(e: TouchEvent, lookArea: HTMLElement) {
       e.preventDefault();
       const touch = Array.from(e.touches).find(
-        (t) => t.identifier === inputState.touch.lookTouchId
+        (t) => t.identifier === inputState.current.touch.lookTouchId
       );
       if (!touch || !gameStateRef.current.cameraHolder || !gameStateRef.current.camera) return;
 
@@ -1036,9 +1065,9 @@ export default function MazeGame() {
       const deltaY = touch.clientY - centerY;
       const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-      if (distance <= extendedRadius && inputState.touch.lastLookTouch) {
-        const moveX = touch.clientX - inputState.touch.lastLookTouch.x;
-        const moveY = touch.clientY - inputState.touch.lastLookTouch.y;
+      if (distance <= extendedRadius && inputState.current.touch.lastLookTouch) {
+        const moveX = touch.clientX - inputState.current.touch.lastLookTouch.x;
+        const moveY = touch.clientY - inputState.current.touch.lastLookTouch.y;
         const sensitivity = Math.min(1, distance / 120) * 0.05;
         gameStateRef.current.cameraHolder.rotation.y -= moveX * sensitivity;
         gameStateRef.current.camera.rotation.x -= moveY * sensitivity;
@@ -1048,26 +1077,8 @@ export default function MazeGame() {
         );
       }
 
-      inputState.touch.lastLookTouch = { x: touch.clientX, y: touch.clientY };
+      inputState.current.touch.lastLookTouch = { x: touch.clientX, y: touch.clientY };
     }
-
-    const inputState = {
-      keyboard: {
-        moveForward: false,
-        moveBackward: false,
-        moveLeft: false,
-        moveRight: false,
-      },
-      touch: {
-        moveForward: false,
-        moveBackward: false,
-        moveLeft: false,
-        moveRight: false,
-        moveTouchId: null as number | null,
-        lookTouchId: null as number | null,
-        lastLookTouch: null as { x: number; y: number } | null,
-      },
-    };
 
     function createTouchControls(container: HTMLDivElement) {
       removeExistingTouchControls();
@@ -1095,17 +1106,18 @@ export default function MazeGame() {
       const style = document.createElement("style");
       style.id = "touch-controls-style";
       style.textContent = `
-        .joystick { position: absolute; width: 120px; height: 120px; z-index: 100; user-select: none; touch-action: none; }
-        .movement-joystick { top: 60%; left: 15%; transform: translate(-50%, -50%); }
-        .joystick-background { width: 100%; height: 100%; border-radius: 50%; background: rgba(255, 255, 255, 0.3); border: 2px solid rgba(255, 255, 255, 0.5); display: flex; justify-content: center; align-items: center; }
+        .joystick { position: absolute; width: 120px; height: 120px; z-index: 1000; user-select: none; touch-action: none; }
+        .movement-joystick { bottom: 20px; left: 20px; transform: none; }
+        .joystick-background { width: 100%; height: 100%; border-radius: 50%; background: rgba(255, 255, 255, 0.3); border: 2px solid red; display: flex; justify-content: center; align-items: center; }
         .joystick-knob { width: 40%; height: 40%; border-radius: 50%; background: rgba(255, 255, 255, 0.8); pointer-events: none; transform: translate(0, 0); }
+        .joystick-knob.active { background: rgba(0, 255, 0, 0.8); box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
         .joystick-arrows { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
         .arrow { position: absolute; color: white; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
         .arrow.up { top: 10px; left: 50%; transform: translateX(-50%); }
         .arrow.right { right: 10px; top: 50%; transform: translateY(-50%); }
         .arrow.down { bottom: 10px; left: 50%; transform: translateX(-50%); }
         .arrow.left { left: 10px; top: 50%; transform: translateY(-50%); }
-        .look-area { position: absolute; top: 60%; right: 15%; transform: translate(50%, -50%); width: 120px; height: 120px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); border: 2px solid rgba(255, 255, 255, 0.5); z-index: 100; display: flex; justify-content: center; align-items: center; user-select: none; touch-action: none; }
+        .look-area { position: absolute; bottom: 20px; right: 20px; transform: none; width: 120px; height: 120px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); border: 2px solid rgba(255, 255, 255, 0.5); z-index: 1000; display: flex; justify-content: center; align-items: center; user-select: none; touch-action: none; }
         .look-text { color: white; font-weight: bold; font-size: 18px; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
       `;
       document.head.appendChild(style);
@@ -1113,38 +1125,70 @@ export default function MazeGame() {
       const joystickBg = movementJoystick.querySelector(".joystick-background") as HTMLElement;
       const joystickKnob = movementJoystick.querySelector(".joystick-knob") as HTMLElement;
 
+      if (!joystickBg || !joystickKnob) {
+        console.error("Joystick elements missing");
+        return;
+      }
+
       const touchHandler = (e: TouchEvent) => {
         e.preventDefault();
-        const touches = Array.from(e.touches);
+        const touches = Array.from(e.changedTouches);
+        console.log("Touch event:", e.type, "Touches:", touches.map(t => ({ id: t.identifier, x: t.clientX, y: t.clientY })));
 
-        if (!inputState.touch.moveTouchId) {
+        if (!inputState.current.touch.moveTouchId) {
           const moveTouch = touches.find((t) => {
             const rect = joystickBg.getBoundingClientRect();
-            return (
-              t.clientX >= rect.left &&
-              t.clientX <= rect.right &&
-              t.clientY >= rect.top &&
-              t.clientY <= rect.bottom
-            );
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const dx = t.clientX - centerX;
+            const dy = t.clientY - centerY;
+            const isInBounds = Math.sqrt(dx * dx + dy * dy) <= 60;
+            console.log("Move touch check:", {
+              id: t.identifier,
+              x: t.clientX,
+              y: t.clientY,
+              centerX,
+              centerY,
+              rect: { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom },
+              isInBounds,
+            });
+            return isInBounds;
           });
-          if (moveTouch) inputState.touch.moveTouchId = moveTouch.identifier;
+          if (moveTouch) {
+            inputState.current.touch.moveTouchId = moveTouch.identifier;
+            console.log("Set moveTouchId:", moveTouch.identifier);
+          }
         }
-        if (inputState.touch.moveTouchId !== null) {
+
+        if (inputState.current.touch.moveTouchId !== null) {
           handleMovementTouch(e, joystickBg, joystickKnob);
         }
 
-        if (!inputState.touch.lookTouchId) {
+        if (!inputState.current.touch.lookTouchId) {
           const lookTouch = touches.find((t) => {
             const rect = lookArea.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             const dx = t.clientX - centerX;
             const dy = t.clientY - centerY;
-            return Math.sqrt(dx * dx + dy * dy) <= 200;
+            const isInBounds = Math.sqrt(dx * dx + dy * dy) <= 200;
+            console.log("Look touch check:", {
+              id: t.identifier,
+              x: t.clientX,
+              y: t.clientY,
+              centerX,
+              centerY,
+              isInBounds,
+            });
+            return isInBounds;
           });
-          if (lookTouch) inputState.touch.lookTouchId = lookTouch.identifier;
+          if (lookTouch) {
+            inputState.current.touch.lookTouchId = lookTouch.identifier;
+            console.log("Set lookTouchId:", lookTouch.identifier);
+          }
         }
-        if (inputState.touch.lookTouchId !== null) {
+
+        if (inputState.current.touch.lookTouchId !== null) {
           handleLookTouch(e, lookArea);
         }
       };
@@ -1152,13 +1196,23 @@ export default function MazeGame() {
       const touchEndHandler = (e: TouchEvent) => {
         e.preventDefault();
         const remainingTouches = Array.from(e.touches);
+        console.log("Touch end/cancel:", e.type, "Remaining touches:", remainingTouches.map(t => ({ id: t.identifier })));
 
-        if (!remainingTouches.some((t) => t.identifier === inputState.touch.moveTouchId)) {
+        if (
+          inputState.current.touch.moveTouchId !== null &&
+          !remainingTouches.some((t) => t.identifier === inputState.current.touch.moveTouchId)
+        ) {
           resetMovementJoystick(joystickKnob);
+          console.log("Cleared moveTouchId:", inputState.current.touch.moveTouchId);
         }
-        if (!remainingTouches.some((t) => t.identifier === inputState.touch.lookTouchId)) {
-          inputState.touch.lastLookTouch = null;
-          inputState.touch.lookTouchId = null;
+
+        if (
+          inputState.current.touch.lookTouchId !== null &&
+          !remainingTouches.some((t) => t.identifier === inputState.current.touch.lookTouchId)
+        ) {
+          inputState.current.touch.lastLookTouch = null;
+          inputState.current.touch.lookTouchId = null;
+          console.log("Cleared lookTouchId:", inputState.current.touch.lookTouchId);
         }
       };
 
