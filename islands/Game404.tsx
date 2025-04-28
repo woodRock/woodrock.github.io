@@ -1326,7 +1326,7 @@ export default function MazeGame() {
           top: "10px",
           right: "10px",
           border: "2px solid white",
-          backgroundColor: "rgba(0,0,0,0.6)",
+          backgroundColor: "#888888", // Solid light gray background
         }}
       />
       <div
