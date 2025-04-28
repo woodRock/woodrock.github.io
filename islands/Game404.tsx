@@ -192,18 +192,63 @@ export default function MazeGame() {
 
     function createSolidWalls(scene: THREE.Scene) {
       const wallHeight = 3;
-      const wallMaterial = new THREE.MeshStandardMaterial({
-        color: 0x808080,
-        roughness: 0.7,
-        metalness: 0.3,
+      // Define bright materials for debugging
+      const wallMaterials = [
+        // East (+X): Bright cyan
+        new THREE.MeshStandardMaterial({
+          color: 0x00FFFF,
+          roughness: 0.7,
+          metalness: 0.3,
+        }),
+        // West (-X): Bright green
+        new THREE.MeshStandardMaterial({
+          color: 0x00FF00,
+          roughness: 0.7,
+          metalness: 0.3,
+        }),
+        // Top (+Y): Bright blue
+        new THREE.MeshStandardMaterial({
+          color: 0x0000FF,
+          roughness: 0.7,
+          metalness: 0.3,
+        }),
+        // Bottom (-Y): Bright yellow
+        new THREE.MeshStandardMaterial({
+          color: 0xFFFF00,
+          roughness: 0.7,
+          metalness: 0.3,
+        }),
+        // North (+Z): Bright magenta
+        new THREE.MeshStandardMaterial({
+          color: 0xFF00FF,
+          roughness: 0.7,
+          metalness: 0.3,
+        }),
+        // South (-Z): Bright red
+        new THREE.MeshStandardMaterial({
+          color: 0xFF0000,
+          roughness: 0.7,
+          metalness: 0.3,
+        }),
+      ];
+    
+      // Log material colors for debugging
+      console.log("Wall materials assigned:", {
+        East: wallMaterials[0].color.getHexString(),
+        West: wallMaterials[1].color.getHexString(),
+        Top: wallMaterials[2].color.getHexString(),
+        Bottom: wallMaterials[3].color.getHexString(),
+        North: wallMaterials[4].color.getHexString(),
+        South: wallMaterials[5].color.getHexString(),
       });
+    
       const wallGeometry = new THREE.BoxGeometry(wallWidth, wallHeight, wallWidth);
       const walls: THREE.Mesh[] = [];
-
+    
       for (let z = 0; z < mazeSize; z++) {
         for (let x = 0; x < mazeSize; x++) {
           if (gameStateRef.current.maze[z][x] === 1) {
-            const wall = new THREE.Mesh(wallGeometry, wallMaterial);
+            const wall = new THREE.Mesh(wallGeometry, wallMaterials);
             wall.position.set(
               x * wallWidth - (mazeSize * wallWidth / 2),
               wallHeight / 2,
@@ -631,11 +676,13 @@ export default function MazeGame() {
         console.error("Minimap canvas ref is null");
       }
 
-      const ambientLight = new THREE.AmbientLight(0x404040);
+      
+      const ambientLight = new THREE.AmbientLight(0x606060, 0.8);
       scene.add(ambientLight);
-
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-      directionalLight.position.set(5, 5, 5);
+      
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+      directionalLight.position.set(5, 10, 5);
+      directionalLight.castShadow = true;
       scene.add(directionalLight);
 
       gameStateRef.current.scene = scene;
@@ -647,7 +694,7 @@ export default function MazeGame() {
       gameStateRef.current.walls = createSolidWalls(scene);
 
       const groundMaterial = new THREE.MeshStandardMaterial({
-        color: 0x303030,
+        color: 0x000000, // Black
         roughness: 0.8,
         metalness: 0.2,
       });
