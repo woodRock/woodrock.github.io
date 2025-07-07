@@ -1,0 +1,1 @@
+import{a as e}from"./chunk-BYRZ2NRM.js";import"./chunk-JP5XG2OT.js";import"./chunk-LDV6YPMG.js";function n(){let r=new Date().toLocaleString();return e("p",{children:["Freshly server-rendered ",r]})}export{n as default};

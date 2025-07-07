@@ -1,0 +1,101 @@
+{
+  "build_id": "a250e4727f953f69a175c59aebe52e8409a18bbc",
+  "files": {
+    "island-llmisland.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-mobilemenu.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-mobilemenuisland.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-onnxwordlesolver.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-papercardcontent.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-rendertime.js": [
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-searchboxisland.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "ort.bundle.min-4RBYVIJF.js": [
+      "chunk-LDV6YPMG.js"
+    ],
+    "main.js": [
+      "chunk-GI7LLYGM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "deserializer.js": [
+      "chunk-LDV6YPMG.js"
+    ],
+    "signals.js": [
+      "chunk-GI7LLYGM.js",
+      "chunk-G4CPWP5O.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "chunk-GI7LLYGM.js": [],
+    "island-countdown.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-counter.js": [
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-docchat.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-game404.js": [
+      "chunk-G4CPWP5O.js",
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "chunk-G4CPWP5O.js": [
+      "chunk-JP5XG2OT.js"
+    ],
+    "island-getyear.js": [
+      "chunk-BYRZ2NRM.js",
+      "chunk-JP5XG2OT.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "chunk-BYRZ2NRM.js": [
+      "chunk-JP5XG2OT.js"
+    ],
+    "chunk-JP5XG2OT.js": [],
+    "chunk-LDV6YPMG.js": [],
+    "metafile.json": []
+  }
+}
