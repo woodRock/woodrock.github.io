@@ -19,36 +19,38 @@ export default function App({ Component, url }: PageProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body class="min-h-screen flex flex-col bg-gray-50 font-[Inter,sans-serif]">
-        {/* Hero Banner with Gradient Background */}
-        <div class="bg-gradient-to-r from-purple-800 via-violet-600 to-indigo-700 text-white">
-          <div class="relative overflow-hidden">
-            {/* Decorative elements */}
-            <div class="absolute inset-0">
-              <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent opacity-60"></div>
-              <div class="absolute -inset-x-0 -top-40 -bottom-40 bg-[url('/nebula-pattern.svg')] bg-center opacity-20"></div>
-              <div class="absolute top-0 bottom-0 left-0 right-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent)] pointer-events-none"></div>
-            </div>
-            
-            {/* Content */}
-            <div class="relative max-w-screen-xl mx-auto px-6 py-16 md:py-20 flex flex-col items-center text-center">
+      <body class="min-h-screen flex flex-col bg-zinc-950 text-slate-200 font-[Inter,sans-serif] selection:bg-indigo-500/30">
+        {/* Modern Hero Section */}
+        <div class="relative overflow-hidden border-b border-white/5">
+          {/* Subtle Ambient Glows */}
+          <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+          <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+          
+          <div class="relative max-w-screen-xl mx-auto px-6 py-20 md:py-28 flex flex-col items-center text-center">
+            <div class="relative mb-8 group">
+              <div class="absolute inset-0 bg-indigo-500/20 rounded-full blur-2xl group-hover:bg-indigo-500/40 transition-all duration-700"></div>
               <img
-                class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white/20 shadow-xl mb-6 object-cover"
+                class="relative w-28 h-28 md:w-36 md:h-36 rounded-full border border-white/10 shadow-2xl object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500"
                 src="/favicon.png"
                 alt="Jesse Wood"
               />
-              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-3">
-                Jesse Wood
-              </h1>
-              <div class="w-24 h-1 bg-white/50 rounded my-4"></div>
-              <p class="text-xl md:text-2xl text-white/90 font-light max-w-2xl">
-                Researcher • Engineer • Data Scientist
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-white">
+              Jesse Wood
+            </h1>
+            
+            <div class="flex items-center gap-3 mb-6">
+              <span class="h-px w-8 bg-indigo-500/50"></span>
+              <p class="text-lg md:text-xl text-slate-400 font-medium tracking-wide uppercase">
+                Researcher <span class="text-indigo-500/50 mx-1">•</span> Engineer <span class="text-indigo-500/50 mx-1">•</span> Data Scientist
               </p>
+              <span class="h-px w-8 bg-indigo-500/50"></span>
             </div>
           </div>
         </div>
         
-        {/* Navigation with proper path */}
+        {/* Navigation */}
         <NavigationWithSearch path={currentPath} />
         
         {/* Main content */}

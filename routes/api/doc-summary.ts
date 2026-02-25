@@ -7,31 +7,34 @@ import pdfParse from "npm:pdf-parse";
 
 async function extractPDFText(pdfPath: string): Promise<string> {
   try {
-    // Normalize path variations
+    // Normalize path: if it starts with ./static/ or /static/, remove it to get just the filename
+    const filename = pdfPath.replace(/^(\.?\/)?static\//, "");
+    
     const possiblePaths = [
-      `./static/pdf/${pdfPath}`,
-      `./static/${pdfPath}`,
-      `./${pdfPath}`,
-      `../../${pdfPath}`
+      `./static/${filename}`,
+      `./static/pdf/${filename}`,
+      filename,
     ];
 
     let pdfFile: Uint8Array | null = null;
+    let successfulPath = "";
 
     // Try multiple path variations
     for (const path of possiblePaths) {
       try {
         pdfFile = await Deno.readFile(path);
         if (pdfFile) {
+          successfulPath = path;
           console.log(`Successfully read PDF from ${path}`);
           break;
         }
       } catch (e) {
-        console.log(`Failed to read file at ${path}:`, e);
+        // Silently continue to next path
       }
     }
 
     if (!pdfFile) {
-      throw new Error(`Could not find PDF file: ${pdfPath}`);
+      throw new Error(`Could not find PDF file: ${filename} (tried: ${possiblePaths.join(", ")})`);
     }
     
     // Parse PDF and extract text

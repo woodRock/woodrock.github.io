@@ -119,18 +119,18 @@ export default function SearchBoxIsland() {
   const shouldShowFullInput = isSearchPage || isExpanded;
 
   return (
-    <div ref={searchBoxRef} class="relative">
-      <form onSubmit={handleSubmit} class={`flex items-center transition-all duration-300 ease-in-out ${shouldShowFullInput ? 'w-full' : 'w-10'}`}>
+    <div ref={searchBoxRef} class="relative group">
+      <form onSubmit={handleSubmit} class={`flex items-center transition-all duration-500 ease-in-out ${shouldShowFullInput ? 'w-full' : 'w-10'}`}>
         {/* Search Icon */}
         <button
-          type="button" // Prevent form submission on icon click
+          type="button"
           onClick={toggleExpanded}
-          class={`p-2 rounded-full text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none ${shouldShowFullInput ? 'absolute left-0 z-10' : ''}`}
+          class={`p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/5 focus:outline-none transition-colors ${shouldShowFullInput ? 'absolute left-0 z-10' : ''}`}
           aria-label="Search"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            class="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -145,40 +145,44 @@ export default function SearchBoxIsland() {
         </button>
 
         {/* Search Input */}
-        <div class={`transition-all duration-300 ${shouldShowFullInput ? 'opacity-100 w-full' : 'opacity-0 w-0 overflow-hidden'}`}>
+        <div class={`transition-all duration-500 ${shouldShowFullInput ? 'opacity-100 w-full' : 'opacity-0 w-0 overflow-hidden'}`}>
           <input
             ref={searchInputRef}
             type="text"
-            placeholder="Search..."
+            placeholder="Search research..."
             value={query}
             onInput={(e) => setQuery((e.target as HTMLInputElement).value)}
-            class="w-full pl-10 pr-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            class="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all"
           />
         </div>
       </form>
 
       {/* Search Results Dropdown */}
       {shouldShowFullInput && query.trim() && (
-        <div class="absolute z-10 w-full mt-2 bg-white rounded-md shadow-lg max-h-96 overflow-y-auto">
+        <div class="absolute z-50 w-full mt-4 bg-zinc-900/90 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl overflow-hidden max-h-[32rem] overflow-y-auto">
           {isLoading ? (
-            <div class="p-4 text-center text-gray-500">Loading...</div>
+            <div class="p-8 text-center text-slate-500 text-sm animate-pulse">Searching knowledge base...</div>
           ) : error ? (
-            <div class="p-4 text-center text-red-500">{error}</div>
+            <div class="p-8 text-center text-red-400 text-sm">{error}</div>
           ) : results.length > 0 ? (
-            <ul class="divide-y divide-gray-200">
+            <ul class="divide-y divide-white/5">
               {results.map((result) => (
-                <li key={result.id} class="p-4 hover:bg-gray-50">
-                  <a href={result.url} class="block">
-                    <p class="font-medium text-indigo-600">{result.title}</p>
-                    <p class="mt-1 text-sm text-gray-600 line-clamp-2">{result.content}</p>
-                    <p class="mt-1 text-xs text-gray-500 uppercase">{result.type}</p>
+                <li key={result.id} class="hover:bg-white/5 transition-colors">
+                  <a href={result.url} class="block p-6">
+                    <div class="flex justify-between items-start mb-2">
+                      <p class="font-bold text-white group-hover:text-indigo-400 transition-colors">{result.title}</p>
+                      <span class="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                        {result.type}
+                      </span>
+                    </div>
+                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed font-light">{result.content}</p>
                   </a>
                 </li>
               ))}
             </ul>
           ) : (
-            <div class="p-4 text-center text-gray-500">
-              {query.trim() ? "No results found" : "Type to search"}
+            <div class="p-8 text-center text-slate-500 text-sm">
+              No matches found for <span class="text-white font-medium">"{query}"</span>
             </div>
           )}
         </div>

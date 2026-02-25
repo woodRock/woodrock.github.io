@@ -123,9 +123,6 @@ function getDocumentInfo(filename: string): DocumentInfo {
 export default function DocChatPage({ data }: PageProps<DocumentInfo>) {
   const { title, path, author, year, error, isApiLimitError } = data;
 
-  // Log the path to the console for debugging
-  console.log("Document path:", path);
-  
   if (error) {
     return (
       <>
@@ -133,25 +130,28 @@ export default function DocChatPage({ data }: PageProps<DocumentInfo>) {
           <title>{isApiLimitError ? "API Limit Reached" : "Document Error"} | Jesse Wood</title>
         </Head>
         
-        <div class="min-h-screen bg-gray-50 py-12">
-          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-              <div class={`p-6 ${isApiLimitError ? 'bg-yellow-50 text-yellow-800' : 'bg-red-50 text-red-800'}`}>
-                <h1 class="text-2xl font-bold mb-4">
-                  {isApiLimitError ? "API Limit Reached" : "Error"}
+        <div class="min-h-screen bg-zinc-950 py-20 px-6 sm:px-8">
+          <div class="max-w-3xl mx-auto">
+            <div class="bg-zinc-900/40 border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl backdrop-blur-sm">
+              <div class={`p-10 ${isApiLimitError ? 'bg-yellow-500/10 text-yellow-400' : 'bg-red-500/10 text-red-400'}`}>
+                <h1 class="text-3xl font-black mb-6 tracking-tighter">
+                  {isApiLimitError ? "API Limit Reached" : "Error Occurred"}
                 </h1>
-                <p>{error}</p>
+                <p class="text-lg font-light leading-relaxed">{error}</p>
                 {isApiLimitError && (
-                  <div class="mt-4">
-                    <a href="/" class="inline-block bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+                  <div class="mt-8">
+                    <a href="/" class="inline-block bg-yellow-500 text-zinc-950 px-8 py-3 rounded-full font-bold transition hover:bg-yellow-400 active:scale-95">
                       Return Home
                     </a>
                   </div>
                 )}
               </div>
-              <div class="p-6">
-                <a href="/" class="text-indigo-600 hover:text-indigo-800">
-                  Return Home
+              <div class="p-10 border-t border-white/5">
+                <a href="/" class="text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  Return to safety
                 </a>
               </div>
             </div>
@@ -168,19 +168,19 @@ export default function DocChatPage({ data }: PageProps<DocumentInfo>) {
         <meta name="description" content={`Chat with ${title} using AI`} />
       </Head>
       
-      <div class="min-h-screen bg-gray-50">
-        <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="p-5 bg-indigo-600 text-white">
-              <div class="flex items-center gap-4">
-                <div class="rounded-full bg-white/10 p-1.5">
+      <div class="min-h-screen bg-zinc-950 py-12 px-6 sm:px-8">
+        <main class="max-w-5xl mx-auto">
+          <div class="bg-zinc-900/40 border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl backdrop-blur-sm">
+            <div class="p-8 bg-white/5 border-b border-white/5">
+              <div class="flex items-center gap-6">
+                <div class="rounded-2xl bg-indigo-500/20 border border-indigo-500/30 p-3 text-indigo-400">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
                   </svg>
                 </div>
                 <div>
-                  <h1 class="text-xl font-semibold">Chat with Document</h1>
-                  <p class="text-indigo-100 text-sm truncate">Ask questions about this document using Gemini AI</p>
+                  <h1 class="text-2xl font-bold text-white tracking-tight">Chat with Document</h1>
+                  <p class="text-slate-400 text-sm font-light">Analyzing {title} with Gemini AI</p>
                 </div>
               </div>
             </div>

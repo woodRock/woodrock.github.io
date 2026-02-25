@@ -6,13 +6,13 @@ export type Props<T extends HTMLButtonElement | HTMLAnchorElement> =
 export function Button<T extends HTMLButtonElement | HTMLAnchorElement>(
   props: Props<T>,
 ) {
-  const htmlClass = "ui-btn px-2 py-1 border-gray-500 border-1 rounded bg-white hover:bg-gray-200 focus:bg-gray-200 transition-colors font-normal";
+  const htmlClass = "inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-zinc-900 border border-white/10 text-white text-sm font-bold transition-all duration-300 hover:bg-zinc-800 hover:border-white/20 active:scale-95 shadow-lg hover:shadow-indigo-500/10";
 
   if (props.href) {
     return (
       <a
         {...props as Props<HTMLAnchorElement>}
-        class={htmlClass}
+        class={`${htmlClass} ${props.class || ""}`}
       />
     );
   }
@@ -20,7 +20,7 @@ export function Button<T extends HTMLButtonElement | HTMLAnchorElement>(
   return (
     <button
       {...props as Props<HTMLButtonElement>}
-      class={htmlClass}
+      class={`${htmlClass} ${props.class || ""}`}
     />
   );
 }

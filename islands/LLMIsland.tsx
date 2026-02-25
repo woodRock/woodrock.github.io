@@ -125,59 +125,62 @@ export default function LLMIsland() {
   };
 
   return (
-    <div class="flex flex-col h-[600px]">
+    <div class="flex flex-col h-[600px] bg-zinc-950/20 rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
       {/* Provider selector */}
-      <div class="bg-gray-100 p-4 rounded-t-lg mb-2 flex justify-between items-center">
+      <div class="bg-white/5 border-b border-white/5 p-5 flex justify-between items-center backdrop-blur-md">
         <div>
-          <label class="mr-2 text-sm font-medium text-gray-700">LLM Provider:</label>
+          <label class="mr-3 text-xs font-black uppercase tracking-widest text-slate-500">Provider</label>
           <select 
             value={provider} 
             onChange={handleProviderChange}
-            class="p-1 text-sm border rounded bg-white"
+            class="bg-zinc-900 border border-white/10 text-white text-xs font-bold rounded-full px-4 py-2 focus:outline-none focus:border-indigo-500/50 transition-all"
           >
-            <option value="demo">Demo (Sample Responses)</option>
+            <option value="demo">Demo (Sample)</option>
             <option value="gemini">Google Gemini</option>
           </select>
         </div>
-        <span class="text-xs text-gray-500">
-          {provider === "demo" ? 
-            "Using demo responses" : 
-            `Using ${provider === "openai" ? "OpenAI" : "Google Gemini"} API`}
-        </span>
+        <div class="flex items-center gap-2">
+          <span class="h-2 w-2 rounded-full bg-indigo-500 animate-pulse"></span>
+          <span class="text-[10px] font-black uppercase tracking-widest text-slate-500">
+            {provider === "demo" ? "Simulation Mode" : "API Connected"}
+          </span>
+        </div>
       </div>
       
       {/* Messages container */}
-      <div class="flex-1 overflow-y-auto mb-4 p-4">
+      <div class="flex-1 overflow-y-auto p-6 space-y-6">
         {messages.length === 0 ? (
-          <div class="text-center text-gray-500 mt-8">
-            <p>Send a message to start a conversation!</p>
-            {provider !== "demo" && (
-              <p class="text-xs mt-2">
-                Make sure you have set your {provider === "openai" ? "OPENAI_API_KEY" : "GEMINI_API_KEY"} 
-                environment variable.
-              </p>
-            )}
+          <div class="h-full flex flex-col items-center justify-center text-center space-y-4 opacity-40">
+            <div class="w-16 h-16 rounded-3xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-white font-bold">Neural Interface Ready</p>
+              <p class="text-xs text-slate-400 uppercase tracking-widest mt-1">Send a message to initiate sequence</p>
+            </div>
           </div>
         ) : (
           messages.map((message) => (
             <div
               key={message.id}
-              class={`mb-4 ${
-                message.role === "user" ? "text-right" : "text-left"
+              class={`flex ${
+                message.role === "user" ? "justify-end" : "justify-start"
               }`}
             >
               <div
-                class={`inline-block rounded-lg px-4 py-2 max-w-[80%] ${
+                class={`inline-block rounded-3xl px-5 py-3 max-w-[85%] transition-all duration-300 ${
                   message.role === "user"
-                    ? "bg-indigo-600 text-white"
-                    : "bg-gray-200 text-gray-800"
+                    ? "bg-indigo-600 text-white shadow-[0_0_20px_rgba(79,70,229,0.2)]"
+                    : "bg-white/5 border border-white/10 backdrop-blur-md text-slate-200 shadow-xl"
                 }`}
               >
-                <p class="whitespace-pre-wrap">{message.content}</p>
-                <span class={`text-xs block mt-1 ${
+                <p class="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
+                <span class={`text-[10px] block mt-2 font-black uppercase tracking-widest ${
                   message.role === "user" 
-                    ? "text-indigo-200" 
-                    : "text-gray-500"
+                    ? "text-indigo-200/60" 
+                    : "text-slate-500"
                 }`}>
                   {formatTime(message.timestamp)}
                 </span>
@@ -186,9 +189,9 @@ export default function LLMIsland() {
           ))
         )}
         {isLoading && (
-          <div class="text-left mb-4">
-            <div class="inline-block rounded-lg px-4 py-2 bg-gray-200 text-gray-800">
-              <div class="flex items-center">
+          <div class="flex justify-start">
+            <div class="inline-block rounded-2xl px-5 py-4 bg-white/5 border border-white/10 backdrop-blur-md">
+              <div class="flex items-center space-x-2">
                 <div class="dot-typing"></div>
               </div>
             </div>
@@ -198,24 +201,30 @@ export default function LLMIsland() {
       </div>
 
       {/* Message input form */}
-      <form onSubmit={handleSubmit} class="flex items-center border-t p-4">
-        <input
-          type="text"
-          value={inputText}
-          onInput={(e) => setInputText((e.target as HTMLInputElement).value)}
-          placeholder="Type your message here..."
-          class="flex-1 border rounded-l-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          disabled={isLoading}
-        />
-        <button
-          type="submit"
-          class={`bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-r-md ${
-            isLoading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          disabled={isLoading}
-        >
-          Send
-        </button>
+      <form onSubmit={handleSubmit} class="p-6 border-t border-white/5 bg-white/[0.02]">
+        <div class="flex items-center space-x-3">
+          <input
+            type="text"
+            value={inputText}
+            onInput={(e) => setInputText((e.target as HTMLInputElement).value)}
+            placeholder="Type your message..."
+            class="flex-1 bg-white/5 border border-white/10 rounded-2xl p-4 text-white text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all placeholder-slate-500"
+            disabled={isLoading}
+          />
+          <button
+            type="submit"
+            class={`p-4 rounded-2xl transition-all ${
+              isLoading || !inputText.trim()
+                ? "bg-white/5 text-slate-600 cursor-not-allowed"
+                : "bg-indigo-600 text-white hover:bg-indigo-500 shadow-[0_0_15px_rgba(79,70,229,0.3)] active:scale-95"
+            }`}
+            disabled={isLoading}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </button>
+        </div>
       </form>
 
       {/* CSS for the typing animation */}
@@ -224,11 +233,11 @@ export default function LLMIsland() {
           .dot-typing {
             position: relative;
             left: -9px;
-            width: 10px;
-            height: 10px;
-            border-radius: 5px;
-            background-color: #9880ff;
-            color: #9880ff;
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: #818cf8;
+            color: #818cf8;
             animation: dot-typing 1s infinite linear;
           }
 
@@ -241,23 +250,23 @@ export default function LLMIsland() {
           }
 
           .dot-typing::before {
-            left: -15px;
-            width: 10px;
-            height: 10px;
-            border-radius: 5px;
-            background-color: #9880ff;
-            color: #9880ff;
+            left: -12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: #818cf8;
+            color: #818cf8;
             animation: dot-typing 1s infinite linear;
             animation-delay: 0.25s;
           }
 
           .dot-typing::after {
-            left: 15px;
-            width: 10px;
-            height: 10px;
-            border-radius: 5px;
-            background-color: #9880ff;
-            color: #9880ff;
+            left: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: #818cf8;
+            color: #818cf8;
             animation: dot-typing 1s infinite linear;
             animation-delay: 0.5s;
           }
@@ -268,8 +277,8 @@ export default function LLMIsland() {
               opacity: 1;
             }
             50% {
-              transform: scale(1.5);
-              opacity: 0.6;
+              transform: scale(1.4);
+              opacity: 0.4;
             }
             100% {
               transform: scale(1);

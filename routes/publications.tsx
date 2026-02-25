@@ -18,11 +18,17 @@ export const handler: Handlers<Publication[]> = {
 
 export default function Publications({ data: papers }: PageProps<Publication[]>) {
   return (
-    <div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-5xl mx-auto">
-        <h1 class="text-5xl font-bold text-center mb-12 text-gray-800">Publications</h1>
+    <div class="min-h-screen bg-zinc-950 py-20 px-6 sm:px-8 lg:px-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-24">
+          <h1 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-6">Publications</h1>
+          <div class="h-1.5 w-24 bg-indigo-500 mx-auto rounded-full shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
+          <p class="mt-8 text-xl text-slate-400 font-light max-w-2xl mx-auto">
+            Scientific contributions to marine biology, machine learning, and environmental data science.
+          </p>
+        </div>
         
-        <div class="space-y-10">
+        <div class="grid grid-cols-1 gap-12">
           {papers.length > 0 ? (
             papers.map((paper) => (
               <PaperCard
@@ -38,8 +44,8 @@ export default function Publications({ data: papers }: PageProps<Publication[]>)
               />
             ))
           ) : (
-            <div class="text-center p-8 bg-gray-100 rounded-lg">
-              <p class="text-xl text-gray-500">Loading publications...</p>
+            <div class="text-center p-20 bg-white/5 rounded-[2.5rem] border border-white/5">
+              <p class="text-xl text-slate-500 font-medium">Loading research contributions...</p>
             </div>
           )}
         </div>

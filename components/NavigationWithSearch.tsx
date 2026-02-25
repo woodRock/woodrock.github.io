@@ -15,11 +15,11 @@ export default function NavigationWithSearch(props: { path?: string }) {
   ];
 
   return (
-    <header class="bg-white shadow-md sticky top-0 z-50 navigation-with-search">
+    <header class="bg-zinc-950/80 backdrop-blur-lg border-b border-white/5 sticky top-0 z-50 navigation-with-search">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
           <div class="flex items-center flex-shrink-0">
-            {/* Search box on larger screens - moved more left with mr-24 */}
+            {/* Search box on larger screens */}
             {!isSearchPage && (
               <div class="hidden lg:block lg:absolute lg:right-0 mr-28 w-48 xl:w-72">
                 <SearchBoxIsland />
@@ -27,20 +27,23 @@ export default function NavigationWithSearch(props: { path?: string }) {
             )}
           </div>
 
-          <nav class="hidden md:flex items-center justify-center mx-auto space-x-4">
+          <nav class="hidden md:flex items-center justify-center mx-auto space-x-1">
             {menuItems.map((item) => (
               <a
                 key={item.path}
                 href={item.path}
-                class={`px-3 py-2 text-sm font-medium rounded-md transition duration-150 ease-in-out relative ${
+                class={`px-4 py-2 text-sm font-medium rounded-full transition duration-300 relative group ${
                   isActive(item.path)
-                    ? "bg-indigo-100 text-indigo-700"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    ? "text-indigo-400"
+                    : "text-slate-400 hover:text-white"
                 }`}
               >
                 {item.label}
                 {isActive(item.path) && (
-                  <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-indigo-600" />
+                  <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-indigo-500 rounded-full shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
+                )}
+                {!isActive(item.path) && (
+                  <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-white/0 rounded-full group-hover:bg-white/10 transition-all duration-300" />
                 )}
               </a>
             ))}
@@ -50,12 +53,12 @@ export default function NavigationWithSearch(props: { path?: string }) {
             {!isSearchPage && (
               <a
                 href="/search"
-                class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                class="lg:hidden p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/5 focus:outline-none transition-colors"
               >
                 <span class="sr-only">Search</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
+                  class="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -71,7 +74,7 @@ export default function NavigationWithSearch(props: { path?: string }) {
             )}
             <a
               href="/download?filename=resume.pdf"
-              class="hidden sm:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+              class="hidden sm:inline-flex items-center justify-center px-5 py-2 rounded-full text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_25px_rgba(79,70,229,0.5)]"
             >
               Resume
             </a>

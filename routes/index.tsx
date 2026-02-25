@@ -49,212 +49,208 @@ export default function Home({ data }: PageProps<HomePageData>) {
   const { showcaseProjects, featuredPublication } = data;
   
   return (
-    <div class="bg-gradient-to-b from-gray-50 to-gray-100">
-      {/* Hero Section with Animated Text */}
-      <section class="py-12 md:py-20 px-4">
+    <div class="bg-zinc-950">
+      {/* Hero Content Section */}
+      <section class="py-20 md:py-32 px-6">
         <div class="max-w-6xl mx-auto text-center">
-          <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-8">
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600">
-              Building the Future with Data & AI
+          <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter">
+            <span class="inline-block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+              Building the Future
+            </span>
+            <br />
+            <span class="inline-block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 animate-gradient-x">
+              with Data & AI
             </span>
           </h1>
-          <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-10">
-            I combine machine learning, scientific research, and software engineering 
+          <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
+            Combining machine learning, scientific research, and software engineering 
             to solve complex problems in marine biology and beyond.
           </p>
-          <div class="flex flex-wrap justify-center gap-4">
-            <a href="/projects">
-              <Button>Explore Projects</Button>
+          <div class="flex flex-wrap justify-center gap-6">
+            <a href="/projects" class="group relative px-8 py-4 bg-white text-zinc-950 rounded-full font-bold text-lg hover:bg-indigo-50 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+              Explore Projects
             </a>
-            <a href="/publications">
-              <Button>View Publications</Button>
+            <a href="/publications" class="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+              View Publications
             </a>
           </div>
         </div>
       </section>
 
-      {/* Research Focus Cards */}
-      <section class="py-16 px-4 bg-white">
+      {/* Research Focus Cards - Glassmorphism */}
+      <section class="py-24 px-6 border-y border-white/5 bg-white/[0.02]">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Research Focus</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-20 tracking-tight text-white">Research Focus</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-lg p-8 transform transition-transform hover:scale-105">
-              <div class="h-16 w-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                </svg>
+            {/* Focus Card Component */}
+            {[
+              {
+                title: "AI for Marine Science",
+                desc: "Developing machine learning approaches to analyze fatty acid chromatographic data and mass spectrometry for marine biomass classification.",
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                )
+              },
+              {
+                title: "Data-Driven Engineering",
+                desc: "Creating innovative software solutions that bridge the gap between scientific research and practical applications in industry.",
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                  </svg>
+                )
+              },
+              {
+                title: "Sustainable Tech",
+                desc: "Leveraging technology to support environmental sustainability and develop solutions for real-world ecological challenges.",
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                )
+              }
+            ].map((focus) => (
+              <div class="group relative p-8 rounded-3xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative h-14 w-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white/10 transition-colors">
+                  {focus.icon}
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-white">{focus.title}</h3>
+                <p class="text-slate-400 leading-relaxed">
+                  {focus.desc}
+                </p>
               </div>
-              <h3 class="text-xl font-semibold text-center mb-4">AI for Marine Science</h3>
-              <p class="text-gray-600 text-center">
-                Developing machine learning approaches to analyze fatty acid chromatographic data and mass spectrometry for marine biomass classification.
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl shadow-lg p-8 transform transition-transform hover:scale-105">
-              <div class="h-16 w-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                </svg>
-              </div>
-              <h3 class="text-xl font-semibold text-center mb-4">Data-Driven Engineering</h3>
-              <p class="text-gray-600 text-center">
-                Creating innovative software solutions that bridge the gap between scientific research and practical applications in industry.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl shadow-lg p-8 transform transition-transform hover:scale-105">
-              <div class="h-16 w-16 bg-purple-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-              </div>
-              <h3 class="text-xl font-semibold text-center mb-4">Sustainable Technology</h3>
-              <p class="text-gray-600 text-center">
-                Leveraging technology to support environmental sustainability and develop solutions for real-world ecological challenges.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Latest Publication - Dynamically Loaded */}
-      <section class="py-16 px-4 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+      {/* Latest Publication - Modern Layout */}
+      <section class="py-32 px-6">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Latest Research</h2>
+          <div class="flex items-center gap-4 mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Latest Research</h2>
+            <div class="h-px flex-grow bg-gradient-to-r from-white/10 to-transparent"></div>
+          </div>
           
           {featuredPublication ? (
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl">
-              <div class="grid grid-cols-1 md:grid-cols-3">
-                <div class="md:col-span-1 bg-gradient-to-br from-purple-600 to-indigo-700 p-8">
-                  <div class="h-full flex flex-col justify-center">
-                    <h3 class="text-2xl font-bold mb-4">Featured Publication</h3>
-                    <p class="text-white/80 mb-6">
-                      {featuredPublication.title.split(":")[0]}
-                    </p>
-                    <div class="mt-auto">
-                      <a href="/publications" class="inline-flex items-center text-sm font-medium text-white hover:text-indigo-200">
-                        View All Publications
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                          <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
+            <div class="group relative bg-white/5 border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-white/10 transition-all duration-500">
+              <div class="grid grid-cols-1 lg:grid-cols-12">
+                <div class="lg:col-span-4 bg-indigo-600/10 p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/5">
+                  <span class="text-indigo-400 font-bold uppercase tracking-widest text-xs mb-4">Featured Paper</span>
+                  <h3 class="text-2xl font-bold text-white mb-6">
+                    {featuredPublication.title.split(":")[0]}
+                  </h3>
+                  <a href="/publications" class="inline-flex items-center text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors group">
+                    Explore all publications
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
                 </div>
                 
-                <div class="md:col-span-2 p-8">
-                  <h4 class="text-xl font-semibold mb-3">
+                <div class="lg:col-span-8 p-12">
+                  <h4 class="text-xl font-semibold text-white mb-6 leading-snug">
                     {featuredPublication.title}
                   </h4>
-                  <p class="text-white/80 mb-6 line-clamp-4">
+                  <p class="text-slate-400 mb-10 line-clamp-4 text-lg leading-relaxed font-light">
                     {featuredPublication.abstract}
                   </p>
                   <div class="flex flex-wrap gap-4">
                     <a 
                       href={`/download?filename=${featuredPublication.filename}`}
-                      class="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                      class="px-6 py-3 bg-white/10 hover:bg-white/15 rounded-full text-sm font-bold text-white transition-all flex items-center gap-2 border border-white/5"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
-                      Download PDF
+                      Read PDF
                     </a>
                     <a 
                       href={featuredPublication.link}
                       target="_blank" 
-                      class="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                      class="px-6 py-3 bg-white/10 hover:bg-white/15 rounded-full text-sm font-bold text-white transition-all flex items-center gap-2 border border-white/5"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      {featuredPublication.link_label}
+                      Source Link
                     </a>
                   </div>
                 </div>
               </div>
             </div>
           ) : (
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 text-center">
-              <p>No publications found. Check back later!</p>
+            <div class="bg-white/5 rounded-3xl p-12 text-center border border-white/5">
+              <p class="text-slate-500">No publications found. Check back later!</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Featured Projects - Dynamically Loaded */}
-      <section class="py-16 px-4 bg-white">
+      {/* Featured Projects - Modern Grid */}
+      <section class="py-32 px-6 border-t border-white/5">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Featured Projects</h2>
-          <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16">
-            A selection of my recent work in research and engineering
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Featured Projects</h2>
+          <p class="text-lg text-slate-400 text-center max-w-2xl mx-auto mb-20 font-light">
+            Crafting software solutions at the intersection of data and design.
           </p>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             {showcaseProjects.length > 0 ? (
               showcaseProjects.map((project) => (
-                <div key={project.id} class="bg-white rounded-xl shadow-xl overflow-hidden transform transition hover:shadow-2xl">
-                  <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center" style={project.background_color ? `background: ${project.background_color}` : ''}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-white opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  </div>
-                  <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                      <h3 class="text-xl font-bold">{project.title}</h3>
-                      <span class="px-3 py-1 text-sm rounded-full bg-indigo-100 text-indigo-800">
-                        {project.language.split(',')[0]}
-                      </span>
-                    </div>
-                    <p class="text-gray-600 mb-6">
-                      {project.description.length > 120 
-                        ? project.description.substring(0, 120) + '...' 
-                        : project.description}
-                    </p>
-                    <a 
-                      href={project.github_link}
-                      target="_blank"
-                      class="flex items-center text-indigo-600 font-medium hover:text-indigo-800"
-                    >
-                      <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                <div key={project.id} class="group relative bg-zinc-900/50 border border-white/5 rounded-[2rem] overflow-hidden hover:border-indigo-500/30 transition-all duration-500">
+                  <div class="relative h-64 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent z-10 opacity-60"></div>
+                    <div class="h-full bg-indigo-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-700" style={project.background_color ? `background: ${project.background_color}44` : ''}>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-indigo-400/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                       </svg>
-                      View on GitHub
-                    </a>
+                    </div>
+                  </div>
+                  <div class="p-10 relative -mt-20 z-20">
+                    <div class="bg-zinc-900/90 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
+                      <div class="flex justify-between items-start mb-6">
+                        <h3 class="text-2xl font-bold text-white">{project.title}</h3>
+                        <span class="px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                          {project.language.split(',')[0]}
+                        </span>
+                      </div>
+                      <p class="text-slate-400 mb-8 font-light line-clamp-3 leading-relaxed">
+                        {project.description}
+                      </p>
+                      <a 
+                        href={project.github_link}
+                        target="_blank"
+                        class="inline-flex items-center text-white font-bold text-sm hover:text-indigo-400 transition-colors"
+                      >
+                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                        </svg>
+                        Source Code
+                      </a>
+                    </div>
                   </div>
                 </div>
               ))
             ) : (
-              <div class="col-span-2 text-center p-8 bg-gray-100 rounded-lg">
-                <p class="text-xl text-gray-500">No projects found. Check back later!</p>
+              <div class="col-span-2 text-center p-20 bg-white/5 rounded-[2.5rem] border border-white/5">
+                <p class="text-xl text-slate-500">Loading showcase...</p>
               </div>
             )}
-          </div>
-          
-          <div class="text-center mt-12">
-            <a href="/projects">
-              <Button>View All Projects</Button>
-            </a>
           </div>
         </div>
       </section>
 
-      {/* Thesis countdown */}
-      {/* <Countdown /> */}
-
-      {/* Contact CTA */}
-      <section class="py-20 px-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 text-white">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">Interested in Collaboration?</h2>
-          <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-            I'm always open to discussing research opportunities, project ideas, or potential collaborations.
+      {/* Contact CTA - Modern Glow */}
+      <section class="py-40 px-6 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-indigo-600/10 blur-[120px] pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+          <h2 class="text-4xl md:text-6xl font-black mb-8 text-white tracking-tighter">Ready to collaborate?</h2>
+          <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+            I'm currently open to discussing research opportunities, project ideas, or potential collaborations.
           </p>
-          <a href="/contact">
-            <button class="px-8 py-3 bg-white text-indigo-900 rounded-lg font-bold text-lg shadow-lg hover:bg-gray-100 transition-colors">
-              Get in Touch
-            </button>
+          <a href="/contact" class="inline-block px-12 py-5 bg-white text-zinc-950 rounded-full font-black text-xl shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all duration-300 hover:scale-105 active:scale-95">
+            Get in Touch
           </a>
         </div>
       </section>

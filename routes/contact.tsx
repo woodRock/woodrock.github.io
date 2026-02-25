@@ -66,194 +66,131 @@ export const teamMembers: TeamMember[] = [
 
 export default function Contact() {
   return (
-    <div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-5xl mx-auto">
-        <h1 class="text-5xl font-bold text-center mb-6 text-gray-800">
-          Get In Touch
-        </h1>
-        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-          I'm always open to discussing new projects, research opportunities, or
-          potential collaborations. Feel free to reach out!
-        </p>
+    <div class="min-h-screen bg-zinc-950 py-20 px-6 sm:px-8 lg:px-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-24">
+          <h1 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-6">Get In Touch</h1>
+          <div class="h-1.5 w-24 bg-indigo-500 mx-auto rounded-full shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
+          <p class="mt-8 text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
+            I'm always open to discussing new projects, research opportunities, or
+            potential collaborations.
+          </p>
+        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-24">
           {/* Contact Methods */}
-          <div class="col-span-1">
-            <div class="bg-white rounded-xl shadow-md p-6 h-full">
-              <h2 class="text-xl font-semibold mb-4 text-gray-800">
-                Connect With Me
-              </h2>
+          <div class="lg:col-span-1 space-y-6">
+            <div class="bg-zinc-900/40 border border-white/5 rounded-3xl p-8 backdrop-blur-sm">
+              <h2 class="text-xl font-bold mb-8 text-white tracking-tight">Connect</h2>
 
-              <div class="space-y-4">
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
+              <div class="space-y-8">
+                {[
+                  { 
+                    label: "Email", 
+                    value: "jrhwood98@gmail.com", 
+                    href: "mailto:jrhwood98@gmail.com",
+                    icon: (
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    )
+                  },
+                  { 
+                    label: "LinkedIn", 
+                    value: "linkedin.com/in/jrhwood", 
+                    href: "https://www.linkedin.com/in/jrhwood",
+                    icon: (
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                      </svg>
+                    )
+                  },
+                  { 
+                    label: "GitHub", 
+                    value: "github.com/woodrock", 
+                    href: "https://github.com/woodrock",
+                    icon: (
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                      </svg>
+                    )
+                  }
+                ].map((method) => (
+                  <div class="flex items-start group">
+                    <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-indigo-400 group-hover:bg-indigo-500/10 group-hover:border-indigo-500/30 transition-all">
+                      {method.icon}
+                    </div>
+                    <div class="ml-4">
+                      <h3 class="text-xs font-black uppercase tracking-widest text-slate-500 mb-1">{method.label}</h3>
+                      <p class="text-sm font-medium text-slate-300">
+                        <a href={method.href} class="hover:text-white transition-colors">
+                          {method.value}
+                        </a>
+                      </p>
+                    </div>
                   </div>
-                  <div class="ml-4">
-                    <h3 class="text-md font-medium text-gray-900">Email</h3>
-                    <p class="mt-1 text-sm text-gray-500">
-                      <a
-                        href="mailto:jrhwood98@gmail.com"
-                        class="text-indigo-600 hover:text-indigo-800"
-                      >
-                        jrhwood98@gmail.com
-                      </a>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                      />
-                    </svg>
-                  </div>
-                  <div class="ml-4">
-                    <h3 class="text-md font-medium text-gray-900">LinkedIn</h3>
-                    <p class="mt-1 text-sm text-gray-500">
-                      <a
-                        href="https://www.linkedin.com/in/jrhwood"
-                        target="_blank"
-                        class="text-indigo-600 hover:text-indigo-800"
-                      >
-                        linkedin.com/in/jrhwood
-                      </a>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="flex items-start">
-                  <div class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                      />
-                    </svg>
-                  </div>
-                  <div class="ml-4">
-                    <h3 class="text-md font-medium text-gray-900">GitHub</h3>
-                    <p class="mt-1 text-sm text-gray-500">
-                      <a
-                        href="https://github.com/woodrock"
-                        target="_blank"
-                        class="text-indigo-600 hover:text-indigo-800"
-                      >
-                        github.com/woodrock
-                      </a>
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div class="col-span-1 md:col-span-2">
-            <div class="bg-white rounded-xl shadow-md p-6">
-              <h2 class="text-xl font-semibold mb-4 text-gray-800">
-                Send Me a Message
-              </h2>
+          <div class="lg:col-span-2">
+            <div class="bg-zinc-900/40 border border-white/5 rounded-3xl p-10 backdrop-blur-sm relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 blur-[100px] pointer-events-none"></div>
+              
+              <h2 class="text-xl font-bold mb-8 text-white tracking-tight">Send a Message</h2>
 
-              <form class="space-y-4"   action="https://formspree.io/f/mpwpynqy" method="POST">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form class="space-y-6" action="https://formspree.io/f/mpwpynqy" method="POST">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label
-                      for="name"
-                      class="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Name
-                    </label>
+                    <label for="name" class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-3 ml-1">Name</label>
                     <input
                       type="text"
                       id="name"
                       name="name"
-                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border"
+                      class="block w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label
-                      for="email"
-                      class="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Email
-                    </label>
+                    <label for="email" class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-3 ml-1">Email</label>
                     <input
                       type="email"
                       id="email"
                       name="email"
-                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border"
-                      placeholder="your.email@example.com"
+                      class="block w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all"
+                      placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label
-                    for="subject"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Subject
-                  </label>
+                  <label for="subject" class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-3 ml-1">Subject</label>
                   <input
                     type="text"
                     id="subject"
                     name="subject"
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border"
-                    placeholder="What is this regarding?"
+                    class="block w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all"
+                    placeholder="Project Inquiry"
                   />
                 </div>
 
                 <div>
-                  <label
-                    for="message"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Message
-                  </label>
+                  <label for="message" class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-3 ml-1">Message</label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
-                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border"
-                    placeholder="Your message here..."
+                    class="block w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all resize-none"
+                    placeholder="Tell me more about your project..."
                   ></textarea>
                 </div>
 
-                <div class="pt-2">
+                <div class="pt-4">
                   <button
                     type="submit"
-                    class="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-medium rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                    class="w-full sm:w-auto px-10 py-4 bg-white text-zinc-950 font-bold rounded-full shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:bg-indigo-50 transition-all active:scale-95"
                   >
                     Send Message
                   </button>
@@ -264,50 +201,42 @@ export default function Contact() {
         </div>
 
         {/* Location/Map Section */}
-        <div class="mt-12 bg-white rounded-xl shadow-md p-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h2 class="text-xl font-semibold mb-4 text-gray-800">
-                My Location
-              </h2>
-              <p class="text-gray-600 mb-4">
-                Currently based in Wellington, New Zealand
-              </p>
-              <p class="text-gray-600">
-                I'm open to remote collaboration and opportunities worldwide.
-              </p>
-            </div>
-            <div class="rounded-lg overflow-hidden h-[300px] shadow-inner">
-              <iframe
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                scrolling="no"
-                // marginHeight="0"
-                // marginWidth="0"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=174.7655%2C-41.2966%2C174.7856%2C-41.2766&amp;layer=mapnik&amp;marker=-41.28664%2C174.77557"
-                style="border: none"
-                title="Wellington, New Zealand Map"
-              ></iframe>
-              <div class="text-right text-xs mt-1">
-                <a
-                  href="https://www.openstreetmap.org/?mlat=-41.28664&amp;mlon=174.77557#map=15/-41.28664/174.77557"
-                  target="_blank"
-                  class="text-indigo-600 hover:text-indigo-800"
-                >
-                  View larger map
-                </a>
+        <div class="mb-32">
+          <div class="bg-zinc-900/40 border border-white/5 rounded-[2.5rem] overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+              <div class="p-12 md:p-16 flex flex-col justify-center">
+                <span class="text-xs font-black uppercase tracking-widest text-indigo-400 mb-4">Location</span>
+                <h2 class="text-3xl font-bold text-white mb-6">Wellington, New Zealand</h2>
+                <p class="text-slate-400 text-lg font-light leading-relaxed mb-8">
+                  I'm currently based in the windy capital of Aotearoa, but I'm open to remote collaboration and opportunities worldwide.
+                </p>
+                <div class="flex items-center gap-2 text-indigo-400 text-sm font-bold uppercase tracking-widest">
+                  <span class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+                  Available for remote work
+                </div>
+              </div>
+              <div class="h-[400px] md:h-auto border-t md:border-t-0 md:border-l border-white/5">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  scrolling="no"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=174.7655%2C-41.2966%2C174.7856%2C-41.2766&amp;layer=mapnik&amp;marker=-41.28664%2C174.77557"
+                  class="grayscale invert opacity-50 hover:opacity-80 transition-opacity duration-700"
+                  title="Wellington, New Zealand Map"
+                ></iframe>
               </div>
             </div>
           </div>
         </div>
 
         {/* Our Team Section */}
-        <div class="mt-12">
-          <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
-            Our Team
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="mb-12">
+          <div class="flex items-center gap-4 mb-16">
+            <h2 class="text-3xl md:text-5xl font-black text-white tracking-tighter">Our Team</h2>
+            <div class="h-px flex-grow bg-gradient-to-r from-white/10 to-transparent"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {teamMembers.map(member => (
               <TeamMember key={member.id} member={member} />
             ))}

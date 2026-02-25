@@ -9,10 +9,15 @@ interface SearchData {
 
 export default function SearchPage({ data }: PageProps<SearchData>) {
   return (
-    <div class="min-h-screen bg-white pt-24 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen bg-zinc-950 pt-24 px-6 sm:px-8">
       <div class="max-w-3xl mx-auto">
-        {/* This div creates extra white space */}
-        <div class="h-96"></div>
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-black text-white tracking-tighter mb-4">Search</h1>
+          <p class="text-slate-400 font-light">Find publications, projects, and research data.</p>
+        </div>
+        <div class="h-96 flex items-center justify-center border border-white/5 bg-white/[0.02] rounded-[2.5rem]">
+           <p class="text-slate-600 uppercase tracking-widest text-xs font-black">Search results will appear here</p>
+        </div>
       </div>
     </div>
   );
