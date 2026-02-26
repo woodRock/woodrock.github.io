@@ -7,6 +7,7 @@ import SpectraTrace from "../islands/SpectraTrace.tsx";
 import SkillsCompass from "../islands/SkillsCompass.tsx";
 import PaperCard from "../components/PaperCard.tsx";
 import ProjectCard from "../components/ProjectCard.tsx";
+import TechBadge from "../components/TechBadge.tsx";
 import { TeamMember } from "../components/TeamMember.tsx";
 import NeuralFish from "../islands/NeuralFish.tsx";
 import FishTank from "../islands/FishTank.tsx";
@@ -218,7 +219,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
                   <h4 class="text-[10px] font-black uppercase tracking-widest text-indigo-500 mb-4">AI & Data Science</h4>
                   <div class="flex flex-wrap gap-2">
                     {['PyTorch', 'Transformers', 'Scikit-Learn', 'Pandas', 'NumPy', 'HuggingFace'].map(tech => (
-                      <span class="px-4 py-2 rounded-xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 text-[10px] font-bold text-slate-600 dark:text-slate-300 uppercase">{tech}</span>
+                      <TechBadge name={tech} />
                     ))}
                   </div>
                 </div>
@@ -227,7 +228,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
                   <h4 class="text-[10px] font-black uppercase tracking-widest text-purple-500 mb-4">Optimization & Systems</h4>
                   <div class="flex flex-wrap gap-2">
                     {['Optuna', 'DEAP', 'Rust', 'C++', 'Haskell', 'Docker', 'Streamlit'].map(tech => (
-                      <span class="px-4 py-2 rounded-xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 text-[10px] font-bold text-slate-600 dark:text-slate-300 uppercase">{tech}</span>
+                      <TechBadge name={tech} />
                     ))}
                   </div>
                 </div>
@@ -236,7 +237,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
                   <h4 class="text-[10px] font-black uppercase tracking-widest text-emerald-500 mb-4">Explainable AI (XAI)</h4>
                   <div class="flex flex-wrap gap-2">
                     {['LIME', 'SHAP', 'WandB'].map(tech => (
-                      <span class="px-4 py-2 rounded-xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 text-[10px] font-bold text-slate-600 dark:text-slate-300 uppercase">{tech}</span>
+                      <TechBadge name={tech} />
                     ))}
                   </div>
                 </div>

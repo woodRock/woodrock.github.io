@@ -39,6 +39,14 @@ const ICON_MAP: Record<string, string> = {
   "shell": "gnubash",
   "linux": "linux",
   "c++": "cplusplus",
+  "haskell": "haskell",
+  "scikit-learn": "scikitlearn",
+  "pandas": "pandas",
+  "numpy": "numpy",
+  "streamlit": "streamlit",
+  "wandb": "weightsandbiases",
+  "weights & biases": "weightsandbiases",
+  "optuna": "optuna",
   "mass spectrometry": "googlecharts", 
 };
 
