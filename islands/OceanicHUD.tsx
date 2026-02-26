@@ -1,5 +1,6 @@
 // islands/OceanicHUD.tsx
 import { useEffect, useState, useRef } from "preact/hooks";
+import { depth } from "../utils/signals.ts";
 
 const ZONES = [
   { depth: 0, name: "Epipelagic Zone", range: "0 - 200m", fact: "The sunlight zone" },
@@ -43,10 +44,14 @@ export default function OceanicHUD() {
       <div 
         class="bg-zinc-950 border-t border-white/10 px-6 py-3 flex flex-col md:flex-row justify-between items-center gap-2 pointer-events-auto shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
       >
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
           <div class="flex items-center gap-2">
             <div class="h-1.5 w-1.5 rounded-full bg-indigo-500"></div>
             <span class="text-[9px] font-black uppercase tracking-[0.3em] text-indigo-400">Telemetry Active</span>
+          </div>
+          <div class="flex items-center gap-2 md:hidden">
+            <span class="text-[9px] font-mono text-slate-500 uppercase">Depth:</span>
+            <span class="text-[10px] font-black text-white tabular-nums">{depth.value}m</span>
           </div>
           <div class="h-4 w-px bg-white/10 hidden md:block"></div>
           <div class="flex items-center gap-2">
@@ -55,7 +60,7 @@ export default function OceanicHUD() {
           </div>
         </div>
 
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
           <div class="flex items-center gap-2">
             <span class="text-[10px] font-mono text-slate-500 uppercase">Range:</span>
             <span class="text-[10px] font-bold text-slate-300">{activeZone.range}</span>

@@ -1,9 +1,8 @@
 // islands/DepthGauge.tsx
-import { useEffect, useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
+import { depth } from "../utils/signals.ts";
 
 export default function DepthGauge() {
-  const [depth, setDepth] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.pageYOffset || document.documentElement.scrollTop;
@@ -20,7 +19,7 @@ export default function DepthGauge() {
       if (windowHeight > 0) {
         const p = scrollY / windowHeight;
         const newDepth = Math.round(p * 4000);
-        setDepth(newDepth);
+        depth.value = newDepth;
       }
     };
 
@@ -31,24 +30,24 @@ export default function DepthGauge() {
 
   return (
     <div class="depth-gauge-container pointer-events-none">
-      {/* 1. The Fixed Indicator (Stays on screen) */}
+      {/* 1. The Fixed Indicator (Stays on screen) - HIDDEN ON MOBILE */}
       <div 
-        class="fixed right-4 top-48 z-[70] flex flex-col items-center gap-2"
+        class="hidden md:flex fixed right-4 top-48 z-[70] flex-col items-center gap-2"
       >
         <div 
           class="bg-zinc-950 border border-white/20 p-3 rounded-2xl shadow-2xl scale-90 md:scale-100"
         >
           <div class="text-[9px] font-black text-indigo-500 uppercase tracking-widest mb-0.5 text-center">Current Depth</div>
           <div class="text-xl font-black text-white tabular-nums tracking-tighter text-center">
-            {depth}m
+            {depth.value}m
           </div>
         </div>
         {/* Horizontal indicator line pointing to the ruler */}
         <div class="w-12 h-px bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,1)]"></div>
       </div>
 
-      {/* 2. The Absolute Ruler (Scrolls with the sea) */}
-      <div class="absolute right-0 top-0 h-full w-12 z-[60] flex flex-col items-center">
+      {/* 2. The Absolute Ruler (Scrolls with the sea) - HIDDEN ON MOBILE */}
+      <div class="hidden md:flex absolute right-0 top-0 h-full w-12 z-[60] flex-col items-center">
         <div class="h-full w-px bg-slate-900/20 dark:bg-white/10 relative">
           {/* Depth Ticks - Placed every 200m equivalent distance */}
           {[...Array(21)].map((_, i) => {
