@@ -244,20 +244,21 @@ export default function Home({ data }: PageProps<HomePageData>) {
           <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter bioluminescent-text">Technical Projects</h2>
         </div>
         
-        <div class="flex overflow-x-auto gap-8 px-6 md:px-[calc((100vw-1152px)/2+24px)] pb-12 no-scrollbar snap-x snap-mandatory">
-          {projects.map((project, index) => (
-            <div class="snap-center">
-              <ProjectCard
-                key={project.id}
-                title={project.title}
-                language={project.language}
-                githubLink={project.github_link}
-                description={project.description}
-                backgroundColor={project.background_color}
-              />
-            </div>
-          ))}
-          <div class="flex-shrink-0 w-6 md:w-24"></div>
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="flex flex-col md:flex-row flex-wrap justify-center gap-8">
+            {projects.map((project, index) => (
+              <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] flex">
+                <ProjectCard
+                  key={project.id}
+                  title={project.title}
+                  language={project.language}
+                  githubLink={project.github_link}
+                  description={project.description}
+                  backgroundColor={project.background_color}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
