@@ -19,7 +19,7 @@ export default function ProjectCard({
   const techList = language.split(",").filter(t => t.trim().length > 0);
 
   return (
-    <div class="flex-shrink-0 w-[320px] md:w-[400px] group relative bg-white/50 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5 rounded-[2.5rem] overflow-hidden hover:border-indigo-500/30 dark:hover:border-indigo-500/30 transition-all duration-500 shadow-xl dark:shadow-2xl flex flex-col">
+    <div class="w-full h-full group relative bg-white/50 dark:bg-zinc-900/40 rounded-[2.5rem] overflow-hidden transition-all duration-500 shadow-xl dark:shadow-2xl flex flex-col">
       {/* Decorative accent background */}
       <div 
         class="absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-10 dark:opacity-20 group-hover:opacity-20 dark:group-hover:opacity-40 transition-opacity"

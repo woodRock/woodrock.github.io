@@ -49,7 +49,7 @@ export default function JuicedCard({ children, className = "" }: { children: any
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      class={`perspective-1000 transition-all duration-300 ${className}`}
+      class={`perspective-1000 transition-all duration-300 h-full ${className}`}
       style={{
         transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
         transformStyle: "preserve-3d"
