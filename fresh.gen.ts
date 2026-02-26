@@ -6,32 +6,27 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_doc_chat from "./routes/api/doc-chat.ts";
 import * as $api_doc_summary from "./routes/api/doc-summary.ts";
-import * as $api_llm_gemini from "./routes/api/llm-gemini.ts";
-import * as $api_llm from "./routes/api/llm.ts";
+import * as $api_research_network from "./routes/api/research-network.ts";
 import * as $api_search from "./routes/api/search.ts";
 import * as $api_supabase from "./routes/api/supabase.ts";
 import * as $api_types from "./routes/api/types.ts";
-import * as $contact from "./routes/contact.tsx";
 import * as $doc_chat_filename_ from "./routes/doc-chat/[filename].tsx";
 import * as $download from "./routes/download.ts";
 import * as $index from "./routes/index.tsx";
-import * as $llm from "./routes/llm.tsx";
-import * as $projects from "./routes/projects.tsx";
-import * as $publications from "./routes/publications.tsx";
 import * as $search from "./routes/search.tsx";
-import * as $wordle from "./routes/wordle.tsx";
-import * as $Countdown from "./islands/Countdown.tsx";
-import * as $Counter from "./islands/Counter.tsx";
+import * as $DepthGauge from "./islands/DepthGauge.tsx";
 import * as $DocChat from "./islands/DocChat.tsx";
+import * as $FishTank from "./islands/FishTank.tsx";
 import * as $Game404 from "./islands/Game404.tsx";
-import * as $GetYear from "./islands/GetYear.tsx";
-import * as $LLMIsland from "./islands/LLMIsland.tsx";
-import * as $MobileMenu from "./islands/MobileMenu.tsx";
-import * as $MobileMenuIsland from "./islands/MobileMenuIsland.tsx";
-import * as $OnnxWordleSolver from "./islands/OnnxWordleSolver.tsx";
+import * as $MarinePulse from "./islands/MarinePulse.tsx";
+import * as $NavigationWithSearch from "./islands/NavigationWithSearch.tsx";
+import * as $NeuralFish from "./islands/NeuralFish.tsx";
 import * as $PaperCardContent from "./islands/PaperCardContent.tsx";
-import * as $RenderTime from "./islands/RenderTime.tsx";
-import * as $SearchBoxIsland from "./islands/SearchBoxIsland.tsx";
+import * as $PdfViewer from "./islands/PdfViewer.tsx";
+import * as $ResearchNetwork from "./islands/ResearchNetwork.tsx";
+import * as $ScrollController from "./islands/ScrollController.tsx";
+import * as $SkillsCompass from "./islands/SkillsCompass.tsx";
+import * as $SpectraTrace from "./islands/SpectraTrace.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -40,34 +35,29 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/api/doc-chat.ts": $api_doc_chat,
     "./routes/api/doc-summary.ts": $api_doc_summary,
-    "./routes/api/llm-gemini.ts": $api_llm_gemini,
-    "./routes/api/llm.ts": $api_llm,
+    "./routes/api/research-network.ts": $api_research_network,
     "./routes/api/search.ts": $api_search,
     "./routes/api/supabase.ts": $api_supabase,
     "./routes/api/types.ts": $api_types,
-    "./routes/contact.tsx": $contact,
     "./routes/doc-chat/[filename].tsx": $doc_chat_filename_,
     "./routes/download.ts": $download,
     "./routes/index.tsx": $index,
-    "./routes/llm.tsx": $llm,
-    "./routes/projects.tsx": $projects,
-    "./routes/publications.tsx": $publications,
     "./routes/search.tsx": $search,
-    "./routes/wordle.tsx": $wordle,
   },
   islands: {
-    "./islands/Countdown.tsx": $Countdown,
-    "./islands/Counter.tsx": $Counter,
+    "./islands/DepthGauge.tsx": $DepthGauge,
     "./islands/DocChat.tsx": $DocChat,
+    "./islands/FishTank.tsx": $FishTank,
     "./islands/Game404.tsx": $Game404,
-    "./islands/GetYear.tsx": $GetYear,
-    "./islands/LLMIsland.tsx": $LLMIsland,
-    "./islands/MobileMenu.tsx": $MobileMenu,
-    "./islands/MobileMenuIsland.tsx": $MobileMenuIsland,
-    "./islands/OnnxWordleSolver.tsx": $OnnxWordleSolver,
+    "./islands/MarinePulse.tsx": $MarinePulse,
+    "./islands/NavigationWithSearch.tsx": $NavigationWithSearch,
+    "./islands/NeuralFish.tsx": $NeuralFish,
     "./islands/PaperCardContent.tsx": $PaperCardContent,
-    "./islands/RenderTime.tsx": $RenderTime,
-    "./islands/SearchBoxIsland.tsx": $SearchBoxIsland,
+    "./islands/PdfViewer.tsx": $PdfViewer,
+    "./islands/ResearchNetwork.tsx": $ResearchNetwork,
+    "./islands/ScrollController.tsx": $ScrollController,
+    "./islands/SkillsCompass.tsx": $SkillsCompass,
+    "./islands/SpectraTrace.tsx": $SpectraTrace,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

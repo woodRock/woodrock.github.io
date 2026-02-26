@@ -36,6 +36,7 @@ export interface Publication {
   link_label: string;
   year: number;
   journal: string;
+  doi?: string;
   background_color?: string;
   created_at?: string;
   updated_at?: string;

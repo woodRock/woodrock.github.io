@@ -54,7 +54,7 @@ export const handler: Handlers = {
           title: project.title,
           content: project.description,
           type: "project",
-          url: `/projects#${project.id}`,
+          url: `/#projects`,
           metadata: {
             github: project.github_link
           }
@@ -80,7 +80,7 @@ export const handler: Handlers = {
           title: pub.title,
           content: pub.abstract,
           type: "publication",
-          url: `/publications#${pub.id}`,
+          url: `/#publications`,
           metadata: {
             year: pub.year.toString(),
             journal: pub.journal,

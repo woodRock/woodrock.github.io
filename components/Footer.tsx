@@ -43,13 +43,13 @@ export default function Footer() {
             <h2 class="text-sm font-black uppercase tracking-widest mb-6 text-indigo-400">Navigation</h2>
             <ul class="space-y-4 text-sm">
               <li>
-                <a href="/publications" class="text-slate-400 hover:text-white transition-colors">Publications</a>
+                <a href="/#publications" class="text-slate-400 hover:text-white transition-colors">Publications</a>
               </li>
               <li>
-                <a href="/projects" class="text-slate-400 hover:text-white transition-colors">Projects</a>
+                <a href="/#projects" class="text-slate-400 hover:text-white transition-colors">Projects</a>
               </li>
               <li>
-                <a href="/contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
+                <a href="/#contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
               </li>
             </ul>
           </div>

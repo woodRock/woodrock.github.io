@@ -2,13 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-color: 255 255 255;
+  --text-primary: 2 6 23;
+  --text-secondary: 51 65 85;
+  --border-color: 0 0 0 / 0.1;
+  --glass-bg: 255 255 255 / 0.8;
+  --card-bg: 241 245 249 / 0.6;
+  --accent-color: 79 70 229;
+}
+
+.dark {
+  --bg-color: 2 6 23;
+  --text-primary: 248 250 252;
+  --text-secondary: 148 163 184;
+  --border-color: 255 255 255 / 0.1;
+  --glass-bg: 2 6 23 / 0.8;
+  --card-bg: 255 255 255 / 0.03;
+  --accent-color: 99 102 241;
+}
+
 @layer components {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    background-color: rgb(var(--glass-bg));
+    @apply backdrop-blur-md border;
+    border-color: rgb(var(--border-color));
   }
   
-  .glass-dark {
-    @apply bg-black/20 backdrop-blur-xl border border-white/5;
+  .glass-card {
+    background-color: rgb(var(--card-bg));
+    @apply backdrop-blur-sm border;
+    border-color: rgb(var(--border-color));
   }
 
   .glow-purple {
@@ -16,23 +40,76 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white/70;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500;
+  }
+  
+  .dark .text-gradient {
+    @apply from-white via-white/90 to-white/70;
   }
 }
 
 body {
-  @apply selection:bg-indigo-500/30;
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--text-primary));
+  @apply selection:bg-indigo-500/30 transition-colors duration-700;
 }
 
-/* Custom scrollbar for a sleeker look */
-::-webkit-scrollbar {
-  width: 8px;
+/* Oceanic Dive Gradient System */
+.dive-gradient {
+  background: linear-gradient(
+    to bottom,
+    #f0f9ff 0%,      /* Surface */
+    #e0f2fe 10%,     /* Epipelagic */
+    #7dd3fc 25%,     /* Mesopelagic */
+    #0ea5e9 45%,     /* Bathypelagic */
+    #1e40af 70%,     /* Abyssopelagic */
+    #0f172a 100%     /* Hadalpelagic */
+  );
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-zinc-950;
+.dark .dive-gradient {
+  background: linear-gradient(
+    to bottom,
+    #0f172a 0%,
+    #020617 10%,
+    #020617 100%
+  );
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-zinc-800 rounded-full border-2 border-zinc-950 hover:bg-zinc-700 transition-colors;
+.glass-panel {
+  @apply bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/5 shadow-xl;
 }
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float-gentle 6s infinite ease-in-out;
+}
+
+@keyframes bioluminescence {
+  0%, 100% { 
+    text-shadow: 0 0 5px rgba(99, 102, 241, 0.2);
+    color: rgba(var(--text-primary), 0.8);
+  }
+  50% { 
+    text-shadow: 0 0 15px rgba(99, 102, 241, 0.8), 0 0 25px rgba(99, 102, 241, 0.4);
+    color: rgb(var(--text-primary));
+  }
+}
+
+.bioluminescent-text {
+  animation: bioluminescence 4s infinite ease-in-out;
+}
+
+/* Specific delays for organic feel */
+.delay-1 { animation-delay: 0.5s; }
+.delay-2 { animation-delay: 1.2s; }
+.delay-3 { animation-delay: 2.1s; }
+.delay-4 { animation-delay: 3.0s; }
+.delay-5 { animation-delay: 0.8s; }
+.delay-6 { animation-delay: 1.7s; }
+.delay-7 { animation-delay: 2.5s; }
+.delay-8 { animation-delay: 3.8s; }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "preact/hooks";
-import * as THREE from "npm:three";
+import * as THREE from "three";
 
 interface TouchControls {
   moveForward: boolean;

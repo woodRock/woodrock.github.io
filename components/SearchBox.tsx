@@ -10,7 +10,7 @@ interface SearchResult {
   metadata?: Record<string, string>;
 }
 
-export default function SearchBoxIsland() {
+export default function SearchBox() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);

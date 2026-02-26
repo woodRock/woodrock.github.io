@@ -1,259 +1,242 @@
 // routes/index.tsx
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { Button } from "../components/Button.tsx";
-import Countdown from "../components/Countdown.tsx";
 import { projectsApi, publicationsApi, Project, Publication } from "./api/supabase.ts";
+import ResearchNetwork from "../islands/ResearchNetwork.tsx";
+import MarinePulse from "../islands/MarinePulse.tsx";
+import SpectraTrace from "../islands/SpectraTrace.tsx";
+import SkillsCompass from "../islands/SkillsCompass.tsx";
+import PaperCard from "../components/PaperCard.tsx";
+import ProjectCard from "../components/ProjectCard.tsx";
+import { TeamMember } from "../components/TeamMember.tsx";
+import NeuralFish from "../islands/NeuralFish.tsx";
+import FishTank from "../islands/FishTank.tsx";
+import WaveDivider from "../components/WaveDivider.tsx";
+import DepthGauge from "../islands/DepthGauge.tsx";
+import ScrollController from "../islands/ScrollController.tsx";
 
-// Define the data structure for the page
 interface HomePageData {
-  showcaseProjects: Project[];
+  projects: Project[];
+  publications: Publication[];
   featuredPublication: Publication | null;
 }
 
-// Server-side handler to fetch data
+const teamMembers = [
+  {
+    id: 1,
+    name: "Jesse Wood",
+    title: "Lead Researcher",
+    bio: "Specializing in the intersection of deep learning and marine biochemistry.",
+    email: "jrhwood98@gmail.com",
+    linkedin: "https://www.linkedin.com/in/jrhwood",
+    imageSrc: "https://pbs.twimg.com/profile_images/1904799151331958786/KxV1kqJ7_400x400.jpg"
+  }
+];
+
 export const handler: Handlers<HomePageData> = {
   async GET(req, ctx) {
     try {
-      // Fetch all projects and randomly select 2
-      const allProjects = await projectsApi.getAll();
-      const randomProjects = getRandomItems(allProjects, 2);
+      const projects = await projectsApi.getAll();
+      const publications = await publicationsApi.getAll();
+      const featuredPublication = publications.length > 0 ? publications[0] : null;
       
-      // Fetch all publications and randomly select 1
-      const allPublications = await publicationsApi.getAll();
-      const randomPublication = allPublications.length > 0 
-        ? getRandomItems(allPublications, 1)[0] 
-        : null;
-      
-      return ctx.render({
-        showcaseProjects: randomProjects,
-        featuredPublication: randomPublication
-      });
+      return ctx.render({ projects, publications, featuredPublication });
     } catch (error) {
-      console.error("Error fetching data for homepage:", error);
-      // Return empty data on error
-      return ctx.render({
-        showcaseProjects: [],
-        featuredPublication: null
-      });
+      console.error("Error fetching data:", error);
+      return ctx.render({ projects: [], publications: [], featuredPublication: null });
     }
-  },
+  }
 };
 
-// Helper function to get random items from an array
-function getRandomItems<T>(array: T[], count: number): T[] {
-  const shuffled = [...array].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-}
-
 export default function Home({ data }: PageProps<HomePageData>) {
-  const { showcaseProjects, featuredPublication } = data;
+  const { projects, publications } = data;
   
   return (
-    <div class="bg-zinc-950">
-      {/* Hero Content Section */}
-      <section class="py-20 md:py-32 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-          <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter">
-            <span class="inline-block bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-              Building the Future
-            </span>
-            <br />
-            <span class="inline-block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 animate-gradient-x">
-              with Data & AI
-            </span>
+    <div class="relative dive-gradient transition-colors duration-1000">
+      <FishTank />
+      <DepthGauge />
+      <ScrollController />
+      
+      {/* 1. Hero Section - The Surface */}
+      <section id="hero" class="relative pt-32 pb-24 px-6 min-h-screen flex flex-col justify-center border-b border-black/5 dark:border-white/5">
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+          <div class="flex justify-center mb-24 animate-float">
+            <div class="p-16 md:p-24 rounded-[5rem] bg-white/20 dark:bg-white/5 backdrop-blur-3xl border border-white/30 dark:border-white/10 shadow-[0_0_120px_rgba(99,102,241,0.15)]">
+              {/* Massive centerpiece neural fish */}
+              <div class="w-80 h-40 md:w-[40rem] md:h-[20rem]">
+                <NeuralFish />
+              </div>
+            </div>
+          </div>
+          
+          <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-12 tracking-tighter text-indigo-600 dark:text-indigo-400">
+            Deep Sea Data
           </h1>
-          <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
-            Combining machine learning, scientific research, and software engineering 
-            to solve complex problems in marine biology and beyond.
+          <p class="text-xl md:text-2xl text-slate-800 dark:text-slate-300 max-w-2xl mx-auto mb-16 font-medium leading-relaxed">
+            Unlocking the biochemical secrets of our oceans through advanced machine learning and mass spectrometry.
           </p>
-          <div class="flex flex-wrap justify-center gap-6">
-            <a href="/projects" class="group relative px-8 py-4 bg-white text-zinc-950 rounded-full font-bold text-lg hover:bg-indigo-50 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-              Explore Projects
-            </a>
-            <a href="/publications" class="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
-              View Publications
-            </a>
+          
+          <div class="max-w-5xl mx-auto pt-12">
+            <SpectraTrace />
           </div>
         </div>
       </section>
 
-      {/* Research Focus Cards - Glassmorphism */}
-      <section class="py-24 px-6 border-y border-white/5 bg-white/[0.02]">
-        <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-bold text-center mb-20 tracking-tight text-white">Research Focus</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Focus Card Component */}
-            {[
-              {
-                title: "AI for Marine Science",
-                desc: "Developing machine learning approaches to analyze fatty acid chromatographic data and mass spectrometry for marine biomass classification.",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                  </svg>
-                )
-              },
-              {
-                title: "Data-Driven Engineering",
-                desc: "Creating innovative software solutions that bridge the gap between scientific research and practical applications in industry.",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                  </svg>
-                )
-              },
-              {
-                title: "Sustainable Tech",
-                desc: "Leveraging technology to support environmental sustainability and develop solutions for real-world ecological challenges.",
-                icon: (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                )
-              }
-            ].map((focus) => (
-              <div class="group relative p-8 rounded-3xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="relative h-14 w-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:bg-white/10 transition-colors">
-                  {focus.icon}
+      {/* 2. Telemetry Section - Epipelagic Zone (Still Shallow) */}
+      <section class="py-32 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+          <div class="flex items-center gap-4 mb-16">
+            <div class="h-px flex-grow bg-black/10 dark:bg-white/10"></div>
+            <h2 class="text-xs font-black uppercase tracking-[0.4em] text-slate-700 dark:text-slate-400">Live Research Telemetry</h2>
+            <div class="h-px flex-grow bg-black/10 dark:bg-white/10"></div>
+          </div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div class="lg:col-span-8">
+              <ResearchNetwork />
+            </div>
+            <div class="lg:col-span-4 flex flex-col gap-8">
+              <MarinePulse />
+              <div class="p-8 rounded-[2.5rem] bg-white/40 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5 backdrop-blur-md shadow-xl flex flex-col justify-center flex-grow">
+                <h4 class="text-xs font-black uppercase tracking-[0.2em] mb-4 text-indigo-600 dark:text-indigo-400">Autonomous Analytics</h4>
+                <p class="text-xl font-bold leading-tight text-slate-800 dark:text-white">Implementing latent feature extraction for marine biomass classification across NZ coastal zones.</p>
+                <div class="mt-8 flex items-center gap-3 text-slate-600 dark:text-slate-400">
+                  <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+                  <span class="text-[10px] font-black uppercase tracking-widest">Neural Link Active</span>
                 </div>
-                <h3 class="text-xl font-bold mb-4 text-white">{focus.title}</h3>
-                <p class="text-slate-400 leading-relaxed">
-                  {focus.desc}
-                </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Expertise Section - Mesopelagic Zone (Mid Depth) */}
+      <section id="expertise" class="py-32 px-6 relative z-10 border-y border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/[0.02]">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1 flex justify-center">
+              <SkillsCompass />
+            </div>
+            <div class="order-1 lg:order-2">
+              <h2 class="text-5xl md:text-7xl font-black text-slate-400 dark:text-white tracking-tighter mb-8 leading-none">Multidisciplinary<br />Expertise.</h2>
+              <p class="text-xl text-slate-500 dark:text-slate-300 font-light leading-relaxed mb-12">
+                Bridging the gap between the laboratory and the cloud. I develop systems that transform spectral fingerprints into actionable biological intelligence.
+              </p>
+              <div class="grid grid-cols-2 gap-4">
+                {['Deno Fresh', 'PyTorch', 'Rust', 'PostgreSQL', 'Three.js', 'ONNX'].map(tech => (
+                  <div class="px-6 py-4 rounded-2xl bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 shadow-sm transition-all hover:border-indigo-500/30">
+                    {tech}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Publications Section - Bathypelagic Zone (Deep) */}
+      <section id="publications" class="py-32 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+          <div class="mb-24 text-center">
+            <h2 class="text-5xl md:text-7xl font-black text-slate-100 dark:text-white tracking-tighter mb-4 bioluminescent-text delay-1">Scientific Papers</h2>
+            <div class="h-1.5 w-24 bg-indigo-500 mx-auto rounded-full mb-8"></div>
+            <p class="text-xl text-slate-200 dark:text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
+              Advancing the state-of-the-art in spectral classification and environmental data science.
+            </p>
+          </div>
+          
+          <div class="space-y-20">
+            {publications.map((paper) => (
+              <PaperCard
+                key={paper.id}
+                title={paper.title}
+                abstract={paper.abstract}
+                filename={paper.filename}
+                link={paper.link}
+                linkLabel={paper.link_label}
+                backgroundColor={paper.background_color || "#6366f1"}
+                year={paper.year}
+                journal={paper.journal}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Latest Publication - Modern Layout */}
-      <section class="py-32 px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="flex items-center gap-4 mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Latest Research</h2>
-            <div class="h-px flex-grow bg-gradient-to-r from-white/10 to-transparent"></div>
-          </div>
-          
-          {featuredPublication ? (
-            <div class="group relative bg-white/5 border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-white/10 transition-all duration-500">
-              <div class="grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-4 bg-indigo-600/10 p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/5">
-                  <span class="text-indigo-400 font-bold uppercase tracking-widest text-xs mb-4">Featured Paper</span>
-                  <h3 class="text-2xl font-bold text-white mb-6">
-                    {featuredPublication.title.split(":")[0]}
-                  </h3>
-                  <a href="/publications" class="inline-flex items-center text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors group">
-                    Explore all publications
-                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
-                </div>
-                
-                <div class="lg:col-span-8 p-12">
-                  <h4 class="text-xl font-semibold text-white mb-6 leading-snug">
-                    {featuredPublication.title}
-                  </h4>
-                  <p class="text-slate-400 mb-10 line-clamp-4 text-lg leading-relaxed font-light">
-                    {featuredPublication.abstract}
-                  </p>
-                  <div class="flex flex-wrap gap-4">
-                    <a 
-                      href={`/download?filename=${featuredPublication.filename}`}
-                      class="px-6 py-3 bg-white/10 hover:bg-white/15 rounded-full text-sm font-bold text-white transition-all flex items-center gap-2 border border-white/5"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                      </svg>
-                      Read PDF
-                    </a>
-                    <a 
-                      href={featuredPublication.link}
-                      target="_blank" 
-                      class="px-6 py-3 bg-white/10 hover:bg-white/15 rounded-full text-sm font-bold text-white transition-all flex items-center gap-2 border border-white/5"
-                    >
-                      Source Link
-                    </a>
-                  </div>
-                </div>
-              </div>
+      {/* 5. Projects Section - Abyssopelagic Zone */}
+      <section id="projects" class="py-32 bg-black/10 dark:bg-white/[0.02] relative z-10 border-y border-black/10 dark:border-white/5 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 mb-16">
+          <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter bioluminescent-text">Technical Projects</h2>
+        </div>
+        
+        <div class="flex overflow-x-auto gap-8 px-6 md:px-[calc((100vw-1152px)/2+24px)] pb-12 no-scrollbar snap-x snap-mandatory">
+          {projects.map((project, index) => (
+            <div class="snap-center">
+              <ProjectCard
+                key={project.id}
+                title={project.title}
+                language={project.language}
+                githubLink={project.github_link}
+                description={project.description}
+                backgroundColor={project.background_color}
+              />
             </div>
-          ) : (
-            <div class="bg-white/5 rounded-3xl p-12 text-center border border-white/5">
-              <p class="text-slate-500">No publications found. Check back later!</p>
-            </div>
-          )}
+          ))}
+          <div class="flex-shrink-0 w-6 md:w-24"></div>
         </div>
       </section>
 
-      {/* Featured Projects - Modern Grid */}
-      <section class="py-32 px-6 border-t border-white/5">
+      {/* 6. Contact & Team - Hadal Zone */}
+      <section id="contact" class="py-32 px-6 relative z-10">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Featured Projects</h2>
-          <p class="text-lg text-slate-400 text-center max-w-2xl mx-auto mb-20 font-light">
-            Crafting software solutions at the intersection of data and design.
-          </p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {showcaseProjects.length > 0 ? (
-              showcaseProjects.map((project) => (
-                <div key={project.id} class="group relative bg-zinc-900/50 border border-white/5 rounded-[2rem] overflow-hidden hover:border-indigo-500/30 transition-all duration-500">
-                  <div class="relative h-64 overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent z-10 opacity-60"></div>
-                    <div class="h-full bg-indigo-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-700" style={project.background_color ? `background: ${project.background_color}44` : ''}>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-indigo-400/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                      </svg>
-                    </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div>
+              <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8 bioluminescent-text delay-2">Collaborate</h2>
+              <p class="text-xl text-slate-300 font-light leading-relaxed mb-12 max-w-lg">
+                Seeking a scientific partner or technical engineer? Let's establish a connection in the deep.
+              </p>
+              <div class="space-y-6">
+                {[
+                  { label: "Direct Email", val: "jrhwood98@gmail.com", href: "mailto:jrhwood98@gmail.com", delay: "delay-1" },
+                  { label: "LinkedIn", val: "linkedin.com/in/jrhwood", href: "https://www.linkedin.com/in/jrhwood", delay: "delay-3" },
+                  { label: "Source Repositories", val: "github.com/woodrock", href: "https://github.com/woodrock", delay: "delay-4" }
+                ].map(item => (
+                  <div class="group border-b border-white/10 pb-6">
+                    <div class={`text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-1 bioluminescent-text ${item.delay}`}>{item.label}</div>
+                    <a href={item.href} class={`text-xl font-bold text-white hover:text-indigo-400 transition-colors block bioluminescent-text ${item.delay}`}>{item.val}</a>
                   </div>
-                  <div class="p-10 relative -mt-20 z-20">
-                    <div class="bg-zinc-900/90 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
-                      <div class="flex justify-between items-start mb-6">
-                        <h3 class="text-2xl font-bold text-white">{project.title}</h3>
-                        <span class="px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                          {project.language.split(',')[0]}
-                        </span>
-                      </div>
-                      <p class="text-slate-400 mb-8 font-light line-clamp-3 leading-relaxed">
-                        {project.description}
-                      </p>
-                      <a 
-                        href={project.github_link}
-                        target="_blank"
-                        class="inline-flex items-center text-white font-bold text-sm hover:text-indigo-400 transition-colors"
-                      >
-                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-                        </svg>
-                        Source Code
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div class="col-span-2 text-center p-20 bg-white/5 rounded-[2.5rem] border border-white/5">
-                <p class="text-xl text-slate-500">Loading showcase...</p>
+                ))}
               </div>
-            )}
+            </div>
+            <div>
+              <div class="bg-white/10 dark:bg-zinc-900/40 border border-white/10 rounded-[3rem] p-10 md:p-16 shadow-2xl backdrop-blur-sm">
+                <form action="/" method="POST" class="space-y-8">
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-300">Identity</label>
+                    <input type="email" name="email" placeholder="email@institution.edu" class="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" required />
+                  </div>
+                  <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-300">Subject</label>
+                    <textarea name="message" placeholder="Describe the project or research opportunity..." rows={4} class="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 resize-none transition-colors" required></textarea>
+                  </div>
+                  <button type="submit" class="w-full py-5 bg-indigo-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] shadow-xl shadow-indigo-500/20 hover:bg-indigo-700 transition-all active:scale-95">Transmitting Signal</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-40">
+            <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 mb-16 text-center bioluminescent-text delay-3">Principal System Architect</h3>
+            <div class="max-w-sm mx-auto p-4 bg-white/5 rounded-[3rem] backdrop-blur-md border border-white/10">
+              {teamMembers.map(member => <TeamMember key={member.id} member={member} />)}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact CTA - Modern Glow */}
-      <section class="py-40 px-6 relative overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-indigo-600/10 blur-[120px] pointer-events-none"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-          <h2 class="text-4xl md:text-6xl font-black mb-8 text-white tracking-tighter">Ready to collaborate?</h2>
-          <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-            I'm currently open to discussing research opportunities, project ideas, or potential collaborations.
-          </p>
-          <a href="/contact" class="inline-block px-12 py-5 bg-white text-zinc-950 rounded-full font-black text-xl shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all duration-300 hover:scale-105 active:scale-95">
-            Get in Touch
-          </a>
-        </div>
-      </section>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}} />
     </div>
   );
 }

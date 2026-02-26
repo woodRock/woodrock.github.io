@@ -48,6 +48,7 @@ export default function DocChatIsland({
   const fetchDocumentSummary = async () => {
     try {
       setIsLoading(true);
+      setError(null);
       
       // Make API request to get document summary
       const response = await fetch("/api/doc-summary", {
@@ -60,14 +61,10 @@ export default function DocChatIsland({
         })
       });
       
-      if (!response.ok) {
-        throw new Error(`Failed to get document summary: ${response.status}`);
-      }
-      
       const data = await response.json();
       
-      if (data.error) {
-        throw new Error(data.error);
+      if (!response.ok) {
+        throw new Error(data.error || `Server Error ${response.status}`);
       }
       
       // Add assistant message with summary
@@ -83,7 +80,16 @@ export default function DocChatIsland({
       
     } catch (err) {
       console.error("Error fetching document summary:", err);
-      setError(`Could not load document information: ${err.message}`);
+      setError(`AI Assistant could not summarize the document: ${err.message}`);
+      
+      // Add a fallback message so the chat isn't empty
+      const fallbackMessage: Message = {
+        id: "assistant-fallback",
+        role: "assistant",
+        content: "I'm having trouble generating an automatic summary of this document, but I'm still ready to answer your questions about it! What would you like to know?",
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, fallbackMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -219,7 +225,7 @@ export default function DocChatIsland({
   const documentPathWithPrefix = `https://woodrock.deno.dev/${documentPathWithoutStatic}`;
   
   return (
-    <div class="flex flex-col h-[80vh] bg-zinc-950/20">
+    <div class="flex flex-col h-full bg-zinc-950/5 dark:bg-zinc-950/20 transition-colors">
       {/* Error Banner */}
       {error && (
         <div class="bg-yellow-500/10 border-l-4 border-yellow-500 p-4 backdrop-blur-md">

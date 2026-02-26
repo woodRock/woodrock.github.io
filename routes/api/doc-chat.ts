@@ -90,13 +90,16 @@ export const handler: Handlers = {
       // Get API key
       const apiKey = Deno.env.get("GEMINI_API_KEY");
       if (!apiKey) {
+        console.error("Gemini API key NOT found in environment variables");
         return new Response(JSON.stringify({
-          error: "API key not configured"
+          error: "Gemini API key not found. Ensure GEMINI_API_KEY is set in your .env file."
         }), {
           status: 500,
           headers: { "Content-Type": "application/json" }
         });
       }
+      
+      console.log("Gemini API Key detected (Length:", apiKey.length, ")");
       
       // Get document text
       const documentText = await getDocumentText(documentPath);
@@ -133,7 +136,7 @@ export const handler: Handlers = {
       
       // If we couldn't determine a model, use a default
       if (!modelToUse) {
-        modelToUse = "models/gemini-1.5-flash";
+        modelToUse = "models/gemini-3-flash-preview";
       }
       
       // Process chat history for context

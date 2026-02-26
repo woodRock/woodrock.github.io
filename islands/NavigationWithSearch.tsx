@@ -1,28 +1,31 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import SearchBoxIsland from "../islands/SearchBoxIsland.tsx";
-import MobileMenuIsland from "../islands/MobileMenuIsland.tsx";
+import SearchBox from "../components/SearchBox.tsx";
+import MobileMenu from "../components/MobileMenu.tsx";
+import ThemeToggle from "../components/ThemeToggle.tsx";
+import Soundscape from "../components/Soundscape.tsx";
+import { activeSection } from "../utils/signals.ts";
 
 export default function NavigationWithSearch(props: { path?: string }) {
   const currentPath = props.path || (IS_BROWSER ? window.location.pathname : "");
-  const isActive = (path: string) => currentPath === path;
-  const isSearchPage = isActive("/search");
+  const currentActiveSection = activeSection.value; // Force top-level subscription
+  const isSearchPage = currentPath === "/search";
 
   const menuItems = [
-    { path: "/", label: "Home" },
-    { path: "/publications", label: "Publications" },
-    { path: "/projects", label: "Projects" },
-    { path: "/contact", label: "Contact" },
+    { id: "hero", path: "/#hero", label: "Home" },
+    { id: "publications", path: "/#publications", label: "Research" },
+    { id: "projects", path: "/#projects", label: "Projects" },
+    { id: "contact", path: "/#contact", label: "Contact" },
   ];
 
   return (
-    <header class="bg-zinc-950/80 backdrop-blur-lg border-b border-white/5 sticky top-0 z-50 navigation-with-search">
+    <header class="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-lg border-b border-black/5 dark:border-white/5 sticky top-0 z-50 navigation-with-search transition-colors duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
           <div class="flex items-center flex-shrink-0">
             {/* Search box on larger screens */}
             {!isSearchPage && (
               <div class="hidden lg:block lg:absolute lg:right-0 mr-28 w-48 xl:w-72">
-                <SearchBoxIsland />
+                <SearchBox />
               </div>
             )}
           </div>
@@ -33,17 +36,14 @@ export default function NavigationWithSearch(props: { path?: string }) {
                 key={item.path}
                 href={item.path}
                 class={`px-4 py-2 text-sm font-medium rounded-full transition duration-300 relative group ${
-                  isActive(item.path)
-                    ? "text-indigo-400"
-                    : "text-slate-400 hover:text-white"
+                  currentActiveSection === item.id || currentPath === item.path
+                    ? "text-indigo-600 dark:text-indigo-400"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
               >
                 {item.label}
-                {isActive(item.path) && (
+                {(currentActiveSection === item.id || currentPath === item.path) && (
                   <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-indigo-500 rounded-full shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
-                )}
-                {!isActive(item.path) && (
-                  <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-white/0 rounded-full group-hover:bg-white/10 transition-all duration-300" />
                 )}
               </a>
             ))}
@@ -72,13 +72,15 @@ export default function NavigationWithSearch(props: { path?: string }) {
                 </svg>
               </a>
             )}
+            <Soundscape />
+            <ThemeToggle />
             <a
               href="/download?filename=resume.pdf"
               class="hidden sm:inline-flex items-center justify-center px-5 py-2 rounded-full text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:shadow-[0_0_25px_rgba(79,70,229,0.5)]"
             >
               Resume
             </a>
-            <MobileMenuIsland menuItems={menuItems} currentPath={currentPath} />
+            <MobileMenu menuItems={menuItems} currentPath={currentPath} />
           </div>
         </div>
       </div>
@@ -87,7 +89,7 @@ export default function NavigationWithSearch(props: { path?: string }) {
       {isSearchPage && (
         <div class="border-t border-gray-200 py-3 px-4">
           <div class="max-w-md mx-auto">
-            <SearchBoxIsland />
+            <SearchBox />
           </div>
         </div>
       )}

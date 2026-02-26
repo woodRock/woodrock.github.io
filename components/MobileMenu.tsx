@@ -6,7 +6,7 @@ interface MenuItem {
   label: string;
 }
 
-export default function MobileMenuIsland({ 
+export default function MobileMenu({ 
   menuItems, 
   currentPath 
 }: { 
