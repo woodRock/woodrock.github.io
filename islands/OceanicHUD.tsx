@@ -41,6 +41,14 @@ export default function OceanicHUD() {
 
   return (
     <div class="fixed bottom-0 left-0 right-0 z-[100] pointer-events-none overflow-hidden">
+      {/* Visual Depth Progress Line */}
+      <div class="h-0.5 w-full bg-white/5 relative">
+        <div 
+          class="absolute top-0 left-0 h-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]"
+          style={{ width: `${(ZONES.indexOf(activeZone) + 1) / ZONES.length * 100}%` }}
+        />
+      </div>
+
       <div 
         class="bg-zinc-950 border-t border-white/10 px-6 py-3 flex flex-col md:flex-row justify-between items-center gap-2 pointer-events-auto shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
       >
@@ -72,14 +80,6 @@ export default function OceanicHUD() {
             </span>
           </div>
         </div>
-      </div>
-      
-      {/* Visual Depth Progress Line */}
-      <div class="h-0.5 w-full bg-white/5 relative">
-        <div 
-          class="absolute top-0 left-0 h-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]"
-          style={{ width: `${(ZONES.indexOf(activeZone) + 1) / ZONES.length * 100}%` }}
-        />
       </div>
     </div>
   );
