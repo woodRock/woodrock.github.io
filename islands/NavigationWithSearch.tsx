@@ -1,4 +1,3 @@
-import { useState, useEffect } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import SearchBox from "../components/SearchBox.tsx";
 import MobileMenu from "../components/MobileMenu.tsx";
@@ -10,16 +9,6 @@ export default function NavigationWithSearch(props: { path?: string }) {
   const currentPath = props.path || (IS_BROWSER ? window.location.pathname : "");
   const currentActiveSection = activeSection.value; // Force top-level subscription
   const isSearchPage = currentPath === "/search";
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    if (!IS_BROWSER) return;
-    const handleGlobalMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleGlobalMouseMove);
-    return () => window.removeEventListener("mousemove", handleGlobalMouseMove);
-  }, []);
 
   const menuItems = [
     { id: "hero", path: "/#hero", label: "Home" },
@@ -30,8 +19,7 @@ export default function NavigationWithSearch(props: { path?: string }) {
 
   return (
     <header 
-      class="bg-white dark:bg-zinc-950 border-b border-black/5 dark:border-white/5 fixed top-0 left-0 right-0 z-50 navigation-with-search"
-      style={{ transition: 'none' }}
+      class="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-lg border-b border-black/5 dark:border-white/5 fixed top-0 left-0 right-0 z-50 navigation-with-search transition-all duration-300"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
@@ -46,24 +34,11 @@ export default function NavigationWithSearch(props: { path?: string }) {
 
           <nav class="hidden md:flex items-center justify-center mx-auto space-x-1">
             {menuItems.map((item) => {
-              // Subtle magnetic effect logic
-              const magneticStrength = 15;
               return (
                 <a
                   key={item.path}
                   href={item.path}
-                  onMouseMove={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    const deltaX = (e.clientX - centerX) / (rect.width / 2);
-                    const deltaY = (e.clientY - centerY) / (rect.height / 2);
-                    e.currentTarget.style.transform = `translate(${deltaX * magneticStrength}px, ${deltaY * magneticStrength}px)`;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = `translate(0, 0)`;
-                  }}
-                  class={`px-4 py-2 text-sm font-medium rounded-full relative group ${
+                  class={`px-4 py-2 text-sm font-medium rounded-full relative group transition-all duration-200 ${
                     currentActiveSection === item.id || currentPath === item.path
                       ? "text-indigo-600 dark:text-indigo-400"
                       : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
