@@ -96,7 +96,7 @@ export default function NeuralFish() {
         <span class={`text-[8px] font-black uppercase tracking-[0.4em] transition-colors duration-500 ${
           classificationResult.value ? "text-green-500" : "text-indigo-500/40"
         }`}>
-          {classificationResult.value ? `Match: ${classificationResult.value.species}` : "Biological Classifier Alpha"}
+          {classificationResult.value ? `Match: ${classificationResult.value.species}` : "Jesse Wood"}
         </span>
       </div>
     </div>
