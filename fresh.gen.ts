@@ -14,6 +14,7 @@ import * as $doc_chat_filename_ from "./routes/doc-chat/[filename].tsx";
 import * as $download from "./routes/download.ts";
 import * as $index from "./routes/index.tsx";
 import * as $search from "./routes/search.tsx";
+import * as $AtmosphericOverlay from "./islands/AtmosphericOverlay.tsx";
 import * as $DepthGauge from "./islands/DepthGauge.tsx";
 import * as $DocChat from "./islands/DocChat.tsx";
 import * as $FishTank from "./islands/FishTank.tsx";
@@ -47,6 +48,7 @@ const manifest = {
     "./routes/search.tsx": $search,
   },
   islands: {
+    "./islands/AtmosphericOverlay.tsx": $AtmosphericOverlay,
     "./islands/DepthGauge.tsx": $DepthGauge,
     "./islands/DocChat.tsx": $DocChat,
     "./islands/FishTank.tsx": $FishTank,

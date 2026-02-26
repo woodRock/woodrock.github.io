@@ -1,6 +1,6 @@
 // islands/SpectraTrace.tsx
 import { useEffect, useState, useRef } from "preact/hooks";
-import { isClassifying, classificationResult, isSoundEnabled } from "../utils/signals.ts";
+import { isClassifying, classificationResult, isSoundEnabled, highlightedMz } from "../utils/signals.ts";
 
 interface Peak {
   mz: number;
@@ -149,13 +149,17 @@ export default function SpectraTrace() {
     const mz = xToMz(x);
     const closest = majorPeaks.find(p => Math.abs(p.mz - mz) < 10);
     setHighlightedPeak(closest || null);
+    highlightedMz.value = closest ? closest.mz : null;
   };
 
   return (
     <div 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      onMouseLeave={() => setHighlightedPeak(null)}
+      onMouseLeave={() => {
+        setHighlightedPeak(null);
+        highlightedMz.value = null;
+      }}
       class="relative w-full h-64 group cursor-crosshair select-none overflow-hidden rounded-xl bg-slate-900/5 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 p-4"
     >
       <svg class="w-full h-full" preserveAspectRatio="xMidYMid meet" viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}>
@@ -278,8 +282,17 @@ export default function SpectraTrace() {
       <div class="absolute top-4 right-6 flex items-center gap-4">
         <button
           onClick={runInference}
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const deltaX = (e.clientX - (rect.left + rect.width / 2)) * 0.2;
+            const deltaY = (e.clientY - (rect.top + rect.height / 2)) * 0.2;
+            e.currentTarget.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = `translate(0, 0)`;
+          }}
           disabled={classifying}
-          class={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest transition-all ${
+          class={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest transition-all duration-200 ${
             classifying 
               ? "bg-indigo-500/20 text-indigo-400 animate-pulse" 
               : "bg-indigo-600 text-white hover:bg-indigo-500 shadow-lg active:scale-95 sonar-ping"

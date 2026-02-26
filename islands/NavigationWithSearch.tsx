@@ -1,3 +1,4 @@
+import { useState, useEffect } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import SearchBox from "../components/SearchBox.tsx";
 import MobileMenu from "../components/MobileMenu.tsx";
@@ -9,6 +10,16 @@ export default function NavigationWithSearch(props: { path?: string }) {
   const currentPath = props.path || (IS_BROWSER ? window.location.pathname : "");
   const currentActiveSection = activeSection.value; // Force top-level subscription
   const isSearchPage = currentPath === "/search";
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (!IS_BROWSER) return;
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleGlobalMouseMove);
+    return () => window.removeEventListener("mousemove", handleGlobalMouseMove);
+  }, []);
 
   const menuItems = [
     { id: "hero", path: "/#hero", label: "Home" },
@@ -31,22 +42,37 @@ export default function NavigationWithSearch(props: { path?: string }) {
           </div>
 
           <nav class="hidden md:flex items-center justify-center mx-auto space-x-1">
-            {menuItems.map((item) => (
-              <a
-                key={item.path}
-                href={item.path}
-                class={`px-4 py-2 text-sm font-medium rounded-full transition duration-300 relative group ${
-                  currentActiveSection === item.id || currentPath === item.path
-                    ? "text-indigo-600 dark:text-indigo-400"
-                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                {item.label}
-                {(currentActiveSection === item.id || currentPath === item.path) && (
-                  <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-indigo-500 rounded-full shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
-                )}
-              </a>
-            ))}
+            {menuItems.map((item) => {
+              // Subtle magnetic effect logic
+              const magneticStrength = 15;
+              return (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const deltaX = (e.clientX - centerX) / (rect.width / 2);
+                    const deltaY = (e.clientY - centerY) / (rect.height / 2);
+                    e.currentTarget.style.transform = `translate(${deltaX * magneticStrength}px, ${deltaY * magneticStrength}px)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = `translate(0, 0)`;
+                  }}
+                  class={`px-4 py-2 text-sm font-medium rounded-full transition-transform duration-200 relative group ${
+                    currentActiveSection === item.id || currentPath === item.path
+                      ? "text-indigo-600 dark:text-indigo-400"
+                      : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                  {(currentActiveSection === item.id || currentPath === item.path) && (
+                    <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-indigo-500 rounded-full shadow-[0_0_8px_rgba(99,102,241,0.6)]" />
+                  )}
+                </a>
+              );
+            })}
           </nav>
 
           <div class="flex items-center md:absolute md:right-0 space-x-2 md:space-x-4">

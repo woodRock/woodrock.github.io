@@ -1,52 +1,55 @@
 // islands/NeuralFish.tsx
-import { useEffect, useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
+import { useSignal } from "@preact/signals";
 import { isClassifying, classificationResult } from "../utils/signals.ts";
 
 export default function NeuralFish() {
-  const [time, setTime] = useState(0);
+  const time = useSignal(0);
 
   useEffect(() => {
     let frame: number;
     const animate = () => {
-      setTime(prev => prev + (isClassifying.value ? 0.08 : 0.02));
+      time.value += (isClassifying.value ? 0.03 : 0.01);
       frame = requestAnimationFrame(animate);
     };
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  // Fish body nodes (ANN style)
   const nodes = [
     { x: 50, y: 50, layer: 0 }, // Nose
     { x: 100, y: 30, layer: 1 }, { x: 100, y: 70, layer: 1 }, // Front
     { x: 160, y: 20, layer: 2 }, { x: 160, y: 50, layer: 2 }, { x: 160, y: 80, layer: 2 }, // Mid
     { x: 220, y: 40, layer: 3 }, { x: 220, y: 60, layer: 3 }, // Back
-    { x: 270, y: 50, layer: 4 }, // Tail start
+    { x: 270, y: 50, layer: 4 }, // Tail
   ];
 
-  const getPos = (n: {x: number, y: number, layer: number}) => {
-    const multiplier = isClassifying.value ? 2 : 1;
-    const drift = Math.sin(time + n.layer * 0.5) * 5 * multiplier;
-    const tailDrift = n.layer > 3 ? Math.sin(time * 2 + n.layer) * 15 * multiplier : 0;
-    return { x: n.x, y: n.y + drift + tailDrift };
+  const connections = [
+    [0, 1], [0, 2],
+    [1, 3], [1, 4], [1, 5],
+    [2, 3], [2, 4], [2, 5],
+    [3, 6], [3, 7],
+    [4, 6], [4, 7],
+    [5, 6], [5, 7],
+    [6, 8], [7, 8]
+  ];
+
+  const t = time.value; // Subscribe to signal updates
+
+  // Single source of truth for node positions in the current frame
+  const getPos = (i: number) => {
+    const n = nodes[i];
+    const progress = (n.x - 50) / 220;
+    // Dramatically reduced amplitude and slower frequency for subtle motion
+    const amp = (0.5 + progress * 4) * (isClassifying.value ? 1.2 : 1);
+    const wave = Math.sin(t * 5 - n.x * 0.04) * amp;
+    return { x: n.x, y: n.y + wave };
   };
 
   return (
-    <div class={`relative w-full h-full transition-all duration-1000 ${
-      isClassifying.value ? "scale-110 opacity-100 animate-vibrate" : "opacity-60 dark:opacity-40"
+    <div class={`relative w-full h-full transition-opacity duration-1000 ${
+      isClassifying.value ? "scale-110 opacity-100" : "opacity-60 dark:opacity-40"
     }`}>
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes vibrate {
-          0% { transform: translate(0,0) scale(1.1); }
-          25% { transform: translate(1px, -1px) scale(1.1); }
-          50% { transform: translate(-1px, 1px) scale(1.1); }
-          75% { transform: translate(1px, 1px) scale(1.1); }
-          100% { transform: translate(0,0) scale(1.1); }
-        }
-        .animate-vibrate {
-          animation: vibrate 0.2s infinite linear;
-        }
-      `}} />
       <svg class="w-full h-full" viewBox="0 0 320 100" preserveAspectRatio="xMidYMid meet">
         <defs>
           <filter id="node-glow">
@@ -56,49 +59,41 @@ export default function NeuralFish() {
         </defs>
 
         {/* Neural Connections */}
-        {nodes.map((n1, i) => 
-          nodes.slice(i + 1).map((n2, j) => {
-            if (Math.abs(n1.layer - n2.layer) !== 1) return null;
-            const p1 = getPos(n1);
-            const p2 = getPos(n2);
-            return (
-              <line
-                key={`${i}-${j}`}
-                x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y}
-                stroke="currentColor"
-                stroke-width={isClassifying.value ? "1" : "0.5"}
-                class={`transition-colors duration-500 ${
-                  classificationResult.value 
-                    ? "text-green-500/50" 
-                    : isClassifying.value ? "text-indigo-400" : "text-indigo-500/30"
-                }`}
-              />
-            );
-          })
-        )}
+        {connections.map(([i, j]) => {
+          const p1 = getPos(i);
+          const p2 = getPos(j);
+          return (
+            <line
+              key={`${i}-${j}`}
+              x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y}
+              stroke="currentColor"
+              stroke-width={isClassifying.value ? "1" : "0.5"}
+              class={classificationResult.value ? "text-green-500/50" : isClassifying.value ? "text-indigo-400" : "text-indigo-500/30"}
+            />
+          );
+        })}
 
         {/* Tail Fin */}
-        <path
-          d={`M ${getPos(nodes[8]).x} ${getPos(nodes[8]).y} L 310 ${getPos(nodes[8]).y - 20} L 310 ${getPos(nodes[8]).y + 20} Z`}
-          fill="currentColor"
-          class={`transition-colors duration-500 ${
-            classificationResult.value ? "text-green-500/20" : "text-indigo-500/10"
-          }`}
-        />
+        {(() => {
+          const pTail = getPos(8);
+          return (
+            <path
+              d={`M ${pTail.x} ${pTail.y} L 310 ${pTail.y - 20} L 310 ${pTail.y + 20} Z`}
+              fill="currentColor"
+              class={classificationResult.value ? "text-green-500/20" : "text-indigo-500/10"}
+            />
+          );
+        })()}
 
         {/* Neural Nodes */}
-        {nodes.map((n, idx) => {
-          const p = getPos(n);
+        {nodes.map((_, idx) => {
+          const p = getPos(idx);
           return (
             <circle
               key={idx}
               cx={p.x} cy={p.y} r={isClassifying.value ? "3.5" : "2.5"}
               fill="currentColor"
-              class={`transition-colors duration-500 ${
-                classificationResult.value 
-                  ? "text-green-400" 
-                  : isClassifying.value ? "text-white" : "text-indigo-400"
-              }`}
+              class={classificationResult.value ? "text-green-400" : isClassifying.value ? "text-white" : "text-indigo-400"}
               filter="url(#node-glow)"
             />
           );

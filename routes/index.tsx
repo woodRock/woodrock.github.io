@@ -15,6 +15,7 @@ import DepthGauge from "../islands/DepthGauge.tsx";
 import ScrollController from "../islands/ScrollController.tsx";
 import MarineAtmosphere from "../islands/MarineAtmosphere.tsx";
 import OceanicHUD from "../islands/OceanicHUD.tsx";
+import AtmosphericOverlay from "../islands/AtmosphericOverlay.tsx";
 
 interface HomePageData {
   projects: Project[];
@@ -55,6 +56,7 @@ export default function Home({ data }: PageProps<HomePageData>) {
   return (
     <div class="relative dive-gradient transition-colors duration-1000">
       <MarineAtmosphere />
+      <AtmosphericOverlay />
       <OceanicHUD />
       <FishTank />
       <DepthGauge />
