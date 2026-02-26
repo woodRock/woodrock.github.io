@@ -84,7 +84,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
   const isSuccess = url.searchParams.get("success") === "true";
   
   return (
-    <div class="relative dive-gradient transition-colors duration-1000">
+    <div class="relative dive-gradient overflow-x-hidden w-full">
       <MarineAtmosphere />
       <AtmosphericOverlay />
       <OceanicHUD />

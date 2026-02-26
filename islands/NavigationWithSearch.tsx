@@ -29,7 +29,10 @@ export default function NavigationWithSearch(props: { path?: string }) {
   ];
 
   return (
-    <header class="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-lg border-b border-black/5 dark:border-white/5 sticky top-0 z-50 navigation-with-search transition-colors duration-300">
+    <header 
+      class="bg-white dark:bg-zinc-950 border-b border-black/5 dark:border-white/5 fixed top-0 left-0 right-0 z-50 navigation-with-search"
+      style={{ transition: 'none' }}
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
           <div class="flex items-center flex-shrink-0">
@@ -60,7 +63,7 @@ export default function NavigationWithSearch(props: { path?: string }) {
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = `translate(0, 0)`;
                   }}
-                  class={`px-4 py-2 text-sm font-medium rounded-full transition-transform duration-200 relative group ${
+                  class={`px-4 py-2 text-sm font-medium rounded-full relative group ${
                     currentActiveSection === item.id || currentPath === item.path
                       ? "text-indigo-600 dark:text-indigo-400"
                       : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"

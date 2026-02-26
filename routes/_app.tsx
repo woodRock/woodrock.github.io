@@ -34,7 +34,7 @@ export default function App({ Component, url }: PageProps) {
           })()
         ` }} />
       </head>
-      <body class="min-h-screen flex flex-col font-[Inter,sans-serif]">
+      <body class="min-h-screen flex flex-col font-[Inter,sans-serif] overflow-x-hidden">
         {/* Navigation */}
         <NavigationWithSearch path={currentPath} />
         

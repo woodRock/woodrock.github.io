@@ -20,22 +20,24 @@ export default function DepthGauge() {
       if (windowHeight > 0) {
         const p = scrollY / windowHeight;
         const newDepth = Math.round(p * 4000);
-        if (depth !== newDepth) {
-          setDepth(newDepth);
-        }
+        setDepth(newDepth);
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [depth]);
+  }, []); // Only run once on mount
 
   return (
-    <div class="depth-gauge-container">
+    <div class="depth-gauge-container pointer-events-none">
       {/* 1. The Fixed Indicator (Stays on screen) */}
-      <div class="fixed right-4 top-48 z-[70] pointer-events-none flex flex-col items-center gap-2">
-        <div class="bg-zinc-950 border border-white/20 p-3 rounded-2xl shadow-2xl transition-all scale-90 md:scale-100">
+      <div 
+        class="fixed right-4 top-48 z-[70] flex flex-col items-center gap-2"
+      >
+        <div 
+          class="bg-zinc-950 border border-white/20 p-3 rounded-2xl shadow-2xl scale-90 md:scale-100"
+        >
           <div class="text-[9px] font-black text-indigo-500 uppercase tracking-widest mb-0.5 text-center">Current Depth</div>
           <div class="text-xl font-black text-white tabular-nums tracking-tighter text-center">
             {depth}m
@@ -46,7 +48,7 @@ export default function DepthGauge() {
       </div>
 
       {/* 2. The Absolute Ruler (Scrolls with the sea) */}
-      <div class="absolute right-0 top-0 h-full w-12 z-[60] flex flex-col items-center pointer-events-none">
+      <div class="absolute right-0 top-0 h-full w-12 z-[60] flex flex-col items-center">
         <div class="h-full w-px bg-slate-900/20 dark:bg-white/10 relative">
           {/* Depth Ticks - Placed every 200m equivalent distance */}
           {[...Array(21)].map((_, i) => {

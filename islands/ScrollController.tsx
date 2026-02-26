@@ -37,7 +37,7 @@ export default function ScrollController() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("hashchange", handleScroll);
     };
-  }, [showAscent]);
+  }, []); // Corrected: empty dependency array
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -45,9 +45,9 @@ export default function ScrollController() {
 
   return (
     <div 
-      class={`fixed bottom-28 left-8 z-[70] transition-opacity duration-500 ${
+      class={`fixed bottom-28 left-8 z-[70] ${
         showAscent ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-      }`}
+      } transition-opacity duration-500`}
     >
       <button
         onClick={scrollToTop}

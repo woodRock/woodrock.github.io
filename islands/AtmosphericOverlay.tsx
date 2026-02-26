@@ -63,7 +63,7 @@ export default function AtmosphericOverlay() {
       {/* Hadal Zone Static / Film Grain - Only on non-mobile */}
       {!isMobile && staticOpacity > 0 && (
         <div 
-          class="absolute inset-0 mix-blend-overlay opacity-20 animate-grain"
+          class="absolute -inset-[50%] mix-blend-overlay opacity-20 animate-grain"
           style={{
             opacity: staticOpacity * 0.3,
             background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
@@ -74,18 +74,18 @@ export default function AtmosphericOverlay() {
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes grain {
           0%, 100% { transform: translate(0, 0); }
-          10% { transform: translate(-1%, -1%); }
-          20% { transform: translate(1%, 1%); }
-          30% { transform: translate(-2%, 1%); }
-          40% { transform: translate(1%, -2%); }
-          50% { transform: translate(-1%, 1%); }
-          60% { transform: translate(-2%, -1%); }
-          70% { transform: translate(1%, 1%); }
-          80% { transform: translate(1%, -1%); }
-          90% { transform: translate(0, 1%); }
+          10% { transform: translate(-5%, -10%); }
+          20% { transform: translate(-15%, 5%); }
+          30% { transform: translate(7%, -25%); }
+          40% { transform: translate(-5%, 25%); }
+          50% { transform: translate(-15%, 10%); }
+          60% { transform: translate(15%, 0%); }
+          70% { transform: translate(0%, 15%); }
+          80% { transform: translate(3%, 35%); }
+          90% { transform: translate(-10%, 10%); }
         }
         .animate-grain {
-          animation: grain 0.5s steps(1) infinite;
+          animation: grain 8s steps(10) infinite;
         }
       `}} />
     </div>
