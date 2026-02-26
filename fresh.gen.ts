@@ -18,9 +18,11 @@ import * as $DepthGauge from "./islands/DepthGauge.tsx";
 import * as $DocChat from "./islands/DocChat.tsx";
 import * as $FishTank from "./islands/FishTank.tsx";
 import * as $Game404 from "./islands/Game404.tsx";
+import * as $MarineAtmosphere from "./islands/MarineAtmosphere.tsx";
 import * as $MarinePulse from "./islands/MarinePulse.tsx";
 import * as $NavigationWithSearch from "./islands/NavigationWithSearch.tsx";
 import * as $NeuralFish from "./islands/NeuralFish.tsx";
+import * as $OceanicHUD from "./islands/OceanicHUD.tsx";
 import * as $PaperCardContent from "./islands/PaperCardContent.tsx";
 import * as $PdfViewer from "./islands/PdfViewer.tsx";
 import * as $ResearchNetwork from "./islands/ResearchNetwork.tsx";
@@ -49,9 +51,11 @@ const manifest = {
     "./islands/DocChat.tsx": $DocChat,
     "./islands/FishTank.tsx": $FishTank,
     "./islands/Game404.tsx": $Game404,
+    "./islands/MarineAtmosphere.tsx": $MarineAtmosphere,
     "./islands/MarinePulse.tsx": $MarinePulse,
     "./islands/NavigationWithSearch.tsx": $NavigationWithSearch,
     "./islands/NeuralFish.tsx": $NeuralFish,
+    "./islands/OceanicHUD.tsx": $OceanicHUD,
     "./islands/PaperCardContent.tsx": $PaperCardContent,
     "./islands/PdfViewer.tsx": $PdfViewer,
     "./islands/ResearchNetwork.tsx": $ResearchNetwork,

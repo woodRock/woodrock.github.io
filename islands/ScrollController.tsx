@@ -45,7 +45,7 @@ export default function ScrollController() {
 
   return (
     <div 
-      class={`fixed bottom-8 left-8 z-[70] transition-all duration-500 ${
+      class={`fixed bottom-16 left-8 z-[70] transition-all duration-500 ${
         showAscent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
       }`}
     >

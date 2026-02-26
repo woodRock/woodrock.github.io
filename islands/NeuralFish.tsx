@@ -33,8 +33,20 @@ export default function NeuralFish() {
 
   return (
     <div class={`relative w-full h-full transition-all duration-1000 ${
-      isClassifying.value ? "scale-110 opacity-100" : "opacity-60 dark:opacity-40"
+      isClassifying.value ? "scale-110 opacity-100 animate-vibrate" : "opacity-60 dark:opacity-40"
     }`}>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes vibrate {
+          0% { transform: translate(0,0) scale(1.1); }
+          25% { transform: translate(1px, -1px) scale(1.1); }
+          50% { transform: translate(-1px, 1px) scale(1.1); }
+          75% { transform: translate(1px, 1px) scale(1.1); }
+          100% { transform: translate(0,0) scale(1.1); }
+        }
+        .animate-vibrate {
+          animation: vibrate 0.2s infinite linear;
+        }
+      `}} />
       <svg class="w-full h-full" viewBox="0 0 320 100" preserveAspectRatio="xMidYMid meet">
         <defs>
           <filter id="node-glow">

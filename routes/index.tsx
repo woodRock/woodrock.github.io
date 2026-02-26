@@ -13,6 +13,8 @@ import FishTank from "../islands/FishTank.tsx";
 import WaveDivider from "../components/WaveDivider.tsx";
 import DepthGauge from "../islands/DepthGauge.tsx";
 import ScrollController from "../islands/ScrollController.tsx";
+import MarineAtmosphere from "../islands/MarineAtmosphere.tsx";
+import OceanicHUD from "../islands/OceanicHUD.tsx";
 
 interface HomePageData {
   projects: Project[];
@@ -52,12 +54,15 @@ export default function Home({ data }: PageProps<HomePageData>) {
   
   return (
     <div class="relative dive-gradient transition-colors duration-1000">
+      <MarineAtmosphere />
+      <OceanicHUD />
       <FishTank />
       <DepthGauge />
       <ScrollController />
       
       {/* 1. Hero Section - The Surface */}
       <section id="hero" class="relative pt-32 pb-24 px-6 min-h-screen flex flex-col justify-center border-b border-black/5 dark:border-white/5">
+        <div class="caustics hidden dark:block"></div>
         <div class="max-w-6xl mx-auto text-center relative z-10">
           <div class="flex flex-col items-center mb-12">
             <div class="flex justify-center mb-8 animate-float">
@@ -239,7 +244,6 @@ export default function Home({ data }: PageProps<HomePageData>) {
               <div class="space-y-6">
                 {[
                   { label: "Direct Email", val: "jrhwood98@gmail.com", href: "mailto:jrhwood98@gmail.com", delay: "delay-1" },
-                  { label: "Linktree", val: "linktr.ee/jrhwood", href: "http://linktr.ee/jrhwood", delay: "delay-2" },
                   { label: "LinkedIn", val: "linkedin.com/in/jrhwood", href: "https://www.linkedin.com/in/jrhwood", delay: "delay-3" },
                   { label: "GitHub Repos", val: "github.com/woodrock", href: "https://github.com/woodrock", delay: "delay-4" }
                 ].map(item => (

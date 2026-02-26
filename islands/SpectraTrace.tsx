@@ -1,6 +1,6 @@
 // islands/SpectraTrace.tsx
 import { useEffect, useState, useRef } from "preact/hooks";
-import { isClassifying, classificationResult } from "../utils/signals.ts";
+import { isClassifying, classificationResult, isSoundEnabled } from "../utils/signals.ts";
 
 interface Peak {
   mz: number;
@@ -18,6 +18,11 @@ export default function SpectraTrace() {
   // Extract signal values for reactivity
   const classifying = isClassifying.value;
   const result = classificationResult.value;
+  const sonarAudio = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    sonarAudio.current = new Audio("/sonar.mp3");
+  }, []);
 
   const majorPeaks: Peak[] = [
     { mz: 143.1526, intensity: 7477.7, label: "Peak", contribution: 0.35 },
@@ -58,6 +63,11 @@ export default function SpectraTrace() {
     e.stopPropagation();
     if (isClassifying.value) return;
     
+    if (isSoundEnabled.value && sonarAudio.current) {
+      sonarAudio.current.currentTime = 0;
+      sonarAudio.current.play().catch(err => console.warn("Audio play failed:", err));
+    }
+
     isClassifying.value = true;
     classificationResult.value = null;
 
@@ -272,7 +282,7 @@ export default function SpectraTrace() {
           class={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest transition-all ${
             classifying 
               ? "bg-indigo-500/20 text-indigo-400 animate-pulse" 
-              : "bg-indigo-600 text-white hover:bg-indigo-500 shadow-lg active:scale-95"
+              : "bg-indigo-600 text-white hover:bg-indigo-500 shadow-lg active:scale-95 sonar-ping"
           }`}
         >
           {classifying ? "Processing Stream..." : "Run Neural Inference"}

@@ -67,6 +67,25 @@ body {
   );
 }
 
+/* Caustics / God Rays Effect */
+.caustics {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+  mask-image: radial-gradient(circle, black 0%, transparent 80%);
+  animation: caustics-anim 8s infinite alternate ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes caustics-anim {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+  100% { transform: scale(1.2) rotate(5deg); opacity: 0.6; }
+}
+
 .dark .dive-gradient {
   background: linear-gradient(
     to bottom,
@@ -102,6 +121,26 @@ body {
 
 .bioluminescent-text {
   animation: bioluminescence 4s infinite ease-in-out;
+}
+
+@keyframes sonar-ping {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.sonar-ping {
+  position: relative;
+}
+
+.sonar-ping::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: sonar-ping 2s infinite;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Specific delays for organic feel */

@@ -55,19 +55,20 @@ export default function PdfViewer({ filename, title }: PdfViewerProps) {
           class="bg-zinc-950"
         >
           {/* Header Bar */}
-          <div class="flex justify-between items-center px-6 py-4 border-b border-white/10 bg-zinc-900">
+          <div class="flex-shrink-0 flex justify-between items-center px-6 py-4 border-b border-white/10 bg-zinc-900 z-50">
             <div>
               <h2 class="text-white font-bold text-sm md:text-base tracking-tight">{title}</h2>
               <p class="text-indigo-400 text-[9px] font-black uppercase tracking-[0.2em]">Research Disclosure Mode</p>
             </div>
             
-            <div class="flex items-center gap-4">
+            <div class="flex items-center">
               <button 
                 onClick={() => setIsFullscreen(false)}
-                class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all text-[10px] font-black uppercase tracking-widest"
+                class="group flex items-center gap-3 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:scale-105 active:scale-95"
+                aria-label="Close Reader"
               >
-                Close Reader
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span class="text-[10px] font-black uppercase tracking-widest">Exit Reader</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
