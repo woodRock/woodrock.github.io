@@ -4,19 +4,15 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_doc_chat from "./routes/api/doc-chat.ts";
-import * as $api_doc_summary from "./routes/api/doc-summary.ts";
 import * as $api_research_network from "./routes/api/research-network.ts";
 import * as $api_search from "./routes/api/search.ts";
 import * as $api_supabase from "./routes/api/supabase.ts";
 import * as $api_types from "./routes/api/types.ts";
-import * as $doc_chat_filename_ from "./routes/doc-chat/[filename].tsx";
 import * as $download from "./routes/download.ts";
 import * as $index from "./routes/index.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $AtmosphericOverlay from "./islands/AtmosphericOverlay.tsx";
 import * as $DepthGauge from "./islands/DepthGauge.tsx";
-import * as $DocChat from "./islands/DocChat.tsx";
 import * as $FishTank from "./islands/FishTank.tsx";
 import * as $Game404 from "./islands/Game404.tsx";
 import * as $MarineAtmosphere from "./islands/MarineAtmosphere.tsx";
@@ -36,13 +32,10 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/doc-chat.ts": $api_doc_chat,
-    "./routes/api/doc-summary.ts": $api_doc_summary,
     "./routes/api/research-network.ts": $api_research_network,
     "./routes/api/search.ts": $api_search,
     "./routes/api/supabase.ts": $api_supabase,
     "./routes/api/types.ts": $api_types,
-    "./routes/doc-chat/[filename].tsx": $doc_chat_filename_,
     "./routes/download.ts": $download,
     "./routes/index.tsx": $index,
     "./routes/search.tsx": $search,
@@ -50,7 +43,6 @@ const manifest = {
   islands: {
     "./islands/AtmosphericOverlay.tsx": $AtmosphericOverlay,
     "./islands/DepthGauge.tsx": $DepthGauge,
-    "./islands/DocChat.tsx": $DocChat,
     "./islands/FishTank.tsx": $FishTank,
     "./islands/Game404.tsx": $Game404,
     "./islands/MarineAtmosphere.tsx": $MarineAtmosphere,

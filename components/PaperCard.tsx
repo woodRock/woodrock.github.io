@@ -47,16 +47,6 @@ export default function PaperCard({
           >
             {linkLabel}
           </a>
-          
-          <a
-            href={`/doc-chat/${filename}`}
-            class="px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all flex items-center gap-2"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-            Consult AI Assistant
-          </a>
         </div>
       </div>
 

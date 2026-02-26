@@ -152,7 +152,7 @@ export default function SearchBox() {
             placeholder="Search research..."
             value={query}
             onInput={(e) => setQuery((e.target as HTMLInputElement).value)}
-            class="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all"
+            class="w-full pl-10 pr-4 py-2 bg-slate-900/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full text-sm text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all"
           />
         </div>
       </form>
