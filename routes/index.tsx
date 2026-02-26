@@ -47,11 +47,41 @@ export const handler: Handlers<HomePageData> = {
       console.error("Error fetching data:", error);
       return ctx.render({ projects: [], publications: [], featuredPublication: null });
     }
+  },
+  async POST(req, ctx) {
+    const formData = await req.formData();
+    
+    try {
+      // Forward the data to Formspree
+      const response = await fetch("https://formspree.io/f/mpwpynqy", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        console.log("✅ Formspree Submission SUCCESS");
+      } else {
+        const errData = await response.json();
+        console.error("❌ Formspree Submission FAILED:", errData);
+      }
+    } catch (error) {
+      console.error("❌ Error forwarding to Formspree:", error);
+    }
+
+    // Redirect back to home with a success parameter
+    const url = new URL(req.url);
+    url.searchParams.set("success", "true");
+    url.hash = "contact";
+    return Response.redirect(url.toString(), 303);
   }
 };
 
-export default function Home({ data }: PageProps<HomePageData>) {
+export default function Home({ data, url }: PageProps<HomePageData>) {
   const { projects, publications } = data;
+  const isSuccess = url.searchParams.get("success") === "true";
   
   return (
     <div class="relative dive-gradient transition-colors duration-1000">
@@ -293,23 +323,47 @@ export default function Home({ data }: PageProps<HomePageData>) {
             </div>
             <div>
               <div class="bg-white/10 dark:bg-zinc-900/40 border border-white/10 rounded-[3rem] p-10 md:p-16 shadow-2xl backdrop-blur-sm">
-                <form action="/" method="POST" class="space-y-8">
-                  <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-300">Identity</label>
-                    <input type="email" name="email" placeholder="email@institution.edu" class="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" required />
+                {isSuccess ? (
+                  <div class="text-center py-12 animate-fade-in">
+                    <div class="w-20 h-20 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-8">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-4 uppercase tracking-tighter">Signal Transmitted</h3>
+                    <p class="text-slate-400 font-light">Your research inquiry has been logged. Expect a connection soon.</p>
+                    <a 
+                      href="/#contact" 
+                      class="mt-10 inline-block text-[10px] font-black uppercase tracking-widest text-indigo-400 hover:text-indigo-300 transition-colors"
+                    >
+                      Send another signal
+                    </a>
                   </div>
-                  <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-300">Subject</label>
-                    <textarea name="message" placeholder="Describe the project or research opportunity..." rows={4} class="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 resize-none transition-colors" required></textarea>
-                  </div>
-                  <button type="submit" class="w-full py-5 bg-indigo-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] shadow-xl shadow-indigo-500/20 hover:bg-indigo-700 transition-all active:scale-95">Transmitting Signal</button>
-                </form>
+                ) : (
+                  <form action="/" method="POST" class="space-y-8">
+                    <div class="space-y-2">
+                      <label class="text-[10px] font-black uppercase tracking-widest text-slate-300">Identity</label>
+                      <input type="email" name="email" placeholder="email@institution.edu" class="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" required />
+                    </div>
+                    <div class="space-y-2">
+                      <label class="text-[10px] font-black uppercase tracking-widest text-slate-300">Subject</label>
+                      <textarea name="message" placeholder="Describe the project or research opportunity..." rows={4} class="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 resize-none transition-colors" required></textarea>
+                    </div>
+                    <button 
+                      type="submit" 
+                      data-sound="sonar"
+                      class="w-full py-5 bg-indigo-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] shadow-xl shadow-indigo-500/20 hover:bg-indigo-700 transition-all active:scale-95 sonar-ping"
+                    >
+                      Transmitting Signal
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
           </div>
           
           <div class="mt-40">
-            <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 mb-16 text-center bioluminescent-text delay-3">Principal System Architect</h3>
+            <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 mb-16 text-center bioluminescent-text delay-3">Machine Learning Engineer</h3>
             <div class="max-w-sm mx-auto p-4 bg-white/5 rounded-[3rem] backdrop-blur-md border border-white/10">
               {teamMembers.map(member => <TeamMember key={member.id} member={member} />)}
             </div>

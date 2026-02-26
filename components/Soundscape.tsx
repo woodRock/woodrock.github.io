@@ -5,6 +5,7 @@ import { isSoundEnabled } from "../utils/signals.ts";
 export default function Soundscape() {
   const bgAudioRef = useRef<HTMLAudioElement | null>(null);
   const clickAudioRef = useRef<HTMLAudioElement | null>(null);
+  const sonarAudioRef = useRef<HTMLAudioElement | null>(null);
   const enabled = isSoundEnabled.value;
 
   useEffect(() => {
@@ -16,15 +17,29 @@ export default function Soundscape() {
     clickAudioRef.current = new Audio("/splash.mp3");
     clickAudioRef.current.volume = 0.4;
 
-    // Global click listener for splash sound
+    sonarAudioRef.current = new Audio("/sonar.mp3");
+    sonarAudioRef.current.volume = 0.5;
+
+    // Global click listener for sounds
     const handleGlobalClick = (e: MouseEvent) => {
       if (!isSoundEnabled.value) return;
       
       const target = e.target as HTMLElement;
-      if (target.closest("button, a")) {
-        if (clickAudioRef.current) {
-          clickAudioRef.current.currentTime = 0;
-          clickAudioRef.current.play().catch(() => {});
+      const clickable = target.closest("button, a") as HTMLElement;
+      
+      if (clickable) {
+        // Special case for sonar sound
+        if (clickable.getAttribute("data-sound") === "sonar" || clickable.classList.contains("sonar-ping")) {
+          if (sonarAudioRef.current) {
+            sonarAudioRef.current.currentTime = 0;
+            sonarAudioRef.current.play().catch(() => {});
+          }
+        } else {
+          // Default splash sound
+          if (clickAudioRef.current) {
+            clickAudioRef.current.currentTime = 0;
+            clickAudioRef.current.play().catch(() => {});
+          }
         }
       }
     };
