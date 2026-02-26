@@ -95,7 +95,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
       {/* 1. Hero Section - The Surface */}
       <section id="hero" class="relative pt-32 pb-24 px-6 min-h-screen flex flex-col justify-center border-b border-black/5 dark:border-white/5">
         <div class="caustics hidden dark:block"></div>
-        <div class="max-w-6xl mx-auto text-center relative z-10">
+        <div class="max-w-6xl mx-auto text-center relative">
           <div class="flex flex-col items-center mb-12">
             <div class="flex justify-center mb-8 animate-float">
               <div class="p-12 md:p-16 rounded-[5rem] bg-white/20 dark:bg-white/5 backdrop-blur-3xl border border-white/30 dark:border-white/10 shadow-[0_0_120px_rgba(99,102,241,0.15)]">
@@ -130,7 +130,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
       </section>
 
       {/* 2. Telemetry Section - Research Breakthroughs */}
-      <section class="py-32 px-6 relative z-10">
+      <section class="py-32 px-6 relative">
         <div class="max-w-7xl mx-auto">
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <div class="flex-grow">
@@ -197,7 +197,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
       </section>
 
       {/* 3. Expertise Section - Tech Stack */}
-      <section id="expertise" class="py-32 px-6 relative z-10 border-y border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/[0.02]">
+      <section id="expertise" class="py-32 px-6 relative border-y border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/[0.02]">
         <div class="max-w-6xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div class="order-2 lg:order-1 flex justify-center">
@@ -240,7 +240,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
       </section>
 
       {/* 4. Publications Section */}
-      <section id="publications" class="py-32 px-6 relative z-10">
+      <section id="publications" class="py-32 px-6 relative">
         <div class="max-w-6xl mx-auto">
           <div class="mb-24 text-center">
             <h2 class="text-5xl md:text-7xl font-black text-slate-100 dark:text-white tracking-tighter mb-4 bioluminescent-text delay-1">Scientific Papers</h2>
@@ -262,6 +262,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
                 backgroundColor={paper.background_color || "#6366f1"}
                 year={paper.year}
                 journal={paper.journal}
+                citation={paper.citation}
               />
             ))}
           </div>
@@ -269,7 +270,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
       </section>
 
       {/* 5. Projects Section */}
-      <section id="projects" class="py-32 bg-black/10 dark:bg-white/[0.02] relative z-10 border-y border-black/10 dark:border-white/5 overflow-hidden">
+      <section id="projects" class="py-32 bg-black/10 dark:bg-white/[0.02] relative border-y border-black/10 dark:border-white/5 overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 mb-16">
           <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter bioluminescent-text">Technical Projects</h2>
         </div>
@@ -293,7 +294,7 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
       </section>
 
       {/* 6. Contact & Team - Hadal Zone */}
-      <section id="contact" class="py-32 px-6 relative z-10">
+      <section id="contact" class="py-32 px-6 relative">
         <div class="max-w-6xl mx-auto">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
             <div>

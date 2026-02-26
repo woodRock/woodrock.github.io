@@ -37,6 +37,7 @@ export interface Publication {
   year: number;
   journal: string;
   doi?: string;
+  citation?: string;
   background_color?: string;
   created_at?: string;
   updated_at?: string;

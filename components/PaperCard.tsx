@@ -1,6 +1,7 @@
 // components/PaperCard.tsx
 import PaperCardContent from "../islands/PaperCardContent.tsx";
 import PdfViewer from "../islands/PdfViewer.tsx";
+import CiteButton from "../islands/CiteButton.tsx";
 
 interface PaperCardProps {
   title: string;
@@ -11,6 +12,7 @@ interface PaperCardProps {
   backgroundColor: string;
   year: number;
   journal: string;
+  citation?: string;
 }
 
 export default function PaperCard({
@@ -20,7 +22,8 @@ export default function PaperCard({
   link,
   linkLabel,
   year,
-  journal
+  journal,
+  citation
 }: PaperCardProps) {
   return (
     <div class="group grid grid-cols-1 lg:grid-cols-12 gap-12 bg-white/80 dark:bg-zinc-900/80 border border-black/10 dark:border-white/10 rounded-[2.5rem] p-8 md:p-12 transition-colors duration-500 hover:border-indigo-500/20">
@@ -38,7 +41,7 @@ export default function PaperCard({
         
         <PaperCardContent abstract={abstract} />
         
-        <div class="mt-10 flex flex-wrap gap-4">
+        <div class="mt-10 flex flex-wrap items-center gap-4">
           <a
             href={link}
             target="_blank"
@@ -47,6 +50,8 @@ export default function PaperCard({
           >
             {linkLabel}
           </a>
+
+          {citation && <CiteButton citation={citation} />}
         </div>
       </div>
 

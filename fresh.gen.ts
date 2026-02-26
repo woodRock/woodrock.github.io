@@ -12,6 +12,7 @@ import * as $download from "./routes/download.ts";
 import * as $index from "./routes/index.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $AtmosphericOverlay from "./islands/AtmosphericOverlay.tsx";
+import * as $CiteButton from "./islands/CiteButton.tsx";
 import * as $DepthGauge from "./islands/DepthGauge.tsx";
 import * as $FishTank from "./islands/FishTank.tsx";
 import * as $Game404 from "./islands/Game404.tsx";
@@ -42,6 +43,7 @@ const manifest = {
   },
   islands: {
     "./islands/AtmosphericOverlay.tsx": $AtmosphericOverlay,
+    "./islands/CiteButton.tsx": $CiteButton,
     "./islands/DepthGauge.tsx": $DepthGauge,
     "./islands/FishTank.tsx": $FishTank,
     "./islands/Game404.tsx": $Game404,

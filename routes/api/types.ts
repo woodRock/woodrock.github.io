@@ -52,6 +52,7 @@ export interface Database {
           link_label: string;
           year: number;
           journal: string;
+          citation: string | null;
           background_color: string | null;
           created_at: string;
           updated_at: string;
@@ -65,6 +66,7 @@ export interface Database {
           link_label: string;
           year: number;
           journal: string;
+          citation?: string | null;
           background_color?: string | null;
           created_at?: string;
           updated_at?: string;
@@ -78,6 +80,7 @@ export interface Database {
           link_label?: string;
           year?: number;
           journal?: string;
+          citation?: string | null;
           background_color?: string | null;
           created_at?: string;
           updated_at?: string;
