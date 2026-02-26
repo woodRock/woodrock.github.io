@@ -161,3 +161,7 @@ body {
 .delay-6 { animation-delay: 1.7s; }
 .delay-7 { animation-delay: 2.5s; }
 .delay-8 { animation-delay: 3.8s; }
+
+.perspective-1000 {
+  perspective: 1000px;
+}

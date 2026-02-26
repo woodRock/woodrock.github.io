@@ -12,10 +12,13 @@ import * as $download from "./routes/download.ts";
 import * as $index from "./routes/index.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $AtmosphericOverlay from "./islands/AtmosphericOverlay.tsx";
+import * as $Bioluminescence from "./islands/Bioluminescence.tsx";
 import * as $CiteButton from "./islands/CiteButton.tsx";
 import * as $DepthGauge from "./islands/DepthGauge.tsx";
 import * as $FishTank from "./islands/FishTank.tsx";
 import * as $Game404 from "./islands/Game404.tsx";
+import * as $GlobalInteractionTracker from "./islands/GlobalInteractionTracker.tsx";
+import * as $JuicedCard from "./islands/JuicedCard.tsx";
 import * as $MarineAtmosphere from "./islands/MarineAtmosphere.tsx";
 import * as $MarinePulse from "./islands/MarinePulse.tsx";
 import * as $NavigationWithSearch from "./islands/NavigationWithSearch.tsx";
@@ -26,6 +29,7 @@ import * as $PdfViewer from "./islands/PdfViewer.tsx";
 import * as $ResearchNetwork from "./islands/ResearchNetwork.tsx";
 import * as $ScrollController from "./islands/ScrollController.tsx";
 import * as $SkillsCompass from "./islands/SkillsCompass.tsx";
+import * as $SonarPing from "./islands/SonarPing.tsx";
 import * as $SpectraTrace from "./islands/SpectraTrace.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -43,10 +47,13 @@ const manifest = {
   },
   islands: {
     "./islands/AtmosphericOverlay.tsx": $AtmosphericOverlay,
+    "./islands/Bioluminescence.tsx": $Bioluminescence,
     "./islands/CiteButton.tsx": $CiteButton,
     "./islands/DepthGauge.tsx": $DepthGauge,
     "./islands/FishTank.tsx": $FishTank,
     "./islands/Game404.tsx": $Game404,
+    "./islands/GlobalInteractionTracker.tsx": $GlobalInteractionTracker,
+    "./islands/JuicedCard.tsx": $JuicedCard,
     "./islands/MarineAtmosphere.tsx": $MarineAtmosphere,
     "./islands/MarinePulse.tsx": $MarinePulse,
     "./islands/NavigationWithSearch.tsx": $NavigationWithSearch,
@@ -57,6 +64,7 @@ const manifest = {
     "./islands/ResearchNetwork.tsx": $ResearchNetwork,
     "./islands/ScrollController.tsx": $ScrollController,
     "./islands/SkillsCompass.tsx": $SkillsCompass,
+    "./islands/SonarPing.tsx": $SonarPing,
     "./islands/SpectraTrace.tsx": $SpectraTrace,
   },
   baseUrl: import.meta.url,

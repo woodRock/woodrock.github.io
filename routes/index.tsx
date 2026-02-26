@@ -16,6 +16,10 @@ import ScrollController from "../islands/ScrollController.tsx";
 import MarineAtmosphere from "../islands/MarineAtmosphere.tsx";
 import OceanicHUD from "../islands/OceanicHUD.tsx";
 import AtmosphericOverlay from "../islands/AtmosphericOverlay.tsx";
+import GlobalInteractionTracker from "../islands/GlobalInteractionTracker.tsx";
+import Bioluminescence from "../islands/Bioluminescence.tsx";
+import SonarPing from "../islands/SonarPing.tsx";
+import JuicedCard from "../islands/JuicedCard.tsx";
 
 interface HomePageData {
   projects: Project[];
@@ -85,6 +89,9 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
   
   return (
     <div class="relative dive-gradient overflow-x-hidden w-full">
+      <GlobalInteractionTracker />
+      <Bioluminescence />
+      <SonarPing />
       <MarineAtmosphere />
       <AtmosphericOverlay />
       <OceanicHUD />
@@ -252,18 +259,19 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
           
           <div class="space-y-20">
             {publications.map((paper) => (
-              <PaperCard
-                key={paper.id}
-                title={paper.title}
-                abstract={paper.abstract}
-                filename={paper.filename}
-                link={paper.link}
-                linkLabel={paper.link_label}
-                backgroundColor={paper.background_color || "#6366f1"}
-                year={paper.year}
-                journal={paper.journal}
-                citation={paper.citation}
-              />
+              <JuicedCard key={paper.id}>
+                <PaperCard
+                  title={paper.title}
+                  abstract={paper.abstract}
+                  filename={paper.filename}
+                  link={paper.link}
+                  linkLabel={paper.link_label}
+                  backgroundColor={paper.background_color || "#6366f1"}
+                  year={paper.year}
+                  journal={paper.journal}
+                  citation={paper.citation}
+                />
+              </JuicedCard>
             ))}
           </div>
         </div>
@@ -279,14 +287,15 @@ export default function Home({ data, url }: PageProps<HomePageData>) {
           <div class="flex flex-col md:flex-row flex-wrap justify-center gap-8">
             {projects.map((project, index) => (
               <div class="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] flex">
-                <ProjectCard
-                  key={project.id}
-                  title={project.title}
-                  language={project.language}
-                  githubLink={project.github_link}
-                  description={project.description}
-                  backgroundColor={project.background_color}
-                />
+                <JuicedCard key={project.id} className="w-full">
+                  <ProjectCard
+                    title={project.title}
+                    language={project.language}
+                    githubLink={project.github_link}
+                    description={project.description}
+                    backgroundColor={project.background_color}
+                  />
+                </JuicedCard>
               </div>
             ))}
           </div>

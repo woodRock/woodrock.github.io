@@ -1,5 +1,6 @@
 // islands/MarineAtmosphere.tsx
 import { useEffect, useState, useRef } from "preact/hooks";
+import { mousePos } from "../utils/signals.ts";
 
 interface Bubble {
   id: number;
@@ -62,11 +63,32 @@ export default function MarineAtmosphere() {
     // Animate Snow using requestAnimationFrame for better performance
     let frame: number;
     const animate = () => {
-      setSnow(prev => prev.map(p => ({
-        ...p,
-        x: (p.x + p.vx + 100) % 100,
-        y: (p.y + p.vy + 100) % 100
-      })));
+      const mx = mousePos.value.x;
+      const my = mousePos.value.y;
+
+      setSnow(prev => prev.map(p => {
+        // Calculate displacement from mouse
+        const px = (p.x / 100) * window.innerWidth;
+        const py = (p.y / 100) * window.innerHeight;
+        const dx = px - mx;
+        const dy = py - my;
+        const dist = Math.hypot(dx, dy);
+        
+        let shiftX = 0;
+        let shiftY = 0;
+        
+        if (dist < 200) {
+          const force = (200 - dist) / 200;
+          shiftX = (dx / dist) * force * 1.5;
+          shiftY = (dy / dist) * force * 1.5;
+        }
+
+        return {
+          ...p,
+          x: (p.x + p.vx + (shiftX / window.innerWidth * 100) + 100) % 100,
+          y: (p.y + p.vy + (shiftY / window.innerHeight * 100) + 100) % 100
+        };
+      }));
       frame = requestAnimationFrame(animate);
     };
     frame = requestAnimationFrame(animate);

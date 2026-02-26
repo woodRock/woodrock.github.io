@@ -1,12 +1,12 @@
 // islands/AtmosphericOverlay.tsx
 import { useEffect, useState, useRef } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import { mousePos, depth } from "../utils/signals.ts";
 
 export default function AtmosphericOverlay() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [depthProgress, setDepthProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const overlayRef = useRef<HTMLDivElement>(null);
+  const [glitchActive, setGlitchActive] = useState(false);
 
   useEffect(() => {
     if (!IS_BROWSER) return;
@@ -16,12 +16,6 @@ export default function AtmosphericOverlay() {
     };
     checkMobile();
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (window.innerWidth >= 768) {
-        setMousePos({ x: e.clientX, y: e.clientY });
-      }
-    };
-
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (scrollHeight > 0) {
@@ -29,17 +23,24 @@ export default function AtmosphericOverlay() {
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", checkMobile);
     handleScroll();
 
+    // Hadal Zone pressure glitching interval
+    const glitchInterval = setInterval(() => {
+      if (depthProgress > 0.9 && Math.random() > 0.95) {
+        setGlitchActive(true);
+        setTimeout(() => setGlitchActive(false), 200);
+      }
+    }, 1000);
+
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", checkMobile);
+      clearInterval(glitchInterval);
     };
-  }, []);
+  }, [depthProgress]);
 
   // Spotlight becomes more intense and focused as we go deeper
   const spotlightOpacity = 0.1 + (depthProgress * 0.4);
@@ -49,13 +50,18 @@ export default function AtmosphericOverlay() {
   const staticOpacity = Math.max(0, (depthProgress - 0.85) * 4);
 
   return (
-    <div class="fixed inset-0 pointer-events-none z-[90] overflow-hidden" style={{ transform: 'translateZ(0)' }}>
+    <div 
+      class={`fixed inset-0 pointer-events-none z-[90] overflow-hidden ${
+        glitchActive ? "animate-pressure-glitch bg-cyan-500/5 mix-blend-color-dodge" : ""
+      }`} 
+      style={{ transform: 'translateZ(0)' }}
+    >
       {/* Submersible Spotlight - Only on non-mobile */}
       {!isMobile && (
         <div 
           class="absolute inset-0 transition-opacity duration-1000"
           style={{
-            background: `radial-gradient(circle ${spotlightSize}px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, ${spotlightOpacity}), transparent 80%)`,
+            background: `radial-gradient(circle ${spotlightSize}px at ${mousePos.value.x}px ${mousePos.value.y}px, rgba(99, 102, 241, ${spotlightOpacity}), transparent 80%)`,
           }}
         />
       )}
@@ -72,6 +78,15 @@ export default function AtmosphericOverlay() {
       )}
 
       <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes pressure-glitch {
+          0%, 100% { filter: none; opacity: 1; }
+          25% { filter: hue-rotate(90deg) contrast(1.2); opacity: 0.8; transform: translate(5px, -5px); }
+          50% { filter: invert(1) contrast(1.5); opacity: 0.6; transform: translate(-10px, 10px); }
+          75% { filter: hue-rotate(-90deg) sepia(1); opacity: 0.8; transform: translate(5px, 5px); }
+        }
+        .animate-pressure-glitch {
+          animation: pressure-glitch 0.2s steps(2) infinite;
+        }
         @keyframes grain {
           0%, 100% { transform: translate(0, 0); }
           10% { transform: translate(-5%, -10%); }
