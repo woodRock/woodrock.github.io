@@ -1,8 +1,8 @@
 // _app.tsx
 import { type PageProps } from "$fresh/server.ts";
 import NavigationWithSearch from "../islands/NavigationWithSearch.tsx";
+import GlobalPdfReader from "../islands/GlobalPdfReader.tsx";
 import Footer from "../components/Footer.tsx";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 
 export default function App({ Component, url }: PageProps) {
   // Extract the current path for active navigation highlighting
@@ -16,9 +16,18 @@ export default function App({ Component, url }: PageProps) {
         <title>Jesse Wood | Portfolio</title>
         <link rel="stylesheet" href="/styles.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-        <script dangerouslySetInnerHTML={{ __html: `
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
           (function() {
             function getTheme() {
               const saved = localStorage.getItem('theme');
@@ -32,17 +41,22 @@ export default function App({ Component, url }: PageProps) {
               document.documentElement.classList.remove('dark');
             }
           })()
-        ` }} />
+        `,
+          }}
+        />
       </head>
       <body class="min-h-screen flex flex-col font-[Inter,sans-serif] overflow-x-hidden">
         {/* Navigation */}
         <NavigationWithSearch path={currentPath} />
-        
+
         {/* Main content */}
         <main class="flex-grow">
           <Component />
         </main>
-        
+
+        {/* Global Components */}
+        <GlobalPdfReader />
+
         {/* Footer */}
         <Footer />
       </body>

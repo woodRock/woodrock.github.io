@@ -18,6 +18,7 @@ import * as $DepthGauge from "./islands/DepthGauge.tsx";
 import * as $FishTank from "./islands/FishTank.tsx";
 import * as $Game404 from "./islands/Game404.tsx";
 import * as $GlobalInteractionTracker from "./islands/GlobalInteractionTracker.tsx";
+import * as $GlobalPdfReader from "./islands/GlobalPdfReader.tsx";
 import * as $JuicedCard from "./islands/JuicedCard.tsx";
 import * as $MarineAtmosphere from "./islands/MarineAtmosphere.tsx";
 import * as $MarinePulse from "./islands/MarinePulse.tsx";
@@ -53,6 +54,7 @@ const manifest = {
     "./islands/FishTank.tsx": $FishTank,
     "./islands/Game404.tsx": $Game404,
     "./islands/GlobalInteractionTracker.tsx": $GlobalInteractionTracker,
+    "./islands/GlobalPdfReader.tsx": $GlobalPdfReader,
     "./islands/JuicedCard.tsx": $JuicedCard,
     "./islands/MarineAtmosphere.tsx": $MarineAtmosphere,
     "./islands/MarinePulse.tsx": $MarinePulse,
