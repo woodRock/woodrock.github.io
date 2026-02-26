@@ -59,18 +59,21 @@ export default function MarineAtmosphere() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     
-    // Animate Snow
-    const interval = setInterval(() => {
+    // Animate Snow using requestAnimationFrame for better performance
+    let frame: number;
+    const animate = () => {
       setSnow(prev => prev.map(p => ({
         ...p,
         x: (p.x + p.vx + 100) % 100,
         y: (p.y + p.vy + 100) % 100
       })));
-    }, 50);
+      frame = requestAnimationFrame(animate);
+    };
+    frame = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      clearInterval(interval);
+      cancelAnimationFrame(frame);
     };
   }, []);
 

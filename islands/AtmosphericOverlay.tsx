@@ -1,14 +1,25 @@
 // islands/AtmosphericOverlay.tsx
 import { useEffect, useState, useRef } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 export default function AtmosphericOverlay() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [depthProgress, setDepthProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!IS_BROWSER) return;
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || ('ontouchstart' in window));
+    };
+    checkMobile();
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (window.innerWidth >= 768) {
+        setMousePos({ x: e.clientX, y: e.clientY });
+      }
     };
 
     const handleScroll = () => {
@@ -20,11 +31,13 @@ export default function AtmosphericOverlay() {
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", checkMobile);
     handleScroll();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
@@ -36,17 +49,19 @@ export default function AtmosphericOverlay() {
   const staticOpacity = Math.max(0, (depthProgress - 0.85) * 4);
 
   return (
-    <div class="fixed inset-0 pointer-events-none z-[90] overflow-hidden">
-      {/* Submersible Spotlight */}
-      <div 
-        class="absolute inset-0 transition-opacity duration-1000"
-        style={{
-          background: `radial-gradient(circle ${spotlightSize}px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, ${spotlightOpacity}), transparent 80%)`,
-        }}
-      />
+    <div class="fixed inset-0 pointer-events-none z-[90] overflow-hidden" style={{ transform: 'translateZ(0)' }}>
+      {/* Submersible Spotlight - Only on non-mobile */}
+      {!isMobile && (
+        <div 
+          class="absolute inset-0 transition-opacity duration-1000"
+          style={{
+            background: `radial-gradient(circle ${spotlightSize}px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, ${spotlightOpacity}), transparent 80%)`,
+          }}
+        />
+      )}
 
-      {/* Hadal Zone Static / Film Grain */}
-      {staticOpacity > 0 && (
+      {/* Hadal Zone Static / Film Grain - Only on non-mobile */}
+      {!isMobile && staticOpacity > 0 && (
         <div 
           class="absolute inset-0 mix-blend-overlay opacity-20 animate-grain"
           style={{

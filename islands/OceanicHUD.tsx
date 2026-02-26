@@ -33,8 +33,10 @@ export default function OceanicHUD() {
   }, [activeZone]);
 
   return (
-    <div class="fixed bottom-0 left-0 right-0 z-[60] pointer-events-none">
-      <div class="bg-zinc-950/40 backdrop-blur-md border-t border-white/5 px-6 py-2 flex flex-col md:flex-row justify-between items-center gap-2">
+    <div class="fixed bottom-0 left-0 right-0 z-[100] pointer-events-none">
+      <div 
+        class="bg-zinc-950 border-t border-white/10 px-6 py-3 flex flex-col md:flex-row justify-between items-center gap-2 pointer-events-auto shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
+      >
         <div class="flex items-center gap-3">
           <div class="flex items-center gap-2">
             <div class="h-1.5 w-1.5 rounded-full bg-indigo-500 animate-pulse"></div>

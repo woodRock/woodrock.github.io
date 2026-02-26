@@ -45,13 +45,13 @@ export default function ScrollController() {
 
   return (
     <div 
-      class={`fixed bottom-16 left-8 z-[70] transition-all duration-500 ${
-        showAscent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+      class={`fixed bottom-28 left-8 z-[70] transition-opacity duration-500 ${
+        showAscent ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
     >
       <button
         onClick={scrollToTop}
-        class="p-4 rounded-full bg-white/10 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/20 dark:border-white/10 text-indigo-500 shadow-2xl hover:scale-110 active:scale-95 transition-all group animate-fade-in"
+        class="p-4 rounded-full bg-zinc-900 border border-white/20 text-indigo-500 shadow-2xl hover:scale-110 active:scale-95 transition-all group animate-fade-in"
         aria-label="Emergency Ascent"
       >
         <div class="flex flex-col items-center gap-1">

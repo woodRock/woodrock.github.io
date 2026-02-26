@@ -34,10 +34,10 @@ export default function DepthGauge() {
   return (
     <div class="depth-gauge-container">
       {/* 1. The Fixed Indicator (Stays on screen) */}
-      <div class="fixed right-4 top-1/2 -translate-y-1/2 z-[70] pointer-events-none flex flex-col items-center gap-2">
-        <div class="bg-zinc-900/90 dark:bg-white/95 backdrop-blur-xl border border-white/20 dark:border-white/10 p-3 rounded-2xl shadow-2xl transition-all scale-90 md:scale-100">
+      <div class="fixed right-4 top-48 z-[70] pointer-events-none flex flex-col items-center gap-2">
+        <div class="bg-zinc-950 border border-white/20 p-3 rounded-2xl shadow-2xl transition-all scale-90 md:scale-100">
           <div class="text-[9px] font-black text-indigo-500 uppercase tracking-widest mb-0.5 text-center">Current Depth</div>
-          <div class="text-xl font-black text-white dark:text-zinc-950 tabular-nums tracking-tighter text-center">
+          <div class="text-xl font-black text-white tabular-nums tracking-tighter text-center">
             {depth}m
           </div>
         </div>
