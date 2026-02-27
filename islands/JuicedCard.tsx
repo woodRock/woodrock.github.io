@@ -41,7 +41,10 @@ export default function JuicedCard(
   }, [fullscreenPdf.value]);
 
   useEffect(() => {
-    if (!lastSonarPing.value || !cardRef.current) return;
+    if (
+      !lastSonarPing.value || !cardRef.current ||
+      document.visibilityState !== "visible"
+    ) return;
 
     // Simple check if card is somewhat near the ping center or just trigger it for fun
     const rect = cardRef.current.getBoundingClientRect();
