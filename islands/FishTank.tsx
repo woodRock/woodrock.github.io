@@ -15,9 +15,10 @@ interface FishInstance {
 const FISH_DATA = [
   { src: "/bluecod.png", naturalFacing: "right" as const },
   { src: "/gurnard.avif", naturalFacing: "left" as const },
+  { src: "/hoki.avif", naturalFacing: "left" as const },
   { src: "/mackerel.avif", naturalFacing: "left" as const },
   { src: "/snapper.png", naturalFacing: "right" as const },
-  { src: "/tarakihi.png", naturalFacing: "right" as const }
+  { src: "/tarakihi.png", naturalFacing: "right" as const },
 ];
 
 export default function FishTank() {
@@ -36,7 +37,7 @@ export default function FishTank() {
         speed: 25 + Math.random() * 50,
         delay: Math.random() * -100,
         size: 0.25 + Math.random() * 0.5,
-        direction: Math.random() > 0.5 ? "left" : "right"
+        direction: Math.random() > 0.5 ? "left" : "right",
       });
     }
     setFish(newFish);
@@ -48,7 +49,7 @@ export default function FishTank() {
         // Calculate flip based on natural facing vs swim direction
         // If they match, multiplier is 1. If they differ, multiplier is -1.
         const flipMultiplier = f.direction === f.naturalFacing ? 1 : -1;
-        
+
         return (
           <div
             key={f.id}
@@ -59,12 +60,12 @@ export default function FishTank() {
               "--fish-flip": flipMultiplier,
               animation: `swim-${f.direction} ${f.speed}s linear infinite`,
               animationDelay: `${f.delay}s`,
-              opacity: 0.35
+              opacity: 0.35,
             }}
           >
-            <img 
-              src={f.src} 
-              alt="swimming fish" 
+            <img
+              src={f.src}
+              alt="swimming fish"
               class="w-24 md:w-48 h-auto object-contain"
               loading="lazy"
             />
@@ -72,7 +73,9 @@ export default function FishTank() {
         );
       })}
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @keyframes swim-right {
           from { transform: translateX(-300px) scale(var(--fish-scale)) scaleX(var(--fish-flip)); left: 0; }
           to { transform: translateX(calc(100vw + 300px)) scale(var(--fish-scale)) scaleX(var(--fish-flip)); left: 0; }
@@ -81,7 +84,9 @@ export default function FishTank() {
           from { transform: translateX(300px) scale(var(--fish-scale)) scaleX(var(--fish-flip)); right: 0; }
           to { transform: translateX(calc(-100vw - 300px)) scale(var(--fish-scale)) scaleX(var(--fish-flip)); right: 0; }
         }
-      `}} />
+      `,
+        }}
+      />
     </div>
   );
 }
