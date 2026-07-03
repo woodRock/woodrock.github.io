@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
+      contents: read
 
     steps:
       - name: Clone repository
@@ -26,11 +25,6 @@ jobs:
       - name: Build step
         run: "deno task build"
 
-      - name: Upload to Deno Deploy
-        uses: denoland/deployctl@v1
-        with:
-          project: "woodrock"
-          entrypoint: "main.ts"
-          root: "."
-          
-          
+      - name: Deploy to Deno Deploy
+        run: deno deploy --token=${{ secrets.DENO_DEPLOY_TOKEN }} --project=woodrock --entrypoint=main.ts
+
