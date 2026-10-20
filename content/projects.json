@@ -70,6 +70,16 @@
     "description": "Queue GPU jobs from your laptop onto SSH-reachable servers. A daemon finds free GPUs, runs jobs detached and streams the logs back. Set up out of the box for the VUW ECS cluster."
   },
   {
+    "id": "taura",
+    "title": "Taura",
+    "href": "https://github.com/woodRock/taura",
+    "tags": [
+      "Python",
+      "CLI"
+    ],
+    "description": "A plain-text provenance ledger that links every number, table and figure in a paper back through a checked chain: artifact, result, run, then commit, config and data version. A convention, a CLI and agent rules, not an experiment tracker."
+  },
+  {
     "id": "qsh",
     "title": "qsh",
     "href": "https://github.com/woodRock/qsh",
@@ -109,22 +119,6 @@
       {
         "label": "Source",
         "href": "https://github.com/woodRock/zero-slop"
-      }
-    ]
-  },
-  {
-    "id": "ionic-scholar",
-    "title": "Ionic Scholar",
-    "href": "https://ionic-scholar.netlify.app/",
-    "tags": [
-      "TypeScript",
-      "Ionic"
-    ],
-    "description": "A reference manager for academic writing: track your progress through papers, keep keywords and quotes, and generate citations.",
-    "links": [
-      {
-        "label": "Source",
-        "href": "https://github.com/woodRock/ionic-scholar"
       }
     ]
   },
