@@ -11,6 +11,10 @@
     "description": "Code for my PhD thesis: transformers, mixture-of-experts and contrastive learning for species, body part, contamination and batch classification from REIMS spectra.",
     "links": [
       {
+        "label": "Source",
+        "href": "https://github.com/woodRock/fishy-business"
+      },
+      {
         "label": "Docs",
         "href": "https://fishy-business.readthedocs.io/en/latest/"
       }
@@ -57,7 +61,13 @@
       "CLI",
       "TUI"
     ],
-    "description": "A local, plain-text literature library. Papers arrive from arXiv, OpenAlex, Crossref and journal feeds, get triaged like email, live as Markdown in git and flow into each paper's .bib. Agents use the same CLI I do."
+    "description": "A local, plain-text literature library. Papers arrive from arXiv, OpenAlex, Crossref and journal feeds, get triaged like email, live as Markdown in git and flow into each paper's .bib. Agents use the same CLI I do.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/ruru"
+      }
+    ]
   },
   {
     "id": "gpu-spooler",
@@ -67,7 +77,13 @@
       "Python",
       "SSH"
     ],
-    "description": "Queue GPU jobs from your laptop onto SSH-reachable servers. A daemon finds free GPUs, runs jobs detached and streams the logs back. Set up out of the box for the VUW ECS cluster."
+    "description": "Queue GPU jobs from your laptop onto SSH-reachable servers. A daemon finds free GPUs, runs jobs detached and streams the logs back. Set up out of the box for the VUW ECS cluster.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/gpu-spooler"
+      }
+    ]
   },
   {
     "id": "taura",
@@ -77,7 +93,13 @@
       "Python",
       "CLI"
     ],
-    "description": "A plain-text provenance ledger that links every number, table and figure in a paper back through a checked chain: artifact, result, run, then commit, config and data version. A convention, a CLI and agent rules, not an experiment tracker."
+    "description": "A plain-text provenance ledger that links every number, table and figure in a paper back through a checked chain: artifact, result, run, then commit, config and data version. A convention, a CLI and agent rules, not an experiment tracker.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/taura"
+      }
+    ]
   },
   {
     "id": "qsh",
@@ -88,7 +110,13 @@
       "Python",
       "LLM"
     ],
-    "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe, powered by a 0.8B Qwen model and Rust."
+    "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe, powered by a 0.8B Qwen model and Rust.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/qsh"
+      }
+    ]
   },
   {
     "id": "cloudy-with-a-chance-of-git-pulls",
@@ -100,6 +128,10 @@
     ],
     "description": "A GitHub Action that writes the local weather forecast into a README every 30 minutes, between hidden markers so nothing else is touched. Written up on HackerNoon.",
     "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/expert-chainsaw"
+      },
       {
         "label": "Article",
         "href": "https://hackernoon.com/cloudy-with-a-chance-of-git-pulls-automated-weather-forecasts-with-github-actions-vt4c331a"
@@ -121,18 +153,6 @@
         "href": "https://github.com/woodRock/zero-slop"
       }
     ]
-  },
-  {
-    "id": "evograd",
-    "title": "EvoGrad",
-    "href": "https://github.com/woodRock/evograd",
-    "tags": [
-      "Python",
-      "PyTorch",
-      "CUDA",
-      "Metal"
-    ],
-    "description": "A functional deep learning DSL with GPU-accelerated evolutionary computation: immutable tensors, compile-time shape checks and a hybrid optimiser that mixes population search with gradient descent."
   },
   {
     "id": "teaching-sand-to-dream",

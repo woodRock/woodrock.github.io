@@ -129,7 +129,9 @@ function renderPublication(pub: Publication): string {
 
 function renderProject(project: Project): string {
   const id = project.id ? ` id="${esc(project.id)}"` : "";
-  const extra = (project.links ?? []).filter((l) => l.href !== project.href);
+  // Always spell the links out: "Website" when the title goes to a live site, then Source, Docs, Article...
+  const isRepo = /^https?:\/\/(www\.)?github\.com\//.test(project.href);
+  const extra = [...(isRepo ? [] : [{ label: "Website", href: project.href }]), ...(project.links ?? [])];
   const actions = extra.length
     ? `\n          <ul class="actions" aria-label="Links for ${esc(project.title)}">\n            ${extra
         .map((l) => `<li>${anchor(l)}</li>`)
