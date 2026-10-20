@@ -166,24 +166,6 @@
   publisher={Springer}
 }</pre>
         </li>
-        <li class="pub" id="wood2025spectrosim">
-          <p class="meta"><time datetime="2025">2025</time> · Preprint · Manuscript</p>
-          <h3><a href="/wood2025spectrosim.pdf">SpectroSim: Batch Detection in Marine Biomass</a></h3>
-          <details>
-            <summary>Abstract</summary>
-            <p>The batch detection of marine biomass constitutes a significant real-world application within the fish processing industry, contributing to food safety, fraud prevention, and stock management. Recent advancements have demonstrated that Rapid Evaporative Ionization Mass Spectrometry (REIMS) when coupled with Orthogonal Partial Least Squares Discriminant Analysis (OPLS-DA), yields exceptional outcomes in fraud detection, contamination identification, and biomass analysis. Although several studies have employed REIMS and OPLS-DA for species identification and contamination detection, these efforts have not yet addressed the challenge of batch detection, which involves determining the specific batch of processed samples from which a fish originates. Leveraging a high-dimensional REIMS dataset provided by Plant and Food Research, New Zealand, we propose a novel contrastive learning approach termed SpectroSim, building upon the SimCLR framework. The new method introduces a bespoke encoder head, replacing the traditional ResNet backbone with a Transformer architecture, alongside a custom projection head designed for mass spectrometry data. Experimental results indicate that SpectroSim surpasses the balanced classification accuracy of established deep learning frameworks and other prevalent baseline models. Notably, as an unsupervised methodology, SpectroSim achieves near-perfect accuracy (98.02%) in a self-supervised context, independent of class labels.</p>
-          </details>
-          <ul class="actions" aria-label="Links for SpectroSim: Batch Detection in Marine Biomass">
-            <li><a href="/wood2025spectrosim.pdf">PDF</a></li>
-            <li><button class="link-button" type="button" data-copy="bib-wood2025spectrosim">Copy BibTeX</button></li>
-          </ul>
-          <pre class="bibtex" id="bib-wood2025spectrosim" hidden>@unpublished{wood2025spectrosim,
-  title={SpectroSim: Batch Detection in Marine Biomass},
-  author={Wood, Jesse and Nguyen, Bach Hoai and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},
-  year={2025},
-  note={Manuscript}
-}</pre>
-        </li>
         <li class="pub" id="wood2022automated">
           <p class="meta"><time datetime="2022">2022</time> · Conference paper · Australasian Joint Conference on Artificial Intelligence</p>
           <h3><a href="https://openaccess.wgtn.ac.nz/articles/chapter/Automated_Fish_Classification_Using_Unprocessed_Fatty_Acid_Chromatographic_Data_A_Machine_Learning_Approach/22107473" rel="noopener">Automated Fish Classification Using Unprocessed Fatty Acid Chromatographic Data: A Machine Learning Approach</a></h3>
@@ -231,45 +213,65 @@
     <section id="projects" class="section" aria-labelledby="projects-heading">
       <h2 id="projects-heading">Projects</h2>
       <ul class="project-list">
-        <li class="project" id="bartender">
-          <h3><a href="https://wdrck.itch.io/bartender" rel="noopener">Bartender</a></h3>
-          <p class="tags">Godot · GD Script</p>
-          <p>Step behind the bar in this high-fidelity mixology simulator. Unlike standard click-and-serve games, this experience leverages a physics-based interaction system where every pour, shake, and clink of ice matters. As the shifts progress, the pressure mounts, and only the most precise bartenders will survive the rush.</p>
+        <li class="project" id="chroma-dcnn">
+          <h3><a href="https://github.com/woodRock/chroma-dcnn" rel="noopener">Chroma DCNN</a></h3>
+          <p class="tags">Python · PyTorch</p>
+          <p>Identifying Snapper, Gurnard, Tarakihi and Blue Cod from GC-MS lipid profiles with a 1D dilated CNN, pretrained without labels on MoNA and MassBank reference spectra.</p>
         </li>
         <li class="project" id="cloudy-with-a-chance-of-git-pulls">
           <h3><a href="https://github.com/woodRock/expert-chainsaw" rel="noopener">Cloudy with a Chance of Git Pulls</a></h3>
           <p class="tags">JavaScript · GitHub Actions</p>
-          <p>This GitHub Action used the Open Weather API to display the weather forecast for a given area. It is updated once every 30 minutes. The weather forecast is displayed within predefined tags (hidden inside HTML comments), such that it does not overwrite any other existing content in a README.</p>
+          <p>A GitHub Action that writes the local weather forecast into a README every 30 minutes, between hidden markers so nothing else is touched. Written up on HackerNoon.</p>
+        </li>
+        <li class="project" id="evograd">
+          <h3><a href="https://github.com/woodRock/evograd" rel="noopener">EvoGrad</a></h3>
+          <p class="tags">Python · PyTorch · CUDA · Metal</p>
+          <p>A functional deep learning DSL with GPU-accelerated evolutionary computation: immutable tensors, compile-time shape checks and a hybrid optimiser that mixes population search with gradient descent.</p>
         </li>
         <li class="project" id="fishy-business">
           <h3><a href="https://github.com/woodRock/fishy-business" rel="noopener">Fishy Business</a></h3>
-          <p class="tags">Python · Pytorch · Deap · Numpy</p>
-          <p>Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis --- A Doctoral Thesis by Jesse Wood</p>
+          <p class="tags">Python · PyTorch · DEAP</p>
+          <p>Code for my PhD thesis: transformers, mixture-of-experts and contrastive learning for species, body part, contamination and batch classification from REIMS spectra.</p>
+        </li>
+        <li class="project" id="gpu-spooler">
+          <h3><a href="https://github.com/woodRock/gpu-spooler" rel="noopener">GPU Spooler</a></h3>
+          <p class="tags">Python · SSH</p>
+          <p>Queue GPU jobs from your laptop onto SSH-reachable servers. A daemon finds free GPUs, runs jobs detached and streams the logs back. Set up out of the box for the VUW ECS cluster.</p>
         </li>
         <li class="project" id="ionic-scholar">
           <h3><a href="https://github.com/woodRock/ionic-scholar" rel="noopener">Ionic Scholar</a></h3>
-          <p class="tags">Ionic · Semantic Scholar · Gemini</p>
-          <p>This individually developed app keeps track of academic references. The app remembers the users progress, keywords, quotes. Also it can generate citations. We design the app to reduce the stress of academic writing. Frequently it can be problematic to maintain track of several numerous scholarly articles when trying to prepare a paper.</p>
+          <p class="tags">TypeScript · Ionic</p>
+          <p>A reference manager for academic writing: track your progress through papers, keep keywords and quotes, and generate citations.</p>
         </li>
-        <li class="project" id="qsh-qwen-shell">
-          <h3><a href="https://github.com/woodrock/qsh" rel="noopener">qsh | Qwen Shell</a></h3>
-          <p class="tags">Rust · Python · SQL</p>
-          <p>A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe. Powered by Qwen 3.5-0.8B and Rust. 🦀</p>
+        <li class="project" id="joint-align">
+          <h3><a href="https://github.com/woodRock/joint-align" rel="noopener">Joint Align</a></h3>
+          <p class="tags">Python · Jupyter</p>
+          <p>Retention time alignment of GC-MS chromatograms across many batches: match peaks by compound, fit one monotone time warp per batch, and bring everything into a shared time frame.</p>
         </li>
-        <li class="project" id="skyrim-wellbeing-manager">
-          <h3><a href="https://github.com/woodrock/moody-bitch" rel="noopener">Skyrim Wellbeing Manager</a></h3>
-          <p class="tags">React · Firebase · Leaflet · Threejs</p>
-          <p>Moody bitch is a high-fidelity mental health odyssey that transforms real-world self-care into an epic, Skyrim-inspired RPG experience. By completing daily &quot;quests,&quot; users earn experience points to level up legendary skill constellations, unlock psychological perks, and loot powerful artifacts that grant permanent growth bonuses.</p>
+        <li class="project" id="qsh">
+          <h3><a href="https://github.com/woodRock/qsh" rel="noopener">qsh</a></h3>
+          <p class="tags">Rust · Python · LLM</p>
+          <p>A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe, powered by a 0.8B Qwen model and Rust.</p>
         </li>
-        <li class="project" id="thesis">
-          <h3><a href="https://woodrock.github.io/wiki-of-thesis" rel="noopener">Thesis</a></h3>
-          <p class="tags">Python · JavaScript · LaTeX</p>
-          <p>A wiki for my thesis, inspired by a Karpathy tweet https://x.com/karpathy/status/2039805659525644595</p>
+        <li class="project" id="red-herring">
+          <h3><a href="https://github.com/woodRock/red-herring" rel="noopener">Red Herring</a></h3>
+          <p class="tags">Python · PyTorch</p>
+          <p>Open-set detection and calibrated uncertainty for GC-MS fish species authentication. Real fraud involves species a model never saw, so this measures how badly closed-set classifiers fail and tests open-set recognition and conformal prediction as fixes.</p>
         </li>
-        <li class="project" id="wordle-solving-transformer">
-          <h3><a href="https://github.com/woodRock/wordle" rel="noopener">Wordle Solving Transformer</a></h3>
-          <p class="tags">Python · Onnyx · Pytorch</p>
-          <p>Wordle solver with a transformer deep learning neural network.</p>
+        <li class="project" id="ruru">
+          <h3><a href="https://github.com/woodRock/ruru" rel="noopener">Ruru</a></h3>
+          <p class="tags">Python · CLI · TUI</p>
+          <p>A local, plain-text literature library. Papers arrive from arXiv, OpenAlex, Crossref and journal feeds, get triaged like email, live as Markdown in git and flow into each paper's .bib. Agents use the same CLI I do.</p>
+        </li>
+        <li class="project" id="teaching-sand-to-dream">
+          <h3><a href="https://woodrock.github.io/teaching-sand-to-dream/" rel="noopener">Teaching Sand to Dream</a></h3>
+          <p class="tags">Book · HTML</p>
+          <p>Website for my book on how humans taught sand to dream, from Alan Turing to ChatGPT, told without equations for curious non-experts.</p>
+        </li>
+        <li class="project" id="zero-slop">
+          <h3><a href="https://github.com/woodRock/zero-slop" rel="noopener">ZeroSlop</a></h3>
+          <p class="tags">JavaScript · Chrome extension</p>
+          <p>A Chrome extension that flags AI-generated and engagement-farmed posts on X, with local heuristics for extraction hooks and a reporting workflow for bot networks.</p>
         </li>
       </ul>
     </section>

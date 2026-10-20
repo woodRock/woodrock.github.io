@@ -1,13 +1,13 @@
 [
   {
-    "id": "bartender",
-    "title": "Bartender",
-    "href": "https://wdrck.itch.io/bartender",
+    "id": "chroma-dcnn",
+    "title": "Chroma DCNN",
+    "href": "https://github.com/woodRock/chroma-dcnn",
     "tags": [
-      "Godot",
-      "GD Script"
+      "Python",
+      "PyTorch"
     ],
-    "description": "Step behind the bar in this high-fidelity mixology simulator. Unlike standard click-and-serve games, this experience leverages a physics-based interaction system where every pour, shake, and clink of ice matters. As the shifts progress, the pressure mounts, and only the most precise bartenders will survive the rush."
+    "description": "Identifying Snapper, Gurnard, Tarakihi and Blue Cod from GC-MS lipid profiles with a 1D dilated CNN, pretrained without labels on MoNA and MassBank reference spectra."
   },
   {
     "id": "cloudy-with-a-chance-of-git-pulls",
@@ -17,7 +17,19 @@
       "JavaScript",
       "GitHub Actions"
     ],
-    "description": "This GitHub Action used the Open Weather API to display the weather forecast for a given area. It is updated once every 30 minutes. The weather forecast is displayed within predefined tags (hidden inside HTML comments), such that it does not overwrite any other existing content in a README."
+    "description": "A GitHub Action that writes the local weather forecast into a README every 30 minutes, between hidden markers so nothing else is touched. Written up on HackerNoon."
+  },
+  {
+    "id": "evograd",
+    "title": "EvoGrad",
+    "href": "https://github.com/woodRock/evograd",
+    "tags": [
+      "Python",
+      "PyTorch",
+      "CUDA",
+      "Metal"
+    ],
+    "description": "A functional deep learning DSL with GPU-accelerated evolutionary computation: immutable tensors, compile-time shape checks and a hybrid optimiser that mixes population search with gradient descent."
   },
   {
     "id": "fishy-business",
@@ -25,66 +37,91 @@
     "href": "https://github.com/woodRock/fishy-business",
     "tags": [
       "Python",
-      "Pytorch",
-      "Deap",
-      "Numpy"
+      "PyTorch",
+      "DEAP"
     ],
-    "description": "Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis --- A Doctoral Thesis by Jesse Wood"
+    "description": "Code for my PhD thesis: transformers, mixture-of-experts and contrastive learning for species, body part, contamination and batch classification from REIMS spectra."
+  },
+  {
+    "id": "gpu-spooler",
+    "title": "GPU Spooler",
+    "href": "https://github.com/woodRock/gpu-spooler",
+    "tags": [
+      "Python",
+      "SSH"
+    ],
+    "description": "Queue GPU jobs from your laptop onto SSH-reachable servers. A daemon finds free GPUs, runs jobs detached and streams the logs back. Set up out of the box for the VUW ECS cluster."
   },
   {
     "id": "ionic-scholar",
     "title": "Ionic Scholar",
     "href": "https://github.com/woodRock/ionic-scholar",
     "tags": [
-      "Ionic",
-      "Semantic Scholar",
-      "Gemini"
+      "TypeScript",
+      "Ionic"
     ],
-    "description": "This individually developed app keeps track of academic references. The app remembers the users progress, keywords, quotes. Also it can generate citations. We design the app to reduce the stress of academic writing. Frequently it can be problematic to maintain track of several numerous scholarly articles when trying to prepare a paper."
+    "description": "A reference manager for academic writing: track your progress through papers, keep keywords and quotes, and generate citations."
   },
   {
-    "id": "qsh-qwen-shell",
-    "title": "qsh | Qwen Shell",
-    "href": "https://github.com/woodrock/qsh",
+    "id": "joint-align",
+    "title": "Joint Align",
+    "href": "https://github.com/woodRock/joint-align",
+    "tags": [
+      "Python",
+      "Jupyter"
+    ],
+    "description": "Retention time alignment of GC-MS chromatograms across many batches: match peaks by compound, fit one monotone time warp per batch, and bring everything into a shared time frame."
+  },
+  {
+    "id": "qsh",
+    "title": "qsh",
+    "href": "https://github.com/woodRock/qsh",
     "tags": [
       "Rust",
       "Python",
-      "SQL"
+      "LLM"
     ],
-    "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe. Powered by Qwen 3.5-0.8B and Rust. 🦀"
+    "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe, powered by a 0.8B Qwen model and Rust."
   },
   {
-    "id": "skyrim-wellbeing-manager",
-    "title": "Skyrim Wellbeing Manager",
-    "href": "https://github.com/woodrock/moody-bitch",
-    "tags": [
-      "React",
-      "Firebase",
-      "Leaflet",
-      "Threejs"
-    ],
-    "description": "Moody bitch is a high-fidelity mental health odyssey that transforms real-world self-care into an epic, Skyrim-inspired RPG experience. By completing daily \"quests,\" users earn experience points to level up legendary skill constellations, unlock psychological perks, and loot powerful artifacts that grant permanent growth bonuses."
-  },
-  {
-    "id": "thesis",
-    "title": "Thesis",
-    "href": "https://woodrock.github.io/wiki-of-thesis",
+    "id": "red-herring",
+    "title": "Red Herring",
+    "href": "https://github.com/woodRock/red-herring",
     "tags": [
       "Python",
+      "PyTorch"
+    ],
+    "description": "Open-set detection and calibrated uncertainty for GC-MS fish species authentication. Real fraud involves species a model never saw, so this measures how badly closed-set classifiers fail and tests open-set recognition and conformal prediction as fixes."
+  },
+  {
+    "id": "ruru",
+    "title": "Ruru",
+    "href": "https://github.com/woodRock/ruru",
+    "tags": [
+      "Python",
+      "CLI",
+      "TUI"
+    ],
+    "description": "A local, plain-text literature library. Papers arrive from arXiv, OpenAlex, Crossref and journal feeds, get triaged like email, live as Markdown in git and flow into each paper's .bib. Agents use the same CLI I do."
+  },
+  {
+    "id": "teaching-sand-to-dream",
+    "title": "Teaching Sand to Dream",
+    "href": "https://woodrock.github.io/teaching-sand-to-dream/",
+    "tags": [
+      "Book",
+      "HTML"
+    ],
+    "description": "Website for my book on how humans taught sand to dream, from Alan Turing to ChatGPT, told without equations for curious non-experts."
+  },
+  {
+    "id": "zero-slop",
+    "title": "ZeroSlop",
+    "href": "https://github.com/woodRock/zero-slop",
+    "tags": [
       "JavaScript",
-      "LaTeX"
+      "Chrome extension"
     ],
-    "description": "A wiki for my thesis, inspired by a Karpathy tweet https://x.com/karpathy/status/2039805659525644595"
-  },
-  {
-    "id": "wordle-solving-transformer",
-    "title": "Wordle Solving Transformer",
-    "href": "https://github.com/woodRock/wordle",
-    "tags": [
-      "Python",
-      "Onnyx",
-      "Pytorch"
-    ],
-    "description": "Wordle solver with a transformer deep learning neural network."
+    "description": "A Chrome extension that flags AI-generated and engagement-farmed posts on X, with local heuristics for extraction hooks and a reporting workflow for bot networks."
   }
 ]
