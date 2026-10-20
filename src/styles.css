@@ -299,6 +299,12 @@ pre {
   text-decoration: underline;
 }
 
+.pub .authors {
+  margin: -0.25rem 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 .pub details {
   margin: 0.5rem 0 0.75rem;
 }

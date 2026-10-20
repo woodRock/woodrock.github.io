@@ -71,6 +71,7 @@ export const publications: Collection = {
     { name: "id", type: "string", help: "Unique key, e.g. wood2025hook. Defaults to the BibTeX key or author+year+keyword." },
     { name: "year", type: "number", required: true, help: "Publication year." },
     { name: "title", type: "string", required: true, help: "Full title." },
+    { name: "authors", type: "string", help: "Comma-separated author names in order, e.g. Jesse Wood, Bach Nguyen" },
     { name: "kind", type: "string", required: true, help: "Journal article, Conference paper, PhD thesis, Preprint, ..." },
     { name: "venue", type: "string", required: true, help: "Journal, conference or institution." },
     { name: "abstract", type: "text", help: "Abstract. Blank lines separate paragraphs." },

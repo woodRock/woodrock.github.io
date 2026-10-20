@@ -51,6 +51,8 @@ they belong (current research first, then tools, then older or starred work).
 - `id` is generated when omitted: the BibTeX key for a publication
   (`wood2025hook` style), a slug of the title for a project. Pass `--id` to
   override.
+- `authors` is a comma-separated list in paper order, e.g.
+  `--authors "Jesse Wood, Bach Nguyen, Bing Xue"`. Always set it.
 - `kind` values in use: `PhD thesis`, `Journal article`, `Conference paper`,
   `PhD proposal`, `Preprint`.
 - `--pdf` with a path copies the file into `src/public/` and stores the file
@@ -71,10 +73,9 @@ JSON are stored as JSON; anything else is a string.
 | Path | What it is |
 |---|---|
 | `tagline` | One sentence under the name on the home page |
-| `role`, `affiliation`, `location` | Lines in the hero |
+| `role`, `affiliation` | Lines in the hero |
 | `about.N` | About paragraphs, in order (currently 0 to 3) |
 | `research.intro.N` | Research paragraphs, in order |
-| `research.code`, `research.docs` | `{label, href}` links under Research |
 | `links.N.label` / `.href` | Hero links (GitHub, LinkedIn, CV) |
 | `email`, `repo`, `description` | Contact and metadata |
 
@@ -85,7 +86,8 @@ bun run site config set research.intro.1 "..."
 ```
 
 To add an About paragraph, get the array, append in JSON and set the whole
-`about` path.
+`about` path. Paragraphs in `about` and `research.intro` may contain links
+written as `[label](https://url)`; nothing else is interpreted.
 
 ## Voice
 

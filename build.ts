@@ -27,15 +27,12 @@ interface Site {
   url: string;
   role: string;
   affiliation: string;
-  location: string;
   tagline: string;
   email: string;
   links: Link[];
   about: string[];
   research: {
     intro: string[];
-    code: Link;
-    docs: Link;
   };
   repo: string;
 }
@@ -44,6 +41,7 @@ interface Publication {
   id: string;
   year: number;
   title: string;
+  authors?: string;
   venue: string;
   kind: string;
   abstract: string;
@@ -71,6 +69,13 @@ function esc(value: string | number): string {
     .replace(/"/g, "&quot;");
 }
 
+/** Escape text, then turn [label](https://url) into links. Nothing else is interpreted. */
+function inline(text: string): string {
+  return esc(text).replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, (_, label: string, href: string) => {
+    return `<a href="${href}" rel="noopener">${label}</a>`;
+  });
+}
+
 /** Split text on blank lines and wrap each block in a paragraph. */
 function paragraphs(text: string): string {
   return text
@@ -95,7 +100,7 @@ function renderHeroLinks(site: Site): string {
 }
 
 function renderParagraphs(items: string[]): string {
-  return items.map((p) => `<p>${esc(p)}</p>`).join("\n      ");
+  return items.map((p) => `<p>${inline(p)}</p>`).join("\n      ");
 }
 
 function renderPublication(pub: Publication): string {
@@ -116,7 +121,7 @@ function renderPublication(pub: Publication): string {
 
   return `<li class="pub" id="${esc(pub.id)}">
           <p class="meta"><time datetime="${pub.year}">${pub.year}</time> · ${esc(pub.kind)} · ${esc(pub.venue)}</p>
-          <h3>${title}</h3>
+          <h3>${title}</h3>${pub.authors ? `\n          <p class="authors">${esc(pub.authors)}</p>` : ""}
           <details>
             <summary>Abstract</summary>
             ${paragraphs(pub.abstract).split("\n").join("\n            ")}
@@ -178,16 +183,11 @@ export async function build(): Promise<void> {
     ...common,
     role: esc(site.role),
     affiliation: esc(site.affiliation),
-    location: esc(site.location),
     tagline: esc(site.tagline),
     email: esc(site.email),
     hero_links: renderHeroLinks(site),
     about: renderParagraphs(site.about),
     research: renderParagraphs(site.research.intro),
-    research_code_href: esc(site.research.code.href),
-    research_code_label: esc(site.research.code.label),
-    research_docs_href: esc(site.research.docs.href),
-    research_docs_label: esc(site.research.docs.label),
     publications: publications.map(renderPublication).join("\n        "),
     projects: projects.map(renderProject).join("\n        "),
   };
