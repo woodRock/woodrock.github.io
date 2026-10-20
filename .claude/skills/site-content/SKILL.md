@@ -51,7 +51,9 @@ bun run site remove projects fish-finder
 - `--pdf` with a path copies the file into `src/public/` and stores the file
   name. With a bare file name it just records it.
 - `--links` takes `Label=https://url;Other=https://url`. `--tags` is
-  comma-separated. Text fields accept `\n` for a line break; blank lines
+  comma-separated. For projects, `href` is the primary link (the live site
+  when there is one, otherwise the repo) and `links` holds the rest, usually
+  `Source=<repo url>` or `Article=`, `Docs=`. Text fields accept `\n` for a line break; blank lines
   split abstract paragraphs.
 - `--unset <field>` removes a field on update. Complex items can be passed as
   `--data '{...}'` or piped as JSON on stdin.

@@ -95,9 +95,10 @@ export const projects: Collection = {
   fields: [
     { name: "id", type: "string", help: "Unique slug. Defaults to a slug of the title." },
     { name: "title", type: "string", required: true, help: "Project name." },
-    { name: "href", type: "string", required: true, help: "Link to the repository or live project." },
+    { name: "href", type: "string", required: true, help: "Primary link: the live website if there is one, otherwise the repository." },
     { name: "tags", type: "tags", help: "Comma-separated technologies, e.g. Rust,Python" },
     { name: "description", type: "text", help: "One or two sentences." },
+    { name: "links", type: "links", help: "Extra links as Source=https://github.com/...;Docs=https://..." },
   ],
   sort: (a, b) => String(a.title).localeCompare(String(b.title)),
   label: (item) => String(item.title),

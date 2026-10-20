@@ -650,3 +650,8 @@ button {
 .footer-inner p {
   margin: 0;
 }
+
+.project .actions {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}

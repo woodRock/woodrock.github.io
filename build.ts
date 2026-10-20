@@ -62,6 +62,7 @@ interface Project {
   tags: string[];
   href: string;
   description: string;
+  links?: Link[];
 }
 
 /** Escape text for use inside HTML content or attribute values. */
@@ -149,10 +150,16 @@ function renderPublication(pub: Publication): string {
 
 function renderProject(project: Project): string {
   const id = project.id ? ` id="${esc(project.id)}"` : "";
+  const extra = (project.links ?? []).filter((l) => l.href !== project.href);
+  const actions = extra.length
+    ? `\n          <ul class="actions" aria-label="Links for ${esc(project.title)}">\n            ${extra
+        .map((l) => `<li>${anchor(l)}</li>`)
+        .join("\n            ")}\n          </ul>`
+    : "";
   return `<li class="project"${id}>
           <h3>${anchor({ label: project.title, href: project.href })}</h3>
           <p class="tags">${project.tags.map(esc).join(" · ")}</p>
-          <p>${esc(project.description)}</p>
+          <p>${esc(project.description)}</p>${actions}
         </li>`;
 }
 

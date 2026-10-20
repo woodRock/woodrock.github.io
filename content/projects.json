@@ -2,12 +2,18 @@
   {
     "id": "chroma-dcnn",
     "title": "Chroma DCNN",
-    "href": "https://github.com/woodRock/chroma-dcnn",
+    "href": "https://woodrock.github.io/chroma-dcnn/",
     "tags": [
       "Python",
       "PyTorch"
     ],
-    "description": "Identifying Snapper, Gurnard, Tarakihi and Blue Cod from GC-MS lipid profiles with a 1D dilated CNN, pretrained without labels on MoNA and MassBank reference spectra."
+    "description": "Identifying Snapper, Gurnard, Tarakihi and Blue Cod from GC-MS lipid profiles with a 1D dilated CNN, pretrained without labels on MoNA and MassBank reference spectra.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/chroma-dcnn"
+      }
+    ]
   },
   {
     "id": "cloudy-with-a-chance-of-git-pulls",
@@ -17,7 +23,13 @@
       "JavaScript",
       "GitHub Actions"
     ],
-    "description": "A GitHub Action that writes the local weather forecast into a README every 30 minutes, between hidden markers so nothing else is touched. Written up on HackerNoon."
+    "description": "A GitHub Action that writes the local weather forecast into a README every 30 minutes, between hidden markers so nothing else is touched. Written up on HackerNoon.",
+    "links": [
+      {
+        "label": "Article",
+        "href": "https://hackernoon.com/cloudy-with-a-chance-of-git-pulls-automated-weather-forecasts-with-github-actions-vt4c331a"
+      }
+    ]
   },
   {
     "id": "evograd",
@@ -40,7 +52,13 @@
       "PyTorch",
       "DEAP"
     ],
-    "description": "Code for my PhD thesis: transformers, mixture-of-experts and contrastive learning for species, body part, contamination and batch classification from REIMS spectra."
+    "description": "Code for my PhD thesis: transformers, mixture-of-experts and contrastive learning for species, body part, contamination and batch classification from REIMS spectra.",
+    "links": [
+      {
+        "label": "Docs",
+        "href": "https://fishy-business.readthedocs.io/en/latest/"
+      }
+    ]
   },
   {
     "id": "gpu-spooler",
@@ -55,22 +73,34 @@
   {
     "id": "ionic-scholar",
     "title": "Ionic Scholar",
-    "href": "https://github.com/woodRock/ionic-scholar",
+    "href": "https://ionic-scholar.netlify.app/",
     "tags": [
       "TypeScript",
       "Ionic"
     ],
-    "description": "A reference manager for academic writing: track your progress through papers, keep keywords and quotes, and generate citations."
+    "description": "A reference manager for academic writing: track your progress through papers, keep keywords and quotes, and generate citations.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/ionic-scholar"
+      }
+    ]
   },
   {
     "id": "joint-align",
     "title": "Joint Align",
-    "href": "https://github.com/woodRock/joint-align",
+    "href": "https://woodrock.github.io/joint-align/",
     "tags": [
       "Python",
       "Jupyter"
     ],
-    "description": "Retention time alignment of GC-MS chromatograms across many batches: match peaks by compound, fit one monotone time warp per batch, and bring everything into a shared time frame."
+    "description": "Retention time alignment of GC-MS chromatograms across many batches: match peaks by compound, fit one monotone time warp per batch, and bring everything into a shared time frame.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/joint-align"
+      }
+    ]
   },
   {
     "id": "qsh",
@@ -82,16 +112,6 @@
       "LLM"
     ],
     "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe, powered by a 0.8B Qwen model and Rust."
-  },
-  {
-    "id": "red-herring",
-    "title": "Red Herring",
-    "href": "https://github.com/woodRock/red-herring",
-    "tags": [
-      "Python",
-      "PyTorch"
-    ],
-    "description": "Open-set detection and calibrated uncertainty for GC-MS fish species authentication. Real fraud involves species a model never saw, so this measures how badly closed-set classifiers fail and tests open-set recognition and conformal prediction as fixes."
   },
   {
     "id": "ruru",
@@ -112,16 +132,28 @@
       "Book",
       "HTML"
     ],
-    "description": "Website for my book on how humans taught sand to dream, from Alan Turing to ChatGPT, told without equations for curious non-experts."
+    "description": "Website for my book on how humans taught sand to dream, from Alan Turing to ChatGPT, told without equations for curious non-experts.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/teaching-sand-to-dream"
+      }
+    ]
   },
   {
     "id": "zero-slop",
     "title": "ZeroSlop",
-    "href": "https://github.com/woodRock/zero-slop",
+    "href": "https://woodrock.github.io/zero-slop/",
     "tags": [
       "JavaScript",
       "Chrome extension"
     ],
-    "description": "A Chrome extension that flags AI-generated and engagement-farmed posts on X, with local heuristics for extraction hooks and a reporting workflow for bot networks."
+    "description": "A Chrome extension that flags AI-generated and engagement-farmed posts on X, with local heuristics for extraction hooks and a reporting workflow for bot networks.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/zero-slop"
+      }
+    ]
   }
 ]
