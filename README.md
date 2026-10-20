@@ -45,6 +45,7 @@ bun run site get publications wood2025hook
 bun run site add projects --title "Fish Finder" --href https://github.com/woodrock/fish-finder --tags Rust
 bun run site update publications wood2025hook --doi 10.1007/s44295-025-00066-3
 bun run site remove projects fish-finder
+bun run site move projects fish-finder top        # projects appear in file order
 bun run site add publications --pdf ~/Downloads/paper.pdf --title "..." --year 2026 --kind "Journal article" --venue "..."
 bun run site config set tagline "I teach computers to read fish."
 bun run site schema            # every field, its type and what it means
@@ -58,7 +59,8 @@ usage error.
 
 For a quick look around, `bun run tui` opens a terminal UI: arrow keys to
 move, Tab to switch between publications and projects, Enter to edit,
-`n` for new, `d` to delete, `/` to filter, `b` to rebuild, `q` to quit.
+`n` for new, `d` to delete, `K`/`J` to move a project up or down the page,
+`/` to filter, `b` to rebuild, `q` to quit.
 
 Editing the JSON in `content/` by hand still works. Run `bun run build`
 afterwards. PDFs go in `src/public/`.

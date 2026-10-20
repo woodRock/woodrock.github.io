@@ -4,7 +4,8 @@
  * Raw-mode keyboard input and ANSI escapes only. No dependencies.
  *
  *   ↑/↓ or j/k  move        ⏎  edit        n  new       d  delete
- *   tab         collection  /  filter      b  build     q  quit
+ *   K/J         reorder     /  filter      b  build     q  quit
+ *   tab         collection
  */
 import {
   type Collection,
@@ -14,6 +15,7 @@ import {
   format,
   importPdf,
   load,
+  move,
   rebuild,
   save,
   validate,
@@ -156,6 +158,9 @@ class Tui {
       case `${CSI}F`:
         this.selected = Math.max(0, this.filtered.length - 1);
         return this.render();
+      case "K":
+      case "J":
+        return this.reorder(key === "K" ? "up" : "down");
       case "/":
         this.filtering = true;
         return this.say("filter: type to narrow, ⏎ to keep, esc to clear");
@@ -177,6 +182,19 @@ class Tui {
       default:
         return;
     }
+  }
+
+  private async reorder(direction: "up" | "down"): Promise<void> {
+    const item = this.current;
+    if (!item) return;
+    if (this.collection.sort) return this.say(`${this.collection.name} are sorted automatically`, "error");
+    if (this.filter) return this.say("Clear the filter before reordering", "error");
+    const position = move(this.collection, this.items, item.id, direction);
+    await save(this.collection, this.items);
+    this.applyFilter();
+    this.selected = position - 1;
+    this.dirty = true;
+    this.say(`Moved ${item.id} to position ${position}  (b to rebuild)`, "ok");
   }
 
   private onFilterKey(key: string): void {
@@ -315,7 +333,7 @@ class Tui {
 
     if (e.original) this.items[this.items.indexOf(e.original)] = next;
     else this.items.push(next);
-    this.items.sort(c.sort);
+    if (c.sort) this.items.sort(c.sort);
     await save(c, this.items);
     this.applyFilter();
     this.selected = Math.max(0, this.filtered.indexOf(next));
@@ -375,7 +393,8 @@ class Tui {
     const tabs = this.names
       .map((n, i) => (i === this.col ? `${style.reverse} ${n} ${style.reset}` : `${style.dim} ${n} ${style.reset}`))
       .join("");
-    const help = `${style.dim}↑↓ move  ⏎ edit  n new  d delete  / filter  tab switch  b build  q quit${style.reset}`;
+    const reorder = c.sort ? "" : "  K/J reorder";
+    const help = `${style.dim}↑↓ move  ⏎ edit  n new  d delete${reorder}  / filter  tab switch  b build  q quit${style.reset}`;
     const lines: string[] = [`${style.bold}site${style.reset}  ${tabs}  ${help}`, rule(cols)];
 
     const detailRows = Math.min(c.fields.length, Math.max(4, Math.floor(rows / 3)));

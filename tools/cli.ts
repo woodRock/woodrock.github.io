@@ -20,6 +20,7 @@ import {
   getPath,
   importPdf,
   load,
+  move,
   loadSite,
   parseLoose,
   rebuild,
@@ -37,6 +38,8 @@ Usage
   site add     <collection> [--field value ...]   Create an item
   site update  <collection> <id> [--field value]  Change fields of an item
   site remove  <collection> <id>                  Delete an item
+  site move    projects <id> <position>           Reorder: a number, top, bottom, up, down,
+                                                  before:<id> or after:<id>
   site schema  [collection]                       Describe the fields
   site config  get [path]                         Read content/site.json (dot path)
   site config  set <path> <value>                 Write content/site.json (JSON or string)
@@ -44,7 +47,7 @@ Usage
   site tui                                        Open the terminal UI
 
 Collections
-  publications, projects
+  publications (sorted by year, newest first), projects (shown in file order)
 
 Options
   --json             Machine-readable output (default when stdout is not a TTY)
@@ -64,6 +67,8 @@ Examples
   site list publications
   site add projects --title "Fish Finder" --href https://github.com/woodrock/fish-finder --tags Rust
   site update publications wood2025hook --doi 10.1007/s44295-025-00066-3
+  site move projects ruru top
+  site move projects evograd after:qsh
   echo '{"title":"X","href":"https://x.dev"}' | site add projects
   site config set tagline "I teach computers to read fish."
   site config get research.highlights.0
@@ -236,6 +241,15 @@ async function remove(args: Args): Promise<void> {
   await finish(c, items.filter((i) => i !== item), args, { removed: item }, `Removed ${c.name}/${id}`);
 }
 
+async function moveCmd(args: Args): Promise<void> {
+  const c = getCollection(args.positional[1]);
+  const [, , id, target] = args.positional;
+  if (!id || !target) throw new ContentError(`Usage: site move ${c.name} <id> <position>`, 2);
+  const items = await load(c);
+  const position = move(c, items, id, target);
+  await finish(c, items, args, { id, position, order: items.map((i) => i.id) }, `Moved ${c.name}/${id} to position ${position}`);
+}
+
 function schema(args: Args): void {
   const names = args.positional[1] ? [getCollection(args.positional[1]).name] : Object.keys(collections);
   const data = Object.fromEntries(names.map((n) => [n, collections[n].fields]));
@@ -285,6 +299,7 @@ export async function main(argv: string[]): Promise<number> {
       case "add": await add(args); break;
       case "update": await update(args); break;
       case "remove": await remove(args); break;
+      case "move": await moveCmd(args); break;
       case "schema": schema(args); break;
       case "config": await config(args); break;
       case "build": await rebuild(); break;

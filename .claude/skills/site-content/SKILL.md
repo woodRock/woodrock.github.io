@@ -41,7 +41,12 @@ bun run site update publications wood2025hook --doi 10.1007/s44295-025-00066-3
 bun run site add projects --title "Fish Finder" --href https://github.com/woodrock/fish-finder \
   --tags Rust,Python --description "..."
 bun run site remove projects fish-finder
+bun run site move projects fish-finder top          # or 3, bottom, up, down, before:<id>, after:<id>
 ```
+
+Publications are sorted by year automatically. Projects appear in the order
+of `content/projects.json`; new ones go to the bottom, so `move` them where
+they belong (current research first, then tools, then older or starred work).
 
 - `id` is generated when omitted: the BibTeX key for a publication
   (`wood2025hook` style), a slug of the title for a project. Pass `--id` to

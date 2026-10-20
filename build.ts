@@ -161,7 +161,7 @@ export async function build(): Promise<void> {
   const projects = await readJson<Project[]>("projects.json");
 
   publications.sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
-  projects.sort((a, b) => a.title.localeCompare(b.title));
+  // Projects keep the order of content/projects.json; use `site move` to change it.
 
   const common: Record<string, string> = {
     name: esc(site.name),

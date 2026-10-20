@@ -1,49 +1,5 @@
 [
   {
-    "id": "chroma-dcnn",
-    "title": "Chroma DCNN",
-    "href": "https://woodrock.github.io/chroma-dcnn/",
-    "tags": [
-      "Python",
-      "PyTorch"
-    ],
-    "description": "Identifying Snapper, Gurnard, Tarakihi and Blue Cod from GC-MS lipid profiles with a 1D dilated CNN, pretrained without labels on MoNA and MassBank reference spectra.",
-    "links": [
-      {
-        "label": "Source",
-        "href": "https://github.com/woodRock/chroma-dcnn"
-      }
-    ]
-  },
-  {
-    "id": "cloudy-with-a-chance-of-git-pulls",
-    "title": "Cloudy with a Chance of Git Pulls",
-    "href": "https://github.com/woodRock/expert-chainsaw",
-    "tags": [
-      "JavaScript",
-      "GitHub Actions"
-    ],
-    "description": "A GitHub Action that writes the local weather forecast into a README every 30 minutes, between hidden markers so nothing else is touched. Written up on HackerNoon.",
-    "links": [
-      {
-        "label": "Article",
-        "href": "https://hackernoon.com/cloudy-with-a-chance-of-git-pulls-automated-weather-forecasts-with-github-actions-vt4c331a"
-      }
-    ]
-  },
-  {
-    "id": "evograd",
-    "title": "EvoGrad",
-    "href": "https://github.com/woodRock/evograd",
-    "tags": [
-      "Python",
-      "PyTorch",
-      "CUDA",
-      "Metal"
-    ],
-    "description": "A functional deep learning DSL with GPU-accelerated evolutionary computation: immutable tensors, compile-time shape checks and a hybrid optimiser that mixes population search with gradient descent."
-  },
-  {
     "id": "fishy-business",
     "title": "Fishy Business",
     "href": "https://github.com/woodRock/fishy-business",
@@ -57,32 +13,6 @@
       {
         "label": "Docs",
         "href": "https://fishy-business.readthedocs.io/en/latest/"
-      }
-    ]
-  },
-  {
-    "id": "gpu-spooler",
-    "title": "GPU Spooler",
-    "href": "https://github.com/woodRock/gpu-spooler",
-    "tags": [
-      "Python",
-      "SSH"
-    ],
-    "description": "Queue GPU jobs from your laptop onto SSH-reachable servers. A daemon finds free GPUs, runs jobs detached and streams the logs back. Set up out of the box for the VUW ECS cluster."
-  },
-  {
-    "id": "ionic-scholar",
-    "title": "Ionic Scholar",
-    "href": "https://ionic-scholar.netlify.app/",
-    "tags": [
-      "TypeScript",
-      "Ionic"
-    ],
-    "description": "A reference manager for academic writing: track your progress through papers, keep keywords and quotes, and generate citations.",
-    "links": [
-      {
-        "label": "Source",
-        "href": "https://github.com/woodRock/ionic-scholar"
       }
     ]
   },
@@ -103,15 +33,20 @@
     ]
   },
   {
-    "id": "qsh",
-    "title": "qsh",
-    "href": "https://github.com/woodRock/qsh",
+    "id": "chroma-dcnn",
+    "title": "Chroma DCNN",
+    "href": "https://woodrock.github.io/chroma-dcnn/",
     "tags": [
-      "Rust",
       "Python",
-      "LLM"
+      "PyTorch"
     ],
-    "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe, powered by a 0.8B Qwen model and Rust."
+    "description": "Identifying Snapper, Gurnard, Tarakihi and Blue Cod from GC-MS lipid profiles with a 1D dilated CNN, pretrained without labels on MoNA and MassBank reference spectra.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/chroma-dcnn"
+      }
+    ]
   },
   {
     "id": "ruru",
@@ -125,18 +60,39 @@
     "description": "A local, plain-text literature library. Papers arrive from arXiv, OpenAlex, Crossref and journal feeds, get triaged like email, live as Markdown in git and flow into each paper's .bib. Agents use the same CLI I do."
   },
   {
-    "id": "teaching-sand-to-dream",
-    "title": "Teaching Sand to Dream",
-    "href": "https://woodrock.github.io/teaching-sand-to-dream/",
+    "id": "gpu-spooler",
+    "title": "GPU Spooler",
+    "href": "https://github.com/woodRock/gpu-spooler",
     "tags": [
-      "Book",
-      "HTML"
+      "Python",
+      "SSH"
     ],
-    "description": "Website for my book on how humans taught sand to dream, from Alan Turing to ChatGPT, told without equations for curious non-experts.",
+    "description": "Queue GPU jobs from your laptop onto SSH-reachable servers. A daemon finds free GPUs, runs jobs detached and streams the logs back. Set up out of the box for the VUW ECS cluster."
+  },
+  {
+    "id": "qsh",
+    "title": "qsh",
+    "href": "https://github.com/woodRock/qsh",
+    "tags": [
+      "Rust",
+      "Python",
+      "LLM"
+    ],
+    "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe, powered by a 0.8B Qwen model and Rust."
+  },
+  {
+    "id": "cloudy-with-a-chance-of-git-pulls",
+    "title": "Cloudy with a Chance of Git Pulls",
+    "href": "https://github.com/woodRock/expert-chainsaw",
+    "tags": [
+      "JavaScript",
+      "GitHub Actions"
+    ],
+    "description": "A GitHub Action that writes the local weather forecast into a README every 30 minutes, between hidden markers so nothing else is touched. Written up on HackerNoon.",
     "links": [
       {
-        "label": "Source",
-        "href": "https://github.com/woodRock/teaching-sand-to-dream"
+        "label": "Article",
+        "href": "https://hackernoon.com/cloudy-with-a-chance-of-git-pulls-automated-weather-forecasts-with-github-actions-vt4c331a"
       }
     ]
   },
@@ -153,6 +109,50 @@
       {
         "label": "Source",
         "href": "https://github.com/woodRock/zero-slop"
+      }
+    ]
+  },
+  {
+    "id": "ionic-scholar",
+    "title": "Ionic Scholar",
+    "href": "https://ionic-scholar.netlify.app/",
+    "tags": [
+      "TypeScript",
+      "Ionic"
+    ],
+    "description": "A reference manager for academic writing: track your progress through papers, keep keywords and quotes, and generate citations.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/ionic-scholar"
+      }
+    ]
+  },
+  {
+    "id": "evograd",
+    "title": "EvoGrad",
+    "href": "https://github.com/woodRock/evograd",
+    "tags": [
+      "Python",
+      "PyTorch",
+      "CUDA",
+      "Metal"
+    ],
+    "description": "A functional deep learning DSL with GPU-accelerated evolutionary computation: immutable tensors, compile-time shape checks and a hybrid optimiser that mixes population search with gradient descent."
+  },
+  {
+    "id": "teaching-sand-to-dream",
+    "title": "Teaching Sand to Dream",
+    "href": "https://woodrock.github.io/teaching-sand-to-dream/",
+    "tags": [
+      "Book",
+      "HTML"
+    ],
+    "description": "Website for my book on how humans taught sand to dream, from Alan Turing to ChatGPT, told without equations for curious non-experts.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/teaching-sand-to-dream"
       }
     ]
   }

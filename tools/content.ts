@@ -31,8 +31,8 @@ export interface Collection {
   name: string;
   file: string;
   fields: Field[];
-  /** Stable order used when writing the file. */
-  sort: (a: Item, b: Item) => number;
+  /** Stable order used when writing the file. Omitted when the file order is the display order. */
+  sort?: (a: Item, b: Item) => number;
   /** One-line label for lists. */
   label: (item: Item) => string;
   /** Suggest an id for a new item without one. */
@@ -100,7 +100,6 @@ export const projects: Collection = {
     { name: "description", type: "text", help: "One or two sentences." },
     { name: "links", type: "links", help: "Extra links as Source=https://github.com/...;Docs=https://..." },
   ],
-  sort: (a, b) => String(a.title).localeCompare(String(b.title)),
   label: (item) => String(item.title),
   suggestId: (item) => slugify(String(item.title ?? "untitled")),
 };
@@ -125,7 +124,8 @@ export async function load(c: Collection): Promise<Item[]> {
 }
 
 export async function save(c: Collection, items: Item[]): Promise<void> {
-  const ordered = [...items].sort(c.sort).map((item) => orderFields(c, item));
+  const sorted = c.sort ? [...items].sort(c.sort) : [...items];
+  const ordered = sorted.map((item) => orderFields(c, item));
   await Bun.write(join(CONTENT, c.file), JSON.stringify(ordered, null, 2) + "\n");
 }
 
@@ -135,6 +135,37 @@ function orderFields(c: Collection, item: Item): Item {
   for (const f of c.fields) if (f.name in item) out[f.name] = item[f.name];
   for (const k of Object.keys(item)) if (!(k in out)) out[k] = item[k];
   return out as Item;
+}
+
+/**
+ * Move an item within a manually ordered collection. `target` is a 1-based
+ * position, "top", "bottom", "up", "down", "before:<id>" or "after:<id>".
+ * Returns the item's new 1-based position.
+ */
+export function move(c: Collection, items: Item[], id: string, target: string): number {
+  if (c.sort) throw new ContentError(`${c.name} are sorted automatically and cannot be reordered`, 2);
+  const from = items.findIndex((i) => i.id === id);
+  if (from === -1) throw new ContentError(`No item with id "${id}". Use "list" to see ids.`);
+  const last = items.length - 1;
+  let to: number;
+  if (target === "top") to = 0;
+  else if (target === "bottom") to = last;
+  else if (target === "up") to = Math.max(0, from - 1);
+  else if (target === "down") to = Math.min(last, from + 1);
+  else if (target.startsWith("before:") || target.startsWith("after:")) {
+    const [rel, otherId] = target.split(":", 2);
+    const other = items.findIndex((i) => i.id === otherId);
+    if (other === -1) throw new ContentError(`No item with id "${otherId}"`);
+    to = rel === "before" ? other : other + 1;
+    if (to > from) to--;
+  } else if (/^\d+$/.test(target)) {
+    to = Math.min(last, Math.max(0, Number(target) - 1));
+  } else {
+    throw new ContentError(`Bad position "${target}". Use a number, top, bottom, up, down, before:<id> or after:<id>`, 2);
+  }
+  const [item] = items.splice(from, 1);
+  items.splice(to, 0, item);
+  return to + 1;
 }
 
 export function find(items: Item[], id: string): Item {
