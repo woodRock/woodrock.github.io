@@ -1,0 +1,15 @@
+{
+  "name": "woodrock.github.io",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Jesse Wood's personal site. Static HTML, CSS and JavaScript built with Bun and served from docs/ by GitHub Pages.",
+  "type": "module",
+  "scripts": {
+    "build": "bun run build.ts",
+    "dev": "bun run dev.ts",
+    "check": "bun run build.ts && git diff --quiet --exit-code -- docs || (echo 'docs/ is out of date: run `bun run build` and commit the result' && exit 1)"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.0"
+  }
+}

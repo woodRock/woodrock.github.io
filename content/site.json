@@ -1,0 +1,57 @@
+{
+  "name": "Jesse Wood",
+  "title": "Jesse Wood",
+  "description": "PhD candidate in artificial intelligence at Victoria University of Wellington. Deep learning for mass spectrometry and marine biomass analysis.",
+  "url": "https://woodrock.github.io",
+  "role": "PhD candidate in Artificial Intelligence",
+  "affiliation": "Te Herenga Waka—Victoria University of Wellington",
+  "location": "Wellington, New Zealand",
+  "tagline": "I apply deep learning to mass spectrometry so that fish can be identified, graded and traced by their chemistry.",
+  "email": "jrhwood98@gmail.com",
+  "links": [
+    { "label": "GitHub", "href": "https://github.com/woodrock" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/jrhwood" },
+    { "label": "CV", "href": "/resume.pdf" }
+  ],
+  "about": [
+    "I am a PhD candidate in artificial intelligence at Te Herenga Waka—Victoria University of Wellington. My thesis applies transformer models, self-supervised learning and explainable AI to rapid evaporative ionisation mass spectrometry (REIMS) data from the seafood industry.",
+    "Before the PhD I was a software engineer at NIWA, New Zealand's National Institute of Water and Atmospheric Research. I still think of code as a scientific instrument: something to build carefully, test and then point at an open question.",
+    "Off the clock I built a Skyrim-style wellbeing tracker and am currently lost somewhere in Baldur's Gate 3."
+  ],
+  "research": {
+    "intro": "The seafood industry needs fast, reliable answers about what a sample is, which part of the fish it came from, whether it has been contaminated and which batch it belongs to. My work replaces slow, expert-driven chemometrics with models that learn these answers directly from raw spectra.",
+    "highlights": [
+      {
+        "term": "Species identification",
+        "detail": "Transformer models reach 100% accuracy separating Hoki from Mackerel on REIMS spectra, against the OPLS-DA chemometric baseline."
+      },
+      {
+        "term": "Body part classification",
+        "detail": "An ensemble of transformers classifies seven body parts at 74.13% accuracy where OPLS-DA reaches 51.17%."
+      },
+      {
+        "term": "Contamination and adulteration",
+        "detail": "Ordinal classifiers detect graded oil contamination and cross-species mixing, with transfer learning improving contamination detection."
+      },
+      {
+        "term": "Batch traceability",
+        "detail": "SpectroSim, a self-supervised contrastive method, identifies a sample's batch at 70.8% accuracy with no labels and no physical tags."
+      }
+    ],
+    "code": {
+      "label": "fishy-business on GitHub",
+      "href": "https://github.com/woodrock/fishy-business"
+    },
+    "docs": {
+      "label": "Documentation",
+      "href": "https://fishy-business.readthedocs.io/en/latest/index.html"
+    }
+  },
+  "skills": [
+    { "group": "Machine learning", "items": ["PyTorch", "Transformers", "Hugging Face", "scikit-learn", "NumPy", "pandas"] },
+    { "group": "Optimisation and systems", "items": ["Optuna", "DEAP", "Rust", "C++", "Haskell", "Docker", "Streamlit"] },
+    { "group": "Explainability and tracking", "items": ["LIME", "SHAP", "Grad-CAM", "Weights & Biases"] }
+  ],
+  "formspree": "https://formspree.io/f/mpwpynqy",
+  "repo": "https://github.com/woodrock/woodrock.github.io"
+}

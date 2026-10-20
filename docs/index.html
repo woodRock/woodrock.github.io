@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jesse Wood</title>
+  <meta name="description" content="PhD candidate in artificial intelligence at Victoria University of Wellington. Deep learning for mass spectrometry and marine biomass analysis.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+  <meta property="og:title" content="Jesse Wood">
+  <meta property="og:description" content="PhD candidate in artificial intelligence at Victoria University of Wellington. Deep learning for mass spectrometry and marine biomass analysis.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://woodrock.github.io/">
+  <link rel="canonical" href="https://woodrock.github.io/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="/" aria-label="Jesse Wood, home">Jesse Wood</a>
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+
+    <section class="hero" aria-labelledby="hero-heading">
+      <p class="eyebrow">PhD candidate in Artificial Intelligence</p>
+      <h1 id="hero-heading">Jesse Wood</h1>
+      <p class="lede">I apply deep learning to mass spectrometry so that fish can be identified, graded and traced by their chemistry.</p>
+      <p class="muted">Te Herenga Waka—Victoria University of Wellington · Wellington, New Zealand</p>
+      <ul class="link-row" aria-label="Contact links">
+        <li><a href="mailto:jrhwood98@gmail.com">Email</a></li>
+        <li><a href="https://github.com/woodrock" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jrhwood" rel="noopener">LinkedIn</a></li>
+        <li><a href="/resume.pdf">CV</a></li>
+      </ul>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+      <p>I am a PhD candidate in artificial intelligence at Te Herenga Waka—Victoria University of Wellington. My thesis applies transformer models, self-supervised learning and explainable AI to rapid evaporative ionisation mass spectrometry (REIMS) data from the seafood industry.</p>
+      <p>Before the PhD I was a software engineer at NIWA, New Zealand's National Institute of Water and Atmospheric Research. I still think of code as a scientific instrument: something to build carefully, test and then point at an open question.</p>
+      <p>Off the clock I built a Skyrim-style wellbeing tracker and am currently lost somewhere in Baldur's Gate 3.</p>
+      <h3 class="subheading">Tools I use</h3>
+      <dl class="skills">
+        <dt>Machine learning</dt>
+        <dd>PyTorch, Transformers, Hugging Face, scikit-learn, NumPy, pandas</dd>
+        <dt>Optimisation and systems</dt>
+        <dd>Optuna, DEAP, Rust, C++, Haskell, Docker, Streamlit</dd>
+        <dt>Explainability and tracking</dt>
+        <dd>LIME, SHAP, Grad-CAM, Weights &amp; Biases</dd>
+      </dl>
+    </section>
+
+    <section id="research" class="section" aria-labelledby="research-heading">
+      <h2 id="research-heading">Research</h2>
+      <p>The seafood industry needs fast, reliable answers about what a sample is, which part of the fish it came from, whether it has been contaminated and which batch it belongs to. My work replaces slow, expert-driven chemometrics with models that learn these answers directly from raw spectra.</p>
+      <dl class="highlights">
+        <div>
+          <dt>Species identification</dt>
+          <dd>Transformer models reach 100% accuracy separating Hoki from Mackerel on REIMS spectra, against the OPLS-DA chemometric baseline.</dd>
+        </div>
+        <div>
+          <dt>Body part classification</dt>
+          <dd>An ensemble of transformers classifies seven body parts at 74.13% accuracy where OPLS-DA reaches 51.17%.</dd>
+        </div>
+        <div>
+          <dt>Contamination and adulteration</dt>
+          <dd>Ordinal classifiers detect graded oil contamination and cross-species mixing, with transfer learning improving contamination detection.</dd>
+        </div>
+        <div>
+          <dt>Batch traceability</dt>
+          <dd>SpectroSim, a self-supervised contrastive method, identifies a sample's batch at 70.8% accuracy with no labels and no physical tags.</dd>
+        </div>
+      </dl>
+      <p class="muted">
+        Code and experiments live in <a href="https://github.com/woodrock/fishy-business">fishy-business on GitHub</a>,
+        with <a href="https://fishy-business.readthedocs.io/en/latest/index.html">Documentation</a>.
+      </p>
+    </section>
+
+    <section id="publications" class="section" aria-labelledby="publications-heading">
+      <h2 id="publications-heading">Publications</h2>
+      <ol class="pub-list" reversed>
+        <li class="pub" id="wood2026machine">
+          <p class="meta"><time datetime="2026">2026</time> · PhD thesis · Te Herenga Waka—Victoria University of Wellington</p>
+          <h3><a href="https://openaccess.wgtn.ac.nz/articles/thesis/Machine_Learning_for_Rapid_Evaporative_Ionization_Mass_Spectrometry_for_Marine_Biomass_Analysis/32682723?file=65576205" rel="noopener">Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis</a></h3>
+          <details>
+            <summary>Abstract</summary>
+            <p>This thesis advances seafood processing by applying deep learning to Rapid Evaporative Ionization Mass Spectrometry (REIMS) data, enabling automated and accurate marine biomass analysis.</p>
+            <p>This research addresses critical industry challenges in quality control, food safety, and fraud prevention. These include foundational tasks like species identification to combat mislabeling fraud and body part classification to optimize by-product utilization and prevent adulteration with offal. It also formalizes novel food safety problems, such as detecting oil contamination (a food safety hazard) and cross-species adulteration (a form of economic fraud). Finally, it tackles batch traceability, a task essential for rapid product recalls that currently relies on costly and impractical physical tagging methods.</p>
+            <p>To achieve this, the thesis first establishes a suite of advanced models for foundational tasks species and body part identification, drawing on datasets described in Chapter 3. Specifically, this involves a binary classification dataset of 106 samples for Hoki and Mackerel identification and a multi-class dataset of 33 samples for classifying seven distinct body parts (fillets, heads, livers, skins, gonads, guts, and frames). The work then formalizes and solves novel food safety problems, including oil contamination (seven ordinal concentration levels from 50% to 0% in a 126-sample dataset) and cross-species adulteration (pure Hoki, pure Mackerel, and mixed Hoki-Mackerel samples from a 144-sample dataset), also based on Chapter 3 data. Finally, it introduces a self-supervised framework to address the challenge of batch traceability using a highly imbalanced, pairwise comparison dataset of 2,556 instances, derived from 72 fish samples across 24 distinct batches. The high-dimensional nature of the REIMS data, with 2,080 features per spectrum for all tasks, necessitates sophisticated solutions.</p>
+            <p>Key contributions include the development of advanced Transformer architectures, which significantly outperform traditional methods by achieving up to 100% accuracy in species identification. The study also critically evaluates Mixture of Experts (MoE) Transformers to determine optimal configurations and investigates the asymmetric effects of transfer learning across different tasks, namely species identification, body part classification, oil contamination, and cross-species adulteration detection. Furthermore, a comparative analysis of ordinal classification techniques is included, demonstrating that models designed for ordered data significantly reduce error distance in graded contamination tasks. For batch traceability, a novel self-supervised contrastive learning method, SpectroSim, is introduced, which identifies sample origins with 70.8% accuracy without using class labels. Explainable AI techniques are employed to ensure model predictions are interpretable, enhancing trust and providing chemically relevant insights.</p>
+            <p>This research is motivated by the need to overcome the limitations of current state-of-the-art analytical methods. The standard approach for REIMS analysis relies on traditional chemometric techniques like Orthogonal Partial Least Squares Discriminant Analysis (OPLS-DA), which are often limited in their ability to model the complex, non-linear, and high-dimensional nature of mass spectra. For the foundational task of species and body part identification, the challenge was to classify samples from complex and high-dimensional REIMS data. This was addressed by developing novel Transformer architectures that achieved near-perfect accuracy (up to 100%), establishing a new performance benchmark. For the novel tasks of oil contamination and cross-species adulteration, the challenge was to detect subtle chemical signatures often masked by the sample’s primary chemical profile. This was solved by adapting advanced models to these difficult classification problems and systematically applying transfer learning, which was found to consistently improve the detection of oil contamination. Finally, for batch traceability, the challenge was to create a method that avoids costly physical tags and the need for impractical supervised labels. This was achieved by developing “SpectroSim”, a self-supervised framework that accurately determines sample origin without labels, offering a practical and cost-effective solution for the industry.</p>
+          </details>
+          <ul class="actions" aria-label="Links for Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis">
+            <li><a href="/wood2026machine.pdf">PDF</a></li>
+            <li><a href="https://openaccess.wgtn.ac.nz/articles/thesis/Machine_Learning_for_Rapid_Evaporative_Ionization_Mass_Spectrometry_for_Marine_Biomass_Analysis/32682723?file=65576205" rel="noopener">Open Access</a></li>
+            <li><a href="https://doi.org/10.26686/mef0-mr46" rel="noopener">DOI</a></li>
+            <li><button class="link-button" type="button" data-copy="bib-wood2026machine">Copy BibTeX</button></li>
+          </ul>
+          <pre class="bibtex" id="bib-wood2026machine" hidden>@phdthesis{wood2026machine,
+  title={Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis},
+  author={Wood, Jesse},
+  school={Te Herenga Waka---Victoria University of Wellington},
+  year={2026},
+  doi={10.26686/mef0-mr46}
+}</pre>
+        </li>
+        <li class="pub" id="wood2025hook">
+          <p class="meta"><time datetime="2025">2025</time> · Journal article · Intelligent Marine Technology and Systems</p>
+          <h3><a href="https://link.springer.com/article/10.1007/s44295-025-00066-3" rel="noopener">Hook, Line and Spectra: Machine Learning for Fish Species and Part Classification using Rapid Evaporative Ionization Mass Spectrometry</a></h3>
+          <details>
+            <summary>Abstract</summary>
+            <p>Marine biomass composition analysis traditionally requires time-consuming processes and domain expertise. This study demonstrates the effectiveness of rapid evaporative ionization mass spectrometry (REIMS) combined with advanced machine learning (ML) techniques for accurate marine biomass composition determination. Using fish species and body parts as model systems representing diverse biochemical profiles, we investigate various ML methods, including unsupervised pretraining strategies for transformers. The deep learning approaches consistently outperformed traditional machine learning across all tasks. For fish species classification, the pretrained transformer achieved 99.62% accuracy, and for fish body parts classification, the transformer achieved 84.06% accuracy. We further explored the explainability of the best-performing and predominantly black box models using local interpretable model-agnostic explanations and gradient-weighted class activation mapping to identify the important features driving the decisions behind each of the best performing classifiers. REIMS analysis with ML can be an accurate and potentially explainable technique for automated marine biomass composition analysis. Thus, REIMS analysis with ML has potential applications in quality control, product optimization, and food safety monitoring in marine-based industries.</p>
+          </details>
+          <ul class="actions" aria-label="Links for Hook, Line and Spectra: Machine Learning for Fish Species and Part Classification using Rapid Evaporative Ionization Mass Spectrometry">
+            <li><a href="/wood2025hook.pdf">PDF</a></li>
+            <li><a href="https://link.springer.com/article/10.1007/s44295-025-00066-3" rel="noopener">Springer</a></li>
+            <li><a href="https://doi.org/10.1007/s44295-025-00066-3" rel="noopener">DOI</a></li>
+            <li><button class="link-button" type="button" data-copy="bib-wood2025hook">Copy BibTeX</button></li>
+          </ul>
+          <pre class="bibtex" id="bib-wood2025hook" hidden>@article{wood2025hook,
+  title={Hook, line, and spectra: machine learning for fish species identification and body part classification using rapid evaporative ionization mass spectrometry},
+  author={Wood, Jesse and Nguyen, Bach and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},
+  journal={Intelligent Marine Technology and Systems},
+  volume={3},
+  number={1},
+  pages={16},
+  year={2025},
+  publisher={Springer}
+}</pre>
+        </li>
+        <li class="pub" id="wood2025spectrosim">
+          <p class="meta"><time datetime="2025">2025</time> · Preprint · Manuscript</p>
+          <h3><a href="/wood2025spectrosim.pdf">SpectroSim: Batch Detection in Marine Biomass</a></h3>
+          <details>
+            <summary>Abstract</summary>
+            <p>The batch detection of marine biomass constitutes a significant real-world application within the fish processing industry, contributing to food safety, fraud prevention, and stock management. Recent advancements have demonstrated that Rapid Evaporative Ionization Mass Spectrometry (REIMS) when coupled with Orthogonal Partial Least Squares Discriminant Analysis (OPLS-DA), yields exceptional outcomes in fraud detection, contamination identification, and biomass analysis. Although several studies have employed REIMS and OPLS-DA for species identification and contamination detection, these efforts have not yet addressed the challenge of batch detection, which involves determining the specific batch of processed samples from which a fish originates. Leveraging a high-dimensional REIMS dataset provided by Plant and Food Research, New Zealand, we propose a novel contrastive learning approach termed SpectroSim, building upon the SimCLR framework. The new method introduces a bespoke encoder head, replacing the traditional ResNet backbone with a Transformer architecture, alongside a custom projection head designed for mass spectrometry data. Experimental results indicate that SpectroSim surpasses the balanced classification accuracy of established deep learning frameworks and other prevalent baseline models. Notably, as an unsupervised methodology, SpectroSim achieves near-perfect accuracy (98.02%) in a self-supervised context, independent of class labels.</p>
+          </details>
+          <ul class="actions" aria-label="Links for SpectroSim: Batch Detection in Marine Biomass">
+            <li><a href="/wood2025spectrosim.pdf">PDF</a></li>
+            <li><button class="link-button" type="button" data-copy="bib-wood2025spectrosim">Copy BibTeX</button></li>
+          </ul>
+          <pre class="bibtex" id="bib-wood2025spectrosim" hidden>@unpublished{wood2025spectrosim,
+  title={SpectroSim: Batch Detection in Marine Biomass},
+  author={Wood, Jesse and Nguyen, Bach Hoai and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},
+  year={2025},
+  note={Manuscript}
+}</pre>
+        </li>
+        <li class="pub" id="wood2022automated">
+          <p class="meta"><time datetime="2022">2022</time> · Conference paper · Australasian Joint Conference on Artificial Intelligence</p>
+          <h3><a href="https://openaccess.wgtn.ac.nz/articles/chapter/Automated_Fish_Classification_Using_Unprocessed_Fatty_Acid_Chromatographic_Data_A_Machine_Learning_Approach/22107473" rel="noopener">Automated Fish Classification Using Unprocessed Fatty Acid Chromatographic Data: A Machine Learning Approach</a></h3>
+          <details>
+            <summary>Abstract</summary>
+            <p>Fish is approximately 40% edible fillet. The remaining 60% can be processed into low-value fertilizer or high-value pharmaceutical-grade omega-3 concentrates. High-value manufacturing options depend on the composition of the biomass, which varies with fish species, fish tissue and seasonally throughout the year. Fatty acid composition, measured by Gas Chromatography, is an important measure of marine biomass quality. This technique is accurate and precise, but processing and interpreting the results is time-consuming and requires domain-specific expertise. The paper investigates different classification and feature selection algorithms for their ability to automate the processing of Gas Chromatography data. Experiments found that SVM could classify compositionally diverse marine biomass based on raw chromatographic fatty acid data. The SVM model is interpretable through visualization which can highlight important features for classification. Experiments demonstrated that applying feature selection significantly reduced dimensionality and improved classification performance on high-dimensional low sample-size datasets. According to the reduction rate, feature selection could accelerate the classification system up to four times.</p>
+          </details>
+          <ul class="actions" aria-label="Links for Automated Fish Classification Using Unprocessed Fatty Acid Chromatographic Data: A Machine Learning Approach">
+            <li><a href="/wood2022automated.pdf">PDF</a></li>
+            <li><a href="https://openaccess.wgtn.ac.nz/articles/chapter/Automated_Fish_Classification_Using_Unprocessed_Fatty_Acid_Chromatographic_Data_A_Machine_Learning_Approach/22107473" rel="noopener">Open Access</a></li>
+            <li><a href="https://doi.org/10.1007/978-3-031-22695-3_36" rel="noopener">DOI</a></li>
+            <li><button class="link-button" type="button" data-copy="bib-wood2022automated">Copy BibTeX</button></li>
+          </ul>
+          <pre class="bibtex" id="bib-wood2022automated" hidden>@inproceedings{wood2022automated,
+  title={Automated fish classification using unprocessed fatty acid chromatographic data: a machine learning approach},
+  author={Wood, Jesse and Nguyen, Bach Hoai and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},
+  booktitle={Australasian Joint Conference on Artificial Intelligence},
+  pages={516--529},
+  year={2022},
+  organization={Springer}
+}</pre>
+        </li>
+        <li class="pub" id="wood2022rapid">
+          <p class="meta"><time datetime="2022">2022</time> · PhD proposal · PhD Proposal, Victoria University of Wellington</p>
+          <h3><a href="/wood2022rapid.pdf">Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry</a></h3>
+          <details>
+            <summary>Abstract</summary>
+            <p>Navigating the analysis of mass spectrometry data for marine biomass and fish demands a technologically adept approach to derive accurate and actionable insights. This research will introduce a novel AI methodology to interpret a substantial repository of mass spectrometry datasets, utilizing pre-training strategies like Next Spectra Prediction and Masked Spectra Modeling, targeting enhanced interpretability and correlation of spectral patterns with chemical attributes. Three core research objectives are explored: 1) precise fish species and body part identification via binary and multi-class classification, respectively; 2) quantitative contaminant analysis employing multi-label classification and multi-output regression; and 3) traceability through pair-wise comparison and instance recognition. By validating against traditional baselines and various downstream tasks, this work aims to enhance chemical analytical processes and offer fresh insights into the chemical and traceability aspects of marine biology and fisheries through advanced AI applications.</p>
+          </details>
+          <ul class="actions" aria-label="Links for Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry">
+            <li><a href="/wood2022rapid.pdf">PDF</a></li>
+            <li><button class="link-button" type="button" data-copy="bib-wood2022rapid">Copy BibTeX</button></li>
+          </ul>
+          <pre class="bibtex" id="bib-wood2022rapid" hidden>@article{wood2022rapid,
+  title={Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry},
+  author={Wood, Jesse and Nguyen, Bach and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},
+  journal={Victoria University of Wellington},
+  year={2022},
+  publisher={Victoria University of Wellington}
+}</pre>
+        </li>
+      </ol>
+    </section>
+
+    <section id="projects" class="section" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <ul class="project-list">
+        <li class="project">
+          <h3><a href="https://wdrck.itch.io/bartender" rel="noopener">Bartender</a></h3>
+          <p class="tags">Godot · GD Script</p>
+          <p>Step behind the bar in this high-fidelity mixology simulator. Unlike standard click-and-serve games, this experience leverages a physics-based interaction system where every pour, shake, and clink of ice matters. As the shifts progress, the pressure mounts, and only the most precise bartenders will survive the rush.</p>
+        </li>
+        <li class="project">
+          <h3><a href="https://github.com/woodRock/expert-chainsaw" rel="noopener">Cloudy with a Chance of Git Pulls</a></h3>
+          <p class="tags">JavaScript · GitHub Actions</p>
+          <p>This GitHub Action used the Open Weather API to display the weather forecast for a given area. It is updated once every 30 minutes. The weather forecast is displayed within predefined tags (hidden inside HTML comments), such that it does not overwrite any other existing content in a README.</p>
+        </li>
+        <li class="project">
+          <h3><a href="https://github.com/woodRock/fishy-business" rel="noopener">Fishy Business</a></h3>
+          <p class="tags">Python · Pytorch · Deap · Numpy</p>
+          <p>Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis --- A Doctoral Thesis by Jesse Wood</p>
+        </li>
+        <li class="project">
+          <h3><a href="https://github.com/woodRock/ionic-scholar" rel="noopener">Ionic Scholar</a></h3>
+          <p class="tags">Ionic · Semantic Scholar · Gemini</p>
+          <p>This individually developed app keeps track of academic references. The app remembers the users progress, keywords, quotes. Also it can generate citations. We design the app to reduce the stress of academic writing. Frequently it can be problematic to maintain track of several numerous scholarly articles when trying to prepare a paper.</p>
+        </li>
+        <li class="project">
+          <h3><a href="https://github.com/woodrock/qsh" rel="noopener">qsh | Qwen Shell</a></h3>
+          <p class="tags">Rust · Python · SQL</p>
+          <p>A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe. Powered by Qwen 3.5-0.8B and Rust. 🦀</p>
+        </li>
+        <li class="project">
+          <h3><a href="https://github.com/woodrock/moody-bitch" rel="noopener">Skyrim Wellbeing Manager</a></h3>
+          <p class="tags">React · Firebase · Leaflet · Threejs</p>
+          <p>Moody bitch is a high-fidelity mental health odyssey that transforms real-world self-care into an epic, Skyrim-inspired RPG experience. By completing daily &quot;quests,&quot; users earn experience points to level up legendary skill constellations, unlock psychological perks, and loot powerful artifacts that grant permanent growth bonuses.</p>
+        </li>
+        <li class="project">
+          <h3><a href="https://woodrock.github.io/wiki-of-thesis" rel="noopener">Thesis</a></h3>
+          <p class="tags">Python · JavaScript · LaTeX</p>
+          <p>A wiki for my thesis, inspired by a Karpathy tweet https://x.com/karpathy/status/2039805659525644595</p>
+        </li>
+        <li class="project">
+          <h3><a href="https://github.com/woodRock/wordle" rel="noopener">Wordle Solving Transformer</a></h3>
+          <p class="tags">Python · Onnyx · Pytorch</p>
+          <p>Wordle solver with a transformer deep learning neural network.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p>
+        The quickest route is email: <a href="mailto:jrhwood98@gmail.com">jrhwood98@gmail.com</a>.
+        You can also send a note from here.
+      </p>
+      <form class="contact-form" id="contact-form" action="https://formspree.io/f/mpwpynqy" method="POST">
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="5" required></textarea>
+        </div>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+        <div class="form-actions">
+          <button class="button" type="submit">Send message</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 Jesse Wood</p>
+      <p><a href="https://github.com/woodrock/woodrock.github.io">Source</a> · Built with Bun, hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{url}}/">
+  <link rel="canonical" href="{{url}}/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="/" aria-label="{{name}}, home">{{name}}</a>
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+
+    <section class="hero" aria-labelledby="hero-heading">
+      <p class="eyebrow">{{role}}</p>
+      <h1 id="hero-heading">{{name}}</h1>
+      <p class="lede">{{tagline}}</p>
+      <p class="muted">{{affiliation}} · {{location}}</p>
+      <ul class="link-row" aria-label="Contact links">
+        <li><a href="mailto:{{email}}">Email</a></li>
+        {{hero_links}}
+      </ul>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+      {{about}}
+      <h3 class="subheading">Tools I use</h3>
+      <dl class="skills">
+        {{skills}}
+      </dl>
+    </section>
+
+    <section id="research" class="section" aria-labelledby="research-heading">
+      <h2 id="research-heading">Research</h2>
+      <p>{{research_intro}}</p>
+      <dl class="highlights">
+        {{highlights}}
+      </dl>
+      <p class="muted">
+        Code and experiments live in <a href="{{research_code_href}}">{{research_code_label}}</a>,
+        with <a href="{{research_docs_href}}">{{research_docs_label}}</a>.
+      </p>
+    </section>
+
+    <section id="publications" class="section" aria-labelledby="publications-heading">
+      <h2 id="publications-heading">Publications</h2>
+      <ol class="pub-list" reversed>
+        {{publications}}
+      </ol>
+    </section>
+
+    <section id="projects" class="section" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <ul class="project-list">
+        {{projects}}
+      </ul>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p>
+        The quickest route is email: <a href="mailto:{{email}}">{{email}}</a>.
+        You can also send a note from here.
+      </p>
+      <form class="contact-form" id="contact-form" action="{{formspree}}" method="POST">
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="5" required></textarea>
+        </div>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+        <div class="form-actions">
+          <button class="button" type="submit">Send message</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© {{year}} {{name}}</p>
+      <p><a href="{{repo}}">Source</a> · Built with Bun, hosted on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

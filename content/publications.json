@@ -1,0 +1,77 @@
+[
+  {
+    "id": "wood2026machine",
+    "year": 2026,
+    "title": "Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis",
+    "venue": "Te Herenga Waka—Victoria University of Wellington",
+    "kind": "PhD thesis",
+    "abstract": "This thesis advances seafood processing by applying deep learning to Rapid Evaporative Ionization Mass Spectrometry (REIMS) data, enabling automated and accurate marine biomass analysis.\n\nThis research addresses critical industry challenges in quality control, food safety, and fraud prevention. These include foundational tasks like species identification to combat mislabeling fraud and body part classification to optimize by-product utilization and prevent adulteration with offal. It also formalizes novel food safety problems, such as detecting oil contamination (a food safety hazard) and cross-species adulteration (a form of economic fraud). Finally, it tackles batch traceability, a task essential for rapid product recalls that currently relies on costly and impractical physical tagging methods.\n\nTo achieve this, the thesis first establishes a suite of advanced models for foundational tasks species and body part identification, drawing on datasets described in Chapter 3. Specifically, this involves a binary classification dataset of 106 samples for Hoki and Mackerel identification and a multi-class dataset of 33 samples for classifying seven distinct body parts (fillets, heads, livers, skins, gonads, guts, and frames). The work then formalizes and solves novel food safety problems, including oil contamination (seven ordinal concentration levels from 50% to 0% in a 126-sample dataset) and cross-species adulteration (pure Hoki, pure Mackerel, and mixed Hoki-Mackerel samples from a 144-sample dataset), also based on Chapter 3 data. Finally, it introduces a self-supervised framework to address the challenge of batch traceability using a highly imbalanced, pairwise comparison dataset of 2,556 instances, derived from 72 fish samples across 24 distinct batches. The high-dimensional nature of the REIMS data, with 2,080 features per spectrum for all tasks, necessitates sophisticated solutions.\n\nKey contributions include the development of advanced Transformer architectures, which significantly outperform traditional methods by achieving up to 100% accuracy in species identification. The study also critically evaluates Mixture of Experts (MoE) Transformers to determine optimal configurations and investigates the asymmetric effects of transfer learning across different tasks, namely species identification, body part classification, oil contamination, and cross-species adulteration detection. Furthermore, a comparative analysis of ordinal classification techniques is included, demonstrating that models designed for ordered data significantly reduce error distance in graded contamination tasks. For batch traceability, a novel self-supervised contrastive learning method, SpectroSim, is introduced, which identifies sample origins with 70.8% accuracy without using class labels. Explainable AI techniques are employed to ensure model predictions are interpretable, enhancing trust and providing chemically relevant insights.\n\nThis research is motivated by the need to overcome the limitations of current state-of-the-art analytical methods. The standard approach for REIMS analysis relies on traditional chemometric techniques like Orthogonal Partial Least Squares Discriminant Analysis (OPLS-DA), which are often limited in their ability to model the complex, non-linear, and high-dimensional nature of mass spectra. For the foundational task of species and body part identification, the challenge was to classify samples from complex and high-dimensional REIMS data. This was addressed by developing novel Transformer architectures that achieved near-perfect accuracy (up to 100%), establishing a new performance benchmark. For the novel tasks of oil contamination and cross-species adulteration, the challenge was to detect subtle chemical signatures often masked by the sample’s primary chemical profile. This was solved by adapting advanced models to these difficult classification problems and systematically applying transfer learning, which was found to consistently improve the detection of oil contamination. Finally, for batch traceability, the challenge was to create a method that avoids costly physical tags and the need for impractical supervised labels. This was achieved by developing “SpectroSim”, a self-supervised framework that accurately determines sample origin without labels, offering a practical and cost-effective solution for the industry.",
+    "pdf": "wood2026machine.pdf",
+    "doi": "10.26686/mef0-mr46",
+    "links": [
+      {
+        "label": "Open Access",
+        "href": "https://openaccess.wgtn.ac.nz/articles/thesis/Machine_Learning_for_Rapid_Evaporative_Ionization_Mass_Spectrometry_for_Marine_Biomass_Analysis/32682723?file=65576205"
+      }
+    ],
+    "bibtex": "@phdthesis{wood2026machine,\n  title={Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis},\n  author={Wood, Jesse},\n  school={Te Herenga Waka---Victoria University of Wellington},\n  year={2026},\n  doi={10.26686/mef0-mr46}\n}"
+  },
+  {
+    "id": "wood2025hook",
+    "year": 2025,
+    "title": "Hook, Line and Spectra: Machine Learning for Fish Species and Part Classification using Rapid Evaporative Ionization Mass Spectrometry",
+    "venue": "Intelligent Marine Technology and Systems",
+    "kind": "Journal article",
+    "abstract": "Marine biomass composition analysis traditionally requires time-consuming processes and domain expertise. This study demonstrates the effectiveness of rapid evaporative ionization mass spectrometry (REIMS) combined with advanced machine learning (ML) techniques for accurate marine biomass composition determination. Using fish species and body parts as model systems representing diverse biochemical profiles, we investigate various ML methods, including unsupervised pretraining strategies for transformers. The deep learning approaches consistently outperformed traditional machine learning across all tasks. For fish species classification, the pretrained transformer achieved 99.62% accuracy, and for fish body parts classification, the transformer achieved 84.06% accuracy. We further explored the explainability of the best-performing and predominantly black box models using local interpretable model-agnostic explanations and gradient-weighted class activation mapping to identify the important features driving the decisions behind each of the best performing classifiers. REIMS analysis with ML can be an accurate and potentially explainable technique for automated marine biomass composition analysis. Thus, REIMS analysis with ML has potential applications in quality control, product optimization, and food safety monitoring in marine-based industries.",
+    "pdf": "wood2025hook.pdf",
+    "doi": "10.1007/s44295-025-00066-3",
+    "links": [
+      {
+        "label": "Springer",
+        "href": "https://link.springer.com/article/10.1007/s44295-025-00066-3"
+      }
+    ],
+    "bibtex": "@article{wood2025hook,\n  title={Hook, line, and spectra: machine learning for fish species identification and body part classification using rapid evaporative ionization mass spectrometry},\n  author={Wood, Jesse and Nguyen, Bach and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},\n  journal={Intelligent Marine Technology and Systems},\n  volume={3},\n  number={1},\n  pages={16},\n  year={2025},\n  publisher={Springer}\n}"
+  },
+  {
+    "id": "wood2022automated",
+    "year": 2022,
+    "title": "Automated Fish Classification Using Unprocessed Fatty Acid Chromatographic Data: A Machine Learning Approach",
+    "venue": "Australasian Joint Conference on Artificial Intelligence",
+    "kind": "Conference paper",
+    "abstract": "Fish is approximately 40% edible fillet. The remaining 60% can be processed into low-value fertilizer or high-value pharmaceutical-grade omega-3 concentrates. High-value manufacturing options depend on the composition of the biomass, which varies with fish species, fish tissue and seasonally throughout the year. Fatty acid composition, measured by Gas Chromatography, is an important measure of marine biomass quality. This technique is accurate and precise, but processing and interpreting the results is time-consuming and requires domain-specific expertise. The paper investigates different classification and feature selection algorithms for their ability to automate the processing of Gas Chromatography data. Experiments found that SVM could classify compositionally diverse marine biomass based on raw chromatographic fatty acid data. The SVM model is interpretable through visualization which can highlight important features for classification. Experiments demonstrated that applying feature selection significantly reduced dimensionality and improved classification performance on high-dimensional low sample-size datasets. According to the reduction rate, feature selection could accelerate the classification system up to four times.",
+    "pdf": "wood2022automated.pdf",
+    "doi": "10.1007/978-3-031-22695-3_36",
+    "links": [
+      {
+        "label": "Open Access",
+        "href": "https://openaccess.wgtn.ac.nz/articles/chapter/Automated_Fish_Classification_Using_Unprocessed_Fatty_Acid_Chromatographic_Data_A_Machine_Learning_Approach/22107473"
+      }
+    ],
+    "bibtex": "@inproceedings{wood2022automated,\n  title={Automated fish classification using unprocessed fatty acid chromatographic data: a machine learning approach},\n  author={Wood, Jesse and Nguyen, Bach Hoai and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},\n  booktitle={Australasian Joint Conference on Artificial Intelligence},\n  pages={516--529},\n  year={2022},\n  organization={Springer}\n}"
+  },
+  {
+    "id": "wood2022rapid",
+    "year": 2022,
+    "title": "Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry",
+    "venue": "PhD Proposal, Victoria University of Wellington",
+    "kind": "PhD proposal",
+    "abstract": "Navigating the analysis of mass spectrometry data for marine biomass and fish demands a technologically adept approach to derive accurate and actionable insights. This research will introduce a novel AI methodology to interpret a substantial repository of mass spectrometry datasets, utilizing pre-training strategies like Next Spectra Prediction and Masked Spectra Modeling, targeting enhanced interpretability and correlation of spectral patterns with chemical attributes. Three core research objectives are explored: 1) precise fish species and body part identification via binary and multi-class classification, respectively; 2) quantitative contaminant analysis employing multi-label classification and multi-output regression; and 3) traceability through pair-wise comparison and instance recognition. By validating against traditional baselines and various downstream tasks, this work aims to enhance chemical analytical processes and offer fresh insights into the chemical and traceability aspects of marine biology and fisheries through advanced AI applications.",
+    "pdf": "wood2022rapid.pdf",
+    "doi": null,
+    "links": [],
+    "bibtex": "@article{wood2022rapid,\n  title={Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry},\n  author={Wood, Jesse and Nguyen, Bach and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},\n  journal={Victoria University of Wellington},\n  year={2022},\n  publisher={Victoria University of Wellington}\n}"
+  },
+  {
+    "id": "wood2025spectrosim",
+    "year": 2025,
+    "title": "SpectroSim: Batch Detection in Marine Biomass",
+    "venue": "Manuscript",
+    "kind": "Preprint",
+    "abstract": "The batch detection of marine biomass constitutes a significant real-world application within the fish processing industry, contributing to food safety, fraud prevention, and stock management. Recent advancements have demonstrated that Rapid Evaporative Ionization Mass Spectrometry (REIMS) when coupled with Orthogonal Partial Least Squares Discriminant Analysis (OPLS-DA), yields exceptional outcomes in fraud detection, contamination identification, and biomass analysis. Although several studies have employed REIMS and OPLS-DA for species identification and contamination detection, these efforts have not yet addressed the challenge of batch detection, which involves determining the specific batch of processed samples from which a fish originates. Leveraging a high-dimensional REIMS dataset provided by Plant and Food Research, New Zealand, we propose a novel contrastive learning approach termed SpectroSim, building upon the SimCLR framework. The new method introduces a bespoke encoder head, replacing the traditional ResNet backbone with a Transformer architecture, alongside a custom projection head designed for mass spectrometry data. Experimental results indicate that SpectroSim surpasses the balanced classification accuracy of established deep learning frameworks and other prevalent baseline models. Notably, as an unsupervised methodology, SpectroSim achieves near-perfect accuracy (98.02%) in a self-supervised context, independent of class labels.",
+    "pdf": "wood2025spectrosim.pdf",
+    "doi": null,
+    "links": [],
+    "bibtex": "@unpublished{wood2025spectrosim,\n  title={SpectroSim: Batch Detection in Marine Biomass},\n  author={Wood, Jesse and Nguyen, Bach Hoai and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},\n  year={2025},\n  note={Manuscript}\n}"
+  }
+]

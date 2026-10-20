@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Bartender",
+    "tags": [
+      "Godot",
+      "GD Script"
+    ],
+    "href": "https://wdrck.itch.io/bartender",
+    "description": "Step behind the bar in this high-fidelity mixology simulator. Unlike standard click-and-serve games, this experience leverages a physics-based interaction system where every pour, shake, and clink of ice matters. As the shifts progress, the pressure mounts, and only the most precise bartenders will survive the rush."
+  },
+  {
+    "title": "Cloudy with a Chance of Git Pulls",
+    "tags": [
+      "JavaScript",
+      "GitHub Actions"
+    ],
+    "href": "https://github.com/woodRock/expert-chainsaw",
+    "description": "This GitHub Action used the Open Weather API to display the weather forecast for a given area. It is updated once every 30 minutes. The weather forecast is displayed within predefined tags (hidden inside HTML comments), such that it does not overwrite any other existing content in a README."
+  },
+  {
+    "title": "Fishy Business",
+    "tags": [
+      "Python",
+      "Pytorch",
+      "Deap",
+      "Numpy"
+    ],
+    "href": "https://github.com/woodRock/fishy-business",
+    "description": "Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis --- A Doctoral Thesis by Jesse Wood"
+  },
+  {
+    "title": "Ionic Scholar",
+    "tags": [
+      "Ionic",
+      "Semantic Scholar",
+      "Gemini"
+    ],
+    "href": "https://github.com/woodRock/ionic-scholar",
+    "description": "This individually developed app keeps track of academic references. The app remembers the users progress, keywords, quotes. Also it can generate citations. We design the app to reduce the stress of academic writing. Frequently it can be problematic to maintain track of several numerous scholarly articles when trying to prepare a paper."
+  },
+  {
+    "title": "qsh | Qwen Shell",
+    "tags": [
+      "Rust",
+      "Python",
+      "SQL"
+    ],
+    "href": "https://github.com/woodrock/qsh",
+    "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe. Powered by Qwen 3.5-0.8B and Rust. 🦀"
+  },
+  {
+    "title": "Skyrim Wellbeing Manager",
+    "tags": [
+      "React",
+      "Firebase",
+      "Leaflet",
+      "Threejs"
+    ],
+    "href": "https://github.com/woodrock/moody-bitch",
+    "description": "Moody bitch is a high-fidelity mental health odyssey that transforms real-world self-care into an epic, Skyrim-inspired RPG experience. By completing daily \"quests,\" users earn experience points to level up legendary skill constellations, unlock psychological perks, and loot powerful artifacts that grant permanent growth bonuses."
+  },
+  {
+    "title": "Thesis",
+    "tags": [
+      "Python",
+      "JavaScript",
+      "LaTeX"
+    ],
+    "href": "https://woodrock.github.io/wiki-of-thesis",
+    "description": "A wiki for my thesis, inspired by a Karpathy tweet https://x.com/karpathy/status/2039805659525644595"
+  },
+  {
+    "title": "Wordle Solving Transformer",
+    "tags": [
+      "Python",
+      "Onnyx",
+      "Pytorch"
+    ],
+    "href": "https://github.com/woodRock/wordle",
+    "description": "Wordle solver with a transformer deep learning neural network."
+  }
+]
