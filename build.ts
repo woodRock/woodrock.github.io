@@ -57,6 +57,7 @@ interface Publication {
 }
 
 interface Project {
+  id?: string;
   title: string;
   tags: string[];
   href: string;
@@ -147,7 +148,8 @@ function renderPublication(pub: Publication): string {
 }
 
 function renderProject(project: Project): string {
-  return `<li class="project">
+  const id = project.id ? ` id="${esc(project.id)}"` : "";
+  return `<li class="project"${id}>
           <h3>${anchor({ label: project.title, href: project.href })}</h3>
           <p class="tags">${project.tags.map(esc).join(" · ")}</p>
           <p>${esc(project.description)}</p>

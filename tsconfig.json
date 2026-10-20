@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "types": ["bun-types"]
   },
-  "include": ["build.ts", "dev.ts"]
+  "include": ["build.ts", "dev.ts", "tools"]
 }
