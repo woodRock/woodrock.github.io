@@ -1,28 +1,46 @@
 {
   "name": "Jesse Wood",
   "title": "Jesse Wood",
-  "description": "PhD candidate in artificial intelligence at Victoria University of Wellington. Deep learning for mass spectrometry and marine biomass analysis.",
+  "description": "Postdoctoral research fellow at Victoria University of Wellington. Deep learning for mass spectrometry and chromatography, applied to seafood authentication and marine conservation.",
   "url": "https://woodrock.github.io",
-  "role": "PhD candidate in Artificial Intelligence",
+  "role": "Postdoctoral Research Fellow in Artificial Intelligence",
   "affiliation": "Te Herenga Waka—Victoria University of Wellington",
   "location": "Wellington, New Zealand",
-  "tagline": "I apply deep learning to mass spectrometry so that fish can be identified, graded and traced by their chemistry.",
+  "tagline": "I build deep learning models that read the chemical fingerprints of fish, to authenticate seafood and help protect the oceans it comes from.",
   "email": "jrhwood98@gmail.com",
   "links": [
-    { "label": "GitHub", "href": "https://github.com/woodrock" },
-    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/jrhwood" },
-    { "label": "CV", "href": "/resume.pdf" }
+    {
+      "label": "GitHub",
+      "href": "https://github.com/woodrock"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/jrhwood"
+    },
+    {
+      "label": "ORCID",
+      "href": "https://orcid.org/0000-0003-3756-2122"
+    },
+    {
+      "label": "CV",
+      "href": "/resume.pdf"
+    }
   ],
   "about": [
-    "I am a PhD candidate in artificial intelligence at Te Herenga Waka—Victoria University of Wellington. My thesis applies transformer models, self-supervised learning and explainable AI to rapid evaporative ionisation mass spectrometry (REIMS) data from the seafood industry.",
-    "Before the PhD I was a software engineer at NIWA, New Zealand's National Institute of Water and Atmospheric Research. I still think of code as a scientific instrument: something to build carefully, test and then point at an open question.",
+    "I am a postdoctoral research fellow in the School of Engineering and Computer Science at Te Herenga Waka—Victoria University of Wellington. I work with Hiringa te Mahara, the Aotearoa New Zealand pod of Abundant Intelligences: an Indigenous-led, international programme that asks what artificial intelligence looks like when it starts from Indigenous knowledge systems and treats AI as relational, regenerative and rooted in place. My postdoc is supervised by Dr Kevin Shedlock, whose research spans Indigenous knowledge systems, immersive technologies and tribal data sovereignty.",
+    "Day to day, I apply deep learning to gas chromatography–mass spectrometry chromatograms to tell fish species apart. It is conservation work at heart, framed through kaitiakitanga and aimed at protecting marine resources from illegal, unreported and unregulated fishing. I collaborate with the Bioeconomy Science Institute, formerly Plant & Food Research, and with the machine learning groups at VUW, and I sit on the board of the AI Research Association of Aotearoa New Zealand as the elected representative for postdoctoral researchers.",
+    "I hold a BE (Hons) in Software Engineering and a PhD in Artificial Intelligence. Before the PhD I was a software developer intern and later a contract software engineer at NIWA, New Zealand's National Institute of Water and Atmospheric Research. I still think of code as a scientific instrument: something to build carefully, test and then point at an open question.",
     "Off the clock I built a Skyrim-style wellbeing tracker and am currently lost somewhere in Baldur's Gate 3."
   ],
   "research": {
-    "intro": "The seafood industry needs fast, reliable answers about what a sample is, which part of the fish it came from, whether it has been contaminated and which batch it belongs to. My work replaces slow, expert-driven chemometrics with models that learn these answers directly from raw spectra.",
+    "intro": "My research sits where machine learning meets analytical chemistry. A mass spectrometer or a gas chromatograph turns a piece of fish into a long vector of numbers, and the interesting question is what a model can learn from that signal: which species it is, which part of the fish, whether it has been adulterated and which batch it came from. I care most about self-supervised learning, transformer architectures and evaluation rigorous enough that a chemist would trust the result. The thesis results below come from rapid evaporative ionisation mass spectrometry; my postdoctoral work carries the same ideas over to GC-MS.",
     "highlights": [
       {
-        "term": "Species identification",
+        "term": "Species authentication from GC-MS",
+        "detail": "Current postdoctoral work: deep learning on gas chromatography–mass spectrometry chromatograms to verify fish species, in support of efforts against illegal, unreported and unregulated fishing."
+      },
+      {
+        "term": "Species identification from REIMS",
         "detail": "Transformer models reach 100% accuracy separating Hoki from Mackerel on REIMS spectra, against the OPLS-DA chemometric baseline."
       },
       {
@@ -39,7 +57,7 @@
       }
     ],
     "code": {
-      "label": "fishy-business on GitHub",
+      "label": "fishy-business on GitHub (thesis code)",
       "href": "https://github.com/woodrock/fishy-business"
     },
     "docs": {
@@ -48,9 +66,38 @@
     }
   },
   "skills": [
-    { "group": "Machine learning", "items": ["PyTorch", "Transformers", "Hugging Face", "scikit-learn", "NumPy", "pandas"] },
-    { "group": "Optimisation and systems", "items": ["Optuna", "DEAP", "Rust", "C++", "Haskell", "Docker", "Streamlit"] },
-    { "group": "Explainability and tracking", "items": ["LIME", "SHAP", "Grad-CAM", "Weights & Biases"] }
+    {
+      "group": "Machine learning",
+      "items": [
+        "PyTorch",
+        "Transformers",
+        "Hugging Face",
+        "scikit-learn",
+        "NumPy",
+        "pandas"
+      ]
+    },
+    {
+      "group": "Optimisation and systems",
+      "items": [
+        "Optuna",
+        "DEAP",
+        "Rust",
+        "C++",
+        "Haskell",
+        "Docker",
+        "Streamlit"
+      ]
+    },
+    {
+      "group": "Explainability and tracking",
+      "items": [
+        "LIME",
+        "SHAP",
+        "Grad-CAM",
+        "Weights & Biases"
+      ]
+    }
   ],
   "formspree": "https://formspree.io/f/mpwpynqy",
   "repo": "https://github.com/woodrock/woodrock.github.io"
