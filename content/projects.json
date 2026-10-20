@@ -6,6 +6,7 @@
     "tags": [
       "Python",
       "PyTorch",
+      "scikit-learn",
       "DEAP"
     ],
     "description": "Code for my PhD thesis: transformers, mixture-of-experts and contrastive learning for species, body part, contamination and batch classification from REIMS spectra.",
@@ -44,7 +45,8 @@
     "href": "https://woodrock.github.io/chroma-dcnn/",
     "tags": [
       "Python",
-      "PyTorch"
+      "PyTorch",
+      "scikit-learn"
     ],
     "description": "Identifying Snapper, Gurnard, Tarakihi and Blue Cod from GC-MS lipid profiles with a 1D dilated CNN, pretrained without labels on MoNA and MassBank reference spectra.",
     "links": [
@@ -60,8 +62,8 @@
     "href": "https://github.com/woodRock/ruru",
     "tags": [
       "Python",
-      "CLI",
-      "TUI"
+      "Textual",
+      "CLI"
     ],
     "description": "A local, plain-text literature library. Papers arrive from arXiv, OpenAlex, Crossref and journal feeds, get triaged like email, live as Markdown in git and flow into each paper's .bib. Agents use the same CLI I do.",
     "links": [
@@ -77,6 +79,7 @@
     "href": "https://github.com/woodRock/gpu-spooler",
     "tags": [
       "Python",
+      "Textual",
       "SSH"
     ],
     "description": "Queue GPU jobs from your laptop onto SSH-reachable servers. A daemon finds free GPUs, runs jobs detached and streams the logs back. Set up out of the box for the VUW ECS cluster.",
@@ -93,6 +96,7 @@
     "href": "https://github.com/woodRock/taura",
     "tags": [
       "Python",
+      "Textual",
       "CLI"
     ],
     "description": "A plain-text provenance ledger that links every number, table and figure in a paper back through a checked chain: artifact, result, run, then commit, config and data version. A convention, a CLI and agent rules, not an experiment tracker.",
@@ -109,8 +113,9 @@
     "href": "https://github.com/woodRock/qsh",
     "tags": [
       "Rust",
+      "Candle",
       "Python",
-      "LLM"
+      "Qwen"
     ],
     "description": "A local-first, privacy-focused CLI that brings vision and semantic understanding to the Unix pipe, powered by a 0.8B Qwen model and Rust.",
     "links": [
@@ -146,7 +151,8 @@
     "href": "https://woodrock.github.io/zero-slop/",
     "tags": [
       "JavaScript",
-      "Chrome extension"
+      "Chrome extension",
+      "Firestore"
     ],
     "description": "A Chrome extension that flags AI-generated and engagement-farmed posts on X, with local heuristics for extraction hooks and a reporting workflow for bot networks.",
     "links": [
@@ -161,8 +167,8 @@
     "title": "Teaching Sand to Dream",
     "href": "https://woodrock.github.io/teaching-sand-to-dream/",
     "tags": [
-      "Book",
-      "HTML"
+      "HTML",
+      "CSS"
     ],
     "description": "Website for my book on how humans taught sand to dream, from Alan Turing to ChatGPT, told without equations for curious non-experts.",
     "links": [
