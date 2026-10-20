@@ -15,14 +15,6 @@
   <link rel="canonical" href="https://woodrock.github.io/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
-  <script>
-    (function () {
-      try {
-        var t = localStorage.getItem("theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (e) {}
-    })();
-  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -36,17 +28,8 @@
           <li><a href="#research">Research</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark theme">
-        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-        </svg>
-        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
     </div>
   </header>
 
@@ -68,48 +51,18 @@
 
     <section id="about" class="section" aria-labelledby="about-heading">
       <h2 id="about-heading">About</h2>
-      <p>I am a postdoctoral research fellow in the School of Engineering and Computer Science at Te Herenga Waka—Victoria University of Wellington. I work with Hiringa te Mahara, the Aotearoa New Zealand pod of Abundant Intelligences: an Indigenous-led, international programme that asks what artificial intelligence looks like when it starts from Indigenous knowledge systems and treats AI as relational, regenerative and rooted in place. My postdoc is supervised by Dr Kevin Shedlock, whose research spans Indigenous knowledge systems, immersive technologies and tribal data sovereignty.</p>
+      <p>I am a postdoctoral research fellow in the School of Engineering and Computer Science at Te Herenga Waka—Victoria University of Wellington, working with Hiringa te Mahara, the Aotearoa New Zealand pod of Abundant Intelligences, an Indigenous-led programme that reimagines AI from Indigenous knowledge systems. My postdoc is supervised by Dr Kevin Shedlock.</p>
       <p>Day to day, I apply deep learning to gas chromatography–mass spectrometry chromatograms to tell fish species apart. It is conservation work at heart, framed through kaitiakitanga and aimed at protecting marine resources from illegal, unreported and unregulated fishing. I collaborate with the Bioeconomy Science Institute, formerly Plant &amp; Food Research, and with the machine learning groups at VUW, and I sit on the board of the AI Research Association of Aotearoa New Zealand as the elected representative for postdoctoral researchers.</p>
       <p>I hold a BE (Hons) in Software Engineering and a PhD in Artificial Intelligence. Before the PhD I was a software developer intern and later a contract software engineer at NIWA, New Zealand's National Institute of Water and Atmospheric Research. I still think of code as a scientific instrument: something to build carefully, test and then point at an open question.</p>
       <p>Off the clock I built a Skyrim-style wellbeing tracker and am currently lost somewhere in Baldur's Gate 3.</p>
-      <h3 class="subheading">Tools I use</h3>
-      <dl class="skills">
-        <dt>Machine learning</dt>
-        <dd>PyTorch, Transformers, Hugging Face, scikit-learn, NumPy, pandas</dd>
-        <dt>Optimisation and systems</dt>
-        <dd>Optuna, DEAP, Rust, C++, Haskell, Docker, Streamlit</dd>
-        <dt>Explainability and tracking</dt>
-        <dd>LIME, SHAP, Grad-CAM, Weights &amp; Biases</dd>
-      </dl>
     </section>
 
     <section id="research" class="section" aria-labelledby="research-heading">
       <h2 id="research-heading">Research</h2>
-      <p>My research sits where machine learning meets analytical chemistry. A mass spectrometer or a gas chromatograph turns a piece of fish into a long vector of numbers, and the interesting question is what a model can learn from that signal: which species it is, which part of the fish, whether it has been adulterated and which batch it came from. I care most about self-supervised learning, transformer architectures and evaluation rigorous enough that a chemist would trust the result. The thesis results below come from rapid evaporative ionisation mass spectrometry; my postdoctoral work carries the same ideas over to GC-MS.</p>
-      <dl class="highlights">
-        <div>
-          <dt>Species authentication from GC-MS</dt>
-          <dd>Current postdoctoral work: deep learning on gas chromatography–mass spectrometry chromatograms to verify fish species, in support of efforts against illegal, unreported and unregulated fishing.</dd>
-        </div>
-        <div>
-          <dt>Species identification from REIMS</dt>
-          <dd>Transformer models reach 100% accuracy separating Hoki from Mackerel on REIMS spectra, against the OPLS-DA chemometric baseline.</dd>
-        </div>
-        <div>
-          <dt>Body part classification</dt>
-          <dd>An ensemble of transformers classifies seven body parts at 74.13% accuracy where OPLS-DA reaches 51.17%.</dd>
-        </div>
-        <div>
-          <dt>Contamination and adulteration</dt>
-          <dd>Ordinal classifiers detect graded oil contamination and cross-species mixing, with transfer learning improving contamination detection.</dd>
-        </div>
-        <div>
-          <dt>Batch traceability</dt>
-          <dd>SpectroSim, a self-supervised contrastive method, identifies a sample's batch at 70.8% accuracy with no labels and no physical tags.</dd>
-        </div>
-      </dl>
+      <p>My research sits where machine learning meets analytical chemistry. A mass spectrometer or a gas chromatograph turns a piece of fish into a long vector of numbers, and the interesting question is what a model can learn from that signal: which species it is, which part of the fish, whether it has been adulterated and which batch it came from. I care most about self-supervised learning, transformer architectures and evaluation rigorous enough that a chemist would trust the result.</p>
+      <p>Right now that means deep learning on GC-MS chromatograms to authenticate fish species, in support of efforts against illegal, unreported and unregulated fishing. My thesis did the same for rapid evaporative ionisation mass spectrometry, where transformers reached 100% accuracy on species identification and a self-supervised method, SpectroSim, traced samples to their batch without labels.</p>
       <p class="muted">
-        Code and experiments live in <a href="https://github.com/woodrock/fishy-business">fishy-business on GitHub (thesis code)</a>,
+        Thesis code and experiments live in <a href="https://github.com/woodrock/fishy-business">fishy-business on GitHub (thesis code)</a>,
         with <a href="https://fishy-business.readthedocs.io/en/latest/index.html">Documentation</a>.
       </p>
     </section>
@@ -132,15 +85,17 @@
             <li><a href="/wood2026machine.pdf">PDF</a></li>
             <li><a href="https://openaccess.wgtn.ac.nz/articles/thesis/Machine_Learning_for_Rapid_Evaporative_Ionization_Mass_Spectrometry_for_Marine_Biomass_Analysis/32682723?file=65576205" rel="noopener">Open Access</a></li>
             <li><a href="https://doi.org/10.26686/mef0-mr46" rel="noopener">DOI</a></li>
-            <li><button class="link-button" type="button" data-copy="bib-wood2026machine">Copy BibTeX</button></li>
           </ul>
-          <pre class="bibtex" id="bib-wood2026machine" hidden>@phdthesis{wood2026machine,
+          <details>
+            <summary>BibTeX</summary>
+            <pre>@phdthesis{wood2026machine,
   title={Machine Learning for Rapid Evaporative Ionization Mass Spectrometry for Marine Biomass Analysis},
   author={Wood, Jesse},
   school={Te Herenga Waka---Victoria University of Wellington},
   year={2026},
   doi={10.26686/mef0-mr46}
 }</pre>
+          </details>
         </li>
         <li class="pub" id="wood2025hook">
           <p class="meta"><time datetime="2025">2025</time> · Journal article · Intelligent Marine Technology and Systems</p>
@@ -153,9 +108,10 @@
             <li><a href="/wood2025hook.pdf">PDF</a></li>
             <li><a href="https://link.springer.com/article/10.1007/s44295-025-00066-3" rel="noopener">Springer</a></li>
             <li><a href="https://doi.org/10.1007/s44295-025-00066-3" rel="noopener">DOI</a></li>
-            <li><button class="link-button" type="button" data-copy="bib-wood2025hook">Copy BibTeX</button></li>
           </ul>
-          <pre class="bibtex" id="bib-wood2025hook" hidden>@article{wood2025hook,
+          <details>
+            <summary>BibTeX</summary>
+            <pre>@article{wood2025hook,
   title={Hook, line, and spectra: machine learning for fish species identification and body part classification using rapid evaporative ionization mass spectrometry},
   author={Wood, Jesse and Nguyen, Bach and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},
   journal={Intelligent Marine Technology and Systems},
@@ -165,6 +121,7 @@
   year={2025},
   publisher={Springer}
 }</pre>
+          </details>
         </li>
         <li class="pub" id="wood2022automated">
           <p class="meta"><time datetime="2022">2022</time> · Conference paper · Australasian Joint Conference on Artificial Intelligence</p>
@@ -177,9 +134,10 @@
             <li><a href="/wood2022automated.pdf">PDF</a></li>
             <li><a href="https://openaccess.wgtn.ac.nz/articles/chapter/Automated_Fish_Classification_Using_Unprocessed_Fatty_Acid_Chromatographic_Data_A_Machine_Learning_Approach/22107473" rel="noopener">Open Access</a></li>
             <li><a href="https://doi.org/10.1007/978-3-031-22695-3_36" rel="noopener">DOI</a></li>
-            <li><button class="link-button" type="button" data-copy="bib-wood2022automated">Copy BibTeX</button></li>
           </ul>
-          <pre class="bibtex" id="bib-wood2022automated" hidden>@inproceedings{wood2022automated,
+          <details>
+            <summary>BibTeX</summary>
+            <pre>@inproceedings{wood2022automated,
   title={Automated fish classification using unprocessed fatty acid chromatographic data: a machine learning approach},
   author={Wood, Jesse and Nguyen, Bach Hoai and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},
   booktitle={Australasian Joint Conference on Artificial Intelligence},
@@ -187,6 +145,7 @@
   year={2022},
   organization={Springer}
 }</pre>
+          </details>
         </li>
         <li class="pub" id="wood2022rapid">
           <p class="meta"><time datetime="2022">2022</time> · PhD proposal · PhD Proposal, Victoria University of Wellington</p>
@@ -197,15 +156,17 @@
           </details>
           <ul class="actions" aria-label="Links for Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry">
             <li><a href="/wood2022rapid.pdf">PDF</a></li>
-            <li><button class="link-button" type="button" data-copy="bib-wood2022rapid">Copy BibTeX</button></li>
           </ul>
-          <pre class="bibtex" id="bib-wood2022rapid" hidden>@article{wood2022rapid,
+          <details>
+            <summary>BibTeX</summary>
+            <pre>@article{wood2022rapid,
   title={Rapid determination of bulk composition and quality of marine biomass in Mass Spectrometry},
   author={Wood, Jesse and Nguyen, Bach and Xue, Bing and Zhang, Mengjie and Killeen, Daniel},
   journal={Victoria University of Wellington},
   year={2022},
   publisher={Victoria University of Wellington}
 }</pre>
+          </details>
         </li>
       </ol>
     </section>
@@ -292,42 +253,13 @@
       </ul>
     </section>
 
-    <section id="contact" class="section" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact</h2>
-      <p>
-        The quickest route is email: <a href="mailto:jrhwood98@gmail.com">jrhwood98@gmail.com</a>.
-        You can also send a note from here.
-      </p>
-      <form class="contact-form" id="contact-form" action="https://formspree.io/f/mpwpynqy" method="POST">
-        <div class="field">
-          <label for="cf-name">Name</label>
-          <input id="cf-name" name="name" type="text" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="cf-email">Email</label>
-          <input id="cf-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="cf-message">Message</label>
-          <textarea id="cf-message" name="message" rows="5" required></textarea>
-        </div>
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
-        <div class="form-actions">
-          <button class="button" type="submit">Send message</button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-        </div>
-      </form>
-    </section>
-
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>© 2026 Jesse Wood</p>
-      <p><a href="https://github.com/woodrock/woodrock.github.io">Source</a> · Built with Bun, hosted on GitHub Pages</p>
+      <p><a href="https://github.com/woodrock/woodrock.github.io">Source</a></p>
     </div>
   </footer>
-
-  <script src="/main.js" defer></script>
 </body>
 </html>

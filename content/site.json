@@ -27,34 +27,15 @@
     }
   ],
   "about": [
-    "I am a postdoctoral research fellow in the School of Engineering and Computer Science at Te Herenga Waka—Victoria University of Wellington. I work with Hiringa te Mahara, the Aotearoa New Zealand pod of Abundant Intelligences: an Indigenous-led, international programme that asks what artificial intelligence looks like when it starts from Indigenous knowledge systems and treats AI as relational, regenerative and rooted in place. My postdoc is supervised by Dr Kevin Shedlock, whose research spans Indigenous knowledge systems, immersive technologies and tribal data sovereignty.",
+    "I am a postdoctoral research fellow in the School of Engineering and Computer Science at Te Herenga Waka—Victoria University of Wellington, working with Hiringa te Mahara, the Aotearoa New Zealand pod of Abundant Intelligences, an Indigenous-led programme that reimagines AI from Indigenous knowledge systems. My postdoc is supervised by Dr Kevin Shedlock.",
     "Day to day, I apply deep learning to gas chromatography–mass spectrometry chromatograms to tell fish species apart. It is conservation work at heart, framed through kaitiakitanga and aimed at protecting marine resources from illegal, unreported and unregulated fishing. I collaborate with the Bioeconomy Science Institute, formerly Plant & Food Research, and with the machine learning groups at VUW, and I sit on the board of the AI Research Association of Aotearoa New Zealand as the elected representative for postdoctoral researchers.",
     "I hold a BE (Hons) in Software Engineering and a PhD in Artificial Intelligence. Before the PhD I was a software developer intern and later a contract software engineer at NIWA, New Zealand's National Institute of Water and Atmospheric Research. I still think of code as a scientific instrument: something to build carefully, test and then point at an open question.",
     "Off the clock I built a Skyrim-style wellbeing tracker and am currently lost somewhere in Baldur's Gate 3."
   ],
   "research": {
-    "intro": "My research sits where machine learning meets analytical chemistry. A mass spectrometer or a gas chromatograph turns a piece of fish into a long vector of numbers, and the interesting question is what a model can learn from that signal: which species it is, which part of the fish, whether it has been adulterated and which batch it came from. I care most about self-supervised learning, transformer architectures and evaluation rigorous enough that a chemist would trust the result. The thesis results below come from rapid evaporative ionisation mass spectrometry; my postdoctoral work carries the same ideas over to GC-MS.",
-    "highlights": [
-      {
-        "term": "Species authentication from GC-MS",
-        "detail": "Current postdoctoral work: deep learning on gas chromatography–mass spectrometry chromatograms to verify fish species, in support of efforts against illegal, unreported and unregulated fishing."
-      },
-      {
-        "term": "Species identification from REIMS",
-        "detail": "Transformer models reach 100% accuracy separating Hoki from Mackerel on REIMS spectra, against the OPLS-DA chemometric baseline."
-      },
-      {
-        "term": "Body part classification",
-        "detail": "An ensemble of transformers classifies seven body parts at 74.13% accuracy where OPLS-DA reaches 51.17%."
-      },
-      {
-        "term": "Contamination and adulteration",
-        "detail": "Ordinal classifiers detect graded oil contamination and cross-species mixing, with transfer learning improving contamination detection."
-      },
-      {
-        "term": "Batch traceability",
-        "detail": "SpectroSim, a self-supervised contrastive method, identifies a sample's batch at 70.8% accuracy with no labels and no physical tags."
-      }
+    "intro": [
+      "My research sits where machine learning meets analytical chemistry. A mass spectrometer or a gas chromatograph turns a piece of fish into a long vector of numbers, and the interesting question is what a model can learn from that signal: which species it is, which part of the fish, whether it has been adulterated and which batch it came from. I care most about self-supervised learning, transformer architectures and evaluation rigorous enough that a chemist would trust the result.",
+      "Right now that means deep learning on GC-MS chromatograms to authenticate fish species, in support of efforts against illegal, unreported and unregulated fishing. My thesis did the same for rapid evaporative ionisation mass spectrometry, where transformers reached 100% accuracy on species identification and a self-supervised method, SpectroSim, traced samples to their batch without labels."
     ],
     "code": {
       "label": "fishy-business on GitHub (thesis code)",
@@ -65,40 +46,5 @@
       "href": "https://fishy-business.readthedocs.io/en/latest/index.html"
     }
   },
-  "skills": [
-    {
-      "group": "Machine learning",
-      "items": [
-        "PyTorch",
-        "Transformers",
-        "Hugging Face",
-        "scikit-learn",
-        "NumPy",
-        "pandas"
-      ]
-    },
-    {
-      "group": "Optimisation and systems",
-      "items": [
-        "Optuna",
-        "DEAP",
-        "Rust",
-        "C++",
-        "Haskell",
-        "Docker",
-        "Streamlit"
-      ]
-    },
-    {
-      "group": "Explainability and tracking",
-      "items": [
-        "LIME",
-        "SHAP",
-        "Grad-CAM",
-        "Weights & Biases"
-      ]
-    }
-  ],
-  "formspree": "https://formspree.io/f/mpwpynqy",
   "repo": "https://github.com/woodrock/woodrock.github.io"
 }

@@ -1,6 +1,6 @@
 ---
 name: site-content
-description: Update the content of woodrock.github.io (bio, publications, projects, links) through the `site` CLI. Use when asked to add or edit a paper, project, bio text, tagline, skills, links or research highlights on the website, or to fix wording on the site.
+description: Update the content of woodrock.github.io (bio, publications, projects, links) through the `site` CLI. Use when asked to add or edit a paper, project, bio text, tagline, links or research text on the website, or to fix wording on the site.
 ---
 
 # Editing website content
@@ -68,18 +68,15 @@ JSON are stored as JSON; anything else is a string.
 | `tagline` | One sentence under the name on the home page |
 | `role`, `affiliation`, `location` | Lines in the hero |
 | `about.N` | About paragraphs, in order (currently 0 to 3) |
-| `research.intro` | Paragraph opening the Research section |
-| `research.highlights.N.term` / `.detail` | Research result cards |
+| `research.intro.N` | Research paragraphs, in order |
 | `research.code`, `research.docs` | `{label, href}` links under Research |
-| `skills.N.group`, `skills.N.items` | "Tools I use" groups and lists |
 | `links.N.label` / `.href` | Hero links (GitHub, LinkedIn, CV) |
-| `email`, `formspree`, `repo`, `description` | Contact and metadata |
+| `email`, `repo`, `description` | Contact and metadata |
 
 ```sh
 bun run site config get about
 bun run site config set about.1 "Before the PhD I was ..."
-bun run site config set skills.0.items '["PyTorch","JAX"]'
-bun run site config set research.highlights.0.detail "..."
+bun run site config set research.intro.1 "..."
 ```
 
 To add an About paragraph, get the array, append in JSON and set the whole
@@ -89,8 +86,8 @@ To add an About paragraph, get the array, append in JSON and set the whole
 
 First person, plain and direct, one idea per sentence. Keep the existing
 tone: a researcher who codes, with a little personality in the last About
-paragraph. Do not invent results or affiliations; numbers in research
-highlights come from the thesis and papers.
+paragraph. Do not invent results or affiliations; numbers in the research
+text come from the thesis and papers.
 
 ## Verify
 

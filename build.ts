@@ -33,13 +33,10 @@ interface Site {
   links: Link[];
   about: string[];
   research: {
-    intro: string;
-    highlights: { term: string; detail: string }[];
+    intro: string[];
     code: Link;
     docs: Link;
   };
-  skills: { group: string; items: string[] }[];
-  formspree: string;
   repo: string;
 }
 
@@ -97,20 +94,8 @@ function renderHeroLinks(site: Site): string {
   return site.links.map((l) => `<li>${anchor(l)}</li>`).join("\n        ");
 }
 
-function renderAbout(site: Site): string {
-  return site.about.map((p) => `<p>${esc(p)}</p>`).join("\n      ");
-}
-
-function renderSkills(site: Site): string {
-  return site.skills
-    .map((s) => `<dt>${esc(s.group)}</dt>\n        <dd>${s.items.map(esc).join(", ")}</dd>`)
-    .join("\n        ");
-}
-
-function renderHighlights(site: Site): string {
-  return site.research.highlights
-    .map((h) => `<div>\n          <dt>${esc(h.term)}</dt>\n          <dd>${esc(h.detail)}</dd>\n        </div>`)
-    .join("\n        ");
+function renderParagraphs(items: string[]): string {
+  return items.map((p) => `<p>${esc(p)}</p>`).join("\n      ");
 }
 
 function renderPublication(pub: Publication): string {
@@ -125,14 +110,8 @@ function renderPublication(pub: Publication): string {
   if (pub.doi) {
     actions.push(`<li><a href="https://doi.org/${esc(pub.doi)}" rel="noopener">DOI</a></li>`);
   }
-  if (pub.bibtex) {
-    actions.push(
-      `<li><button class="link-button" type="button" data-copy="bib-${esc(pub.id)}">Copy BibTeX</button></li>`,
-    );
-  }
-
   const bib = pub.bibtex
-    ? `\n          <pre class="bibtex" id="bib-${esc(pub.id)}" hidden>${esc(pub.bibtex)}</pre>`
+    ? `\n          <details>\n            <summary>BibTeX</summary>\n            <pre>${esc(pub.bibtex)}</pre>\n          </details>`
     : "";
 
   return `<li class="pub" id="${esc(pub.id)}">
@@ -200,12 +179,9 @@ export async function build(): Promise<void> {
     location: esc(site.location),
     tagline: esc(site.tagline),
     email: esc(site.email),
-    formspree: esc(site.formspree),
     hero_links: renderHeroLinks(site),
-    about: renderAbout(site),
-    skills: renderSkills(site),
-    research_intro: esc(site.research.intro),
-    highlights: renderHighlights(site),
+    about: renderParagraphs(site.about),
+    research: renderParagraphs(site.research.intro),
     research_code_href: esc(site.research.code.href),
     research_code_label: esc(site.research.code.label),
     research_docs_href: esc(site.research.docs.href),

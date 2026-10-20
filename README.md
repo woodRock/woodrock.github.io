@@ -2,7 +2,7 @@
 
 Personal site for Jesse Wood: research, publications, projects and contact.
 
-Plain HTML, CSS and JavaScript. No framework and no runtime dependencies.
+Plain HTML and CSS, no JavaScript. No framework and no runtime dependencies.
 A small [Bun](https://bun.sh) script fills the page from JSON content and
 writes the finished site to `docs/`, which GitHub Pages serves from the
 `main` branch.
@@ -15,7 +15,6 @@ src/          Hand-written pages, styles and script
   index.html  Page template with {{placeholders}} for content
   404.html    Not-found page
   styles.css
-  main.js     Theme toggle, active nav link, copy BibTeX, contact form
   public/     Copied as-is into docs/ (PDFs, favicon)
 build.ts      Renders src/ + content/ into docs/
 dev.ts        Local preview with rebuild on change
