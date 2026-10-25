@@ -57,23 +57,6 @@
     ]
   },
   {
-    "id": "ruru",
-    "title": "Ruru",
-    "href": "https://github.com/woodRock/ruru",
-    "tags": [
-      "Python",
-      "Textual",
-      "CLI"
-    ],
-    "description": "A local, plain-text literature library. Papers arrive from arXiv, OpenAlex, Crossref and journal feeds, get triaged like email, live as Markdown in git and flow into each paper's .bib. Agents use the same CLI I do.",
-    "links": [
-      {
-        "label": "Source",
-        "href": "https://github.com/woodRock/ruru"
-      }
-    ]
-  },
-  {
     "id": "gpu-spooler",
     "title": "GPU Spooler",
     "href": "https://github.com/woodRock/gpu-spooler",
@@ -104,6 +87,23 @@
       {
         "label": "Source",
         "href": "https://github.com/woodRock/taura"
+      }
+    ]
+  },
+  {
+    "id": "ruru",
+    "title": "Ruru",
+    "href": "https://github.com/woodRock/ruru",
+    "tags": [
+      "Python",
+      "Textual",
+      "CLI"
+    ],
+    "description": "A local, plain-text literature library. Papers arrive from arXiv, OpenAlex, Crossref and journal feeds, get triaged like email, live as Markdown in git and flow into each paper's .bib. Agents use the same CLI I do.",
+    "links": [
+      {
+        "label": "Source",
+        "href": "https://github.com/woodRock/ruru"
       }
     ]
   },
